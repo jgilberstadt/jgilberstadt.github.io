@@ -35,7 +35,7 @@ header.site-header{position:relative}
 .menu-list li{padding:0;margin:0}
 .menu-list a{display:block;padding:.5rem .75rem;color:var(--text);text-decoration:none;list-style:none;padding-left:0;margin-left:0}
 .menu-list a:hover{background:rgba(255,255,255,0.04)}
-.menu-list a.current{background:rgba(96,165,250,0.18);font-weight:600;pointer-events:none;opacity:1;color:var(--bg)}
+.menu-list a.current{background:#00A9FF;color:#000;font-weight:600;pointer-events:none;opacity:1}
 
 /* Fullscreen overlay when menu is open */
 .menu.open .menu-list{
