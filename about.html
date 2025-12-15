@@ -2,7 +2,15 @@
 <header class="site-header">
 	<h1>About</h1>
 	<img src="assets/images/Josh_Gilberstadt_Image.jpeg" alt="Profile" class="profile">
+	<div class="menu" role="navigation" aria-label="Page switcher">
+	  <button aria-haspopup="true" aria-expanded="false" aria-controls="page-menu-list">☰</button>
+	  <ul id="page-menu-list" class="menu-list" role="menu" aria-hidden="true">
+	    <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+	    <li role="none"><a role="menuitem" href="about.html">About</a></li>
+	  </ul>
+	</div>
 </header>
 <p>Hi — I'm Josh. This is an example about page.</p>
 <p><a href="/index.html">Home</a></p>
 </div>
+<script src="assets/js/menu.js" defer></script>
