@@ -1,1 +1,10 @@
-# Josh Gilberstadt's portfolio
+# Josh Gilberstadt — About & Contact
+
+This repository hosts a simple static portfolio site for Josh Gilberstadt.
+
+Pages
+- `index.html` — About (site root)
+- `contact.html` — Contact
+
+The site is served as static HTML/CSS with a small JavaScript menu.
+

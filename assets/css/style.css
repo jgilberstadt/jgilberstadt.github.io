@@ -75,3 +75,9 @@ header.site-header{position:relative}
   position:absolute;top:1rem;right:1rem;background:transparent;border:0;color:var(--text);font-size:1.6rem;cursor:pointer;padding:.25rem}
 .menu-list .menu-close:focus{outline:2px solid rgba(255,255,255,0.12);border-radius:6px}
 
+/* Contact/social styles */
+.contact{color:var(--text);text-align:left;max-width:640px}
+.social-links{list-style:none;padding:0;margin:.5rem 0 0 0;display:flex;gap:.75rem}
+.social-links a{color:var(--accent);text-decoration:none}
+.social-links a:hover{text-decoration:underline}
+
