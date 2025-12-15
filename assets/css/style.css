@@ -59,3 +59,19 @@ header.site-header{position:relative}
 .menu.open .menu-list li{margin:.5rem 0}
 .menu.open .menu-list a{font-size:1.4rem;padding:.75rem 1.25rem}
 
+/* Slide animation states */
+.menu.open .menu-list{
+  transform: translateY(-8%);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 320ms ease;
+}
+.menu.open.visible .menu-list{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Close button inside overlay */
+.menu-list .menu-close{
+  position:absolute;top:1rem;right:1rem;background:transparent;border:0;color:var(--text);font-size:1.6rem;cursor:pointer;padding:.25rem}
+.menu-list .menu-close:focus{outline:2px solid rgba(255,255,255,0.12);border-radius:6px}
+

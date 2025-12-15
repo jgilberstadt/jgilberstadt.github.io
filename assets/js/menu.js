@@ -6,22 +6,33 @@ document.addEventListener('DOMContentLoaded', function () {
   const list = menu.querySelector('.menu-list');
 
   function closeMenu() {
-    menu.classList.remove('open');
+    // start closing animation
+    menu.classList.remove('visible');
     button.setAttribute('aria-expanded', 'false');
     list.setAttribute('aria-hidden', 'true');
-    // restore scrolling
-    try { document.body.style.overflow = ''; } catch (e) {}
+    // after transition, remove open and restore scrolling
+    const onEnd = function () {
+      try { menu.classList.remove('open'); } catch (e) {}
+      try { document.body.style.overflow = ''; } catch (e) {}
+      list.removeEventListener('transitionend', onEnd);
+    };
+    list.addEventListener('transitionend', onEnd);
   }
 
   function openMenu() {
+    // show overlay and trigger slide-in
     menu.classList.add('open');
+    // ensure paint then add visible class for transition
+    requestAnimationFrame(() => requestAnimationFrame(() => menu.classList.add('visible')));
     button.setAttribute('aria-expanded', 'true');
     list.setAttribute('aria-hidden', 'false');
     // prevent background scrolling while menu is open
     try { document.body.style.overflow = 'hidden'; } catch (e) {}
-    // focus first non-current menu link for keyboard users
-    const first = list.querySelector('a:not(.current)');
-    if (first) first.focus();
+    // focus first non-current menu link for keyboard users (slightly after open)
+    setTimeout(() => {
+      const first = list.querySelector('a:not(.current)');
+      if (first) first.focus();
+    }, 250);
   }
 
   button.addEventListener('click', function (e) {
@@ -38,6 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeMenu();
   });
+
+  // Close button inside overlay
+  const closeBtn = menu.querySelector('.menu-close');
+  if (closeBtn) closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeMenu(); });
 
   // Highlight the current page in the menu
   try {
