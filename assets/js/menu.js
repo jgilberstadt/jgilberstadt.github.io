@@ -9,12 +9,19 @@ document.addEventListener('DOMContentLoaded', function () {
     menu.classList.remove('open');
     button.setAttribute('aria-expanded', 'false');
     list.setAttribute('aria-hidden', 'true');
+    // restore scrolling
+    try { document.body.style.overflow = ''; } catch (e) {}
   }
 
   function openMenu() {
     menu.classList.add('open');
     button.setAttribute('aria-expanded', 'true');
     list.setAttribute('aria-hidden', 'false');
+    // prevent background scrolling while menu is open
+    try { document.body.style.overflow = 'hidden'; } catch (e) {}
+    // focus first non-current menu link for keyboard users
+    const first = list.querySelector('a:not(.current)');
+    if (first) first.focus();
   }
 
   button.addEventListener('click', function (e) {

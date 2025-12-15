@@ -32,9 +32,30 @@ header.site-header{position:relative}
   font-size:1rem;
 }
 .menu-list{display:none;position:absolute;right:0;top:calc(100% + .5rem);background:rgba(0,0,0,0.9);border:1px solid rgba(255,255,255,0.08);border-radius:6px;min-width:140px;padding:.25rem 0;margin:0;list-style:none}
-.menu-list li{padding:0}
+.menu-list li{padding:0;margin:0}
 .menu-list a{display:block;padding:.5rem .75rem;color:var(--text);text-decoration:none;list-style:none;padding-left:0;margin-left:0}
 .menu-list a:hover{background:rgba(255,255,255,0.04)}
 .menu-list a.current{background:rgba(255,255,255,0.06);font-weight:600;pointer-events:none;opacity:0.95}
-.menu.open .menu-list{display:block}
+
+/* Fullscreen overlay when menu is open */
+.menu.open .menu-list{
+  display:flex;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(0,0,0,0.96);
+  border-radius:0;
+  border:0;
+  min-width:auto;
+  padding:0;
+  margin:0;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+.menu.open .menu-list li{margin:.5rem 0}
+.menu.open .menu-list a{font-size:1.4rem;padding:.75rem 1.25rem}
 
