@@ -164,6 +164,8 @@ header.site-header{position:relative}
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
 }
 
 .site-title,
@@ -172,13 +174,13 @@ header.site-header{position:relative}
 }
 
 .site-title {
-  font-size: 1.5rem;
+  font-size: clamp(2.5rem, 5vw, 3rem);
   font-weight: 600;
   margin: 0;
 }
 
 .site-subtitle {
-  font-size: 0.95rem;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
   font-weight: 400;
   margin: 0;
   opacity: 0.85;
