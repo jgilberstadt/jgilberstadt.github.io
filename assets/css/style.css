@@ -83,9 +83,14 @@ header.site-header{position:relative}
 
 .project-item {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start; /* top-align image and text */
+  gap: 12px;
 }
+
+.project-text {
+  line-height: 1.5;
+}
+
 .project-thumb {
   width: 80px;
   height: 80px;
