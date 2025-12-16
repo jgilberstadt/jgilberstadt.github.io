@@ -326,6 +326,32 @@ header.site-header {
   text-decoration: underline;
 }
 
+.social-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;               /* space between icon and text */
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  background-color: var(--accent);
+  border: 0.05em solid var(--accent);
+  border-radius: 0.3em;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.social-button:hover,
+.social-button:focus-visible {
+  background-color: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.social-button .icon {
+  font-size: 1.1rem;
+}
+
 /* =========================
    Responsive Adjustments
 ========================= */
