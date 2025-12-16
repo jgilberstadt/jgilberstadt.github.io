@@ -100,7 +100,7 @@ header.site-header{position:relative}
 }
 
 @media (max-width: 480px) {
-  .project-item {
+  .project-card {
     grid-template-columns: 60px 1fr;
   }
 
