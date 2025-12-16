@@ -118,6 +118,7 @@ header.site-header {
   padding: 0.5em 1em;
   color: var(--text);
   text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .menu-list a:hover {
