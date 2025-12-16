@@ -81,3 +81,14 @@ header.site-header{position:relative}
 .social-links a{color:var(--accent);text-decoration:none}
 .social-links a:hover{text-decoration:underline}
 
+.project-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.project-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+}
