@@ -14,13 +14,6 @@ body{
 }
 h1{color:var(--accent);margin-top:0}
 a{color:var(--accent)}
-header.site-header {
-  display: flex;
-  justify-content: space-between;  /* text left, menu right */
-  align-items: center;             /* vertical centering */
-  padding-bottom: 1.25rem;
-  margin-bottom: 2rem;
-}
 .container{max-width:900px;margin:0 auto}
 
 .profile{width:144px;height:144px;border-radius:50%;display:block;margin:0 0 1rem 0}
@@ -30,74 +23,7 @@ header.site-header{position:relative}
 .menu {
   position: static;  /* remove absolute positioning */
 }
-.menu button {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.12);
-  padding: 0.7rem 1rem;       /* doubled from .35/.5 */
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 2rem;            /* doubled from 1rem */
-}
-.menu button:hover,
-.menu button:focus-visible {
-  background: rgba(255, 255, 255, 0.08);
-}
-.menu-list {
-  top: calc(100% + 1rem);  /* increased from 0.5rem */
-  min-width: 200px;         /* wider for larger text */
-  padding: 0.5rem 0;        /* more spacing */
-  border-radius: 8px;       /* slightly larger corners */
-}
-.menu-list li{padding:0;margin:0}
-.menu-list a {
-  padding: 0.75rem 1.25rem; /* was 0.5rem .75rem */
-  font-size: 1.25rem;       /* larger font for visibility */
-}
-.menu-list a:hover {
-  background: rgba(255,255,255,0.08);  /* slightly stronger hover for larger area */
-}
 .menu-list a.current{background:#00A9FF;color:#000;font-weight:600;pointer-events:none;opacity:1}
-
-/* Fullscreen overlay when menu is open */
-.menu.open .menu-list{
-  display:flex;
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-  background:rgba(0,0,0,0.96);
-  border-radius:0;
-  border:0;
-  min-width:auto;
-  padding:0;
-  margin:0;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-.menu.open .menu-list li{margin:.5rem 0}
-.menu.open .menu-list a {
-  font-size: 2rem;          /* match header scaling */
-  padding: 1rem 1.5rem;
-}
-/* Slide animation states */
-.menu.open .menu-list{
-  transform: translateY(-8%);
-  opacity: 0;
-  transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 320ms ease;
-}
-.menu.open.visible .menu-list{
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Close button inside overlay */
-.menu-list .menu-close{
-  position:absolute;top:1rem;right:1rem;background:transparent;border:0;color:var(--text);font-size:1.6rem;cursor:pointer;padding:.25rem}
-.menu-list .menu-close:focus{outline:2px solid rgba(255,255,255,0.12);border-radius:6px}
 
 /* Contact/social styles */
 .contact{color:var(--text);text-align:left;max-width:640px}
@@ -133,15 +59,6 @@ header.site-header{position:relative}
     height: 60px;
   }
 
-  header.site-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .menu button {
-    font-size: 1.5rem;
-    padding: 0.5rem 0.75rem;
-  }
 }
 
 .project-item:hover {
@@ -207,24 +124,178 @@ header.site-header{position:relative}
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
 }
 
-.site-title {
-  font-size: clamp(2.5rem, 5vw, 3rem);
-  font-weight: 600;
-  margin: 0;
+
+/* =========================
+Keep ========================= */
+
+/* =========================
+   Header and Site Title
+========================= */
+header.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 1rem;  /* root scaling reference */
 }
 
-.site-subtitle {
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 400;
+/* Site title and subtitle */
+.site-title {
+  font-size: 3rem;        /* scales up header */
+  font-weight: 600;
   margin: 0;
-  opacity: 0.85;
 }
 
 .site-title a {
   text-decoration: none;
   color: var(--accent);
+  display: inline-block;
 }
 
-.site-title a:hover {
+.site-title a:hover,
+.site-title a:focus-visible {
   text-decoration: underline;
 }
+
+.site-subtitle {
+  font-size: 1.9rem;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* =========================
+   Menu Button
+========================= */
+.menu button {
+  font-size: 2rem;        /* scales with header size */
+  padding: 0.7em 1em;     /* relative to button font-size */
+  background: transparent;
+  color: var(--text);
+  border: 0.05em solid rgba(255,255,255,0.12);
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+
+.menu button:hover,
+.menu button:focus-visible {
+  background: rgba(255,255,255,0.08);
+}
+
+/* =========================
+   Dropdown Menu (Desktop)
+========================= */
+.menu-list {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5em);  /* spacing relative to button */
+  background: rgba(0,0,0,0.9);
+  border: 0.05em solid rgba(255,255,255,0.08);
+  border-radius: 0.5em;
+  min-width: 12em;          /* relative width */
+  padding: 0.25em 0;
+  list-style: none;
+  font-size: 1em;           /* scales with root */
+  z-index: 10;
+}
+
+.menu-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list a {
+  display: block;
+  padding: 0.5em 1em;      /* scales with menu font-size */
+  color: var(--text);
+  text-decoration: none;
+}
+
+.menu-list a:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* =========================
+   Fullscreen Overlay Menu (Mobile)
+========================= */
+.menu.open .menu-list {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.96);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  font-size: 2rem;           /* scales with header */
+  z-index: 9999;
+}
+
+.menu.open .menu-list li {
+  margin: 0.5em 0;
+}
+
+.menu.open .menu-list a {
+  font-size: 1em;            /* relative to parent scaling */
+  padding: 1em 2em;
+}
+
+/* =========================
+   Menu Open Animations
+========================= */
+.menu.open .menu-list {
+  transform: translateY(-8%);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 320ms ease;
+}
+
+.menu.open.visible .menu-list {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* =========================
+   Close Button Inside Overlay
+========================= */
+.menu-list .menu-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: 0;
+  color: var(--text);
+  font-size: 1.6rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.menu-list .menu-close:focus {
+  outline: 2px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+}
+
+/* =========================
+   Responsive Adjustment (Optional)
+========================= */
+@media (max-width: 480px) {
+  header.site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu button {
+    font-size: 1.5rem;
+    padding: 0.5em 0.75em;
+  }
+
+  .menu-list {
+    min-width: 10em;
+  }
+}
+
