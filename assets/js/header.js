@@ -8,6 +8,23 @@ document.addEventListener("DOMContentLoaded", () => {
       if (typeof initMenu === "function") {
         initMenu();
       }
+
+      // Highlight active page
+      highlightActivePage();
     })
     .catch(err => console.error("Failed to load header:", err));
 });
+
+function highlightActivePage() {
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const links = document.querySelectorAll(".menu-list a");
+
+  links.forEach(link => {
+    const linkPage = link.getAttribute("href");
+
+    if (linkPage === currentPage) {
+      link.classList.add("current");
+      link.setAttribute("aria-current", "page");
+    }
+  });
+}
