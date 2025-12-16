@@ -160,3 +160,20 @@ header.site-header{position:relative}
   border-radius: 6px;
 }
 
+.site-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.site-title {
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.site-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
