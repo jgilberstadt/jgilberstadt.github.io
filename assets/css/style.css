@@ -82,9 +82,11 @@ header.site-header{position:relative}
 .social-links a:hover{text-decoration:underline}
 
 .project-item {
-  display: flex;
-  align-items: flex-start; /* top-align image and text */
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 80px 1fr; /* fixed image, flexible text */
+  column-gap: 12px;
+  align-items: start; /* top-align content */
+  margin-bottom: 1rem;
 }
 
 .project-text {
@@ -101,4 +103,5 @@ header.site-header{position:relative}
 .project-text strong {
   display: block;
   margin-bottom: 0.25rem;
+  line-height: 1.3;
 }
