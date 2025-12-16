@@ -177,3 +177,12 @@ header.site-header{position:relative}
   font-size: 0.9rem;
   opacity: 0.8;
 }
+
+.site-title a {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.site-title a:hover {
+  text-decoration: underline;
+}
