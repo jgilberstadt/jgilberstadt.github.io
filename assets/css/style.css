@@ -336,16 +336,34 @@ header.site-header {
   text-decoration: none;
   line-height: 1.2;
 
-  transition: background 0.2s ease, color 0.2s ease;
+  /* Animation setup */
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
+/* Hover & keyboard focus */
 .social-button:hover,
 .social-button:focus-visible {
   background: rgba(96, 165, 250, 0.1);
+  transform: translateY(-0.12em);
+  box-shadow: 0 0.4em 0.8em rgba(96, 165, 250, 0.25);
+}
+
+/* Prevent jump on click */
+.social-button:active {
+  transform: translateY(0);
+  box-shadow: 0 0.2em 0.4em rgba(96, 165, 250, 0.2);
 }
 
 .social-button .icon {
   font-size: 1.1rem;
+}
+
+* {
+  transition-timing-function: cubic-bezier(.2,.8,.2,1);
 }
 
 /* =========================
