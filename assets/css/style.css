@@ -335,3 +335,36 @@ header.site-header {
 .container a[target="_blank"]:hover {
   background: rgba(96,165,250,0.1);
 }
+
+/* =========================
+   Contact Section
+========================= */
+.contact {
+  color: var(--text);
+  text-align: left;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 2rem;
+}
+
+/* Social Links */
+.social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: text-decoration 0.2s;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
