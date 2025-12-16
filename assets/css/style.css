@@ -166,16 +166,22 @@ header.site-header{position:relative}
   justify-content: space-between;
 }
 
+.site-title,
+.site-subtitle {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
 .site-title {
-  margin: 0;
-  color: var(--accent);
   font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
 }
 
 .site-subtitle {
+  font-size: 0.95rem;
+  font-weight: 400;
   margin: 0;
-  font-size: 0.9rem;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .site-title a {
