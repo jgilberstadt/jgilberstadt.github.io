@@ -290,3 +290,48 @@ header.site-header {
     min-width: 10em;
   }
 }
+
+/* =========================
+   Profile Image
+========================= */
+.profile {
+  width: 9rem;       /* scalable */
+  height: 9rem;
+  border-radius: 50%;
+  display: block;
+  margin: 0 0 1rem 0;
+  object-fit: cover;
+}
+
+/* =========================
+   Text content
+========================= */
+.container p {
+  font-size: 1rem;       /* base font size */
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Link in text (contact link) */
+.container a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+/* Resume button */
+.container a[target="_blank"] {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  border: 0.05em solid var(--accent);
+  border-radius: 0.3em;
+  transition: background 0.2s;
+}
+
+.container a[target="_blank"]:hover {
+  background: rgba(96,165,250,0.1);
+}
