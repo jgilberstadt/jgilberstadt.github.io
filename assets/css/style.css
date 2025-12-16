@@ -97,3 +97,8 @@ header.site-header{position:relative}
   object-fit: cover;
   border-radius: 4px;
 }
+
+.project-text strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
