@@ -14,7 +14,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 1.25rem;
-  font-size: 1rem;  /* base font size for scaling */
+  font-size: 1rem; /* base font size for scaling */
 }
 
 a {
@@ -43,7 +43,7 @@ header.site-header {
 }
 
 .site-title {
-  font-size: 3rem;        /* scalable */
+  font-size: 3rem; /* scalable */
   font-weight: 600;
   margin: 0;
 }
@@ -71,7 +71,7 @@ header.site-header {
 ========================= */
 .menu button {
   font-size: 2rem;        /* scales with header */
-  padding: 0.7em 1em;     /* proportional */
+  padding: 0.7em 1em;
   background: transparent;
   color: var(--text);
   border: 0.05em solid rgba(255,255,255,0.12);
@@ -182,7 +182,47 @@ header.site-header {
 }
 
 /* =========================
-   Projects Section
+   About Page
+========================= */
+.profile {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  display: block;
+  margin: 0 0 1rem 0;
+  object-fit: cover;
+}
+
+.container p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.container a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+.container a[target="_blank"] {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  border: 0.05em solid var(--accent);
+  border-radius: 0.3em;
+  transition: background 0.2s;
+}
+
+.container a[target="_blank"]:hover {
+  background: rgba(96,165,250,0.1);
+}
+
+/* =========================
+   Projects Page
 ========================= */
 .projects {
   margin-top: 2rem;
@@ -193,9 +233,6 @@ header.site-header {
   margin-bottom: 1rem;
 }
 
-/* =========================
-   Project Card Grid
-========================= */
 .projects ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
@@ -205,9 +242,6 @@ header.site-header {
   margin: 0;
 }
 
-/* =========================
-   Project Card
-========================= */
 .project-item {
   display: flex;
   flex-direction: column;
@@ -222,7 +256,6 @@ header.site-header {
   background: rgba(255,255,255,0.1);
 }
 
-/* Make entire card clickable */
 .project-item a {
   color: var(--text);
   text-decoration: none;
@@ -231,9 +264,6 @@ header.site-header {
   font-size: 1rem;
 }
 
-/* =========================
-   Thumbnail Image
-========================= */
 .project-thumb {
   width: 100%;
   height: auto;
@@ -242,9 +272,6 @@ header.site-header {
   border-bottom: 0.05em solid rgba(255,255,255,0.1);
 }
 
-/* =========================
-   Project Text
-========================= */
 .project-item strong {
   display: block;
   margin-bottom: 0.5em;
@@ -254,6 +281,38 @@ header.site-header {
 .project-item em {
   font-size: 0.95rem;
   opacity: 0.85;
+}
+
+/* =========================
+   Contact Page
+========================= */
+.contact {
+  color: var(--text);
+  text-align: left;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 2rem;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: text-decoration 0.2s;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
 }
 
 /* =========================
@@ -289,82 +348,4 @@ header.site-header {
   .menu-list {
     min-width: 10em;
   }
-}
-
-/* =========================
-   Profile Image
-========================= */
-.profile {
-  width: 9rem;       /* scalable */
-  height: 9rem;
-  border-radius: 50%;
-  display: block;
-  margin: 0 0 1rem 0;
-  object-fit: cover;
-}
-
-/* =========================
-   Text content
-========================= */
-.container p {
-  font-size: 1rem;       /* base font size */
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-/* Link in text (contact link) */
-.container a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.container a:hover {
-  text-decoration: underline;
-}
-
-/* Resume button */
-.container a[target="_blank"] {
-  display: inline-block;
-  padding: 0.6em 1.2em;
-  font-size: 1rem;
-  border: 0.05em solid var(--accent);
-  border-radius: 0.3em;
-  transition: background 0.2s;
-}
-
-.container a[target="_blank"]:hover {
-  background: rgba(96,165,250,0.1);
-}
-
-/* =========================
-   Contact Section
-========================= */
-.contact {
-  color: var(--text);
-  text-align: left;
-  max-width: 40rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-top: 2rem;
-}
-
-/* Social Links */
-.social-links {
-  list-style: none;
-  padding: 0;
-  margin: 0.5rem 0 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.social-links a {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 1rem;
-  transition: text-decoration 0.2s;
-}
-
-.social-links a:hover {
-  text-decoration: underline;
 }
