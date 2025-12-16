@@ -45,6 +45,7 @@ header.site-header {
 .header-left {
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
 }
 
 .site-title {
