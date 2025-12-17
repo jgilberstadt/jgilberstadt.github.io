@@ -114,10 +114,15 @@ header.site-header {
 }
 
 /* =========================
-   Dropdown Menu (Desktop)
+   Menu List (Dropdown + Overlay)
 ========================= */
 .menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
   display: none;
+  flex-direction: column;
   position: absolute;
   right: 0;
   top: calc(100% + 0.5em);
@@ -125,10 +130,17 @@ header.site-header {
   border: 0.05em solid rgba(255,255,255,0.08);
   border-radius: 0.5em;
   min-width: 12em;
-  padding: 0.25em 0;
-  list-style: none;
-  font-size: 1em;
+  opacity: 0;
+  transform: translateY(-0.5em);
+  pointer-events: none;
+  transition: transform var(--transition-medium), opacity var(--transition-fast);
   z-index: 10;
+}
+
+.menu.open .menu-list {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .menu-list li {
@@ -144,7 +156,8 @@ header.site-header {
   transition: background var(--transition-fast), color var(--transition-fast);
 }
 
-.menu-list a:hover {
+.menu-list a:hover,
+.menu-list a:focus-visible {
   background: rgba(255,255,255,0.08);
 }
 
@@ -155,57 +168,77 @@ header.site-header {
   pointer-events: none;
 }
 
-/* =========================
-   Fullscreen Overlay Menu (Mobile)
-========================= */
-/* Hidden menu state - instantaneous */
-.menu.open .menu-list {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.96);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  font-size: 2rem;
-  z-index: 9999;
-
-  transform: translateY(0);
-  opacity: 1;
-  transition: none; /* removed delay */
-}
-
-/* Animate only when menu is opened by user */
-.menu.open.visible .menu-list {
-  transform: translateY(0);
-  opacity: 1;
-  transition: transform var(--transition-medium), opacity var(--transition-fast);
-}
-
-/* =========================
-   Close Button Inside Overlay
-========================= */
+/* Close button inside menu */
 .menu-list .menu-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
+  font-size: 1.6rem;
+  padding: 0.25rem;
   background: transparent;
   border: 0;
   color: var(--text);
-  font-size: 1.6rem;
   cursor: pointer;
-  padding: 0.25rem;
   transition: transform 0.15s ease;
 }
 
 .menu-list .menu-close:focus {
   outline: 2px solid rgba(255,255,255,0.12);
   border-radius: 6px;
+}
+
+.menu-list .menu-close:active {
+  transform: scale(0.92);
+}
+
+/* =========================
+   Mobile / Fullscreen overlay
+========================= */
+@media (max-width: 768px) {
+  .menu-list {
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    flex-direction: column;
+    background: rgba(0,0,0,0.96);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .menu.open.visible .menu-list {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu-list a {
+    font-size: 1.6rem;
+    padding: 1.25em 2em;
+    border-radius: 0.75em;
+    margin: 0.5em 0;
+  }
+
+  .menu-list li + li {
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .menu-list .menu-close {
+    font-size: 2.2rem;
+  }
+}
+
+/* Small mobile tweaks */
+@media (max-width: 480px) {
+  .menu-list .menu-close {
+    font-size: 2rem;
+    top: 0.8rem;
+    right: 0.8rem;
+  }
 }
 
 /* =========================
@@ -427,44 +460,6 @@ header.site-header {
     width: 100%;
     font-size: 1.05rem;
     padding: 0.9em 1.2em;
-  }
-  
-  .menu.open .menu-list {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding:
-      env(safe-area-inset-top)
-      env(safe-area-inset-right)
-      env(safe-area-inset-bottom)
-      env(safe-area-inset-left);
-    transform: translateY(0);
-    opacity: 1;
-    transition: none;
-  }
-
-  .menu.open.visible .menu-list {
-    transform: translateY(0);
-    opacity: 1;
-    transition: transform var(--transition-medium), opacity var(--transition-fast);
-  }
-
-  .menu.open .menu-list a {
-    font-size: 1.6rem;
-    padding: 1.25em 2em;
-    border-radius: 0.75em;
-  }
-
-  .menu.open .menu-list li + li {
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .menu-list .menu-close {
-    font-size: 2.2rem;
-    padding: 0.75rem;
-  }
-
-  .menu-list .menu-close:active {
-    transform: scale(0.92);
   }
 }
 
