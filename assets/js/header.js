@@ -4,11 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(html => {
       document.getElementById("site-header").innerHTML = html;
 
-      // Initialize menu AFTER header is injected
-      if (typeof initMenu === "function") {
-        initMenu();
-      }
-
       // Highlight active page
       highlightActivePage();
     })
