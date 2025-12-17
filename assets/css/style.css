@@ -276,6 +276,8 @@ header.site-header {
   color: var(--text);
   text-decoration: none;
   font-size: 1rem;
+  align-items: center;
+  text-align: center;
 }
 
 /* Thumbnail image */
