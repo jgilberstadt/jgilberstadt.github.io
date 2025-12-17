@@ -16,7 +16,7 @@ function setupMenu() {
   const list = menu.querySelector('.menu-list');
   const closeBtn = menu.querySelector(".menu-close");
 
-  // Focus trap for accessibility
+  // Get all focusable elements inside menu
   function getFocusableElements() {
     return list.querySelectorAll(
       'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -31,6 +31,7 @@ function setupMenu() {
 
     function handleTab(e) {
       if (e.key !== 'Tab') return;
+
       if (e.shiftKey) {
         if (document.activeElement === firstEl) {
           e.preventDefault();
@@ -46,6 +47,7 @@ function setupMenu() {
 
     list.addEventListener('keydown', handleTab);
     firstEl.focus();
+
     return () => list.removeEventListener('keydown', handleTab);
   }
 
@@ -62,7 +64,7 @@ function setupMenu() {
     removeFocusTrap = trapFocus();
   }
 
-  function closeMenu(focusButton = true) {
+  function closeMenu() {
     menu.classList.remove('visible');
     button.setAttribute('aria-expanded', 'false');
     list.setAttribute('aria-hidden', 'true');
@@ -76,49 +78,51 @@ function setupMenu() {
       list.removeEventListener("transitionend", handler);
     });
 
-    if (focusButton) button.focus();
+    button.blur(); // removes "lit up" focus effect
   }
 
-  // Toggle menu button
+  // Toggle menu on button click
   button.addEventListener('click', e => {
     e.stopPropagation();
-    menu.classList.contains('open') ? closeMenu(true) : openMenu();
+    menu.classList.contains('open') ? closeMenu() : openMenu();
   });
 
-  // Close button inside overlay
+  // Close menu via close button
   closeBtn.addEventListener("click", e => {
     e.stopPropagation();
-    closeMenu(true);
+    closeMenu();
   });
 
   // Close menu on outside click
   document.addEventListener('click', e => {
-    if (!menu.contains(e.target)) closeMenu(true);
+    if (!menu.contains(e.target)) closeMenu();
   });
 
-  // Close menu on Escape key
+  // Close menu on Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menu.classList.contains('open')) {
-      closeMenu(true);
+      closeMenu();
     }
   });
 
-  // Close menu for internal links only
+  // Close menu on link click and prevent lingering highlight
   list.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', e => {
       const href = link.getAttribute('href');
-      const isInternal = href && !href.startsWith('http') && !href.startsWith('mailto:');
+      const isInternal = href && !href.startsWith('http') && !href.startsWith('#');
+
       if (isInternal) {
-        closeMenu(); // only close menu for internal page links
+        closeMenu();
+        button.blur(); // remove focus from menu button
       }
     });
   });
 
   highlightCurrentPage(menu);
-  }
+}
 
-  // Highlight the current page link
-  function highlightCurrentPage(menu) {
+// Highlight current page link
+function highlightCurrentPage(menu) {
   const current = window.location.pathname.split("/").pop() || "index.html";
   menu.querySelectorAll(".menu-list a").forEach(link => {
     if (link.getAttribute("href") === current) {
