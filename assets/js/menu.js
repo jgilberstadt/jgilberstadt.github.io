@@ -63,26 +63,3 @@ function highlightCurrentPage(menu) {
     }
   });
 }
-
-function initMenu() {
-  const menu = document.querySelector(".menu");
-  if (!menu) return;
-
-  const button = menu.querySelector("button");
-  const menuList = menu.querySelector(".menu-list");
-  const closeButton = menu.querySelector(".menu-close");
-
-  button.addEventListener("click", () => {
-    menu.classList.add("open");
-    requestAnimationFrame(() => menu.classList.add("visible"));
-    button.setAttribute("aria-expanded", "true");
-    menuList.setAttribute("aria-hidden", "false");
-  });
-
-  closeButton.addEventListener("click", () => {
-    menu.classList.remove("visible");
-    menu.classList.remove("open");
-    button.setAttribute("aria-expanded", "false");
-    menuList.setAttribute("aria-hidden", "true");
-  });
-}
