@@ -6,9 +6,6 @@
   --text: #ffffff;
   --accent: #60a5fa;
 
-  /* =========================
-     Transition Variables
-  ========================= */
   --transition-fast: 0.2s cubic-bezier(.2,.8,.2,1);
   --transition-medium: 0.3s cubic-bezier(.2,.8,.2,1);
   --transition-slow: 0.35s cubic-bezier(.2,.8,.2,1);
@@ -21,7 +18,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 1.25rem;
-  font-size: 1rem; /* base font size for scaling */
+  font-size: 1rem;
 }
 
 a {
@@ -57,7 +54,7 @@ header.site-header {
 }
 
 .site-title {
-  font-size: 3rem; /* scalable */
+  font-size: 3rem;
   font-weight: 600;
   margin: 0;
 }
@@ -90,7 +87,7 @@ header.site-header {
 }
 
 .menu button {
-  font-size: 2rem;        /* scales with header */
+  font-size: 2rem;
   padding: 0.7em 1em;
   background: transparent;
   color: var(--text);
@@ -98,22 +95,19 @@ header.site-header {
   border-radius: 0.3em;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
-  outline: none; /* prevent default outline */
+  outline: none;
 }
 
-/* Hover effect */
 .menu button:hover {
   background: rgba(255,255,255,0.08);
 }
 
-/* Keyboard focus effect */
 .menu button:focus-visible {
   background: rgba(255,255,255,0.08);
   outline: 2px solid rgba(255,255,255,0.12);
   outline-offset: 2px;
 }
 
-/* Prevent lingering "lit" effect after clicking a link */
 .menu button.blur-fix {
   background: transparent !important;
   outline: none !important;
@@ -164,6 +158,7 @@ header.site-header {
 /* =========================
    Fullscreen Overlay Menu (Mobile)
 ========================= */
+/* Hidden menu state - instantaneous */
 .menu.open .menu-list {
   display: flex;
   position: fixed;
@@ -177,17 +172,19 @@ header.site-header {
   justify-content: center;
   padding: 0;
   margin: 0;
-  font-size: 2rem;       /* scales with header */
+  font-size: 2rem;
   z-index: 9999;
 
-  transform: translateY(-8%);
-  opacity: 0;
-  transition: transform var(--transition-medium), opacity var(--transition-fast);
+  transform: translateY(0);
+  opacity: 1;
+  transition: none; /* removed delay */
 }
 
+/* Animate only when menu is opened by user */
 .menu.open.visible .menu-list {
   transform: translateY(0);
   opacity: 1;
+  transition: transform var(--transition-medium), opacity var(--transition-fast);
 }
 
 /* =========================
@@ -246,14 +243,13 @@ header.site-header {
 ========================= */
 .projects {
   margin-top: 2rem;
-  font-size: 1rem; /* scales with root font-size */
+  font-size: 1rem;
 }
 
 .projects p {
   margin-bottom: 1rem;
 }
 
-/* Grid layout */
 .project-grid ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -263,7 +259,6 @@ header.site-header {
   margin: 0;
 }
 
-/* Project card */
 .project-item {
   display: flex;
   flex-direction: column;
@@ -278,7 +273,6 @@ header.site-header {
   background: rgba(255,255,255,0.1);
 }
 
-/* Make entire card clickable */
 .project-item a {
   display: flex;
   flex-direction: column;
@@ -289,7 +283,6 @@ header.site-header {
   text-align: center;
 }
 
-/* Thumbnail image */
 .project-thumb {
   width: 100%;
   height: auto;
@@ -298,7 +291,6 @@ header.site-header {
   border-bottom: 0.05rem solid rgba(255,255,255,0.1);
 }
 
-/* Project text */
 .project-item strong {
   margin: 0.75rem 1rem 0.25rem 1rem;
   font-size: 1.1rem;
@@ -344,32 +336,25 @@ header.site-header {
   text-decoration: underline;
 }
 
-/* Social Links as Resume-Style Buttons */
+/* Social Buttons */
 .social-button {
-  position: relative;           /* required for ripple */
-  overflow: hidden;             /* keeps ripple inside */
-  
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-
   padding: 0.6em 1.2em;
   font-size: 1rem;
   font-weight: 500;
-
   background: transparent;
   color: var(--accent);
-
   border: 0.05em solid var(--accent);
   border-radius: 0.3em;
-
   text-decoration: none;
   line-height: 1.2;
-
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
-/* Hover & keyboard focus */
 .social-button:hover,
 .social-button:focus-visible {
   background: rgba(96, 165, 250, 0.1);
@@ -377,7 +362,6 @@ header.site-header {
   box-shadow: 0 0.4em 0.8em rgba(96, 165, 250, 0.25);
 }
 
-/* Prevent jump on click */
 .social-button:active {
   transform: translateY(0);
   box-shadow: 0 0.2em 0.4em rgba(96, 165, 250, 0.2);
@@ -387,21 +371,19 @@ header.site-header {
   font-size: 1.1rem;
 }
 
-/* Ripple element */
 .social-button::after {
   content: "";
   position: absolute;
   inset: 50%;
   width: 0;
   height: 0;
-  background: rgba(96, 165, 250, 0.35); /* accent ripple */
+  background: rgba(96, 165, 250, 0.35);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: width var(--transition-slow), height var(--transition-slow), opacity 0.6s ease-out;
 }
 
-/* Trigger ripple on click */
 .social-button:active::after {
   width: 200%;
   height: 200%;
@@ -450,15 +432,14 @@ header.site-header {
   .menu.open .menu-list {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
     padding:
       env(safe-area-inset-top)
       env(safe-area-inset-right)
       env(safe-area-inset-bottom)
       env(safe-area-inset-left);
-
-    transform: translateY(6%);
-    opacity: 0;
+    transform: translateY(0);
+    opacity: 1;
+    transition: none;
   }
 
   .menu.open.visible .menu-list {
