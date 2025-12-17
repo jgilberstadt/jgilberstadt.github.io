@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(html => {
       document.getElementById("site-header").innerHTML = html;
 
-      // Highlight active page
+      setupMenu();
       highlightActivePage();
     })
     .catch(err => console.error("Failed to load header:", err));
