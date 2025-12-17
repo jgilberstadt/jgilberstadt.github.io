@@ -321,6 +321,7 @@ header.site-header {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: flex-start;
 }
 
 .social-links a {
