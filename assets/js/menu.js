@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Load header dynamically
   fetch("partials/header.html")
     .then(response => response.text())
     .then(html => {
       document.getElementById("site-header").innerHTML = html;
-      setupMenu(); // initialize menu after header is loaded
+      setupMenu();
     })
     .catch(err => console.error("Failed to load header:", err));
 });
@@ -15,14 +14,16 @@ function setupMenu() {
 
   const toggleButton = menu.querySelector('button[aria-label="Toggle menu"]');
   const menuList = menu.querySelector('.menu-list');
-
   if (!toggleButton || !menuList) return;
 
-  // Focus trap for accessibility
-  function trapFocus() {
-    const focusable = menuList.querySelectorAll(
+  function getFocusableElements() {
+    return menuList.querySelectorAll(
       'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
     );
+  }
+
+  function trapFocus() {
+    const focusable = getFocusableElements();
     if (!focusable.length) return () => {};
 
     const firstEl = focusable[0];
@@ -55,7 +56,6 @@ function setupMenu() {
     document.body.style.overflow = 'hidden';
 
     removeFocusTrap = trapFocus();
-
     requestAnimationFrame(() => menu.classList.add('visible'));
   }
 
@@ -68,7 +68,6 @@ function setupMenu() {
     if (removeFocusTrap) removeFocusTrap();
     toggleButton.blur();
 
-    // Wait for animation to finish before removing 'open'
     menuList.addEventListener("transitionend", function handler() {
       menu.classList.remove("open");
       menuList.hidden = true;
@@ -76,13 +75,11 @@ function setupMenu() {
     });
   }
 
-  // Toggle menu button
   toggleButton.addEventListener('click', e => {
     e.stopPropagation();
     menu.classList.contains('open') ? closeMenu() : openMenu();
   });
 
-  // Event delegation for close button (works with dynamic HTML)
   menu.addEventListener('click', e => {
     if (e.target.closest('.menu-close')) {
       e.stopPropagation();
@@ -90,27 +87,21 @@ function setupMenu() {
     }
   });
 
-  // Close menu on outside click
   document.addEventListener('click', e => {
     if (!menu.contains(e.target)) closeMenu();
   });
 
-  // Close menu on Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menu.classList.contains('open')) {
       closeMenu();
     }
   });
 
-  // Close menu when internal links are clicked
   menuList.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', e => {
+    link.addEventListener('click', () => {
       const href = link.getAttribute('href');
       const isInternal = href && !href.startsWith('http') && !href.startsWith('#');
-      if (isInternal) {
-        closeMenu();
-        toggleButton.blur();
-      }
+      if (isInternal) closeMenu();
     });
   });
 
