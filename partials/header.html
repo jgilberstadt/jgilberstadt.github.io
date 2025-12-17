@@ -1,4 +1,4 @@
-<header class="site-header">
+<header class="site-header" role="banner">
   <div class="header-left">
     <h1 class="site-title">
       <a href="index.html">Josh Gilberstadt</a>
@@ -6,15 +6,18 @@
     <p class="site-subtitle">Data Manager</p>
   </div>
 
-  <nav class="menu" aria-label="Page switcher">
+  <nav class="menu" role="navigation" aria-label="Main menu">
+    <!-- Menu toggle button -->
     <button
       aria-haspopup="true"
       aria-expanded="false"
-      aria-controls="page-menu-list">
+      aria-controls="page-menu-list"
+      aria-label="Toggle menu">
       ☰
     </button>
 
-    <ul id="page-menu-list" class="menu-list" aria-hidden="true">
+    <!-- Menu list -->
+    <ul id="page-menu-list" class="menu-list" hidden>
       <li class="menu-close-wrapper">
         <button class="menu-close" aria-label="Close menu">✕</button>
       </li>
