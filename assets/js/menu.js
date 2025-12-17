@@ -1,12 +1,40 @@
+// Immediately reserve header space
+const headerEl = document.getElementById("site-header");
+headerEl.innerHTML = "<div class='header-placeholder'></div>"; // placeholder to prevent layout shift
+
 document.addEventListener("DOMContentLoaded", () => {
+  const cachedHeader = localStorage.getItem("site-header");
+  const cachedHash = localStorage.getItem("site-header-hash");
+
   fetch("partials/header.html")
     .then(response => response.text())
     .then(html => {
-      document.getElementById("site-header").innerHTML = html;
-      setupMenu();
+      const hash = hashString(html);
+
+      // Use cached HTML immediately if hash matches
+      if (cachedHeader && cachedHash === hash) {
+        headerEl.innerHTML = cachedHeader;
+      } else {
+        headerEl.innerHTML = html; // populate new header
+        localStorage.setItem("site-header", html);
+        localStorage.setItem("site-header-hash", hash);
+      }
+
+      setupMenu(); // initialize menu functionality
     })
     .catch(err => console.error("Failed to load header:", err));
 });
+
+// Simple hash function
+function hashString(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash |= 0;
+  }
+  return hash.toString();
+}
 
 function setupMenu() {
   const menu = document.querySelector('.menu');
@@ -16,7 +44,6 @@ function setupMenu() {
   const list = menu.querySelector('.menu-list');
   const closeBtn = menu.querySelector(".menu-close");
 
-  // Get all focusable elements inside menu
   function getFocusableElements() {
     return list.querySelectorAll(
       'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -68,7 +95,6 @@ function setupMenu() {
     menu.classList.remove('visible');
     button.setAttribute('aria-expanded', 'false');
     list.setAttribute('aria-hidden', 'true');
-
     document.body.style.overflow = '';
 
     if (removeFocusTrap) removeFocusTrap();
@@ -78,45 +104,43 @@ function setupMenu() {
       list.removeEventListener("transitionend", handler);
     });
 
-    button.blur(); // removes "lit up" focus effect
+    button.blur();
+    button.classList.add("blur-fix");
+    setTimeout(() => button.classList.remove("blur-fix"), 50);
   }
 
-  // Toggle menu on button click
   button.addEventListener('click', e => {
     e.stopPropagation();
     menu.classList.contains('open') ? closeMenu() : openMenu();
   });
 
-  // Close menu via close button
   closeBtn.addEventListener("click", e => {
     e.stopPropagation();
     closeMenu();
   });
 
-  // Close menu on outside click
   document.addEventListener('click', e => {
     if (!menu.contains(e.target)) closeMenu();
   });
 
-  // Close menu on Escape
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menu.classList.contains('open')) {
       closeMenu();
     }
   });
 
-  // Close menu on any link click and remove lingering button highlight
   list.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', e => {
-      closeMenu();
-      button.blur(); // ensure menu button is not focused
+      const href = link.getAttribute('href');
+      const isInternal = href && !href.startsWith('http') && !href.startsWith('#');
+
+      if (isInternal) closeMenu();
     });
   });
 
   highlightCurrentPage(menu);
 }
 
-// Highlight current page link
 function highlightCurrentPage(menu) {
   const current = window.location.pathname.split("/").pop() || "index.html";
   menu.querySelectorAll(".menu-list a").forEach(link => {
