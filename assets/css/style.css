@@ -43,12 +43,10 @@ header.site-header {
   margin-bottom: 2rem;
 }
 
-
 .header-left {
   grid-column: 2;
   text-align: center;
 }
-
 
 .site-title {
   font-size: 3rem; /* scalable */
@@ -83,7 +81,7 @@ header.site-header {
 }
 
 .menu button {
-  font-size: 2rem;        /* scales with header */
+  font-size: 2rem;
   padding: 0.7em 1em;
   background: transparent;
   color: var(--text);
@@ -125,11 +123,6 @@ header.site-header {
   padding: 0.5em 1em;
   color: var(--text);
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.menu-list a:hover {
-  background: rgba(255,255,255,0.08);
 }
 
 .menu-list a.current {
@@ -155,7 +148,7 @@ header.site-header {
   justify-content: center;
   padding: 0;
   margin: 0;
-  font-size: 2rem;       /* scales with header */
+  font-size: 2rem;
   z-index: 9999;
 }
 
@@ -174,7 +167,6 @@ header.site-header {
 .menu.open .menu-list {
   transform: translateY(-8%);
   opacity: 0;
-  transition: transform 320ms cubic-bezier(.2,.9,.2,1), opacity 320ms ease;
 }
 
 .menu.open.visible .menu-list {
@@ -237,14 +229,13 @@ header.site-header {
 ========================= */
 .projects {
   margin-top: 2rem;
-  font-size: 1rem; /* scales with root font-size */
+  font-size: 1rem;
 }
 
 .projects p {
   margin-bottom: 1rem;
 }
 
-/* Grid layout */
 .project-grid ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -254,22 +245,15 @@ header.site-header {
   margin: 0;
 }
 
-/* Project card */
 .project-item {
   display: flex;
   flex-direction: column;
   background: rgba(255,255,255,0.05);
   border-radius: 0.5rem;
   overflow: hidden;
-  transition: background 0.2s;
   cursor: pointer;
 }
 
-.project-item:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-/* Make entire card clickable */
 .project-item a {
   display: flex;
   flex-direction: column;
@@ -280,7 +264,6 @@ header.site-header {
   text-align: center;
 }
 
-/* Thumbnail image */
 .project-thumb {
   width: 100%;
   height: auto;
@@ -289,7 +272,6 @@ header.site-header {
   border-bottom: 0.05rem solid rgba(255,255,255,0.1);
 }
 
-/* Project text */
 .project-item strong {
   margin: 0.75rem 1rem 0.25rem 1rem;
   font-size: 1.1rem;
@@ -328,86 +310,23 @@ header.site-header {
   color: var(--accent);
   text-decoration: none;
   font-size: 1rem;
-  transition: text-decoration 0.2s;
 }
 
-.social-links a:hover {
-  text-decoration: underline;
-}
-
-/* Social Links as Resume-Style Buttons */
 .social-button {
-  position: relative;           /* required for ripple */
-  overflow: hidden;             /* keeps ripple inside */
-  
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-
   padding: 0.6em 1.2em;
   font-size: 1rem;
   font-weight: 500;
-
   background: transparent;
   color: var(--accent);
-
   border: 0.05em solid var(--accent);
   border-radius: 0.3em;
-
   text-decoration: none;
   line-height: 1.2;
-
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    background 0.15s ease,
-    color 0.15s ease;
-}
-
-/* Hover & keyboard focus */
-.social-button:hover,
-.social-button:focus-visible {
-  background: rgba(96, 165, 250, 0.1);
-  transform: translateY(-0.12em);
-  box-shadow: 0 0.4em 0.8em rgba(96, 165, 250, 0.25);
-}
-
-/* Prevent jump on click */
-.social-button:active {
-  transform: translateY(0);
-  box-shadow: 0 0.2em 0.4em rgba(96, 165, 250, 0.2);
-}
-
-.social-button .icon {
-  font-size: 1.1rem;
-}
-
-/* Ripple element */
-.social-button::after {
-  content: "";
-  position: absolute;
-  inset: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(96, 165, 250, 0.35); /* accent ripple */
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-}
-
-/* Trigger ripple on click */
-.social-button:active::after {
-  width: 200%;
-  height: 200%;
-  opacity: 1;
-  transition:
-    width 0.35s ease-out,
-    height 0.35s ease-out,
-    opacity 0.6s ease-out;
-}
-
-* {
-  transition-timing-function: cubic-bezier(.2,.8,.2,1);
 }
 
 /* =========================
@@ -468,9 +387,6 @@ header.site-header {
   .menu.open.visible .menu-list {
     transform: translateY(0);
     opacity: 1;
-    transition:
-      transform 300ms cubic-bezier(.2,.8,.2,1),
-      opacity 300ms ease;
   }
 
   .menu.open .menu-list a {
@@ -491,7 +407,6 @@ header.site-header {
   .menu-list .menu-close:active {
     transform: scale(0.92);
   }
-
 }
 
 @media (max-width: 480px) {
@@ -520,4 +435,36 @@ header.site-header {
   body {
     padding: 0.9rem;
   }
+}
+
+/* =========================
+   Transitions
+========================= */
+
+/* Links and buttons */
+a,
+a:visited,
+button,
+.menu-list a,
+.social-button {
+  transition:
+    background 0.25s cubic-bezier(.2,.8,.2,1),
+    color 0.25s cubic-bezier(.2,.8,.2,1),
+    transform 0.25s cubic-bezier(.2,.8,.2,1),
+    box-shadow 0.25s cubic-bezier(.2,.8,.2,1);
+}
+
+/* Menu overlay animation */
+.menu.open .menu-list {
+  transition:
+    transform 320ms cubic-bezier(.2,.8,.2,1),
+    opacity 320ms ease;
+}
+
+/* Social button ripple */
+.social-button::after {
+  transition:
+    width 0.35s ease-out,
+    height 0.35s ease-out,
+    opacity 0.6s ease-out;
 }
