@@ -36,18 +36,19 @@ h1 {
    Header & Site Title
 ========================= */
 header.site-header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding-bottom: 1.25rem;
   margin-bottom: 2rem;
 }
 
+
 .header-left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  grid-column: 2;
+  text-align: center;
 }
+
 
 .site-title {
   font-size: 3rem; /* scalable */
@@ -76,6 +77,11 @@ header.site-header {
 /* =========================
    Menu Button
 ========================= */
+.menu {
+  grid-column: 3;
+  justify-self: end;
+}
+
 .menu button {
   font-size: 2rem;        /* scales with header */
   padding: 0.7em 1em;
