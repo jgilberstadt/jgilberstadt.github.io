@@ -19,6 +19,8 @@ function setupMenu() {
   }
 
   function openMenu() {
+    const firstLink = list.querySelector("a");
+    if (firstLink) firstLink.focus();
     menu.classList.add('open');
     requestAnimationFrame(() =>
       requestAnimationFrame(() => menu.classList.add('visible'))
