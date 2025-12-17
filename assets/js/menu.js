@@ -105,16 +105,11 @@ function setupMenu() {
     }
   });
 
-  // Close menu on link click and prevent lingering highlight
+  // Close menu on any link click and remove lingering button highlight
   list.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      const isInternal = href && !href.startsWith('http') && !href.startsWith('#');
-
-      if (isInternal) {
-        closeMenu();
-        button.blur(); // remove focus from menu button
-      }
+      closeMenu();
+      button.blur(); // ensure menu button is not focused
     });
   });
 
