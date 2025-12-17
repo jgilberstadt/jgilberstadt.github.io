@@ -417,6 +417,28 @@ header.site-header {
   .project-description {
     font-size: 0.95rem;
   }
+
+  .contact {
+    max-width: 100%;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .social-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .social-links li {
+    width: 100%;
+  }
+
+  .social-button {
+    justify-content: center;
+    width: 100%;
+    font-size: 1.05rem;
+    padding: 0.9em 1.2em;
+  }
 }
 
 @media (max-width: 480px) {
@@ -432,5 +454,17 @@ header.site-header {
 
   .menu-list {
     min-width: 10em;
+  }
+
+  .site-title {
+    font-size: 2.2rem;
+  }
+
+  .site-subtitle {
+    font-size: 1.3rem;
+  }
+
+  body {
+    padding: 0.9rem;
   }
 }
