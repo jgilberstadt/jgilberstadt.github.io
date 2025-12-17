@@ -51,28 +51,16 @@ function setupMenu() {
   function openMenu() {
     menu.classList.add('open');
     toggleButton.setAttribute('aria-expanded', 'true');
-    menuList.hidden = false;
-    menuList.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-
     removeFocusTrap = trapFocus();
-    requestAnimationFrame(() => menu.classList.add('visible'));
   }
 
   function closeMenu() {
-    menu.classList.remove('visible');
+    menu.classList.remove('open');
     toggleButton.setAttribute('aria-expanded', 'false');
-    menuList.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-
     if (removeFocusTrap) removeFocusTrap();
-    toggleButton.blur();
-
-    menuList.addEventListener("transitionend", function handler() {
-      menu.classList.remove("open");
-      menuList.hidden = true;
-      menuList.removeEventListener("transitionend", handler);
-    });
+    toggleButton.focus();
   }
 
   toggleButton.addEventListener('click', e => {
@@ -81,14 +69,11 @@ function setupMenu() {
   });
 
   menu.addEventListener('click', e => {
-    if (e.target.closest('.menu-close')) {
-      e.stopPropagation();
-      closeMenu();
-    }
+    if (e.target.closest('.menu-close')) closeMenu();
   });
 
   document.addEventListener('click', e => {
-    if (!menu.contains(e.target)) closeMenu();
+    if (!menu.contains(e.target) && menu.classList.contains('open')) closeMenu();
   });
 
   document.addEventListener('keydown', e => {
