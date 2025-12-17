@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("partials/header.html")
     .then(response => response.text())
     .then(html => {
-      document.getElementById("site-header").innerHTML = html;
+      const headerContainer = document.getElementById("site-header");
+      headerContainer.innerHTML = html;
       setupMenu();
     })
     .catch(err => console.error("Failed to load header:", err));
@@ -16,7 +17,7 @@ function setupMenu() {
   const list = menu.querySelector('.menu-list');
   const closeBtn = menu.querySelector(".menu-close");
 
-  // Get all focusable elements inside menu
+  // Focus trap for accessibility
   function getFocusableElements() {
     return list.querySelectorAll(
       'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -31,7 +32,6 @@ function setupMenu() {
 
     function handleTab(e) {
       if (e.key !== 'Tab') return;
-
       if (e.shiftKey) {
         if (document.activeElement === firstEl) {
           e.preventDefault();
@@ -47,7 +47,6 @@ function setupMenu() {
 
     list.addEventListener('keydown', handleTab);
     firstEl.focus();
-
     return () => list.removeEventListener('keydown', handleTab);
   }
 
@@ -55,7 +54,6 @@ function setupMenu() {
 
   function openMenu() {
     menu.classList.add('open');
-    // allow CSS transition to trigger
     requestAnimationFrame(() => menu.classList.add('visible'));
 
     button.setAttribute('aria-expanded', 'true');
@@ -65,55 +63,56 @@ function setupMenu() {
     removeFocusTrap = trapFocus();
   }
 
-  function closeMenu() {
+  function closeMenu(focusButton = true) {
     menu.classList.remove('visible');
     button.setAttribute('aria-expanded', 'false');
     list.setAttribute('aria-hidden', 'true');
 
-    // Restore body scroll
     document.body.style.overflow = '';
 
-    // Remove focus trap
     if (removeFocusTrap) removeFocusTrap();
 
-    // Wait for transition to end before fully hiding
     list.addEventListener("transitionend", function handler() {
       menu.classList.remove("open");
       list.removeEventListener("transitionend", handler);
     });
 
-    // Return focus to menu button
-    button.focus();
+    if (focusButton) button.focus();
   }
 
-  // Toggle menu on button click
+  // Toggle menu button
   button.addEventListener('click', e => {
     e.stopPropagation();
-    menu.classList.contains('open') ? closeMenu() : openMenu();
+    menu.classList.contains('open') ? closeMenu(true) : openMenu();
   });
 
-  // Close menu via close button
+  // Close button inside overlay
   closeBtn.addEventListener("click", e => {
     e.stopPropagation();
-    closeMenu();
+    closeMenu(true);
   });
 
   // Close menu on outside click
   document.addEventListener('click', e => {
-    if (!menu.contains(e.target)) closeMenu();
+    if (!menu.contains(e.target)) closeMenu(true);
   });
 
-  // Close menu on Escape
+  // Close menu on Escape key
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menu.classList.contains('open')) {
-      closeMenu();
+      closeMenu(true);
     }
+  });
+
+  // Close menu on clicking any link, but do NOT focus button
+  list.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => closeMenu(false));
   });
 
   highlightCurrentPage(menu);
 }
 
-// Highlight current page link
+// Highlight the current page link
 function highlightCurrentPage(menu) {
   const current = window.location.pathname.split("/").pop() || "index.html";
   menu.querySelectorAll(".menu-list a").forEach(link => {
