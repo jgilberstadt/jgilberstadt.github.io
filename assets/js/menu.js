@@ -103,16 +103,22 @@ function setupMenu() {
     }
   });
 
-  // Close menu on clicking any link, but do NOT focus button
+  // Close menu for internal links only
   list.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => closeMenu(false));
+    link.addEventListener('click', () => {
+      const href = link.getAttribute('href');
+      const isInternal = href && !href.startsWith('http') && !href.startsWith('mailto:');
+      if (isInternal) {
+        closeMenu(); // only close menu for internal page links
+      }
+    });
   });
 
   highlightCurrentPage(menu);
-}
+  }
 
-// Highlight the current page link
-function highlightCurrentPage(menu) {
+  // Highlight the current page link
+  function highlightCurrentPage(menu) {
   const current = window.location.pathname.split("/").pop() || "index.html";
   menu.querySelectorAll(".menu-list a").forEach(link => {
     if (link.getAttribute("href") === current) {
