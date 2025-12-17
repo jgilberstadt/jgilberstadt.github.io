@@ -98,11 +98,25 @@ header.site-header {
   border-radius: 0.3em;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  outline: none; /* prevent default outline */
 }
 
-.menu button:hover,
+/* Hover effect */
+.menu button:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* Keyboard focus effect */
 .menu button:focus-visible {
   background: rgba(255,255,255,0.08);
+  outline: 2px solid rgba(255,255,255,0.12);
+  outline-offset: 2px;
+}
+
+/* Class applied temporarily to prevent lingering “lit” effect */
+.menu button.blur-fix {
+  background: transparent !important;
+  outline: none !important;
 }
 
 /* =========================
