@@ -1,40 +1,12 @@
-// Immediately reserve header space
-const headerEl = document.getElementById("site-header");
-headerEl.innerHTML = "<div class='header-placeholder'></div>"; // placeholder to prevent layout shift
-
 document.addEventListener("DOMContentLoaded", () => {
-  const cachedHeader = localStorage.getItem("site-header");
-  const cachedHash = localStorage.getItem("site-header-hash");
-
   fetch("partials/header.html")
     .then(response => response.text())
     .then(html => {
-      const hash = hashString(html);
-
-      // Use cached HTML immediately if hash matches
-      if (cachedHeader && cachedHash === hash) {
-        headerEl.innerHTML = cachedHeader;
-      } else {
-        headerEl.innerHTML = html; // populate new header
-        localStorage.setItem("site-header", html);
-        localStorage.setItem("site-header-hash", hash);
-      }
-
-      setupMenu(); // initialize menu functionality
+      document.getElementById("site-header").innerHTML = html;
+      setupMenu();
     })
     .catch(err => console.error("Failed to load header:", err));
 });
-
-// Simple hash function
-function hashString(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash |= 0;
-  }
-  return hash.toString();
-}
 
 function setupMenu() {
   const menu = document.querySelector('.menu');
@@ -58,17 +30,12 @@ function setupMenu() {
 
     function handleTab(e) {
       if (e.key !== 'Tab') return;
-
-      if (e.shiftKey) {
-        if (document.activeElement === firstEl) {
-          e.preventDefault();
-          lastEl.focus();
-        }
-      } else {
-        if (document.activeElement === lastEl) {
-          e.preventDefault();
-          firstEl.focus();
-        }
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
       }
     }
 
@@ -82,31 +49,31 @@ function setupMenu() {
 
   function openMenu() {
     menu.classList.add('open');
-    requestAnimationFrame(() => menu.classList.add('visible'));
-
     button.setAttribute('aria-expanded', 'true');
     list.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
     removeFocusTrap = trapFocus();
+
+    // Trigger visible state immediately for animation
+    requestAnimationFrame(() => menu.classList.add('visible'));
   }
 
   function closeMenu() {
+    // Remove animation class immediately for fast closing
     menu.classList.remove('visible');
     button.setAttribute('aria-expanded', 'false');
     list.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
 
     if (removeFocusTrap) removeFocusTrap();
+    button.blur();
 
+    // Remove open class instantly after transition (if any)
     list.addEventListener("transitionend", function handler() {
       menu.classList.remove("open");
       list.removeEventListener("transitionend", handler);
     });
-
-    button.blur();
-    button.classList.add("blur-fix");
-    setTimeout(() => button.classList.remove("blur-fix"), 50);
   }
 
   button.addEventListener('click', e => {
@@ -133,8 +100,10 @@ function setupMenu() {
     link.addEventListener('click', e => {
       const href = link.getAttribute('href');
       const isInternal = href && !href.startsWith('http') && !href.startsWith('#');
-
-      if (isInternal) closeMenu();
+      if (isInternal) {
+        closeMenu();
+        button.blur();
+      }
     });
   });
 
