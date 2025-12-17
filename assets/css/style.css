@@ -113,7 +113,7 @@ header.site-header {
   outline-offset: 2px;
 }
 
-/* Class applied temporarily to prevent lingering “lit” effect */
+/* Prevent lingering "lit" effect after clicking a link */
 .menu button.blur-fix {
   background: transparent !important;
   outline: none !important;
