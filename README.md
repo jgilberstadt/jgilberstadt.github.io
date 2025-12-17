@@ -2,7 +2,7 @@
 
 This repository hosts a simple static portfolio site for Josh Gilberstadt.
 
-Pages
+Pages:
 - `index.html` — About (site root)
 - `contact.html` — Contact
 - `projects.html` — Projects
