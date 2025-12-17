@@ -1,4 +1,4 @@
-# Josh Gilberstadt — About & Contact
+# Josh Gilberstadt — About, Contact & Projects
 
 This repository hosts a simple static portfolio site for Josh Gilberstadt.
 
