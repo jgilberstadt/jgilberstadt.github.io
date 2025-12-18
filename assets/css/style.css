@@ -95,6 +95,10 @@ header.site-header {
 /* =========================
    Sticky Header Scroll
 ========================= */
+.site-header {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .site-header.header-hidden {
   transform: translateY(-100%);
 }
