@@ -49,6 +49,7 @@ function setupMenu() {
   let removeFocusTrap;
 
   function openMenu() {
+    if (window.matchMedia('(min-width: 769px)').matches) return;
     menu.classList.add('open');
     toggleButton.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
