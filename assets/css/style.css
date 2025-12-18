@@ -50,11 +50,11 @@ header.site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: calc(1rem + env(safe-area-inset-top, 0)); /* extra padding for notch */
   padding-bottom: 1.25rem;
   margin-bottom: 2rem;
+
   position: sticky;
-  top: env(safe-area-inset-top, 0);
+  top: 0;
   z-index: 1000;
   background: var(--bg);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -91,23 +91,13 @@ header.site-header {
 }
 
 /* =========================
-   Sticky Header
+   Sticky Header Scroll States
 ========================= */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: var(--bg);
-  transform: translateY(0);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
 .site-header.header-hidden {
   transform: translateY(-100%);
 }
 
 .site-header.header-visible {
-  transform: translateY(0);
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
 }
 
@@ -141,37 +131,34 @@ header.site-header {
   outline-offset: 2px;
 }
 
-.menu button.blur-fix {
-  background: transparent !important;
-  outline: none !important;
-}
-
 /* =========================
-   Menu List (Fullscreen Updated)
+   Menu List
 ========================= */
-/* Menu List Fullscreen on mobile */
 .menu-list {
   position: fixed;
   inset: 0;
-  padding-top: env(safe-area-inset-top, 1.5rem);
-  padding-bottom: env(safe-area-inset-bottom, 1.5rem);
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   background: rgba(0,0,0,0.95);
+
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100%);
   transition: transform 0.3s ease, opacity 0.3s ease;
+
   z-index: 9999;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .menu-list li {
   list-style: none;
 }
 
-/* Menu is open */
 .menu.open .menu-list {
   opacity: 1;
   pointer-events: auto;
@@ -182,7 +169,7 @@ header.site-header {
 /* Close button inside menu */
 .menu-list .menu-close {
   position: absolute;
-  top: calc(1.5rem + env(safe-area-inset-top, 0));
+  top: 1.5rem;
   right: 1.5rem;
   font-size: 2rem;
   background: transparent;
@@ -350,7 +337,6 @@ header.site-header {
   text-decoration: underline;
 }
 
-/* Social Buttons */
 .social-button {
   position: relative;
   overflow: hidden;
@@ -381,10 +367,6 @@ header.site-header {
   box-shadow: 0 0.2em 0.4em rgba(96, 165, 250, 0.2);
 }
 
-.social-button .icon {
-  font-size: 1.1rem;
-}
-
 .social-button::after {
   content: "";
   position: absolute;
@@ -408,6 +390,13 @@ header.site-header {
    Responsive Adjustments
 ========================= */
 @media (max-width: 768px) {
+  header.site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    top: env(safe-area-inset-top, 0);
+    padding-top: calc(1rem + env(safe-area-inset-top, 0));
+  }
+
   .projects ul {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -442,6 +431,16 @@ header.site-header {
     font-size: 1.05rem;
     padding: 0.9em 1.2em;
   }
+
+  /* Mobile menu safe-area adjustments */
+  .menu-list {
+    padding-top: env(safe-area-inset-top, 1.5rem);
+    padding-bottom: env(safe-area-inset-bottom, 1.5rem);
+  }
+
+  .menu-list .menu-close {
+    top: calc(1.5rem + env(safe-area-inset-top, 0));
+  }
 }
 
 @media (max-width: 480px) {
@@ -470,19 +469,16 @@ header.site-header {
 
 @media (min-width: 769px) {
   .menu-list {
-    display: flex;          /* ← REQUIRED */
+    display: flex;
     position: static;
     inset: auto;
-
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-
     background: none;
     opacity: 1;
     pointer-events: auto;
     transform: none;
-
     gap: 2rem;
     height: auto;
   }
