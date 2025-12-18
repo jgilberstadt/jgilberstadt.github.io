@@ -44,6 +44,12 @@ h1 {
   justify-content: space-between;
 }
 
+header.site-header .container {
+  display: flex;
+  align-items: center; /* vertical center */
+  justify-content: space-between;
+}
+
 /* =========================
    Header & Site Title
 ========================= */
@@ -62,13 +68,17 @@ header.site-header {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Left side: title + subtitle */
+/* Left side: title */
 .header-left {
   text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
 
+/* Site title */
 .site-title {
-  font-size: 3rem;
+  font-size: 1.25rem; /* same as page text size */
   font-weight: 600;
   margin: 0;
 }
@@ -80,6 +90,7 @@ header.site-header {
   transition: color var(--transition-fast);
 }
 
+/* Optional hover/focus */
 .site-title a:hover,
 .site-title a:focus-visible {
   text-decoration: underline;
