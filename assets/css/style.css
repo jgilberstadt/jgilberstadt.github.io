@@ -152,38 +152,30 @@ header.site-header {
 /* =========================
    Menu List (Fullscreen for mobile)
 ========================= */
+/* =========================
+   Menu List (Fullscreen mobile)
+========================= */
 .menu-list {
   position: fixed;
   inset: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: rgba(0,0,0,0.95);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 9999;
   list-style: none;
   margin: 0;
   padding: 0;
+  z-index: 9999;
 }
+
+.menu.open .menu-list {
+  display: flex;
+}
+
 
 .menu-list li {
   list-style: none;
-}
-
-/* Menu is open */
-.menu.open .menu-list {
-  display: flex;
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
 }
 
 /* Close button inside menu */
