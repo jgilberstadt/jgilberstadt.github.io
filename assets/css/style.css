@@ -44,12 +44,6 @@ h1 {
   justify-content: space-between;
 }
 
-header.site-header .container {
-  display: flex;
-  align-items: center; /* vertical center */
-  justify-content: space-between;
-}
-
 /* =========================
    Header & Site Title
 ========================= */
@@ -94,13 +88,6 @@ header.site-header {
 .site-title a:hover,
 .site-title a:focus-visible {
   text-decoration: underline;
-}
-
-.site-subtitle {
-  font-size: 1.9rem;
-  font-weight: 400;
-  margin: 0;
-  opacity: 0.85;
 }
 
 /* =========================
@@ -438,9 +425,6 @@ header.site-header {
     padding: 0.9em 1.2em;
   }
 
-  .menu.open .menu-list {
-    display: flex;
-  }
 }
 
 /* Extra small screens */
@@ -465,7 +449,6 @@ header.site-header {
 
   body {
     padding: 0.9rem;
-    padding-top: calc(3rem + 0.9rem); /* header + new padding */
   }
 }
 
@@ -479,8 +462,6 @@ header.site-header {
     justify-content: flex-end;
     align-items: center;
     background: none;
-    opacity: 1;
-    pointer-events: auto;
     transform: none;
     gap: 2rem;
     height: auto;
