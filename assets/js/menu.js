@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const siteHeaderContainer = document.getElementById("site-header");
       siteHeaderContainer.innerHTML = html;
 
-      // 2️⃣ Setup menu toggle and focus trap
       setupMenu();
-
-      // 3️⃣ Setup sticky header scroll behavior
       setupHeaderScroll();
+      adjustBodyPadding(); // set initial padding
+
+      window.addEventListener("resize", adjustBodyPadding); // update on resize
     })
     .catch(err => console.error("Failed to load header:", err));
 });
@@ -159,4 +159,16 @@ function setupHeaderScroll() {
 
   window.addEventListener('resize', updateHeader);
   updateHeader(); // initial check
+}
+
+// =========================
+// Dynamically adjust body padding to header height
+// =========================
+function adjustBodyPadding() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+  const body = document.body;
+
+  const headerHeight = header.offsetHeight; // actual rendered height
+  body.style.paddingTop = `${headerHeight}px`;
 }
