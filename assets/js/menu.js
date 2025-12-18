@@ -123,6 +123,12 @@ function setupHeaderScroll() {
   const header = document.querySelector('.site-header');
   if (!header) return;
 
+  // Create a spacer to prevent content jump
+  let spacer = document.createElement('div');
+  spacer.style.width = '100%';
+  spacer.style.height = `${header.offsetHeight}px`;
+  header.parentNode.insertBefore(spacer, header.nextSibling);
+
   let lastScrollY = window.scrollY;
   let ticking = false;
 
@@ -134,13 +140,11 @@ function setupHeaderScroll() {
       header.classList.remove('header-hidden');
       header.classList.add('header-visible');
     } else {
-      // Desktop: show/hide on scroll
+      // Desktop: hide/show on scroll
       if (currentScrollY < 50 || currentScrollY < lastScrollY) {
-        // Top of page or scrolling up → show
         header.classList.remove('header-hidden');
         header.classList.add('header-visible');
       } else {
-        // Scrolling down → hide
         header.classList.add('header-hidden');
         header.classList.remove('header-visible');
       }
@@ -157,7 +161,12 @@ function setupHeaderScroll() {
     }
   });
 
-  window.addEventListener('resize', updateHeader);
+  window.addEventListener('resize', () => {
+    // Update spacer height dynamically
+    spacer.style.height = `${header.offsetHeight}px`;
+    updateHeader();
+  });
+
   updateHeader(); // initial check
 }
 
