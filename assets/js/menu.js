@@ -59,12 +59,19 @@ function setupMenu() {
   }
 
   function openMenu() {
-    if (window.innerWidth >= 769) return; // desktop: ignore
-    menu.classList.add('open');
-    toggleButton.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-    removeFocusTrap = trapFocus();
+  if (window.innerWidth >= 769) return; // desktop: ignore
+  menu.classList.add('open');
+  toggleButton.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+
+  // Set CSS variable for header height
+  const header = document.querySelector('.site-header');
+  if (header) {
+    menuList.style.setProperty('--header-height', `${header.offsetHeight}px`);
   }
+
+  removeFocusTrap = trapFocus();
+}
 
   function closeMenu() {
     menu.classList.remove('open');
