@@ -448,7 +448,6 @@ header.site-header {
 
   .menu.open .menu-list {
     display: flex;
-    padding-top: var(--header-height, 4rem);  
   }
 }
 
