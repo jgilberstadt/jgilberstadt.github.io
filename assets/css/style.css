@@ -236,12 +236,21 @@ header.site-header {
   background: rgba(255,255,255,0.05);
   border-radius: 0.5rem;
   overflow: hidden;
-  transition: background var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
   cursor: pointer;
+  will-change: transform, box-shadow;
 }
 
-.project-item:hover {
+.project-item:hover,
+.project-item:focus-within {
   background: rgba(255,255,255,0.1);
+  transform: translateY(-0.12em);
+  box-shadow: 0 0.4em 0.8em rgba(96,165,250,0.25);
+}
+
+.project-item:active {
+  transform: translateY(0);
+  box-shadow: 0 0.2em 0.4em rgba(96,165,250,0.2);
 }
 
 .project-item a {
