@@ -17,9 +17,9 @@ body {
   background: var(--bg);
   line-height: 1.6;
   margin: 0;
-  padding: 1.25rem;
+  padding: 1.25rem; /* only regular padding; top will be dynamic */
   font-size: 1rem;
-  padding-top: calc(3rem + 1.25rem); /* account for fixed header */
+  box-sizing: border-box;
 }
 
 a {
@@ -48,17 +48,17 @@ h1 {
    Header & Site Title
 ========================= */
 header.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 1.25rem;
-  margin-bottom: 2rem;
-  position: fixed; /* fixed header */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem; /* vertical + horizontal padding */
+  box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
