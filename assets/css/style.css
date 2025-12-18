@@ -409,6 +409,7 @@ header.site-header {
 /* =========================
    Responsive Adjustments
 ========================= */
+/* Mobile first: up to 768px */
 @media (max-width: 768px) {
   .projects ul {
     grid-template-columns: 1fr;
@@ -449,7 +450,9 @@ header.site-header {
     display: flex;
     padding-top: var(--header-height, 4rem);  
   }
+}
 
+/* Extra small screens */
 @media (max-width: 480px) {
   header.site-header {
     flex-direction: column;
@@ -475,6 +478,7 @@ header.site-header {
   }
 }
 
+/* Desktop overrides */
 @media (min-width: 769px) {
   .menu-list {
     display: flex;
@@ -492,7 +496,7 @@ header.site-header {
   }
 
   .menu-toggle {
-    display: none;
+    display: none; /* Hides the button on desktop */
   }
 
   .menu-close-wrapper {
