@@ -1,49 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // 1️⃣ Inject header
   fetch("partials/header.html")
     .then(response => response.text())
     .then(html => {
       const siteHeaderContainer = document.getElementById("site-header");
       siteHeaderContainer.innerHTML = html;
 
-      setupMenu();        // your menu toggle logic
-      setupHeaderScroll(); // new function for sticky/scroll
+      // 2️⃣ Setup menu toggle and focus trap
+      setupMenu();
+
+      // 3️⃣ Setup sticky header scroll behavior
+      setupHeaderScroll();
     })
     .catch(err => console.error("Failed to load header:", err));
 });
 
-function setupHeaderScroll() {
-  const header = document.querySelector('.site-header');
-  if (!header) return;
-
-  let lastScrollY = window.scrollY;
-
-  window.addEventListener('scroll', () => {
-    // Always show header on mobile
-    if (window.innerWidth < 769) {
-      header.classList.remove('header-hidden');
-      header.classList.add('header-visible');
-      return;
-    }
-
-    const currentScrollY = window.scrollY;
-
-    if (currentScrollY < 50) {
-      header.classList.remove('header-hidden');
-      header.classList.add('header-visible');
-    } else if (currentScrollY > lastScrollY) {
-      // Scrolling down → hide
-      header.classList.add('header-hidden');
-      header.classList.remove('header-visible');
-    } else {
-      // Scrolling up → show
-      header.classList.remove('header-hidden');
-      header.classList.add('header-visible');
-    }
-
-    lastScrollY = currentScrollY;
-  });
-}
-
+// =========================
+// Menu Toggle + Focus Trap
+// =========================
 function setupMenu() {
   const menu = document.querySelector('.menu');
   if (!menu) return;
@@ -51,6 +25,8 @@ function setupMenu() {
   const toggleButton = menu.querySelector('button[aria-label="Toggle menu"]');
   const menuList = menu.querySelector('.menu-list');
   if (!toggleButton || !menuList) return;
+
+  let removeFocusTrap;
 
   function getFocusableElements() {
     return menuList.querySelectorAll(
@@ -82,10 +58,8 @@ function setupMenu() {
     return () => menuList.removeEventListener('keydown', handleTab);
   }
 
-  let removeFocusTrap;
-
   function openMenu() {
-    if (window.matchMedia('(min-width: 769px)').matches) return;
+    if (window.innerWidth >= 769) return; // desktop: ignore
     menu.classList.add('open');
     toggleButton.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
@@ -114,9 +88,7 @@ function setupMenu() {
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && menu.classList.contains('open')) {
-      closeMenu();
-    }
+    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
   });
 
   menuList.querySelectorAll('a').forEach(link => {
@@ -130,6 +102,9 @@ function setupMenu() {
   highlightCurrentPage(menu);
 }
 
+// =========================
+// Highlight Current Page
+// =========================
 function highlightCurrentPage(menu) {
   const current = window.location.pathname.split("/").pop() || "index.html";
   menu.querySelectorAll(".menu-list a").forEach(link => {
@@ -142,29 +117,32 @@ function highlightCurrentPage(menu) {
 }
 
 // =========================
-// Sticky Header Scroll Logic
+// Sticky Header Scroll
 // =========================
-let lastScrollY = window.scrollY;
-const header = document.querySelector('.site-header');
+function setupHeaderScroll() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
 
-if (header) {
+  let lastScrollY = window.scrollY;
+
   window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
 
-    // Always show header near top
-    if (currentScrollY < 50) {
+    // Mobile: always show
+    if (window.innerWidth < 769) {
       header.classList.remove('header-hidden');
       header.classList.add('header-visible');
-      lastScrollY = currentScrollY;
       return;
     }
 
-    if (currentScrollY > lastScrollY) {
-      // Scrolling down → hide
+    // Desktop: show/hide on scroll
+    if (currentScrollY < 50) {
+      header.classList.remove('header-hidden');
+      header.classList.add('header-visible');
+    } else if (currentScrollY > lastScrollY) {
       header.classList.add('header-hidden');
       header.classList.remove('header-visible');
     } else {
-      // Scrolling up → show
       header.classList.remove('header-hidden');
       header.classList.add('header-visible');
     }
