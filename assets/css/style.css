@@ -125,7 +125,7 @@ header.site-header {
 .menu-list {
   position: fixed;
   inset: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -152,6 +152,7 @@ header.site-header {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
+  display: flex;
 }
 
 /* Close button inside menu */
@@ -444,14 +445,8 @@ header.site-header {
 }
 
 @media (min-width: 769px) {
-
-  /* Hide hamburger button */
-  .menu-toggle {
-    display: none;
-  }
-
-  /* Show menu links inline */
   .menu-list {
+    display: flex;          /* ← REQUIRED */
     position: static;
     inset: auto;
 
@@ -460,7 +455,6 @@ header.site-header {
     align-items: center;
 
     background: none;
-
     opacity: 1;
     pointer-events: auto;
     transform: none;
@@ -469,13 +463,11 @@ header.site-header {
     height: auto;
   }
 
-  /* Remove mobile-only close button */
-  .menu-close-wrapper {
+  .menu-toggle {
     display: none;
   }
 
-  .menu-list a {
-    font-size: 1.1rem;
-    padding: 0.25rem 0.5rem;
+  .menu-close-wrapper {
+    display: none;
   }
 }
