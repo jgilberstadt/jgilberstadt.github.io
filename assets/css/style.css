@@ -139,9 +139,6 @@ header.site-header {
 /* =========================
    Menu List (Fullscreen for mobile)
 ========================= */
-/* =========================
-   Menu List (Fullscreen mobile)
-========================= */
 .menu-list {
   position: fixed;
   inset: 0;
@@ -158,11 +155,6 @@ header.site-header {
 
 .menu.open .menu-list {
   display: flex;
-}
-
-
-.menu-list li {
-  list-style: none;
 }
 
 /* Close button inside menu */
