@@ -129,27 +129,21 @@ function setupHeaderScroll() {
   function updateHeader() {
     const currentScrollY = window.scrollY;
 
-    // Mobile: always show
     if (window.innerWidth < 769) {
+      // Mobile: always show
       header.classList.remove('header-hidden');
       header.classList.add('header-visible');
-      lastScrollY = currentScrollY;
-      ticking = false;
-      return;
-    }
-
-    // Desktop: show/hide on scroll
-    if (currentScrollY < 50) {
-      header.classList.remove('header-hidden');
-      header.classList.add('header-visible');
-    } else if (currentScrollY > lastScrollY) {
-      // scrolling down → hide
-      header.classList.add('header-hidden');
-      header.classList.remove('header-visible');
-    } else if (currentScrollY < lastScrollY) {
-      // scrolling up → show
-      header.classList.remove('header-hidden');
-      header.classList.add('header-visible');
+    } else {
+      // Desktop: show/hide on scroll
+      if (currentScrollY < 50 || currentScrollY < lastScrollY) {
+        // Top of page or scrolling up → show
+        header.classList.remove('header-hidden');
+        header.classList.add('header-visible');
+      } else {
+        // Scrolling down → hide
+        header.classList.add('header-hidden');
+        header.classList.remove('header-visible');
+      }
     }
 
     lastScrollY = currentScrollY;
@@ -163,7 +157,6 @@ function setupHeaderScroll() {
     }
   });
 
-  // Ensure correct state on load
-  updateHeader();
   window.addEventListener('resize', updateHeader);
+  updateHeader(); // initial check
 }
