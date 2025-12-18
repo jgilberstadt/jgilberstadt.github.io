@@ -117,17 +117,20 @@ header.site-header {
    Menu List (Fullscreen Updated)
 ========================= */
 .menu-list {
-  position: fixed;          /* fullscreen positioning */
-  inset: 0;                 /* top/right/bottom/left = 0 */
+  position: fixed;
+  inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   background: rgba(0,0,0,0.95);
+
   opacity: 0;
   pointer-events: none;
   transform: translateY(-100%);
   transition: transform 0.3s ease, opacity 0.3s ease;
+
   z-index: 9999;
   list-style: none;
   margin: 0;
@@ -435,41 +438,38 @@ header.site-header {
 }
 
 @media (min-width: 769px) {
+
   /* Hide hamburger button */
   .menu-toggle {
     display: none;
   }
 
-  /* Turn menu into inline header navigation */
+  /* Show menu links inline */
   .menu-list {
     position: static;
     inset: auto;
+
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
 
     background: none;
+
     opacity: 1;
     pointer-events: auto;
     transform: none;
 
-    height: auto;
     gap: 2rem;
+    height: auto;
   }
 
-  /* Remove close button on desktop */
+  /* Remove mobile-only close button */
   .menu-close-wrapper {
     display: none;
   }
 
-  /* Desktop link styling */
   .menu-list a {
     font-size: 1.1rem;
     padding: 0.25rem 0.5rem;
-  }
-
-  .menu-list a:hover,
-  .menu-list a:focus-visible {
-    background: rgba(255,255,255,0.1);
   }
 }
