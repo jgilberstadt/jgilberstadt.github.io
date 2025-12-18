@@ -91,18 +91,17 @@ header.site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-
   background: var(--bg);
+  transform: translateY(0);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Header hidden when scrolling down */
 .site-header.header-hidden {
   transform: translateY(-100%);
 }
 
-/* Subtle shadow when visible */
 .site-header.header-visible {
+  transform: translateY(0);
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
 }
 
