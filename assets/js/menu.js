@@ -104,3 +104,35 @@ function highlightCurrentPage(menu) {
     }
   });
 }
+
+// =========================
+// Sticky Header Scroll Logic
+// =========================
+let lastScrollY = window.scrollY;
+const header = document.querySelector('.site-header');
+
+if (header) {
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    // Always show header near top
+    if (currentScrollY < 50) {
+      header.classList.remove('header-hidden');
+      header.classList.add('header-visible');
+      lastScrollY = currentScrollY;
+      return;
+    }
+
+    if (currentScrollY > lastScrollY) {
+      // Scrolling down → hide
+      header.classList.add('header-hidden');
+      header.classList.remove('header-visible');
+    } else {
+      // Scrolling up → show
+      header.classList.remove('header-hidden');
+      header.classList.add('header-visible');
+    }
+
+    lastScrollY = currentScrollY;
+  });
+}
