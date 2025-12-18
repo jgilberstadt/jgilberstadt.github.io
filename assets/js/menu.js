@@ -124,14 +124,17 @@ function setupHeaderScroll() {
   if (!header) return;
 
   let lastScrollY = window.scrollY;
+  let ticking = false;
 
-  window.addEventListener('scroll', () => {
+  function updateHeader() {
     const currentScrollY = window.scrollY;
 
     // Mobile: always show
     if (window.innerWidth < 769) {
       header.classList.remove('header-hidden');
       header.classList.add('header-visible');
+      lastScrollY = currentScrollY;
+      ticking = false;
       return;
     }
 
@@ -140,13 +143,27 @@ function setupHeaderScroll() {
       header.classList.remove('header-hidden');
       header.classList.add('header-visible');
     } else if (currentScrollY > lastScrollY) {
+      // scrolling down → hide
       header.classList.add('header-hidden');
       header.classList.remove('header-visible');
-    } else {
+    } else if (currentScrollY < lastScrollY) {
+      // scrolling up → show
       header.classList.remove('header-hidden');
       header.classList.add('header-visible');
     }
 
     lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
   });
+
+  // Ensure correct state on load
+  updateHeader();
+  window.addEventListener('resize', updateHeader);
 }
