@@ -37,6 +37,12 @@ h1 {
   margin: 0 auto;
 }
 
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* =========================
    Header & Site Title
 ========================= */
