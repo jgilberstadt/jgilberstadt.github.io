@@ -63,13 +63,6 @@ function setupMenu() {
   menu.classList.add('open');
   toggleButton.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
-
-  // Set CSS variable for header height
-  const header = document.querySelector('.site-header');
-  if (header) {
-    menuList.style.setProperty('--header-height', `${header.offsetHeight}px`);
-  }
-
   removeFocusTrap = trapFocus();
 }
 
