@@ -19,6 +19,7 @@ body {
   margin: 0;
   padding: 1.25rem;
   font-size: 1rem;
+  padding-top: calc(3rem + 1.25rem); /* account for fixed header */
 }
 
 a {
@@ -52,8 +53,10 @@ header.site-header {
   justify-content: space-between;
   padding-bottom: 1.25rem;
   margin-bottom: 2rem;
-  position: sticky;
+  position: fixed; /* fixed header */
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
   background: var(--bg);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -445,6 +448,7 @@ header.site-header {
 
   body {
     padding: 0.9rem;
+    padding-top: calc(3rem + 0.9rem); /* header + new padding */
   }
 }
 
