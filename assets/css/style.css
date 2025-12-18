@@ -459,11 +459,4 @@ header.site-header {
     height: auto;
   }
 
-  .menu-toggle {
-    display: none; /* Hides the button on desktop */
-  }
-
-  .menu-close-wrapper {
-    display: none;
-  }
 }
