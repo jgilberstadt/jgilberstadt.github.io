@@ -123,12 +123,6 @@ function setupHeaderScroll() {
   const header = document.querySelector('.site-header');
   if (!header) return;
 
-  // Create a spacer to prevent content jump
-  let spacer = document.createElement('div');
-  spacer.style.width = '100%';
-  spacer.style.height = `${header.offsetHeight}px`;
-  header.parentNode.insertBefore(spacer, header.nextSibling);
-
   let lastScrollY = window.scrollY;
   let ticking = false;
 
@@ -161,13 +155,9 @@ function setupHeaderScroll() {
     }
   });
 
-  window.addEventListener('resize', () => {
-    // Update spacer height dynamically
-    spacer.style.height = `${header.offsetHeight}px`;
-    updateHeader();
-  });
+  window.addEventListener('resize', updateHeader);
 
-  updateHeader(); // initial check
+  updateHeader(); // initial state
 }
 
 // =========================
