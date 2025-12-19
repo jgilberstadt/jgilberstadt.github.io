@@ -530,6 +530,23 @@ body.menu-open .menu-list {
    .social-links li {
     width: auto; /* allow button to size naturally */
   }
+
+
+  /* Target the resume button specifically if needed */
+  a.social-button[href*="Resume"] {
+    padding: 0.5em 0.9em;   /* same as social buttons */
+    font-size: 0.95rem;     /* match text size */
+    min-width: 6rem;        /* same min width */
+    width: auto;            /* fit content */
+    justify-content: center;
+    text-align: center;
+  }
+
+  a.social-button[href*="Resume"]::after {
+    width: 150%;  /* same ripple effect */
+    height: 150%;
+  }
+
 }
 
 /* Desktop overrides */
