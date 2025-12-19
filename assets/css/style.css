@@ -506,10 +506,10 @@ body.menu-open .menu-list {
   }
 
   .social-button {
-    padding: 0.5em 0.9em;   /* smaller padding */
+    padding: 0.65em 1em;   /* smaller padding */
     font-size: 0.95rem;     /* slightly smaller text */
     min-width: 6rem;        /* ensures buttons don’t get too small */
-    width: auto;            /* fit content */
+    width: 100%;
     justify-content: center; 
     text-align: center; 
   }
@@ -522,13 +522,15 @@ body.menu-open .menu-list {
   .social-links {
     display: flex;
     flex-wrap: wrap; /* wrap buttons to new line if needed */
-    gap: 0.5rem;     /* smaller spacing between buttons */
     justify-content: center; /* center buttons horizontally */
     margin-top: 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
   }
 
    .social-links li {
-    width: auto; /* allow button to size naturally */
+    width: 100%;
   }
 
 
