@@ -547,6 +547,30 @@ body.menu-open .menu-list {
     height: 150%;
   }
 
+  /* Container for buttons if needed (optional) */
+  .container p, .contact .social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem; /* space between buttons */
+  }
+
+  /* All social-style buttons and resume button */
+  a.social-button {
+    width: 90%;              /* nearly full width, leaves small margin */
+    max-width: 18rem;        /* prevent extremely wide buttons */
+    padding: 0.7em 1em;      /* comfortable tap size */
+    font-size: 1rem;         /* readable text */
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  a.social-button::after {
+    width: 150%;
+    height: 150%;
+  }
+   
 }
 
 /* Desktop overrides */
