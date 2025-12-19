@@ -442,15 +442,24 @@ header.site-header {
 
 /* Desktop overrides */
 @media (min-width: 769px) {
+  /* Hide mobile toggle + close button */
+  .menu-toggle {
+    display: none;
+  }
+
+  .menu-close {
+    display: none;
+  }
+
+  /* Desktop menu layout */
   .menu-list {
-    display: flex;
+    display: flex !important;
     position: static;
     inset: auto;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     background: none;
-    transform: none;
     gap: 2rem;
     height: auto;
   }
