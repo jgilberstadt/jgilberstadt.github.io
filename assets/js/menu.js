@@ -99,15 +99,15 @@ function setupMenu() {
     });
   });
 
-  highlightCurrentPage(menu);
+  highlightCurrentPage();
 }
 
 // =========================
 // Highlight Current Page
 // =========================
-function highlightCurrentPage(menu) {
+function highlightCurrentPage() {
   const current = window.location.pathname.split("/").pop() || "index.html";
-  menu.querySelectorAll(".menu-list a").forEach(link => {
+  document.querySelectorAll(".menu-list a").forEach(link => {
     if (link.getAttribute("href") === current) {
       link.classList.add("current");
       link.setAttribute("aria-current", "page");
