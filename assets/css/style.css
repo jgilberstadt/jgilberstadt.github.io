@@ -378,14 +378,75 @@ body.menu-open .menu-list {
 }
 
 /* =========================
-   Responsive Adjustments
+   Mobile adjustments (up to 768px)
 ========================= */
-/* Mobile first: up to 768px */
 @media (max-width: 768px) {
-   body.menu-open .site-header {
+
+  /* Prevent header transform from interfering with menu */
+  body.menu-open .site-header {
     transform: none !important;
+    transition: none !important;
   }
-   
+
+  /* Full-screen menu overlay */
+  .menu-list {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.95);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 9999;
+    transition: none; /* no animation needed */
+  }
+
+  /* Show menu when open */
+  body.menu-open .menu-list {
+    display: flex;
+  }
+
+  /* Close button inside menu */
+  .menu-list .menu-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    background: transparent;
+    border: 0;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  /* Menu links */
+  .menu-list a {
+    font-size: 2rem;
+    margin: 1rem 0;
+    text-align: center;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .menu-list a:hover,
+  .menu-list a:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .menu-list a.current {
+    background: #00A9FF;
+    color: #000;
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  /* Projects adjustments */
   .projects ul {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -399,6 +460,7 @@ body.menu-open .menu-list {
     font-size: 0.95rem;
   }
 
+  /* Contact adjustments */
   .contact {
     max-width: 100%;
     margin-top: 1.5rem;
