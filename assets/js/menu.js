@@ -59,22 +59,35 @@ function setupMenu() {
   }
 
   function openMenu() {
-    if (window.innerWidth >= 769) return;
+  if (window.innerWidth >= 769) return;
 
+  // Make menu visible first
+  menuList.style.display = "flex";
+
+  // Use requestAnimationFrame to ensure the display change is applied before adding the body class
+  requestAnimationFrame(() => {
     document.body.classList.add("menu-open");
     toggleButton.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
     removeFocusTrap = trapFocus();
-  }
+  });
+}
 
-  function closeMenu() {
-    document.body.classList.remove("menu-open");
-    toggleButton.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
+function closeMenu() {
+  if (!document.body.classList.contains("menu-open")) return;
 
-    if (removeFocusTrap) removeFocusTrap();
-    toggleButton.focus();
-  }
+  document.body.classList.remove("menu-open");
+  toggleButton.setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
+
+  // Delay hiding the menuList slightly to allow any CSS transitions (optional)
+  setTimeout(() => {
+    menuList.style.display = "none";
+  }, 50);
+
+  if (removeFocusTrap) removeFocusTrap();
+  toggleButton.focus();
+}
 
   toggleButton.addEventListener("click", e => {
     e.stopPropagation();
