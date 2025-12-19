@@ -153,7 +153,7 @@ header.site-header {
   z-index: 9999;
 }
 
-.menu.open .menu-list {
+body.menu-open .menu-list {
   display: flex;
 }
 
