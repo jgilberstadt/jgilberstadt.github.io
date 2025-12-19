@@ -23,7 +23,7 @@ function setupMenu() {
   if (!menu) return;
 
   const toggleButton = menu.querySelector('button[aria-label="Toggle menu"]');
-  const menuList = menu.querySelector('.menu-list');
+  const menuList = document.querySelector('.menu-list');
   if (!toggleButton || !menuList) return;
 
   let removeFocusTrap;
