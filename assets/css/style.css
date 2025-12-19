@@ -442,6 +442,18 @@ header.site-header {
 
 /* Desktop overrides */
 @media (min-width: 769px) {
+  .menu {
+    pointer-events: auto;
+  }
+
+  .menu.open {
+    pointer-events: auto;
+  }
+
+  .menu.open .menu-list {
+    display: flex !important;
+  }
+   
   /* Hide mobile toggle + close button */
   .menu-toggle {
     display: none;
@@ -454,7 +466,7 @@ header.site-header {
   /* Desktop menu layout */
   .menu-list {
     display: flex !important;
-    position: static;
+    position: static !important;
     inset: auto;
     flex-direction: row;
     justify-content: flex-end;
@@ -462,6 +474,7 @@ header.site-header {
     background: none;
     gap: 2rem;
     height: auto;
+    width: auto;
   }
    
   .site-header {
