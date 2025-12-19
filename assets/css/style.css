@@ -454,5 +454,18 @@ header.site-header {
     gap: 2rem;
     height: auto;
   }
+   
+  .site-header {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
 
+  .site-header.header-hidden {
+    transform: translateY(-100%);
+  }
+
+  .site-header.header-visible {
+    transform: translateY(0);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
+  }
+   
 }
