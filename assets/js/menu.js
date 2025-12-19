@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1️⃣ Inject header
+  // Inject header
   fetch("partials/header.html")
     .then(response => response.text())
     .then(html => {
@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setupMenu();
       setupHeaderScroll();
-      adjustBodyPadding(); // set initial padding
+      adjustBodyPadding();
 
-      window.addEventListener("resize", adjustBodyPadding); // update on resize
+      window.addEventListener("resize", adjustBodyPadding);
     })
     .catch(err => console.error("Failed to load header:", err));
 });
@@ -19,14 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
 // Menu Toggle + Focus Trap
 // =========================
 function setupMenu() {
-  const menu = document.querySelector('.menu');
-  if (!menu) return;
+  const menu = document.querySelector(".menu");
+  const toggleButton = document.querySelector(".menu-toggle");
+  const menuList = document.querySelector(".menu-list");
 
-  const toggleButton = menu.querySelector('button[aria-label="Toggle menu"]');
-  const menuList = document.querySelector('.menu-list');
-  if (!toggleButton || !menuList) return;
+  if (!menu || !toggleButton || !menuList) return;
 
-  let removeFocusTrap;
+  let removeFocusTrap = null;
 
   function getFocusableElements() {
     return menuList.querySelectorAll(
@@ -42,7 +41,8 @@ function setupMenu() {
     const lastEl = focusable[focusable.length - 1];
 
     function handleTab(e) {
-      if (e.key !== 'Tab') return;
+      if (e.key !== "Tab") return;
+
       if (e.shiftKey && document.activeElement === firstEl) {
         e.preventDefault();
         lastEl.focus();
@@ -52,49 +52,63 @@ function setupMenu() {
       }
     }
 
-    menuList.addEventListener('keydown', handleTab);
+    menuList.addEventListener("keydown", handleTab);
     firstEl.focus();
 
-    return () => menuList.removeEventListener('keydown', handleTab);
+    return () => menuList.removeEventListener("keydown", handleTab);
   }
 
   function openMenu() {
-  if (window.innerWidth >= 769) return;
-  document.body.classList.add('menu-open');
-  toggleButton.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-  removeFocusTrap = trapFocus();
-}
+    if (window.innerWidth >= 769) return;
 
-function closeMenu() {
-  document.body.classList.remove('menu-open');
-  toggleButton.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-  if (removeFocusTrap) removeFocusTrap();
-  toggleButton.focus();
-}
+    document.body.classList.add("menu-open");
+    toggleButton.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+    removeFocusTrap = trapFocus();
+  }
 
-  toggleButton.addEventListener('click', e => {
+  function closeMenu() {
+    document.body.classList.remove("menu-open");
+    toggleButton.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+
+    if (removeFocusTrap) removeFocusTrap();
+    toggleButton.focus();
+  }
+
+  toggleButton.addEventListener("click", e => {
     e.stopPropagation();
-    menu.classList.contains('open') ? closeMenu() : openMenu();
+    document.body.classList.contains("menu-open")
+      ? closeMenu()
+      : openMenu();
   });
 
-  menu.addEventListener('click', e => {
-    if (e.target.closest('.menu-close')) closeMenu();
+  menuList.addEventListener("click", e => {
+    if (e.target.closest(".menu-close")) closeMenu();
   });
 
-  document.addEventListener('click', e => {
-    if (!menu.contains(e.target) && menu.classList.contains('open')) closeMenu();
+  document.addEventListener("click", e => {
+    if (
+      document.body.classList.contains("menu-open") &&
+      !menuList.contains(e.target) &&
+      !toggleButton.contains(e.target)
+    ) {
+      closeMenu();
+    }
   });
 
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && document.body.classList.contains("menu-open")) {
+      closeMenu();
+    }
   });
 
-  menuList.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      const href = link.getAttribute('href');
-      const isInternal = href && !href.startsWith('http') && !href.startsWith('#');
+  menuList.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      const href = link.getAttribute("href");
+      const isInternal =
+        href && !href.startsWith("http") && !href.startsWith("#");
+
       if (isInternal) closeMenu();
     });
   });
@@ -107,6 +121,7 @@ function closeMenu() {
 // =========================
 function highlightCurrentPage() {
   const current = window.location.pathname.split("/").pop() || "index.html";
+
   document.querySelectorAll(".menu-list a").forEach(link => {
     if (link.getAttribute("href") === current) {
       link.classList.add("current");
@@ -120,7 +135,7 @@ function highlightCurrentPage() {
 // Sticky Header Scroll
 // =========================
 function setupHeaderScroll() {
-  const header = document.querySelector('.site-header');
+  const header = document.querySelector(".site-header");
   if (!header) return;
 
   let lastScrollY = window.scrollY;
@@ -130,17 +145,15 @@ function setupHeaderScroll() {
     const currentScrollY = window.scrollY;
 
     if (window.innerWidth < 769) {
-      // Mobile: always show
-      header.classList.remove('header-hidden');
-      header.classList.add('header-visible');
+      header.classList.remove("header-hidden");
+      header.classList.add("header-visible");
     } else {
-      // Desktop: hide/show on scroll
       if (currentScrollY < 50 || currentScrollY < lastScrollY) {
-        header.classList.remove('header-hidden');
-        header.classList.add('header-visible');
+        header.classList.remove("header-hidden");
+        header.classList.add("header-visible");
       } else {
-        header.classList.add('header-hidden');
-        header.classList.remove('header-visible');
+        header.classList.add("header-hidden");
+        header.classList.remove("header-visible");
       }
     }
 
@@ -148,26 +161,23 @@ function setupHeaderScroll() {
     ticking = false;
   }
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     if (!ticking) {
-      window.requestAnimationFrame(updateHeader);
+      requestAnimationFrame(updateHeader);
       ticking = true;
     }
   });
 
-  window.addEventListener('resize', updateHeader);
-
-  updateHeader(); // initial state
+  window.addEventListener("resize", updateHeader);
+  updateHeader();
 }
 
 // =========================
-// Dynamically adjust body padding to header height
+// Body Padding = Header Height
 // =========================
 function adjustBodyPadding() {
-  const header = document.querySelector('.site-header');
+  const header = document.querySelector(".site-header");
   if (!header) return;
-  const body = document.body;
 
-  const headerHeight = header.offsetHeight; // actual rendered height
-  body.style.paddingTop = `${headerHeight}px`;
+  document.body.style.paddingTop = `${header.offsetHeight}px`;
 }
