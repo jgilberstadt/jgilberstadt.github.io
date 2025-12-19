@@ -59,20 +59,20 @@ function setupMenu() {
   }
 
   function openMenu() {
-  if (window.innerWidth >= 769) return; // desktop: ignore
-  menu.classList.add('open');
+  if (window.innerWidth >= 769) return;
+  document.body.classList.add('menu-open');
   toggleButton.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
   removeFocusTrap = trapFocus();
 }
 
-  function closeMenu() {
-    menu.classList.remove('open');
-    toggleButton.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-    if (removeFocusTrap) removeFocusTrap();
-    toggleButton.focus();
-  }
+function closeMenu() {
+  document.body.classList.remove('menu-open');
+  toggleButton.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  if (removeFocusTrap) removeFocusTrap();
+  toggleButton.focus();
+}
 
   toggleButton.addEventListener('click', e => {
     e.stopPropagation();
