@@ -136,10 +136,6 @@ header.site-header {
   outline-offset: 2px;
 }
 
-body.menu-open .site-header {
-  transform: none !important;
-}
-
 /* =========================
    Menu List (Fullscreen for mobile)
 ========================= */
@@ -386,6 +382,10 @@ body.menu-open .menu-list {
 ========================= */
 /* Mobile first: up to 768px */
 @media (max-width: 768px) {
+   body.menu-open .site-header {
+    transform: none !important;
+  }
+   
   .projects ul {
     grid-template-columns: 1fr;
     gap: 1rem;
