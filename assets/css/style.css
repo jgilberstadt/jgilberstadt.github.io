@@ -570,6 +570,28 @@ body.menu-open .menu-list {
     width: 150%;
     height: 150%;
   }
+
+  main.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem; /* space between elements */
+  }
+
+  /* Profile image */
+  .profile {
+    width: 7rem;       /* slightly smaller on small screens */
+    height: 7rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Paragraph text */
+  main.container p {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-width: 95%;
+  }
    
 }
 
