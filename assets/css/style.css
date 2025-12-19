@@ -442,19 +442,7 @@ body.menu-open .menu-list {
 
 /* Desktop overrides */
 @media (min-width: 769px) {
-  .menu {
-    pointer-events: auto;
-  }
-
-  .menu.open {
-    pointer-events: auto;
-  }
-
-  .menu.open .menu-list {
-    display: flex !important;
-  }
-   
-  /* Hide mobile toggle + close button */
+  /* Hide mobile controls */
   .menu-toggle {
     display: none;
   }
@@ -465,8 +453,8 @@ body.menu-open .menu-list {
 
   /* Desktop menu layout */
   .menu-list {
-    display: flex !important;
-    position: static !important;
+    display: flex;
+    position: static;
     inset: auto;
     flex-direction: row;
     justify-content: flex-end;
@@ -476,7 +464,8 @@ body.menu-open .menu-list {
     height: auto;
     width: auto;
   }
-   
+
+  /* Header scroll behavior */
   .site-header {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -489,5 +478,4 @@ body.menu-open .menu-list {
     transform: translateY(0);
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
   }
-   
 }
