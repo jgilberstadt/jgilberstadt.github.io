@@ -211,7 +211,9 @@ function adjustBodyPadding() {
   const header = document.querySelector(".site-header");
   if (!header) return;
 
-  document.body.style.paddingTop = `${header.offsetHeight}px`;
+  // Calculate header height + 32px (2rem) for a comfortable gap
+  const gap = 32; 
+  document.body.style.paddingTop = `${header.offsetHeight + gap}px`;
 }
 
 function setupThemeToggle() {
