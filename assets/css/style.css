@@ -571,16 +571,20 @@ main.container {
 
   /* Unified Menu links for Mobile */
   .menu-list a {
-    font-size: 2.5rem; /* Larger for mobile tap targets */
-    margin: 1.5rem 0;
-    text-align: center;
-    color: var(--text);
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 8px;
-    background: transparent !important; /* Forces removal of any old blocks */
-    transition: color var(--transition-medium);
-  }
+  font-size: 2.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  color: var(--accent); 
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 8px;
+  background: transparent !important;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+  .menu-list a:hover {
+  opacity: 0.8; /* Subtle feedback since it's already blue */
+}
 
   /* Match the desktop hover/active color */
   .menu-list a:hover,
