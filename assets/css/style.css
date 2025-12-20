@@ -50,6 +50,26 @@ h1 {
   justify-content: space-between;
 }
 
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+body.light-mode .theme-toggle {
+  border-color: rgba(0,0,0,0.1);
+}
+
+/* Show/Hide icons based on mode */
+body.light-mode .sun-icon { display: none; }
+body:not(.light-mode) .moon-icon { display: none; }
+
 /* =========================
    Header & Site Title
 ========================= */
