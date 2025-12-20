@@ -347,10 +347,20 @@ body.menu-open .menu-list {
   display: block;
 }
 
+.project-item h3 {
+  margin: 1rem 1rem 0.5rem 1rem;
+  font-size: 1.2rem;
+  color: var(--accent); /* Consistent with your new nav style */
+}
+
 .project-description {
   margin: 0 1rem 1rem 1rem;
   font-size: 1rem;
   opacity: 0.85;
+}
+
+.project-description strong {
+  color: var(--accent); /* Makes the 90% stat pop in blue */
 }
 
 /* =========================
