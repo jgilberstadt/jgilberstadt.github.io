@@ -33,12 +33,12 @@ body.light-mode .menu-list a {
 }
 
 body.light-mode .menu-list a.current {
-  color: var(--accent); /* Keep current page blue */
+  color: var(--accent) !important;
 }
 
 body.light-mode .menu-list a,
 body.light-mode .site-title a {
-  color: #111827; /* Dark Grey/Black */
+  color: #111827 !important; /* The !important here ensures it beats the desktop override */
 }
 
 a {
@@ -864,15 +864,16 @@ body.light-mode .social-button.btn-primary {
   /* Desktop menu layout */
   .menu-list {
     display: flex !important;
-    position: static; 
+    position: static;
     flex-direction: row;
     background: transparent;
     gap: 2rem;
-    margin: 0 2rem 0 auto; /* Pushes links to the right, before the toggle */
+    margin-left: auto; /* Pushes everything after the title to the right */
+    margin-right: 2rem; /* Creates the gap between links and sun/moon */
     padding: 0;
     list-style: none;
+    z-index: auto;
   }
-
   .menu-list a {
     color: var(--text) !important; /* Forces color to follow Dark/Light mode */
     font-size: 1rem;
