@@ -36,6 +36,11 @@ body.light-mode .menu-list a.current {
   color: var(--accent); /* Keep current page blue */
 }
 
+body.light-mode .menu-list a,
+body.light-mode .site-title a {
+  color: #111827; /* Dark Grey/Black */
+}
+
 a {
   color: var(--accent);
   transition: background var(--transition-fast), color var(--transition-fast);
@@ -56,6 +61,9 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .theme-toggle {
@@ -95,12 +103,8 @@ header.site-header {
   width: 100%;
   z-index: 1000;
   background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem; /* vertical + horizontal padding */
+  padding: 1rem 0; /* Remove horizontal padding here, let container handle it */
   box-sizing: border-box;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Left side: title */
@@ -835,11 +839,14 @@ body.light-mode .social-button.btn-primary {
 /* Desktop overrides */
 @media (min-width: 769px) {
   /* Hide mobile controls */
+  body.light-mode .menu-list a {
+    color: var(--text) !important;
+  }
+   
   .menu {
     display: flex;
     align-items: center;
-    order: 2; /* Keeps toggle button at the very end */
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .menu-toggle {
@@ -857,14 +864,13 @@ body.light-mode .social-button.btn-primary {
   /* Desktop menu layout */
   .menu-list {
     display: flex !important;
-    position: static; /* Removes the fullscreen mobile overlay */
+    position: static; 
     flex-direction: row;
     background: transparent;
     gap: 2rem;
-    margin: 0 2rem 0 auto; /* Pushes links to the right, but before the Sun/Moon */
+    margin: 0 2rem 0 auto; /* Pushes links to the right, before the toggle */
     padding: 0;
     list-style: none;
-    order: 1; /* Puts links between title and toggle */
   }
 
   .menu-list a {
@@ -903,19 +909,24 @@ body.light-mode .social-button.btn-primary {
   }
 
    .intro-block {
-    display: flex;
-    align-items: flex-start; /* Aligns image to top of text */
-    gap: 3rem;
+    display: flex !important; /* Force flex */
+    flex-direction: row !important; /* Force side-by-side */
+    align-items: flex-start;
     text-align: left;
+    gap: 4rem;
+  }
+
+   .intro-text {
+    flex: 1;
   }
 
   .profile {
     width: 12rem;
     height: 12rem;
-    position: sticky; 
-    top: 120px; /* Distance from top of screen when scrolling */
-    flex-shrink: 0; /* Prevents image from squishing */
-    margin: 0; /* Reset mobile centering */
+    position: sticky;
+    top: 120px;
+    flex-shrink: 0; /* Important: stops the image from getting squashed */
+    margin: 0; 
   }
 
    .footer-content {
