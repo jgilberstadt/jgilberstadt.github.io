@@ -547,6 +547,25 @@ main.container {
   text-decoration: underline;
 }
 
+/* Primary Button Style (Filled) */
+.social-button.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff; /* Always white for contrast on blue */
+  border-color: var(--accent);
+}
+
+/* Hover state for Primary Button */
+.social-button.btn-primary:hover {
+  background-color: transparent;
+  color: var(--accent);
+  box-shadow: 0 0.5em 1.2em rgba(96, 165, 250, 0.4);
+}
+
+/* Light mode tweak for contrast */
+body.light-mode .social-button.btn-primary {
+  color: #ffffff;
+}
+
 .social-button {
   position: relative;
   overflow: hidden;
