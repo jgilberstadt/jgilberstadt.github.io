@@ -335,6 +335,28 @@ main.container {
   transform: translateY(-2px);
 }
 
+/* Container for the image and text */
+.intro-block {
+  display: flex;
+  flex-direction: column; /* Stacked by default (mobile) */
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.intro-text {
+  flex: 1;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
 /* =========================
    Projects Page
 ========================= */
@@ -804,6 +826,19 @@ main.container {
     font-size: 2rem;
     font-weight: 600;
     line-height: 1;
+  }
+
+   .intro-block {
+    flex-direction: row; /* Horizontal on desktop */
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .profile {
+    width: 12rem; /* Slightly larger on desktop */
+    height: 12rem;
+    position: sticky; /* Keeps image in view as you read short bio */
+    top: 120px;
   }
 
 }
