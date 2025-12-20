@@ -640,6 +640,8 @@ body.light-mode .social-button.btn-primary {
     padding-bottom: 8px;
     background: transparent !important;
     transition: opacity var(--transition-medium);
+    width: fit-content;
+    display: block;
   }
 
   /* Hover state: slightly dim the blue for feedback */
