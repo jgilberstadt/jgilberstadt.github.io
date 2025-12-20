@@ -848,9 +848,6 @@ body.light-mode .social-button.btn-primary {
 /* Desktop overrides */
 @media (min-width: 769px) {
   /* Hide mobile controls */
-  body.light-mode .menu-list a {
-    color: var(--text) !important;
-  }
    
   .menu {
     display: flex;
