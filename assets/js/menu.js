@@ -1,19 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Inject header
+  // Inject Header
   fetch("partials/header.html")
     .then(response => response.text())
     .then(html => {
-      const siteHeaderContainer = document.getElementById("site-header");
-      siteHeaderContainer.innerHTML = html;
-
+      document.getElementById("site-header").innerHTML = html;
       setupMenu();
       setupHeaderScroll();
       adjustBodyPadding();
       setupThemeToggle();
-
       window.addEventListener("resize", adjustBodyPadding);
     })
     .catch(err => console.error("Failed to load header:", err));
+
+  // Inject Footer
+  fetch("partials/footer.html")
+    .then(response => response.text())
+    .then(html => {
+      // Create a div for the footer if it doesn't exist
+      let siteFooter = document.getElementById("site-footer");
+      if (!siteFooter) {
+        siteFooter = document.createElement("div");
+        siteFooter.id = "site-footer";
+        document.body.appendChild(siteFooter);
+      }
+      siteFooter.innerHTML = html;
+    })
+    .catch(err => console.error("Failed to load footer:", err));
 });
 
 // =========================
