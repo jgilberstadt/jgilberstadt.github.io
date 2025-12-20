@@ -460,6 +460,32 @@ main.container {
   color: var(--accent); /* Makes the 90% stat pop in blue */
 }
 
+.cta-section {
+  margin-top: 5rem;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+.section-divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  margin-bottom: 3rem;
+  opacity: 0.3;
+}
+
+.cta-content h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.cta-content p {
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  opacity: 0.8;
+}
+
 /* =========================
    Contact Page
 ========================= */
