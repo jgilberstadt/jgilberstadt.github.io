@@ -174,9 +174,13 @@ body.menu-open .menu-list {
   font-size: 2rem;
   margin: 1rem 0;
   text-align: center;
-  color: var(--text);
+  color: var(--text); /* This is your white color */
   text-decoration: none;
-  transition: background 0.2s;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.menu-list a:hover {
+  color: var(--accent); /* Turns blue when you hover */
 }
 
 .menu-list a:hover,
@@ -185,10 +189,12 @@ body.menu-open .menu-list {
 }
 
 .menu-list a.current {
-  background: #00A9FF;
-  color: #000;
+  background: transparent; /* Removing the background bar for a cleaner look */
+  color: var(--accent);     /* The text itself stays blue */
   font-weight: 600;
-  pointer-events: none;
+  pointer-events: none;     /* Prevents clicking the page you're already on */
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
 }
 
 /* =========================
@@ -652,6 +658,11 @@ body.menu-open .menu-list {
     width: auto;
   }
 
+.menu-list a {
+    font-size: 1.1rem; /* Smaller, professional size for desktop nav */
+    margin: 0;
+}
+   
   /* Header scroll behavior */
   .site-header {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
