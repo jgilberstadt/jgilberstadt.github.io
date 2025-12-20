@@ -572,12 +572,14 @@ main.container {
 
   /* Menu links */
   .menu-list a {
-    font-size: 2rem;
+    font-size: 2rem; /* Keep them large for easy tapping */
     margin: 1rem 0;
     text-align: center;
-    color: var(--text);
+    color: var(--text); /* Starts White */
     text-decoration: none;
-    transition: background 0.2s;
+    position: relative; /* Needed for the underline */
+    padding-bottom: 8px;
+    transition: color var(--transition-medium);
   }
 
   .menu-list a:hover,
@@ -585,9 +587,41 @@ main.container {
     background: rgba(255, 255, 255, 0.08);
   }
 
+/* Make the hover/active color blue on mobile too */
+  .menu-list a:hover,
+  .menu-list a.current {
+    color: var(--accent); /* Turns blue */
+    background: transparent;
+  }
+   
   .menu-list a.current {
     background: #00A9FF;
     color: #000;
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+   /* Add the sliding underline to mobile links */
+  .menu-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%; /* Center the underline slightly */
+    width: 80%;
+    height: 3px; /* Slightly thicker for mobile visibility */
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transition: transform var(--transition-medium);
+  }
+
+  /* Show the underline on mobile when current or hovered */
+  .menu-list a:hover::after,
+  .menu-list a.current::after {
+    transform: scaleX(1);
+  }
+
+  /* Remove the old mobile-only current state background */
+  .menu-list a.current {
     font-weight: 600;
     pointer-events: none;
   }
