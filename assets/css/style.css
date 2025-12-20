@@ -266,6 +266,13 @@ body.menu-open .menu-list {
   display: block;
   margin: 0 0 1rem 0;
   object-fit: cover;
+  margin-top: 0;
+  border: 3px solid var(--accent);
+  padding: 4px;
+}
+
+main.container {
+  margin-top: 1rem; 
 }
 
 .container p {
