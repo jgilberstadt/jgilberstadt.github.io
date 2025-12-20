@@ -133,12 +133,30 @@ function closeMenu() {
 // Highlight Current Page
 // =========================
 function highlightCurrentPage() {
-  const current = window.location.pathname.split("/").pop() || "index.html";
+  // 1. Get the current path and clean it up
+  // This handles trailing slashes and empty paths (home)
+  let currentPath = window.location.pathname.split("/").pop();
+  
+  // Default to index.html if the path is empty (common on homepages)
+  if (currentPath === "" || currentPath === "/") {
+    currentPath = "index.html";
+  }
 
-  document.querySelectorAll(".menu-list a").forEach(link => {
-    if (link.getAttribute("href") === current) {
+  const navLinks = document.querySelectorAll(".menu-list a");
+
+  navLinks.forEach(link => {
+    // Remove existing states first to be safe
+    link.classList.remove("current");
+    link.removeAttribute("aria-current");
+    link.removeAttribute("tabindex");
+
+    const href = link.getAttribute("href");
+
+    // 2. Check for a match
+    if (href === currentPath) {
       link.classList.add("current");
       link.setAttribute("aria-current", "page");
+      // Prevent tabbing to the current page for better accessibility
       link.setAttribute("tabindex", "-1");
     }
   });
