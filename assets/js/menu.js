@@ -212,3 +212,25 @@ function adjustBodyPadding() {
 
   document.body.style.paddingTop = `${header.offsetHeight}px`;
 }
+
+function setupThemeToggle() {
+  const toggle = document.getElementById("theme-toggle");
+  if (!toggle) return;
+
+  // Check for saved preference
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme === "light") {
+    document.body.classList.add("light-mode");
+  }
+
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+    
+    // Save preference
+    let theme = "dark";
+    if (document.body.classList.contains("light-mode")) {
+      theme = "light";
+    }
+    localStorage.setItem("theme", theme);
+  });
+}
