@@ -16,14 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("partials/footer.html")
     .then(response => response.text())
     .then(html => {
-      // Create a div for the footer if it doesn't exist
-      let siteFooter = document.getElementById("site-footer");
-      if (!siteFooter) {
-        siteFooter = document.createElement("div");
-        siteFooter.id = "site-footer";
-        document.body.appendChild(siteFooter);
+      const footerContainer = document.getElementById("site-footer");
+      if (footerContainer) {
+        footerContainer.innerHTML = html;
       }
-      siteFooter.innerHTML = html;
     })
     .catch(err => console.error("Failed to load footer:", err));
 });
