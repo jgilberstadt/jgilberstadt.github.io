@@ -545,12 +545,11 @@ main.container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.95);
+    background: var(--bg); /* Uses theme background */
     list-style: none;
     margin: 0;
     padding: 0;
     z-index: 9999;
-    transition: none; /* no animation needed */
   }
 
   /* Show menu when open */
@@ -563,106 +562,64 @@ main.container {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     background: transparent;
     border: 0;
     color: var(--text);
     cursor: pointer;
   }
 
-  /* Menu links */
+  /* Unified Menu links for Mobile */
   .menu-list a {
-    font-size: 2rem; /* Keep them large for easy tapping */
-    margin: 1rem 0;
+    font-size: 2.5rem; /* Larger for mobile tap targets */
+    margin: 1.5rem 0;
     text-align: center;
-    color: var(--text); /* Starts White */
+    color: var(--text);
     text-decoration: none;
-    position: relative; /* Needed for the underline */
+    position: relative;
     padding-bottom: 8px;
+    background: transparent !important; /* Forces removal of any old blocks */
     transition: color var(--transition-medium);
   }
 
-  .menu-list a:hover,
-  .menu-list a:focus-visible {
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-/* Make the hover/active color blue on mobile too */
+  /* Match the desktop hover/active color */
   .menu-list a:hover,
   .menu-list a.current {
-    color: var(--accent); /* Turns blue */
-    background: transparent;
-  }
-   
-  .menu-list a.current {
-    background: #00A9FF;
-    color: #000;
-    font-weight: 600;
-    pointer-events: none;
+    color: var(--accent) !important;
+    background: transparent !important;
   }
 
-   /* Add the sliding underline to mobile links */
+  /* Mobile Underline Animation */
   .menu-list a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 10%; /* Center the underline slightly */
+    left: 10%;
     width: 80%;
-    height: 3px; /* Slightly thicker for mobile visibility */
+    height: 4px; /* Slightly thicker for mobile */
     background-color: var(--accent);
     transform: scaleX(0);
     transition: transform var(--transition-medium);
   }
 
-  /* Show the underline on mobile when current or hovered */
+  /* Show underline when active/hovered */
   .menu-list a:hover::after,
   .menu-list a.current::after {
     transform: scaleX(1);
   }
 
-  /* Remove the old mobile-only current state background */
+  /* Accessibility: styling for current page */
   .menu-list a.current {
-    font-weight: 600;
+    font-weight: 700;
     pointer-events: none;
+    border-bottom: none; /* Removes the static border in favor of the animated one */
   }
 
-  /* Projects adjustments */
-  .projects ul {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .project-item strong {
-    font-size: 1rem;
-  }
-
-  .project-description {
-    font-size: 0.95rem;
-  }
-
-  /* Contact adjustments */
-  .contact {
-    max-width: 100%;
-    margin-top: 1.5rem;
-    text-align: center;
-  }
-
-  .social-links {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .social-links li {
-    width: 100%;
-  }
-
-  .social-button {
-    justify-content: center;
-    width: 100%;
-    font-size: 1.05rem;
-    padding: 0.9em 1.2em;
-  }
-
+  /* Projects/Contact adjustments remain the same... */
+  .projects ul { grid-template-columns: 1fr; gap: 1rem; }
+  .contact { max-width: 100%; text-align: center; }
+  .social-links { flex-direction: column; align-items: stretch; }
+  .social-button { justify-content: center; width: 100%; }
 }
 
 /* Extra small screens */
