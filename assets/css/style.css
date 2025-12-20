@@ -22,6 +22,12 @@ body {
   box-sizing: border-box;
 }
 
+body.light-mode {
+  --bg: #ffffff;
+  --text: #111827;
+  --accent: #2563eb; /* A slightly deeper blue for better contrast on white */
+}
+
 a {
   color: var(--accent);
   transition: background var(--transition-fast), color var(--transition-fast);
