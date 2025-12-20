@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setupMenu();
       setupHeaderScroll();
       adjustBodyPadding();
+      setupThemeToggle();
 
       window.addEventListener("resize", adjustBodyPadding);
     })
