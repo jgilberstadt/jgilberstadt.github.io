@@ -5,7 +5,6 @@
   --bg: #000000;
   --text: #ffffff;
   --accent: #60a5fa;
-
   --transition-fast: 0.2s cubic-bezier(.2,.8,.2,1);
   --transition-medium: 0.3s cubic-bezier(.2,.8,.2,1);
   --transition-slow: 0.35s cubic-bezier(.2,.8,.2,1);
@@ -17,15 +16,18 @@ body {
   background: var(--bg);
   line-height: 1.6;
   margin: 0;
-  padding: 1.25rem; /* only regular padding; top will be dynamic */
+  padding: 1.25rem;
   font-size: 1rem;
   box-sizing: border-box;
 }
 
+/* =========================
+   Light Mode Overrides
+========================= */
 body.light-mode {
   --bg: #ffffff;
   --text: #111827;
-  --accent: #2563eb; /* A slightly deeper blue for better contrast on white */
+  --accent: #2563eb;
 }
 
 body.light-mode .menu-list a {
@@ -41,6 +43,23 @@ body.light-mode .site-title a {
   color: #111827 !important; /* The !important here ensures it beats the desktop override */
 }
 
+body.light-mode .menu-list a,
+body.light-mode .site-title a,
+body.light-mode .menu button {
+  color: #111827 !important;
+}
+
+body.light-mode .theme-toggle {
+  border-color: rgba(0,0,0,0.1);
+}
+
+body.light-mode .site-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   General Elements
+========================= */
 a {
   color: var(--accent);
   transition: background var(--transition-fast), color var(--transition-fast);
@@ -52,15 +71,6 @@ h1 {
 }
 
 .container {
-  width: 92%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.site-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 92%;
   max-width: 1200px;
   margin: 0 auto;
@@ -82,6 +92,9 @@ body.light-mode .theme-toggle {
   border-color: rgba(0,0,0,0.1);
 }
 
+body.light-mode .sun-icon { display: none; }
+body:not(.light-mode) .moon-icon { display: none; }
+
 /* Show/Hide icons based on mode */
 body.light-mode .sun-icon { display: none; }
 body:not(.light-mode) .moon-icon { display: none; }
@@ -94,7 +107,7 @@ body:not(.light-mode) .moon-icon { display: none; }
 }
 
 /* =========================
-   Header & Site Title
+   Header & Navigation
 ========================= */
 header.site-header {
   position: fixed;
@@ -103,8 +116,15 @@ header.site-header {
   width: 100%;
   z-index: 1000;
   background: var(--bg);
-  padding: 1rem 0; /* Remove horizontal padding here, let container handle it */
+  padding: 1rem 0;
   box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Left side: title */
@@ -117,7 +137,7 @@ header.site-header {
 
 /* Site title */
 .site-title {
-  font-size: 1.25rem; /* same as page text size */
+  font-size: 1.25rem;
   font-weight: 600;
   margin: 0;
 }
@@ -125,8 +145,6 @@ header.site-header {
 .site-title a {
   text-decoration: none;
   color: var(--accent);
-  display: inline-block;
-  transition: color var(--transition-fast);
 }
 
 /* Optional hover/focus */
@@ -204,7 +222,7 @@ body.light-mode .site-footer {
 .menu {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Space between Sun/Moon and the Menu */
+  gap: 1.5rem;
 }
 
 .menu button {
@@ -327,7 +345,6 @@ body.menu-open .menu-list {
   object-fit: cover;
   border: 3px solid var(--accent);
   padding: 4px;
-  margin: 0 auto 1rem auto; /* Centered for mobile */
 }
 
 main.container {
@@ -397,7 +414,7 @@ main.container {
 /* Container for the image and text */
 .intro-block {
   display: flex;
-  flex-direction: column; /* Stacked by default (mobile) */
+  flex-direction: column;
   align-items: center;
   gap: 2rem;
   margin-bottom: 2rem;
@@ -636,24 +653,16 @@ body.light-mode .social-button.btn-primary {
     font-size: 2.5rem;
     background: transparent;
     border: 0;
-    color: var(--text); /* White */
+    color: var(--text);
     cursor: pointer;
-    opacity: 0.8;
   }
 
   /* Mobile Links: Now Blue by default */
   .menu-list a {
     font-size: 2.5rem;
     margin: 1.5rem 0;
-    text-align: center;
-    color: var(--accent); /* Blue to match desktop */
+    color: var(--accent);
     text-decoration: none;
-    position: relative;
-    padding-bottom: 8px;
-    background: transparent !important;
-    transition: opacity var(--transition-medium);
-    width: fit-content;
-    display: block;
   }
 
   /* Hover state: slightly dim the blue for feedback */
@@ -868,14 +877,14 @@ body.light-mode .social-button.btn-primary {
     flex-direction: row;
     background: transparent;
     gap: 2rem;
-    margin-left: auto; /* Pushes everything after the title to the right */
-    margin-right: 2rem; /* Creates the gap between links and sun/moon */
+    margin-left: auto; /* Pushes links to the right */
+    margin-right: 2rem; /* Gap between links and toggle */
     padding: 0;
-    list-style: none;
     z-index: auto;
   }
+   
   .menu-list a {
-    color: var(--text) !important; /* Forces color to follow Dark/Light mode */
+    color: var(--text);
     font-size: 1rem;
     white-space: nowrap;
   }
@@ -905,15 +914,12 @@ body.light-mode .social-button.btn-primary {
 
   .site-title {
     font-size: 2rem;
-    font-weight: 600;
-    line-height: 1;
   }
 
    .intro-block {
-    display: flex !important; /* Force flex */
-    flex-direction: row !important; /* Force side-by-side */
-    align-items: flex-start;
+    flex-direction: row !important;
     text-align: left;
+    align-items: flex-start;
     gap: 4rem;
   }
 
@@ -926,8 +932,7 @@ body.light-mode .social-button.btn-primary {
     height: 12rem;
     position: sticky;
     top: 120px;
-    flex-shrink: 0; /* Important: stops the image from getting squashed */
-    margin: 0; 
+    flex-shrink: 0;
   }
 
    .footer-content {
