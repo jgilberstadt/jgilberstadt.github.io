@@ -226,7 +226,7 @@ body.light-mode .site-footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,0.95);
+  background: var(--bg);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -833,16 +833,22 @@ body.light-mode .social-button.btn-primary {
     display: none;
   }
 
+  .menu-close-wrapper {
+    display: none;
+  }
+
   /* Desktop menu layout */
   .menu-list {
-    display: flex;
-    position: static;
+    display: flex !important;
+    position: relative;
     inset: auto;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    background: none;
+    background: transparent;
     gap: 2rem;
+    z-index: 10;
+    margin-left: auto;
     height: auto;
     width: auto;
   }
