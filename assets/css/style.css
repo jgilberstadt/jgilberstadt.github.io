@@ -192,6 +192,7 @@ body.light-mode .site-footer {
 .menu {
   display: flex;
   align-items: center;
+  gap: 1.5rem; /* Space between Sun/Moon and the Menu */
 }
 
 .menu button {
@@ -313,9 +314,9 @@ body.menu-open .menu-list {
   display: block;
   margin: 0 0 1rem 0;
   object-fit: cover;
-  margin-top: 0;
   border: 3px solid var(--accent);
   padding: 4px;
+  position: static;
 }
 
 main.container {
@@ -842,23 +843,20 @@ body.light-mode .social-button.btn-primary {
   /* Desktop menu layout */
   .menu-list {
     display: flex !important;
-    position: relative;
-    inset: auto;
+    position: static; /* Changed from relative to static */
     flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
     background: transparent;
     gap: 2rem;
-    z-index: 10;
-    margin-left: auto;
-    height: auto;
-    width: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
 .menu-list a {
-    font-size: 1.1rem; /* Smaller, professional size for desktop nav */
-    margin: 0;
-}
+    color: var(--text); 
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
    
   /* Header scroll behavior */
   .site-header {
@@ -887,9 +885,9 @@ body.light-mode .social-button.btn-primary {
   }
 
   .profile {
-    width: 12rem; /* Slightly larger on desktop */
+    width: 12rem;
     height: 12rem;
-    position: sticky; /* Keeps image in view as you read short bio */
+    position: sticky; /* Only sticky on desktop */
     top: 120px;
   }
 
