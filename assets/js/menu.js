@@ -6,9 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("site-header").innerHTML = html;
       setupMenu();
       setupHeaderScroll();
-      adjustBodyPadding();
       setupThemeToggle();
-      window.addEventListener("resize", adjustBodyPadding);
     })
     .catch(err => console.error("Failed to load header:", err));
 
@@ -215,15 +213,6 @@ function setupHeaderScroll() {
 // =========================
 // Body Padding = Header Height
 // =========================
-function adjustBodyPadding() {
-  const header = document.querySelector(".site-header");
-  if (!header) return;
-
-  // Calculate header height + 32px (2rem) for a comfortable gap
-  const gap = 32; 
-  document.body.style.paddingTop = `${header.offsetHeight + gap}px`;
-}
-
 function setupThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
   if (!toggle) return;
