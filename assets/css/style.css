@@ -58,19 +58,27 @@ h1 {
   margin: 0 auto;
 }
 
-.theme-toggle {
-  font-size: 1.1rem; 
-  padding: 0.4rem; 
+.theme-toggle, 
+.menu-toggle {
   width: 2.2rem;
   height: 2.2rem;
+  padding: 0;            /* Remove padding so height/width stay exact */
+  display: flex;
+  align-items: center;
   justify-content: center;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 0.3rem;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.menu-toggle {
+  font-size: 1.4rem; /* Slightly larger because ☰ is naturally short */
+}
+
+.theme-toggle {
+  font-size: 1.1rem;
 }
 
 body.light-mode .theme-toggle {
