@@ -214,9 +214,6 @@ function setupHeaderScroll() {
   updateHeader();
 }
 
-// =========================
-// Body Padding = Header Height
-// =========================
 function setupThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
   if (!toggle) return;
