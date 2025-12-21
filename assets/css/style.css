@@ -30,21 +30,6 @@ body.light-mode {
   --accent: #2563eb;
 }
 
-body.light-mode .menu-list a.current {
-  color: var(--accent) !important;
-}
-
-body.light-mode .menu-list a,
-body.light-mode .site-title a {
-  color: #111827 !important; /* The !important here ensures it beats the desktop override */
-}
-
-body.light-mode .menu-list a,
-body.light-mode .site-title a,
-body.light-mode .menu button {
-  color: #111827 !important;
-}
-
 body.light-mode .theme-toggle {
   border-color: rgba(0,0,0,0.1);
 }
