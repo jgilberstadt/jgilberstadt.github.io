@@ -94,6 +94,9 @@ header.site-header {
   position: fixed;
   top: 0;
   left: 0;
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
   width: 100%;
   z-index: 1000;
   background: var(--bg);
@@ -334,7 +337,8 @@ body.menu-open .menu-list {
 }
 
 main.container {
-  margin-top: 1rem; 
+  padding-top: 5rem; 
+  margin-top: 0;
 }
 
 .container p {
