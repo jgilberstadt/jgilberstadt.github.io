@@ -702,14 +702,23 @@ body.light-mode .social-button.btn-primary {
     transition: transform var(--transition-medium);
   }
 
-  .menu-list a.current::after,
-  .menu-list a:hover::after { transform: scaleX(1); }
+  .menu-list a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.menu-list a.current::after {
+  display: none; /* This removes the sliding underline for the active page */
+}
 
   .menu-list a.current {
-    color: var(--accent);
-    font-weight: 700;
-    opacity: 1;
-  }
+  background: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  pointer-events: none;
+  text-decoration: none; /* Ensures no default browser underline */
+  border-bottom: 2px solid var(--accent); /* This creates ONE clean, solid line */
+}
 }
 
 @media (max-width: 480px) {
