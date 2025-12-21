@@ -108,11 +108,10 @@ header.site-header {
   justify-content: space-between;
 }
 
-/* Left side: title */
 .header-left {
   text-align: left;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0;
 }
 
