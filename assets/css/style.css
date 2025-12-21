@@ -572,14 +572,18 @@ main.container {
 
 /* Hover state for Primary Button */
 .social-button.btn-primary:hover {
-  background-color: transparent;
-  color: var(--accent);
-  box-shadow: 0 0.5em 1.2em rgba(96, 165, 250, 0.4);
+  background-color: rgba(96, 165, 250, 0.1); /* Subtle tint instead of transparent */
+  color: var(--accent);                      /* Stays blue */
+  border-color: var(--accent);
 }
 
 /* Light mode tweak for contrast */
 body.light-mode .social-button.btn-primary {
   color: #ffffff;
+}
+
+body.light-mode .social-button.btn-primary:hover {
+  color: #2563eb; /* A slightly deeper blue for better contrast on white */
 }
 
 .social-button {
