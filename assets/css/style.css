@@ -249,7 +249,10 @@ body.light-mode .site-footer {
   left: 0;
   width: 100vw;  /* Use viewport width */
   height: 100vh; /* Use viewport height */
-  display: none; /* Controlled by JS/body.menu-open */
+  display: flex; /* Controlled by JS/body.menu-open */
+  opacity: 0;          /* Start invisible */
+  pointer-events: none; /* Can't click it while invisible */
+  transition: opacity 0.3s ease; /* Smooth fade! */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -263,6 +266,8 @@ body.light-mode .site-footer {
 }
 
 body.menu-open .menu-list {
+  opacity: 1;
+  pointer-events: auto; /* Clickable when visible */
   display: flex;
 }
 
