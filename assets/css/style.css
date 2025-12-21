@@ -330,14 +330,6 @@ body.menu-open .menu-list {
   background: rgba(255,255,255,0.08);
 }
 
-.menu-list a.current {
-  background: transparent;
-  color: var(--accent);
-  font-weight: 600;
-  pointer-events: none;
-  border-bottom: none;
-}
-
 /* =========================
    About Page
 ========================= */
@@ -707,10 +699,6 @@ body.light-mode .social-button.btn-primary {
   transform-origin: bottom left;
 }
 
-.menu-list a.current::after {
-  display: none; /* This removes the sliding underline for the active page */
-}
-
   .menu-list a.current {
   background: transparent;
   color: var(--accent);
@@ -774,6 +762,9 @@ body.light-mode .social-button.btn-primary {
     margin-left: auto;
     margin-right: 2rem;
     padding: 0;
+    opacity: 1 !important;        /* Makes it visible again */
+    visibility: visible !important; /* Makes it interactive */
+    pointer-events: auto;        /* Allows clicking */
   }
 
   .menu-list a {
@@ -782,6 +773,17 @@ body.light-mode .social-button.btn-primary {
     font-size: 1.2rem;
     transition: opacity 0.2s ease, color 0.2s ease;
   }
+
+   .menu-list a.current {
+  background: transparent;
+  font-weight: 600;
+  pointer-events: none;
+  border-bottom: none;
+}
+
+   .menu-list a.current::after {
+  display: none; /* This removes the sliding underline for the active page */
+}
 
   .menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent); }
 
