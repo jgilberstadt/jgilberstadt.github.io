@@ -452,11 +452,10 @@ main.container {
 
 .project-grid ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  gap: 1.5rem;
+  /* 'auto-fill' keeps the cards at a set size; 'auto-fit' stretches them */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 2rem;
   padding: 0;
-  list-style: none;
-  margin: 0;
 }
 
 .project-item {
