@@ -30,10 +30,6 @@ body.light-mode {
   --accent: #2563eb;
 }
 
-body.light-mode .menu-list a {
-  color: #111827; /* Dark text for light mode */
-}
-
 body.light-mode .menu-list a.current {
   color: var(--accent) !important;
 }
@@ -869,22 +865,39 @@ body.light-mode .social-button.btn-primary {
 
   /* Desktop menu layout */
   .menu-list {
-    display: flex !important;
-    position: static;
-    flex-direction: row;
-    background: transparent;
-    gap: 2rem;
-    margin-left: auto; /* Pushes links to the right */
-    margin-right: 2rem; /* Gap between links and toggle */
-    padding: 0;
-    z-index: auto;
-  }
+  display: flex !important;
+  position: static;
+  flex-direction: row;
+  background: transparent;
+  gap: 2rem;
+  margin-left: auto; /* Keeps them in the middle/right */
+  margin-right: 0;   /* Removes the double-gap issue */
+  padding: 0;
+  list-style: none;
+}
    
   .menu-list a {
-    color: var(--text);
-    font-size: 1rem;
-    white-space: nowrap;
-  }
+  color: var(--text); /* Dark grey in Light mode, White in Dark mode */
+  opacity: 0.6;       /* Slightly faded so they don't distract */
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+  .menu-list a:hover {
+  opacity: 1;
+  color: var(--accent); /* Turns blue when hovered */
+}
+
+  .menu-list a.current {
+  opacity: 1;
+  color: var(--accent); /* Stays blue if it's the active page */
+  font-weight: 600;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 4px;
+}
    
   /* Header scroll behavior */
   .site-header {
