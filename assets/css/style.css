@@ -316,8 +316,6 @@ body.menu-open .menu-list {
   color: var(--accent);     /* The text itself stays blue */
   font-weight: 600;
   pointer-events: none;     /* Prevents clicking the page you're already on */
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 4px;
 }
 
 /* =========================
