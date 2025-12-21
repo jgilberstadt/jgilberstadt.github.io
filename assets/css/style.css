@@ -624,7 +624,7 @@ main.container {
 }
 
 .social-button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.6em 1.2em;
@@ -736,9 +736,10 @@ body.light-mode .social-button.btn-primary {
 .social-button {
   display: flex;
   width: 100%;
-  max-width: 320px; /* Limits width so they don't look giant on tablets */
+  max-width: 320px;
   justify-content: center;
   box-sizing: border-box;
+  flex-shrink: 0; /* Prevents buttons from squishing if text is long */
 }
    
 }
