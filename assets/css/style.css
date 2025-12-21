@@ -471,10 +471,22 @@ main.container {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
   }
 
-  /* This is the part you correctly identified */
   .project-item:hover h3 {
     color: var(--accent);
   }
+
+  .social-button:hover {
+    background: rgba(96, 165, 250, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+  }
+
+  .social-button.btn-primary:hover {
+    background-color: rgba(96, 165, 250, 0.1);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+   
 }
 
 .project-item:active {
@@ -638,9 +650,8 @@ body.light-mode .social-button.btn-primary:hover {
 }
 
 .social-button:focus-visible {
-  background: rgba(96, 165, 250, 0.1);
-  transform: translateY(-0.12em);
-  box-shadow: 0 0.4em 0.8em rgba(96, 165, 250, 0.25);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .social-button:active {
@@ -665,6 +676,8 @@ body.light-mode .social-button.btn-primary:hover {
   width: 200%;
   height: 200%;
   opacity: 1;
+  /* Add this to ensure it fades out immediately when the finger lifts */
+  transition: 0s; 
 }
 
 body.light-mode .social-button:not(.btn-primary):hover {
