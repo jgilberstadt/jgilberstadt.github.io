@@ -509,15 +509,16 @@ main.container {
 }
 
 .project-item h3 {
-  margin: 1rem 1rem 0.5rem 1rem;
-  font-size: 1.2rem;
-  color: var(--accent); /* Consistent with your new nav style */
+  margin: 1.25rem 1.25rem 0.5rem;
+  font-size: 1.25rem;
+  color: var(--accent);
 }
 
 .project-description {
-  margin: 0 1rem 1rem 1rem;
-  font-size: 1rem;
-  opacity: 0.85;
+  margin: 0 1.25rem 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.8;
 }
 
 .project-description strong {
