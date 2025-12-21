@@ -949,9 +949,13 @@ body.light-mode .social-button:not(.btn-primary):hover {
   .profile {
     width: 12rem;
     height: 12rem;
-    position: static;
-    top: auto;
+    position: static;   /* Keeps it from sticking */
+    margin-top: 1.5rem; /* Aligns the top of the photo with the top of the text */
     flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    padding: 4px;
   }
 
    .footer-content {
