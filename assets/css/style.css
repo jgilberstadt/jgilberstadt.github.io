@@ -613,17 +613,6 @@ main.container {
   transition: text-decoration var(--transition-fast);
 }
 
-/* Primary Button Style (Filled) */
-.social-button.btn-primary {
-  background-color: var(--accent);
-  color: #ffffff; /* Stays white for contrast even in Light Mode */
-}
-
-/* Light mode tweak for contrast */
-body.light-mode .social-button.btn-primary {
-  color: #ffffff;
-}
-
 .social-button {
   display: inline-flex;
   align-items: center;
@@ -633,21 +622,28 @@ body.light-mode .social-button.btn-primary {
   font-weight: 500;
   background: transparent;
   color: var(--accent);
-  border: 1.5px solid var(--accent); /* Slightly thicker for better visibility */
+  border: 1.5px solid var(--accent);
   border-radius: 0.3em;
   text-decoration: none;
   transition: all var(--transition-fast);
   cursor: pointer;
+  position: relative; /* Added for the ripple effect position */
+  overflow: hidden;    /* Added to keep ripple inside button */
+}
+
+/* Primary Button Style (Filled) */
+.social-button.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+body.light-mode .social-button.btn-primary {
+  color: #ffffff;
 }
 
 .social-button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-}
-
-.social-button:active {
-  transform: translateY(0);
-  box-shadow: 0 0.2em 0.4em rgba(96, 165, 250, 0.2);
 }
 
 .social-button::after {
@@ -663,16 +659,8 @@ body.light-mode .social-button.btn-primary {
   transition: width var(--transition-slow), height var(--transition-slow), opacity 0.6s ease-out;
 }
 
-.social-button:active::after {
-  width: 200%;
-  height: 200%;
-  opacity: 1;
-  /* Add this to ensure it fades out immediately when the finger lifts */
-  transition: 0s; 
-}
-
+/* Screen Size Specific Overrides */
 @media (max-width: 768px) {
-  /* Close button: Make it white so it doesn't clash with blue links */
   .menu-list .menu-close {
     position: absolute;
     top: 1.5rem;
@@ -684,322 +672,95 @@ body.light-mode .social-button.btn-primary {
     cursor: pointer;
   }
 
-  /* Mobile Links: Now Blue by default */
   .menu-list a {
     font-size: 2.5rem;
     margin: 1.5rem 0;
-    color: var(--text); /* Matches desktop: White in dark mode, Dark in light mode */
+    color: var(--text);
     text-decoration: none;
-    opacity: 0.8;       /* Slightly softer look for inactive links */
+    opacity: 0.8;
     transition: opacity 0.2s ease;
   }
 
-  /* Hover state: slightly dim the blue for feedback */
-  .menu-list a:hover {
-    opacity: 0.7;
-  }
+  .menu-list a:hover { opacity: 0.7; }
 
-  /* Underline Animation: Matches Desktop */
   .menu-list a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;       /* Change from 10%; */
-    width: 100%;   /* Change from 80%; */
+    left: 0;
+    width: 100%;
     height: 4px;
     background-color: var(--accent);
     transform: scaleX(0);
     transition: transform var(--transition-medium);
   }
 
-  .menu-list a.current::after {
-    transform: scaleX(1);
-    background-color: var(--accent);
-  }
+  .menu-list a.current::after,
+  .menu-list a:hover::after { transform: scaleX(1); }
 
-  /* Always show underline for the current page, slide in for hover */
-  .menu-list a:hover::after,
-  .menu-list a.current::after {
-    transform: scaleX(1);
-  }
-
-  /* Current Page specific styling */
   .menu-list a.current {
-    color: var(--accent); 
+    color: var(--accent);
     font-weight: 700;
     opacity: 1;
   }
 }
 
-/* Extra small screens */
 @media (max-width: 480px) {
-
-   header.site-header .container {
-    flex-direction: row !important; 
+  header.site-header .container {
+    flex-direction: row !important;
     align-items: center;
     justify-content: space-between;
-    padding: 0 0.5rem;      
+    padding: 0 0.5rem;
   }
 
-  .menu button {
-    font-size: 1.5rem;
-    padding: 0.5em 0.75em;
-  }
-
-  .site-title {
-    font-size: clamp(1.1rem, 5vw, 1.4rem); 
-    white-space: nowrap; /* Forces it to stay on one line */
-  }
-
-  body {
-    padding: 5rem 0.9rem 0.9rem 0.9rem; /* Top, Right, Bottom, Left */
-  }
-
-  .social-button {
-    padding: 0.65em 1em;   /* smaller padding */
-    font-size: 0.95rem;     /* slightly smaller text */
-    min-width: 6rem;        /* ensures buttons don’t get too small */
-    width: 100%;
-    justify-content: center; 
-    text-align: center; 
-  }
-
-   .social-button::after {
-    width: 150%;  /* smaller ripple effect */
-    height: 150%;
-  }
+  .site-title { font-size: clamp(1.1rem, 5vw, 1.4rem); white-space: nowrap; }
+  body { padding: 5rem 0.9rem 0.9rem 0.9rem; }
 
   .social-links {
-    display: flex;
-    flex-wrap: wrap; /* wrap buttons to new line if needed */
-    justify-content: center; /* center buttons horizontally */
-    margin-top: 1rem;
     flex-direction: column;
-    gap: 0.75rem;
     align-items: stretch;
   }
 
-   .social-links li {
+  .social-button {
     width: 100%;
-  }
-
-
-  /* Target the resume button specifically if needed */
-  a.social-button[href*="Resume"] {
-    padding: 0.5em 0.9em;   /* same as social buttons */
-    font-size: 0.95rem;     /* match text size */
-    min-width: 6rem;        /* same min width */
-    width: auto;            /* fit content */
     justify-content: center;
-    text-align: center;
+    padding: 0.7em 1em;
   }
 
-  a.social-button[href*="Resume"]::after {
-    width: 150%;  /* same ripple effect */
-    height: 150%;
-  }
-
-  /* Container for buttons if needed (optional) */
-  .container p, .contact .social-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem; /* space between buttons */
-  }
-
-  /* All social-style buttons and resume button */
-  a.social-button {
-    width: 90%;              /* nearly full width, leaves small margin */
-    max-width: 18rem;        /* prevent extremely wide buttons */
-    padding: 0.7em 1em;      /* comfortable tap size */
-    font-size: 1rem;         /* readable text */
-    justify-content: center;
-    text-align: center;
-    box-sizing: border-box;
-  }
-
-  a.social-button::after {
-    width: 150%;
-    height: 150%;
-  }
-
-  main.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1rem; /* space between elements */
-  }
-
-  /* Profile image */
-  .profile {
-    width: 7rem;       /* slightly smaller on small screens */
-    height: 7rem;
-    margin-bottom: 1rem;
-  }
-
-  /* Paragraph text */
-  main.container p {
-    font-size: 1rem;
-    line-height: 1.5;
-    max-width: 95%;
-  }
-
-  .project-grid ul {
-  grid-template-columns: 1fr; /* Stay in one column on mobile */
-  gap: 2rem;                 /* Keep the consistent gap */
-  padding: 0;
+  .profile { width: 7rem; height: 7rem; }
+  .project-grid ul { grid-template-columns: 1fr; }
 }
 
-  .project-item {
-    font-size: 0.95rem;
-    border-radius: 0.4rem;
-    overflow: hidden;
-  }
-
-  .project-thumb {
-  width: 100%;
-  aspect-ratio: 16 / 9;      /* Match the desktop aspect ratio */
-  object-fit: cover;
-}
-
-  .project-item h3 {
-  font-size: 1.2rem;         /* Slightly larger for mobile readability */
-  margin: 1.25rem 1.25rem 0.5rem 1.25rem;
-}
-
-  .project-description {
-  font-size: 0.95rem;
-  margin: 0 1.25rem 1.5rem 1.25rem; /* Match the desktop breathing room */
-}
-
-  .button-group {
-    flex-direction: column;
-    align-items: center;
-  }
-   
-}
-
-/* Desktop overrides */
 @media (min-width: 769px) {
-  /* Hide mobile controls */
-   
-  .menu {
-  display: flex;
-  align-items: center;
-  align-self: center;
-  gap: 1.5rem;
-  /* Use transform instead of margin for precise "nudging" */
-  transform: translateY(-3px); 
-}
+  .menu { transform: translateY(-3px); }
+  .menu-toggle, .menu-close { display: none; }
 
-  .menu-toggle {
-    display: none;
-  }
-
-  .menu-close {
-    display: none;
-  }
-
-  .menu-close-wrapper {
-    display: none;
-  }
-
-  /* Desktop menu layout */
   .menu-list {
     display: flex !important;
-    position: static;    /* This stops it from being fullscreen */
-    height: auto;        /* This stops it from filling the screen height */
-    width: auto;         /* This stops it from filling the screen width */
+    position: static;
+    height: auto;
+    width: auto;
     flex-direction: row;
     background: transparent;
     gap: 2rem;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: 2rem;
     padding: 0;
-    list-style: none;
-    align-items: baseline; /* Ensure the list itself is aligned to the baseline */
   }
-   
+
   .menu-list a {
     color: var(--text);
     opacity: 0.6;
-    font-size: 1.2rem; /* Matches the site-title exactly */
-    font-weight: 500;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: opacity 0.2s ease, color 0.2s ease;
-    padding: 0; /* Remove vertical padding to ensure baseline alignment */
-    line-height: 1;
-    display: inline-block;
-  }
-
-  .menu-list a:hover {
-  opacity: 1;
-  color: var(--accent); /* Turns blue when hovered */
-}
-
-  .menu-list a.current {
-  opacity: 1;
-  color: var(--accent);
-  font-weight: 600;
-  border-bottom: none; /* Keep this off as we use ::after */
-  padding-bottom: 2px; /* Small gap above the underline */
-}
-   
-  /* Header scroll behavior */
-  .site-header {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .site-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* This is good for text */
-  }
-
-  .site-header.header-hidden {
-    transform: translateY(-100%);
-  }
-
-  .site-header.header-visible {
-    transform: translateY(0);
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
-  }
-
-  .site-title {
     font-size: 1.2rem;
-    line-height: 1; /* Forces the box to be exactly the height of the text */
-    display: inline-flex;
-    align-items: baseline;
+    transition: opacity 0.2s ease, color 0.2s ease;
   }
 
-   .intro-block {
-    flex-direction: row !important;
-    text-align: left;
-    align-items: flex-start;
-    gap: 4rem;
-  }
+  .menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent); }
 
-   .intro-text {
-    flex: 1;
-  }
+  .site-header .container { align-items: center; }
+  .site-title { font-size: 1.2rem; display: inline-flex; align-items: center; }
 
-  .profile {
-    width: 12rem;
-    height: 12rem;
-    position: static;   /* Keeps it from sticking */
-    margin-top: 1.5rem; /* Aligns the top of the photo with the top of the text */
-    flex-shrink: 0;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--accent);
-    padding: 4px;
-  }
-
-   .footer-content {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
+  .intro-block { flex-direction: row !important; text-align: left; gap: 4rem; }
+  .profile { width: 12rem; height: 12rem; margin-top: 1.5rem; }
+  .footer-content { flex-direction: row; justify-content: space-between; }
 }
