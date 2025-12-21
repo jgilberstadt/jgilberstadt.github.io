@@ -135,16 +135,20 @@ function closeMenu() {
 // Highlight Current Page
 // =========================
 function highlightCurrentPage() {
-  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  // Get the current filename, defaulting to 'index.html' if empty
+  let currentPath = window.location.pathname.split("/").pop();
+  if (currentPath === "" || currentPath === "/") currentPath = "index.html";
+
   const navLinks = document.querySelectorAll(".menu-list a");
 
   navLinks.forEach(link => {
+    link.classList.remove("current"); // Clean start
     const href = link.getAttribute("href");
+    
+    // Match exact filename
     if (href === currentPath) {
       link.classList.add("current");
       link.setAttribute("aria-current", "page");
-      // Optional: keep tabindex="0" but use pointer-events: none in CSS
-      // to allow screen readers to still "see" where they are.
     }
   });
 }
