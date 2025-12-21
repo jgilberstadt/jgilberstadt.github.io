@@ -786,17 +786,17 @@ body.light-mode .social-button.btn-primary {
   }
 
    .menu-list a.current {
-  opacity: 1;
-  color: var(--accent);
-  font-weight: 600;
-  pointer-events: none;
-  border-bottom: 2px solid var(--accent); /* Thinner for desktop elegance */
-  padding-bottom: 2px; /* Adds a tiny bit of breathing room */
-}
+    opacity: 1;
+    color: var(--accent);
+    font-weight: 600;
+    pointer-events: none;
+    border-bottom: 2px solid var(--accent); /* This is your static line */
+    padding-bottom: 2px;
+  }
 
    .menu-list a.current::after {
-  display: none; /* Kills the sliding line animation */
-}
+    display: none !important; /* Forces the sliding line to stay hidden */
+  }
    
   .site-header .container { align-items: center; }
   .site-title { font-size: 1.2rem; display: inline-flex; align-items: center; }
