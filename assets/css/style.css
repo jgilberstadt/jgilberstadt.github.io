@@ -702,11 +702,17 @@ body.light-mode .social-button.btn-primary {
   .menu-list a.current {
   background: transparent;
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 700;
   pointer-events: none;
   text-decoration: none; /* Ensures no default browser underline */
-  border-bottom: 2px solid var(--accent); /* This creates ONE clean, solid line */
+  opacity: 1;
+  border-bottom: 4px solid var(--accent); /* Thicker for mobile visibility */
 }
+
+   .menu-list a.current::after {
+  display: none;
+}
+   
 }
 
 @media (max-width: 480px) {
@@ -775,16 +781,18 @@ body.light-mode .social-button.btn-primary {
   }
 
    .menu-list a.current {
-  background: transparent;
+  opacity: 1;
+  color: var(--accent);
   font-weight: 600;
   pointer-events: none;
-  border-bottom: none;
+  border-bottom: 2px solid var(--accent); /* Thinner for desktop elegance */
+  padding-bottom: 2px; /* Adds a tiny bit of breathing room */
 }
 
    .menu-list a.current::after {
-  display: none; /* This removes the sliding underline for the active page */
+  display: none; /* Kills the sliding line animation */
 }
-
+   
   .menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent); }
 
   .site-header .container { align-items: center; }
