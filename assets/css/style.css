@@ -566,8 +566,7 @@ main.container {
 /* Primary Button Style (Filled) */
 .social-button.btn-primary {
   background-color: var(--accent);
-  color: #ffffff; /* Always white for contrast on blue */
-  border-color: var(--accent);
+  color: #ffffff; /* Stays white for contrast even in Light Mode */
 }
 
 /* Hover state for Primary Button */
@@ -583,8 +582,6 @@ body.light-mode .social-button.btn-primary {
 }
 
 .social-button {
-  position: relative;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -593,11 +590,17 @@ body.light-mode .social-button.btn-primary {
   font-weight: 500;
   background: transparent;
   color: var(--accent);
-  border: 0.05em solid var(--accent);
+  border: 1.5px solid var(--accent); /* Slightly thicker for better visibility */
   border-radius: 0.3em;
   text-decoration: none;
-  line-height: 1.2;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.social-button:hover {
+  background: rgba(96, 165, 250, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
 }
 
 .social-button:hover,
@@ -629,6 +632,10 @@ body.light-mode .social-button.btn-primary {
   width: 200%;
   height: 200%;
   opacity: 1;
+}
+
+body.light-mode .social-button:not(.btn-primary):hover {
+  background: rgba(37, 99, 235, 0.05); /* Slightly darker blue tint for light mode */
 }
 
 @media (max-width: 768px) {
