@@ -494,10 +494,10 @@ main.container {
 
 .project-thumb {
   width: 100%;
-  height: auto;
-  aspect-ratio: 1.5 / 1;
-  object-fit: cover;
-  border-bottom: 0.05rem solid rgba(255,255,255,0.1);
+  aspect-ratio: 16 / 9; /* Standard cinematic ratio */
+  object-fit: cover;    /* Crops the image to fill the space without distortion */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
 }
 
 .project-item strong {
