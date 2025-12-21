@@ -882,7 +882,7 @@ body.light-mode .social-button:not(.btn-primary):hover {
     background: transparent;
     gap: 2rem;
     margin-left: auto; 
-    margin-right: 0;
+    margin-right: 2rem;
     padding: 0;
     list-style: none;
     align-items: baseline; /* Ensure the list itself is aligned to the baseline */
@@ -897,6 +897,8 @@ body.light-mode .social-button:not(.btn-primary):hover {
     white-space: nowrap;
     transition: opacity 0.2s ease, color 0.2s ease;
     padding: 0; /* Remove vertical padding to ensure baseline alignment */
+    line-height: 1;
+    display: inline-block;
   }
 
   .menu-list a:hover {
@@ -936,7 +938,10 @@ body.light-mode .social-button:not(.btn-primary):hover {
   }
 
   .site-title {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
+    line-height: 1; /* Forces the box to be exactly the height of the text */
+    display: inline-flex;
+    align-items: baseline;
   }
 
    .intro-block {
