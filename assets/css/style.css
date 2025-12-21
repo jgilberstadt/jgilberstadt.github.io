@@ -891,7 +891,7 @@ body.light-mode .social-button:not(.btn-primary):hover {
     align-items: center;   /* Centers the toggle vertically */
     align-self: center;    /* Keeps the menu block from following the baseline */
     gap: 1.5rem;
-    margin-bottom: -3.5px;   /* OPTICAL FIX: Adjust this small number to nudge the icon 
+    margin-bottom: -2px;   /* OPTICAL FIX: Adjust this small number to nudge the icon 
                               up or down until it looks perfect to your eye */
   }
 
