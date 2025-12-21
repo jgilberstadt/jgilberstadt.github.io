@@ -91,9 +91,10 @@ function closeMenu() {
   toggleButton.setAttribute("aria-expanded", "false");
   document.body.style.overflow = "";
 
-  // Delay hiding the menuList slightly to allow any CSS transitions (optional)
   setTimeout(() => {
-    menuList.style.display = "none";
+    // CHANGE THIS: Instead of setting it to "none", clear it.
+    // This lets your CSS @media query decide if it should be flex or hidden.
+    menuList.style.display = ""; 
   }, 50);
 
   if (removeFocusTrap) removeFocusTrap();
@@ -144,31 +145,16 @@ function closeMenu() {
 // Highlight Current Page
 // =========================
 function highlightCurrentPage() {
-  // 1. Get the current path and clean it up
-  // This handles trailing slashes and empty paths (home)
-  let currentPath = window.location.pathname.split("/").pop();
-  
-  // Default to index.html if the path is empty (common on homepages)
-  if (currentPath === "" || currentPath === "/") {
-    currentPath = "index.html";
-  }
-
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
   const navLinks = document.querySelectorAll(".menu-list a");
 
   navLinks.forEach(link => {
-    // Remove existing states first to be safe
-    link.classList.remove("current");
-    link.removeAttribute("aria-current");
-    link.removeAttribute("tabindex");
-
     const href = link.getAttribute("href");
-
-    // 2. Check for a match
     if (href === currentPath) {
       link.classList.add("current");
       link.setAttribute("aria-current", "page");
-      // Prevent tabbing to the current page for better accessibility
-      link.setAttribute("tabindex", "-1");
+      // Optional: keep tabindex="0" but use pointer-events: none in CSS
+      // to allow screen readers to still "see" where they are.
     }
   });
 }
