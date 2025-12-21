@@ -949,8 +949,8 @@ body.light-mode .social-button:not(.btn-primary):hover {
   .profile {
     width: 12rem;
     height: 12rem;
-    position: sticky;
-    top: 120px;
+    position: static;
+    top: auto;
     flex-shrink: 0;
   }
 
