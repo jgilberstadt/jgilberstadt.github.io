@@ -1,3 +1,7 @@
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light-mode");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Inject Header
   fetch("partials/header.html")
@@ -216,12 +220,6 @@ function setupHeaderScroll() {
 function setupThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
   if (!toggle) return;
-
-  // Check for saved preference
-  const currentTheme = localStorage.getItem("theme");
-  if (currentTheme === "light") {
-    document.body.classList.add("light-mode");
-  }
 
   toggle.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
