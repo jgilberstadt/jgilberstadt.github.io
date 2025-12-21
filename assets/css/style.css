@@ -223,7 +223,7 @@ body.light-mode .site-footer {
   padding: 0;
   background: transparent;
   color: var(--text);
-  border: 0.05em solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 0.3em;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
@@ -848,10 +848,10 @@ body.light-mode .social-button:not(.btn-primary):hover {
   }
 
   .project-grid ul {
-    grid-template-columns: 1fr; /* single column */
-    gap: 1rem;
-    padding: 0 0.5rem; /* small horizontal padding */
-  }
+  grid-template-columns: 1fr; /* Stay in one column on mobile */
+  gap: 2rem;                 /* Keep the consistent gap */
+  padding: 0;
+}
 
   .project-item {
     font-size: 0.95rem;
@@ -860,22 +860,20 @@ body.light-mode .social-button:not(.btn-primary):hover {
   }
 
   .project-thumb {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 3 / 2; /* adjust for better vertical fit */
-    object-fit: cover;
-    border-bottom: 0.05rem solid rgba(255,255,255,0.1);
-  }
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* Match the desktop aspect ratio */
+  object-fit: cover;
+}
 
   .project-item h3 {
-    font-size: 1.1rem;
-    margin: 0.5rem 0 0.25rem 0;
-  }
+  font-size: 1.2rem;         /* Slightly larger for mobile readability */
+  margin: 1.25rem 1.25rem 0.5rem 1.25rem;
+}
 
   .project-description {
-    font-size: 0.95rem;
-    margin: 0 0.75rem 0.75rem 0.75rem;
-  }
+  font-size: 0.95rem;
+  margin: 0 1.25rem 1.5rem 1.25rem; /* Match the desktop breathing room */
+}
 
   .button-group {
     flex-direction: column;
