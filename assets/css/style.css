@@ -877,6 +877,7 @@ body.light-mode .social-button:not(.btn-primary):hover {
   .menu {
     display: flex;
     align-items: center;
+    align-self: center;
     gap: 1rem;
   }
 
@@ -943,9 +944,6 @@ body.light-mode .social-button:not(.btn-primary):hover {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    width: 92%;
-    max-width: 1200px;
-    margin: 0 auto;
   }
 
   .site-header.header-hidden {
