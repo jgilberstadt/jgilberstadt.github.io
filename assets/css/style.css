@@ -608,7 +608,6 @@ body.light-mode .social-button.btn-primary:hover {
   box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
 }
 
-.social-button:hover,
 .social-button:focus-visible {
   background: rgba(96, 165, 250, 0.1);
   transform: translateY(-0.12em);
@@ -669,7 +668,6 @@ body.light-mode .social-button:not(.btn-primary):hover {
   /* Hover state: slightly dim the blue for feedback */
   .menu-list a:hover {
     opacity: 0.7;
-    background: transparent !important;
   }
 
   /* Underline Animation: Matches Desktop */
@@ -907,7 +905,6 @@ body.light-mode .social-button:not(.btn-primary):hover {
   opacity: 1;
   color: var(--accent); /* Stays blue if it's the active page */
   font-weight: 600;
-  border-bottom: 2px solid var(--accent);
   padding-bottom: 4px;
 }
    
