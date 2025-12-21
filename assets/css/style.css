@@ -663,8 +663,10 @@ body.light-mode .social-button.btn-primary {
   .menu-list a {
     font-size: 2.5rem;
     margin: 1.5rem 0;
-    color: var(--accent);
+    color: var(--text); /* Matches desktop: White in dark mode, Dark in light mode */
     text-decoration: none;
+    opacity: 0.8;       /* Slightly softer look for inactive links */
+    transition: opacity 0.2s ease;
   }
 
   /* Hover state: slightly dim the blue for feedback */
@@ -686,6 +688,11 @@ body.light-mode .social-button.btn-primary {
     transition: transform var(--transition-medium);
   }
 
+  .menu-list a.current::after {
+    transform: scaleX(1);
+    background-color: var(--accent);
+  }
+
   /* Always show underline for the current page, slide in for hover */
   .menu-list a:hover::after,
   .menu-list a.current::after {
@@ -694,9 +701,9 @@ body.light-mode .social-button.btn-primary {
 
   /* Current Page specific styling */
   .menu-list a.current {
+    color: var(--accent); 
     font-weight: 700;
-    pointer-events: none;
-    opacity: 1; /* Keep active page fully bright */
+    opacity: 1;
   }
 }
 
