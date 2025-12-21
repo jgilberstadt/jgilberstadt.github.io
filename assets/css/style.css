@@ -380,18 +380,20 @@ main.container {
 }
 
 .tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(128, 128, 128, 0.05); 
+  border: 1px solid rgba(128, 128, 128, 0.2);
   padding: 0.4rem 0.8rem;
   border-radius: 2rem;
   font-size: 0.9rem;
   transition: all 0.3s ease;
+  color: var(--text); /* Ensures text is readable in both modes */
 }
 
 /* Hover effect to make it interactive */
 .tag:hover {
   border-color: var(--accent);
   background: rgba(96, 165, 250, 0.1);
+  color: var(--accent); /* Text turns blue on hover */
   transform: translateY(-2px);
 }
 
