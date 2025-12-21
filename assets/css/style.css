@@ -88,10 +88,6 @@ body.light-mode .theme-toggle {
 body.light-mode .sun-icon { display: none; }
 body:not(.light-mode) .moon-icon { display: none; }
 
-/* Show/Hide icons based on mode */
-body.light-mode .sun-icon { display: none; }
-body:not(.light-mode) .moon-icon { display: none; }
-
 .button-group {
   display: flex;
   gap: 1rem;
@@ -223,8 +219,8 @@ body.light-mode .site-footer {
 }
 
 .menu button {
-  font-size: 2rem;
-  padding: 0.7em 1em;
+  font-size: 1.4rem;
+  padding: 0;
   background: transparent;
   color: var(--text);
   border: 0.05em solid rgba(255,255,255,0.12);
@@ -232,6 +228,7 @@ body.light-mode .site-footer {
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
   outline: none;
+  line-height: 1;
 }
 
 .menu button:hover {
@@ -893,9 +890,11 @@ body.light-mode .social-button:not(.btn-primary):hover {
    
   .menu {
     display: flex;
-    align-items: center;
-    align-self: center;
-    gap: 1rem;
+    align-items: center;   /* Centers the toggle vertically */
+    align-self: center;    /* Keeps the menu block from following the baseline */
+    gap: 1.5rem;
+    margin-bottom: -4px;   /* OPTICAL FIX: Adjust this small number to nudge the icon 
+                              up or down until it looks perfect to your eye */
   }
 
   .menu-toggle {
@@ -960,7 +959,7 @@ body.light-mode .social-button:not(.btn-primary):hover {
   .site-header .container {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: baseline; /* This is good for text */
   }
 
   .site-header.header-hidden {
