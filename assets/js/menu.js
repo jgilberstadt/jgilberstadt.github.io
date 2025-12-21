@@ -71,17 +71,13 @@ function setupMenu() {
 
   function openMenu() {
   if (window.innerWidth >= 769) return;
-
-  // Make menu visible first
-  menuList.style.display = "flex";
-
-  // Use requestAnimationFrame to ensure the display change is applied before adding the body class
-  requestAnimationFrame(() => {
-    document.body.classList.add("menu-open");
-    toggleButton.setAttribute("aria-expanded", "true");
-    document.body.style.overflow = "hidden";
-    removeFocusTrap = trapFocus();
-  });
+  
+  // We no longer need to set display: flex here 
+  // because the CSS 'opacity' handles it.
+  document.body.classList.add("menu-open");
+  toggleButton.setAttribute("aria-expanded", "true");
+  document.body.style.overflow = "hidden";
+  removeFocusTrap = trapFocus();
 }
 
 function closeMenu() {
@@ -90,12 +86,6 @@ function closeMenu() {
   document.body.classList.remove("menu-open");
   toggleButton.setAttribute("aria-expanded", "false");
   document.body.style.overflow = "";
-
-  setTimeout(() => {
-    // CHANGE THIS: Instead of setting it to "none", clear it.
-    // This lets your CSS @media query decide if it should be flex or hidden.
-    menuList.style.display = ""; 
-  }, 50);
 
   if (removeFocusTrap) removeFocusTrap();
   toggleButton.focus();
