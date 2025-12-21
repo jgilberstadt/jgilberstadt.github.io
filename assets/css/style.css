@@ -132,7 +132,6 @@ header.site-header {
   font-weight: 600;
   margin: 0;
   display: flex;
-  align-items: baseline;
 }
 
 .site-title a {
@@ -463,6 +462,9 @@ main.container {
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
+/* =========================
+   Interactive States (Smart Hover)
+========================= */
 @media (hover: hover) {
   .project-item:hover {
     transform: translateY(-5px);
@@ -486,14 +488,24 @@ main.container {
     color: var(--accent);
     border-color: var(--accent);
   }
-   
 }
 
+/* Mobile-Friendly Active States (No Stickiness) */
 .project-item:active {
-  transform: translateY(2px); /* Gives a slight 'pressed' feel */
+  transform: translateY(2px);
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: none; /* Remove the glow so it doesn't get 'stuck' */
-  transition: transform 0.1s ease; /* Make the press feel instant */
+  transition: transform 0.1s ease;
+}
+
+.social-button:active {
+  transform: translateY(1px);
+}
+
+.social-button:active::after {
+  width: 200%;
+  height: 200%;
+  opacity: 1;
+  transition: 0s; /* Resets instantly when finger lifts */
 }
 
 .project-item a {
@@ -601,30 +613,15 @@ main.container {
   transition: text-decoration var(--transition-fast);
 }
 
-.social-links a:hover {
-  text-decoration: underline;
-}
-
 /* Primary Button Style (Filled) */
 .social-button.btn-primary {
   background-color: var(--accent);
   color: #ffffff; /* Stays white for contrast even in Light Mode */
 }
 
-/* Hover state for Primary Button */
-.social-button.btn-primary:hover {
-  background-color: rgba(96, 165, 250, 0.1); /* Subtle tint instead of transparent */
-  color: var(--accent);                      /* Stays blue */
-  border-color: var(--accent);
-}
-
 /* Light mode tweak for contrast */
 body.light-mode .social-button.btn-primary {
   color: #ffffff;
-}
-
-body.light-mode .social-button.btn-primary:hover {
-  color: #2563eb; /* A slightly deeper blue for better contrast on white */
 }
 
 .social-button {
@@ -641,12 +638,6 @@ body.light-mode .social-button.btn-primary:hover {
   text-decoration: none;
   transition: all var(--transition-fast);
   cursor: pointer;
-}
-
-.social-button:hover {
-  background: rgba(96, 165, 250, 0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
 }
 
 .social-button:focus-visible {
@@ -678,10 +669,6 @@ body.light-mode .social-button.btn-primary:hover {
   opacity: 1;
   /* Add this to ensure it fades out immediately when the finger lifts */
   transition: 0s; 
-}
-
-body.light-mode .social-button:not(.btn-primary):hover {
-  background: rgba(37, 99, 235, 0.05); /* Slightly darker blue tint for light mode */
 }
 
 @media (max-width: 768px) {
