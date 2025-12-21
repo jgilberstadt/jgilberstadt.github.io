@@ -251,6 +251,7 @@ body.light-mode .site-footer {
   height: 100vh; /* Use viewport height */
   display: flex; /* Controlled by JS/body.menu-open */
   opacity: 0;          /* Start invisible */
+  visibility: hidden; /* <--- ADD THIS */
   pointer-events: none; /* Can't click it while invisible */
   transition: opacity 0.3s ease; /* Smooth fade! */
   flex-direction: column;
@@ -267,6 +268,7 @@ body.light-mode .site-footer {
 
 body.menu-open .menu-list {
   opacity: 1;
+  visibility: visible; /* <--- ADD THIS */
   pointer-events: auto; /* Clickable when visible */
   display: flex;
 }
