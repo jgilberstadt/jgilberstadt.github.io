@@ -921,7 +921,7 @@ body.light-mode .social-button:not(.btn-primary):hover {
   .site-header .container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     width: 92%;
     max-width: 1200px;
     margin: 0 auto;
@@ -937,7 +937,7 @@ body.light-mode .social-button:not(.btn-primary):hover {
   }
 
   .site-title {
-    font-size: 2rem;
+  font-size: 1.2rem;
   }
 
    .intro-block {
