@@ -428,7 +428,8 @@ main.container {
 
 .subtitle {
   font-size: 1.25rem;
-  color: var(--accent);
+  color: var(--text);
+  opacity: 0.8;
   font-weight: 500;
   margin-top: -0.5rem;
   margin-bottom: 1rem;
