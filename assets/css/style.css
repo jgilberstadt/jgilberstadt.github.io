@@ -705,9 +705,12 @@ body.light-mode .social-button:not(.btn-primary):hover {
 
 /* Extra small screens */
 @media (max-width: 480px) {
-  header.site-header {
-    flex-direction: column;
-    align-items: flex-start;
+
+   header.site-header .container {
+    flex-direction: row !important; 
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem;      
   }
 
   .menu button {
@@ -716,7 +719,8 @@ body.light-mode .social-button:not(.btn-primary):hover {
   }
 
   .site-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.1rem, 5vw, 1.4rem); 
+    white-space: nowrap; /* Forces it to stay on one line */
   }
 
   body {
