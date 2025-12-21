@@ -248,8 +248,11 @@ body.light-mode .site-footer {
 ========================= */
 .menu-list {
   position: fixed;
-  inset: 0;
-  display: none;
+  top: 0;
+  left: 0;
+  width: 100vw;  /* Use viewport width */
+  height: 100vh; /* Use viewport height */
+  display: none; /* Controlled by JS/body.menu-open */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -257,7 +260,9 @@ body.light-mode .site-footer {
   list-style: none;
   margin: 0;
   padding: 0;
-  z-index: 9999;
+  z-index: 99999; /* Higher than the header */
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-top: env(safe-area-inset-top);
 }
 
 body.menu-open .menu-list {
