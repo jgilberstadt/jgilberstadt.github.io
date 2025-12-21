@@ -718,13 +718,23 @@ body.light-mode .social-button.btn-primary {
 
   .social-links {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center; /* Centers the buttons in the container */
+    gap: 1rem;
   }
 
-  .social-button {
+   .button-group {
+    flex-direction: column;
+    align-items: center; /* Centers the buttons in the container */
+    gap: 0.75rem;
+  }
+
+  .social-button, 
+  .button-group .social-button { /* ensuring both pages are targeted */
     width: 100%;
+    max-width: 280px; /* This is the "sweet spot" for width */
     justify-content: center;
-    padding: 0.7em 1em;
+    padding: 0.8em 1.2em; /* Slightly taller for better "tap" feel */
+    box-sizing: border-box;
   }
 
   .profile { width: 7rem; height: 7rem; }
