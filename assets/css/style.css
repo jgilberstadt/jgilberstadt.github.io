@@ -724,9 +724,10 @@ body.light-mode .social-button.btn-primary {
   body { padding: 5rem 0.9rem 0.9rem 0.9rem; }
 
   .social-links {
-    flex-direction: column;
-    align-items: center; /* Centers the buttons in the container */
-    gap: 1rem;
+    display: flex;          /* Ensure flex is active */
+    flex-direction: column; 
+    align-items: center;    /* Centers the stack on the screen */
+    width: 100%;            /* Container takes full width */
   }
 
    .button-group {
@@ -735,6 +736,10 @@ body.light-mode .social-button.btn-primary {
     gap: 0.75rem;
   }
 
+   .social-button {
+    display: flex;          /* Keep icon and text aligned */
+  }
+   
   .social-button, 
   .button-group .social-button { /* ensuring both pages are targeted */
     width: 100%;
