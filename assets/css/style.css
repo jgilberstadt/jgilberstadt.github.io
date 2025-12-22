@@ -772,13 +772,14 @@ body:not(.menu-open) .menu-list li {
   }
 
 .social-button {
-  display: flex;
-  width: 100%;
-  max-width: 320px;
-  justify-content: center;
-  box-sizing: border-box;
-  flex-shrink: 0; /* Prevents buttons from squishing if text is long */
-}
+    display: flex;
+    /* This is the key: force them to fill the container */
+    width: 100%; 
+    /* But don't let them get TOO wide on tablets */
+    max-width: 320px; 
+    justify-content: center;
+    box-sizing: border-box;
+  }
    
 }
 
