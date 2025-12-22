@@ -576,9 +576,11 @@ main.container {
 
 .project-thumb {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block; /* Removes the tiny gap often found below images */
+  aspect-ratio: 16 / 9 !important; /* Force the 16:9 box */
+  height: auto !important;
+  object-fit: cover;               /* Zoom in slightly to fill the box without stretching */
+  object-position: center;         /* Center the crop */
+  display: block;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
