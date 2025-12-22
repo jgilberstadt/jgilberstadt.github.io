@@ -791,12 +791,14 @@ body.light-mode .social-button.btn-primary {
     color: var(--accent);
     font-weight: 600;
     pointer-events: none;
-    border-bottom: 2px solid var(--accent); /* This is your static line */
+    border-bottom: 2px solid var(--accent); 
     padding-bottom: 2px;
   }
 
-   .menu-list a.current::after {
-    display: none !important; /* Forces the sliding line to stay hidden */
+   .menu-list a.current::after,
+  .menu-list a.current:hover::after {
+    display: none !important;
+    content: none !important;
   }
    
   .site-header .container { align-items: center; }
