@@ -72,11 +72,13 @@ function setupMenu() {
   function openMenu() {
   if (window.innerWidth >= 769) return;
   
-  // We no longer need to set display: flex here 
-  // because the CSS 'opacity' handles it.
   document.body.classList.add("menu-open");
   toggleButton.setAttribute("aria-expanded", "true");
   document.body.style.overflow = "hidden";
+  
+  // Optional: If you find the animation doesn't repeat, 
+  // you can force a reflow here, but usually, classList.add is enough.
+  
   removeFocusTrap = trapFocus();
 }
 
