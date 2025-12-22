@@ -526,10 +526,11 @@ main.container {
 ========================= */
 @media (hover: hover) {
   .project-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px); /* Lifts the card up */
     border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08); /* Brightens the background slightly */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                0 0 15px rgba(96, 165, 250, 0.1); /* Adds a subtle blue glow */
   }
 
   .project-item:hover h3 {
@@ -546,6 +547,11 @@ main.container {
     background-color: rgba(96, 165, 250, 0.1);
     color: var(--accent);
     border-color: var(--accent);
+  }
+
+  .project-item:hover .project-thumb {
+    filter: brightness(1.1); /* Makes the image pop */
+    transition: filter 0.3s ease;
   }
 }
 
