@@ -20,6 +20,7 @@ body {
   font-size: 1rem;
   padding-top: 6rem;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* =========================
@@ -483,12 +484,13 @@ main.container {
 }
 
 .project-item {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.03); /* Keep it faint by default */
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.8rem;
   overflow: hidden;
-  display: flex; /* ADD THIS: Helps child elements align strictly */
-  flex-direction: column; /* Keep content stacking vertically */
+  display: flex;
+  flex-direction: column;
+  /* Keep the transition properties here so they animate smoothly */
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
@@ -540,11 +542,12 @@ main.container {
 ========================= */
 @media (hover: hover) {
   .project-item:hover {
-    transform: translateY(-8px); /* Lifts the card up */
+    transform: translateY(-8px);
+    /* These are the lines that were "sticking" on mobile - move them here! */
     border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.08); /* Brightens the background slightly */
+    background: rgba(255, 255, 255, 0.08); 
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-                0 0 15px rgba(96, 165, 250, 0.1); /* Adds a subtle blue glow */
+                0 0 15px rgba(96, 165, 250, 0.1);
   }
 
   .project-item:hover h3 {
@@ -572,8 +575,9 @@ main.container {
 
 /* Mobile-Friendly Active States (No Stickiness) */
 .project-item:active {
-  transform: scale(0.97) translateY(0); /* Subtle "push" into the screen */
-  background: rgba(255, 255, 255, 0.12); /* Brighter flash */
+  /* This happens ONLY while the finger is touching the screen */
+  transform: scale(0.97);
+  background: rgba(255, 255, 255, 0.15) !important;
   transition: transform 0.1s ease;
 }
 
