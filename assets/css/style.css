@@ -816,9 +816,11 @@ body:not(.menu-open) .menu-list li {
 .button-group, .social-links {
     display: flex;
     flex-direction: column;
-    align-items: center; /* This keeps them centered on mobile */
+    align-items: center; 
     width: 100%;
     gap: 1rem;
+    padding: 0; /* Remove any default list padding */
+    list-style: none;
   }
 
 .social-button {
@@ -829,6 +831,22 @@ body:not(.menu-open) .menu-list li {
     max-width: 320px; 
     justify-content: center;
     box-sizing: border-box;
+  }
+
+   .social-button, 
+  .social-links li {
+    display: flex;
+    width: 100%; /* Fill the container */
+    max-width: 300px; /* Limits how wide they get on tablets */
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* If your contact page uses <li> tags for buttons, ensure they don't add extra width */
+  .social-links li a {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
    
 }
