@@ -748,11 +748,19 @@ body.light-mode .social-button.btn-primary {
 /* Screen Size Specific Overrides */
 @media (max-width: 768px) {
   .menu-list .menu-close {
-    position: fixed !important;
-    top: 1.5rem !important;
-    right: 1.5rem !important;
-    z-index: 100005;
-    display: flex !important; /* Forces visibility */
+    /* Fixed positioning removes it from the centered flex flow */
+    position: fixed !important; 
+    top: 2rem !important;
+    right: 2rem !important;
+    
+    /* Reset these to ensure no flex interference */
+    margin: 0 !important;
+    align-self: auto !important; 
+    
+    /* Visuals */
+    font-size: 2.5rem;
+    z-index: 100005; /* Must be higher than the menu-list z-index */
+    display: block !important;
   }
 
   .menu-list a {
