@@ -572,9 +572,14 @@ main.container {
 
 /* Mobile-Friendly Active States (No Stickiness) */
 .project-item:active {
-  background: rgba(255, 255, 255, 0.1);
-  transform: scale(0.98); /* Slight shrink provides better feedback than an underline */
+  transform: scale(0.97) translateY(0); /* Subtle "push" into the screen */
+  background: rgba(255, 255, 255, 0.12); /* Brighter flash */
   transition: transform 0.1s ease;
+}
+
+.project-item:active h3 {
+  color: var(--accent);
+  text-decoration: none !important;
 }
 
 .social-button:active {
