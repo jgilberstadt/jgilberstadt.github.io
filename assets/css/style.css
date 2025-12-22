@@ -330,6 +330,34 @@ body.menu-open .menu-list {
   background: rgba(255,255,255,0.08);
 }
 
+/* Define the keyframes for the slide-up effect */
+@keyframes menuLinkFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base state for links when menu is closed */
+.menu-list li {
+  opacity: 0;
+}
+
+/* Animation trigger when body has .menu-open */
+body.menu-open .menu-list li {
+  animation: menuLinkFadeIn 0.5s ease forwards;
+}
+
+/* Staggered Delays: each child waits a bit longer */
+body.menu-open .menu-list li:nth-child(1) { animation-delay: 0.1s; }
+body.menu-open .menu-list li:nth-child(2) { animation-delay: 0.2s; }
+body.menu-open .menu-list li:nth-child(3) { animation-delay: 0.3s; }
+body.menu-open .menu-list li:nth-child(4) { animation-delay: 0.4s; }
+
 /* =========================
    About Page
 ========================= */
