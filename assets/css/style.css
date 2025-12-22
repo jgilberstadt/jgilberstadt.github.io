@@ -283,6 +283,7 @@ body.menu-open .menu-list {
   border: 0;
   color: var(--text);
   cursor: pointer;
+  z-index: 100001;
 }
 
 /* Menu links */
@@ -692,13 +693,14 @@ body.light-mode .social-button.btn-primary {
 @media (max-width: 768px) {
   .menu-list .menu-close {
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: 2rem;
+    right: 2rem;
     font-size: 2.5rem;
     background: transparent;
     border: 0;
     color: var(--text);
     cursor: pointer;
+    z-index: 100;
   }
 
   .menu-list a {
