@@ -576,17 +576,18 @@ main.container {
 .project-item a {
   display: block;
   text-decoration: none;
-  color: inherit; /* Keeps text from turning blue/purple by default */
+  color: inherit;
   height: 100%;
+  line-height: 0; /* Forces the 'text' line height to zero to remove gaps */
 }
 
 .project-thumb {
   width: 100%;
-  aspect-ratio: 16 / 9 !important; /* Force the 16:9 box */
+  aspect-ratio: 16 / 9 !important;
   height: auto !important;
-  object-fit: cover;               /* Zoom in slightly to fill the box without stretching */
-  object-position: center;         /* Center the crop */
-  display: block;
+  object-fit: cover;
+  display: block; /* Already there, but essential */
+  vertical-align: bottom; /* Removes the text-baseline gap */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -600,6 +601,12 @@ main.container {
   margin: 1.25rem;
   font-size: 1.3rem;
   transition: color 0.3s ease;
+}
+
+.project-item h3, 
+.project-item .project-description,
+.project-item .project-tags {
+  line-height: 1.6;
 }
 
 .project-item h3 a::after {
