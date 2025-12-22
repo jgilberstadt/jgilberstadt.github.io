@@ -827,6 +827,11 @@ body:not(.menu-open) .menu-list li {
 
   .profile { width: 7rem; height: 7rem; }
   .project-grid ul { grid-template-columns: 1fr; }
+
+  .project-thumb {
+    aspect-ratio: 3 / 2 !important; /* Slightly taller for better visibility on small phones */
+  }
+   
 }
 
 @media (min-width: 769px) {
