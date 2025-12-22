@@ -742,21 +742,20 @@ body.light-mode .social-button.btn-primary {
 /* Screen Size Specific Overrides */
 @media (max-width: 768px) {
   .menu-list .menu-close {
-    /* These force the button to the corner regardless of Flexbox */
-    position: absolute !important; 
-    top: 2rem !important;
-    right: 2rem !important;
+    /* Absolute position moves it out of the flex flow */
+    position: fixed !important; 
+    top: 1.5rem !important;
+    right: 1.5rem !important;
     
-    /* These prevent Flexbox from trying to 'center' it as a list item */
+    /* Reset flex properties */
     margin: 0 !important;
-    align-self: flex-end !important; 
+    align-self: auto !important; 
     
+    /* Visuals */
     font-size: 2.5rem;
-    background: transparent;
-    border: 0;
-    color: var(--text);
-    cursor: pointer;
-    z-index: 100002; /* Ensure it stays above the links */
+    line-height: 1;
+    z-index: 100003; 
+    padding: 0.5rem;
   }
 
   .menu-list a {
