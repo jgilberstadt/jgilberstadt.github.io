@@ -287,12 +287,12 @@ body.menu-open .menu-list {
 
 /* Menu links */
 .menu-list a {
-  position: relative; /* Necessary for the underline positioning */
+  position: relative;
   font-size: 1.1rem; 
-  color: var(--text); /* Starts White */
-  text-decoration: none;
+  color: var(--text);
+  text-decoration: none !important; /* <--- ADD THIS HERE */
   padding: 4px 0;
-  transition: color var(--transition-medium); /* Smooth color fade */
+  transition: color var(--transition-medium);
 }
 
 /* The "Hidden" underline that slides in */
@@ -310,7 +310,8 @@ body.menu-open .menu-list {
 }
 
 .menu-list a:hover {
-  color: var(--accent); /* Turns blue when you hover */
+  color: var(--accent);
+  text-decoration: none !important; /* <--- ADD THIS HERE TOO */
 }
 
 /* Hover & Active States */
