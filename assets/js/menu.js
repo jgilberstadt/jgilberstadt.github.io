@@ -83,14 +83,19 @@ function setupMenu() {
 }
 
 function closeMenu() {
+  const menuList = document.querySelector(".menu-list");
   if (!document.body.classList.contains("menu-open")) return;
 
+  // 1. Start the fade out by removing the class
   document.body.classList.remove("menu-open");
   toggleButton.setAttribute("aria-expanded", "false");
   document.body.style.overflow = "";
 
-  if (removeFocusTrap) removeFocusTrap();
-  toggleButton.focus();
+  // 2. Wait for the CSS transition (400ms) before doing cleanup
+  setTimeout(() => {
+    if (removeFocusTrap) removeFocusTrap();
+    toggleButton.focus();
+  }, 400); 
 }
 
   toggleButton.addEventListener("click", e => {
