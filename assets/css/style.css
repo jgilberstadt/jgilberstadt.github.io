@@ -253,7 +253,7 @@ body.light-mode .site-footer {
   opacity: 0;          /* Start invisible */
   visibility: hidden; /* <--- ADD THIS */
   pointer-events: none; /* Can't click it while invisible */
-  transition: opacity 0.3s ease; /* Smooth fade! */
+  transition: opacity 0.4s ease, visibility 0.4s ease; /* Smooth fade! */
   flex-direction: column;
   justify-content: center;
   align-items: center;
