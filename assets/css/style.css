@@ -748,11 +748,18 @@ body.light-mode .social-button.btn-primary {
    /* Base state for links when menu is closed */
 .menu-list li {
   opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* Animation trigger when body has .menu-open */
 body.menu-open .menu-list li {
   animation: menuLinkFadeIn 0.5s ease forwards;
+}
+
+/* When menu closes, they slide down slightly while fading */
+body:not(.menu-open) .menu-list li {
+  transform: translateY(10px);
+  opacity: 0;
 }
 
    /* Ensure all social/action buttons stack and match width on mobile/tablet */
