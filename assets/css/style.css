@@ -479,7 +479,9 @@ main.container {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.8rem;
-  overflow: hidden; /* Ensures the image corners follow the border-radius */
+  overflow: hidden;
+  display: flex; /* ADD THIS: Helps child elements align strictly */
+  flex-direction: column; /* Keep content stacking vertically */
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
@@ -574,11 +576,13 @@ main.container {
 }
 
 .project-item a {
-  display: block;
+  display: flex; /* Change from block to flex */
+  flex-direction: column;
   text-decoration: none;
   color: inherit;
   height: 100%;
-  line-height: 0; /* Forces the 'text' line height to zero to remove gaps */
+  margin: 0; /* Ensure no margin is pushing the image down */
+  padding: 0; /* Ensure no padding is pushing the image down */
 }
 
 .project-thumb {
@@ -586,8 +590,9 @@ main.container {
   aspect-ratio: 16 / 9 !important;
   height: auto !important;
   object-fit: cover;
-  display: block; /* Already there, but essential */
-  vertical-align: bottom; /* Removes the text-baseline gap */
+  display: block;
+  margin-top: 0; /* Force it to the absolute top */
+  border: none; /* Temporarily remove border to see if it's the culprit */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
