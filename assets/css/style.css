@@ -583,24 +583,29 @@ main.container {
 }
 
 .project-item a {
-  display: flex; /* Change from block to flex */
+  display: flex;
   flex-direction: column;
   text-decoration: none;
   color: inherit;
   height: 100%;
-  margin: 0; /* Ensure no margin is pushing the image down */
-  padding: 0; /* Ensure no padding is pushing the image down */
+  width: 100%;
 }
 
 .project-thumb {
   width: 100%;
-  aspect-ratio: 16 / 9 !important;
-  height: auto !important;
-  object-fit: cover;
+  /* Using 16/9 for desktop and 3/2 for mobile as we discussed */
+  aspect-ratio: 16 / 9; 
   display: block;
-  margin-top: 0; /* Force it to the absolute top */
-  border: none; /* Temporarily remove border to see if it's the culprit */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  object-fit: cover;
+  
+  /* The "Magic" to remove gaps */
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: top;
+  
+  /* Ensure it is the first thing in the card */
+  order: -1; 
 }
 
 .project-item strong {
@@ -619,16 +624,6 @@ main.container {
 .project-item .project-description,
 .project-item .project-tags {
   line-height: 1.6;
-}
-
-.project-item h3 a::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1; /* Spreads the click area over the whole card */
 }
 
 .project-description {
@@ -853,7 +848,7 @@ body:not(.menu-open) .menu-list li {
   .project-grid ul { grid-template-columns: 1fr; }
 
   .project-thumb {
-    aspect-ratio: 3 / 2 !important; /* Slightly taller for better visibility on small phones */
+    aspect-ratio: 3 / 2 !important;
   }
    
 }
