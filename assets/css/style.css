@@ -752,31 +752,28 @@ body.light-mode .social-button.btn-primary {
 /* Screen Size Specific Overrides */
 @media (max-width: 768px) {
   .menu-list .menu-close {
-    /* Absolute positioning relative to the screen */
-    position: fixed !important; 
+    /* Pin to top right regardless of parent flexbox */
+    position: fixed !important;
     top: 1.5rem !important;
     right: 1.5rem !important;
     
-    /* Remove any flexbox influence */
-    margin: 0 !important;
-    left: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-
-    /* Styling */
-    font-size: 2.5rem;
-    background: transparent;
-    border: 0;
-    color: var(--text);
-    cursor: pointer;
-    z-index: 1000001; /* Ensure it stays above links */
-    
-    /* Box dimensions to make it a better tap target */
-    width: 3.5rem;
-    height: 3.5rem;
+    /* Reset dimensions and alignment */
+    width: 3rem;
+    height: 3rem;
     display: flex !important;
     align-items: center;
     justify-content: center;
+    
+    /* Visuals */
+    font-size: 2rem;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    z-index: 100001; /* Stay above the links */
+    line-height: 1;
+    padding: 0;
+    margin: 0;
   }
 
   .menu-list a {
@@ -942,6 +939,11 @@ body:not(.menu-open) .menu-list li {
   .menu-list a.current:hover::after {
     display: none !important;
     content: none !important;
+  }
+
+   /* Hide the close button entirely on desktop */
+  .menu-close {
+    display: none !important;
   }
    
   .site-header .container { align-items: center; }
