@@ -288,18 +288,19 @@ body.menu-open .menu-list {
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
-  margin: 0;           /* ADD THIS: Clears any flex margins */
-  align-self: flex-end; /* ADD THIS: Tells flexbox to push it to the side */
   font-size: 2rem;
   background: transparent;
   border: 0;
   color: var(--text);
   cursor: pointer;
   z-index: 100001;
+  display: none; /* Hidden by default */
 }
 
 body.menu-open .menu-close {
-  display: block;
+  display: flex; /* Shown when menu is open */
+  align-items: center;
+  justify-content: center;
 }
 
 /* Menu links */
