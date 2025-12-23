@@ -30,11 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // Menu Toggle + Focus Trap
 // =========================
 function setupMenu() {
-  const menu = document.querySelector(".menu");
+  const navContainer = document.querySelector("nav.menu");
   const toggleButton = document.querySelector(".menu-toggle");
   const menuList = document.querySelector(".menu-list");
+  const closeButton = document.querySelector(".menu-close"); // Add this
 
-  if (!menu || !toggleButton || !menuList) return;
+  if (!navContainer || !toggleButton || !menuList) return;
 
   let removeFocusTrap = null;
 
@@ -136,6 +137,12 @@ function closeMenu() {
   });
 
   highlightCurrentPage();
+
+  document.addEventListener("click", e => {
+    if (e.target.closest(".menu-close")) {
+      closeMenu();
+    }
+  });
 }
 
 // =========================
