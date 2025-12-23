@@ -877,6 +877,21 @@ body:not(.menu-open) .menu-list li {
     text-align: center;
     justify-content: center;
   }
+
+  .project-item {
+    /* Force background/border back to default even if browser thinks it's 'hovered' */
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+   /* Only allow visual change DURING the actual touch */
+  .project-item:active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: scale(0.98) !important;
+    border-color: var(--accent) !important;
+  }
    
 }
 
