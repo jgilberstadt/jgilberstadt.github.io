@@ -106,10 +106,6 @@ function closeMenu() {
       : openMenu();
   });
 
-  menuList.addEventListener("click", e => {
-    if (e.target.closest(".menu-close")) closeMenu();
-  });
-
   document.addEventListener("click", e => {
     if (
       document.body.classList.contains("menu-open") &&
