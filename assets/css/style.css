@@ -828,6 +828,11 @@ body.light-mode .social-button.btn-primary {
 .menu-list li {
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  line-height: 1;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Animation trigger when body has .menu-open */
