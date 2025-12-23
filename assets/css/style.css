@@ -752,27 +752,31 @@ body.light-mode .social-button.btn-primary {
 /* Screen Size Specific Overrides */
 @media (max-width: 768px) {
   .menu-list .menu-close {
-    /* 1. Force it out of the flexbox flow */
+    /* Absolute positioning relative to the screen */
     position: fixed !important; 
-    
-    /* 2. Pin it to the top right */
     top: 1.5rem !important;
     right: 1.5rem !important;
-    left: auto !important;   /* Prevents stretching */
-    bottom: auto !important; /* Prevents stretching */
     
-    /* 3. Reset Flexbox alignment */
+    /* Remove any flexbox influence */
     margin: 0 !important;
-    transform: none !important; 
+    left: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+
+    /* Styling */
+    font-size: 2.5rem;
+    background: transparent;
+    border: 0;
+    color: var(--text);
+    cursor: pointer;
+    z-index: 1000001; /* Ensure it stays above links */
     
-    /* 4. Visuals */
-    font-size: 2.8rem; /* Slightly larger for easier tapping */
-    z-index: 1000000;  /* Ultimate priority */
+    /* Box dimensions to make it a better tap target */
+    width: 3.5rem;
+    height: 3.5rem;
     display: flex !important;
     align-items: center;
     justify-content: center;
-    width: 3rem;
-    height: 3rem;
   }
 
   .menu-list a {
