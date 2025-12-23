@@ -248,23 +248,21 @@ body.light-mode .site-footer {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;  /* Use viewport width */
-  height: 100vh; /* Use viewport height */
-  display: flex; /* Controlled by JS/body.menu-open */
-  opacity: 0;          /* Start invisible */
-  visibility: hidden; /* <--- ADD THIS */
-  pointer-events: none; /* Can't click it while invisible */
-  transition: opacity 0.4s ease, visibility 0.4s ease; /* Smooth fade! */
+  width: 100vw;
+  height: 100vh; 
+  height: 100dvh; /* Use dynamic height to account for mobile toolbars */
+  display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* This keeps links vertically centered */
   align-items: center;
   background: var(--bg);
-  list-style: none;
   margin: 0;
-  padding: 0;
-  z-index: 99999; /* Higher than the header */
-  padding-bottom: env(safe-area-inset-bottom);
-  padding-top: env(safe-area-inset-top);
+  padding: 0; /* Remove padding-top/bottom here to stop the "push" */
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 body.menu-open .menu-list {
