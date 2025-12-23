@@ -263,6 +263,8 @@ body.light-mode .site-footer {
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.4s ease, visibility 0.4s ease;
+  list-style: none;
+  top: 0;
 }
 
 body.menu-open .menu-list {
