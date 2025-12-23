@@ -6,27 +6,31 @@
       </h1>
     </div>
 
-    <ul id="page-menu-list" class="menu-list">
-        <button class="menu-close" aria-label="Close menu">✕</button>
+    <nav class="menu" role="navigation" aria-label="Main menu">
+
+      <ul id="page-menu-list" class="menu-list">
         <li><a href="index.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="projects.html">Projects</a></li>
-    </ul>
+      </ul>
 
-    <nav class="menu" role="navigation" aria-label="Main menu">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-        <span class="sun-icon">☀️</span>
-        <span class="moon-icon">🌙</span>
-      </button>
+      <button class="menu-close" aria-label="Close menu">✕</button>
       
-      <button
-        class="menu-toggle"
-        aria-haspopup="true"
-        aria-expanded="false"
-        aria-controls="page-menu-list"
-        aria-label="Toggle menu">
-        ☰
-      </button>
+      <div class="menu-controls">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <span class="sun-icon">☀️</span>
+          <span class="moon-icon">🌙</span>
+        </button>
+      
+        <button
+          class="menu-toggle"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="page-menu-list"
+          aria-label="Toggle menu">
+          ☰
+        </button>
+      </div>
     </nav>
   </div>
 </header>
