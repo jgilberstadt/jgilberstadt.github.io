@@ -40,6 +40,11 @@ body.light-mode .site-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+body.light-mode .menu-list {
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  color: #111827;
+}
+
 /* =========================
    General Elements
 ========================= */
@@ -249,22 +254,26 @@ body.light-mode .site-footer {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh; 
-  height: 100dvh; /* Use dynamic height to account for mobile toolbars */
+  height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* This keeps links vertically centered */
+  justify-content: center;
   align-items: center;
-  background: var(--bg);
+  
+  /* --- Glassmorphism Effect --- */
+  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+  backdrop-filter: blur(12px);    /* The "frosted glass" blur */
+  -webkit-backdrop-filter: blur(12px); /* Required for Safari */
+  /* ---------------------------- */
+
   margin: 0;
-  padding: 0; /* Remove padding-top/bottom here to stop the "push" */
+  padding: 0;
   z-index: 99999;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.4s ease, visibility 0.4s ease;
   list-style: none;
-  top: 0;
 }
 
 body.menu-open .menu-list {
