@@ -76,10 +76,6 @@ function setupMenu() {
   // 1. Prevent vertical jumping by locking the scroll without shifting position
   document.body.classList.add("menu-open");
   
-  // 2. Prevent horizontal "twitching" by accounting for the disappearing scrollbar
-  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-  document.body.style.paddingRight = `${scrollbarWidth}px`;
-  
   toggleButton.setAttribute("aria-expanded", "true");
   removeFocusTrap = trapFocus();
 }
@@ -89,7 +85,6 @@ function closeMenu() {
 
   // 1. Restore scroll and remove padding
   document.body.classList.remove("menu-open");
-  document.body.style.paddingRight = "";
   
   toggleButton.setAttribute("aria-expanded", "false");
 
