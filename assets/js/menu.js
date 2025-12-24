@@ -142,12 +142,6 @@ function closeMenu() {
       closeMenu();
     }
   });
-
-document.addEventListener('click', () => {
-  if (document.activeElement instanceof HTMLElement) {
-    document.activeElement.blur();
-  }
-});
   
 }
 
