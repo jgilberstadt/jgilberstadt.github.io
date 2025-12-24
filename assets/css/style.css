@@ -36,10 +36,6 @@ body.light-mode {
   --accent: #2563eb;
 }
 
-body.light-mode .theme-toggle {
-  border-color: rgba(0,0,0,0.1);
-}
-
 body.light-mode header.site-header {
   background: var(--bg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Adds a subtle shadow to separate it from the page */
@@ -48,15 +44,6 @@ body.light-mode header.site-header {
 
 body.light-mode .site-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-body.light-mode .menu-list {
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-  color: #111827;
-}
-
-body.light-mode 
-  color: #ffffff; 
 }
 
 /* Ensure buttons are visible in Light Mode */
