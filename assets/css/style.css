@@ -308,9 +308,8 @@ body.light-mode .site-footer {
 }
 
 body.menu-open {
-  position: fixed;
-  width: 100%;
   overflow: hidden;
+  height: 100vh;
 }
 
 body.menu-open .menu-list {
