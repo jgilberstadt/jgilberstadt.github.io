@@ -30,21 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
 // Menu Toggle + Focus Trap
 // =========================
 function setupMenu() {
-  const navContainer = document.querySelector("nav.menu");
   const toggleButton = document.querySelector(".menu-toggle");
   const menuList = document.querySelector(".menu-list");
-  const closeButton = document.querySelector(".menu-close"); // Add this
+  const closeButton = document.querySelector(".menu-close");
 
-  if (!navContainer || !toggleButton || !menuList) return;
+  if (!toggleButton || !menuList) return;
 
   let removeFocusTrap = null;
 
   function getFocusableElements() {
-  // Use the entire header or a shared container to find both the list links AND the close button
-  return document.querySelectorAll(
-    '.menu-list a[href], .menu-close, .menu-list button:not([disabled])'
-  );
-}
+    // This finds the X button AND all the links
+    return Array.from(document.querySelectorAll('.menu-close, .menu-list a[href]'));
+  }
 
   function trapFocus() {
     const focusable = getFocusableElements();
@@ -65,10 +62,13 @@ function setupMenu() {
       }
     }
 
-    menuList.addEventListener("keydown", handleTab);
-    firstEl.focus();
+    // Listen on the document so it catches the "X" button too
+    document.addEventListener("keydown", handleTab);
+    
+    // Start focus on the Close Button (best practice for mobile menus)
+    if (closeButton) closeButton.focus(); 
 
-    return () => menuList.removeEventListener("keydown", handleTab);
+    return () => document.removeEventListener("keydown", handleTab);
   }
 
   function openMenu() {
