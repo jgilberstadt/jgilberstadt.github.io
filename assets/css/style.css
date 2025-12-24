@@ -220,6 +220,7 @@ body.light-mode .site-footer {
 .menu {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 1.5rem;
 }
 
@@ -281,6 +282,12 @@ body.menu-open .menu-list {
   visibility: visible; /* <--- ADD THIS */
   pointer-events: auto; /* Clickable when visible */
   display: flex;
+}
+
+.menu-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Adjust the space between the sun and the hamburger */
 }
 
 /* Close button inside menu */
