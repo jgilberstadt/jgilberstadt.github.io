@@ -43,6 +43,7 @@ body.light-mode .theme-toggle {
 body.light-mode header.site-header {
   background: var(--bg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Adds a subtle shadow to separate it from the page */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 body.light-mode .site-footer {
@@ -54,12 +55,16 @@ body.light-mode .menu-list {
   color: #111827;
 }
 
+body.light-mode .menu-close {
+  color: #ffffff; 
+}
+
 /* Ensure buttons are visible in Light Mode */
 body.light-mode .theme-toggle,
 body.light-mode .menu-toggle,
 body.light-mode .menu button {
-  border-color: rgba(0, 0, 0, 0.15); /* Soft dark border */
-  color: var(--text);               /* Ensures the ☰ icon is dark */
+  border-color: rgba(0, 0, 0, 0.1); /* Darker border for light background */
+  color: #111827; /* Dark icon/text color */
 }
 
 /* Hover state for buttons in Light Mode */
@@ -328,8 +333,7 @@ body.menu-open .menu-list {
   font-size: 2rem;
   background: transparent;
   border: 0;
-  color: var(--text);
-  cursor: pointer;
+  color: #ffffff; /* Forces white so it pops against the dark glass */  cursor: pointer;
   z-index: 100001;
   display: none; /* Hidden by default */
 }
