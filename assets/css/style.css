@@ -333,10 +333,12 @@ body.menu-open .menu-list {
   right: 1.5rem;
   font-size: 2rem;
   background: transparent;
-  border: 0;
-  color: #ffffff; /* Forces white so it pops against the dark glass */  cursor: pointer;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
   z-index: 100001;
-  display: none; /* Hidden by default */
+  display: none;
+  padding: 0;
 }
 
 body.menu-open .menu-close {
