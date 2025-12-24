@@ -46,6 +46,36 @@ body.light-mode .site-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+body.light-mode .menu-close {
+  color: #111827 !important;
+  opacity: 1;
+}
+
+body.light-mode .menu-list {
+  background: rgba(255, 255, 255, 0.85); /* Light frosted glass */
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Light mode overrides for the fullscreen mobile menu */
+body.light-mode .menu-list a {
+  color: #111827; 
+  opacity: 0.9;
+}
+
+body.light-mode .menu-list a.current {
+  color: var(--accent);
+}
+
+body.light-mode.menu-open .menu-list li a {
+  color: #111827;
+}
+
+body.light-mode .menu-list a:hover,
+body.light-mode .menu-list a.current {
+  color: var(--accent);
+  opacity: 1;
+}
+
 /* Ensure buttons are visible in Light Mode */
 body.light-mode .theme-toggle,
 body.light-mode .menu-toggle,
