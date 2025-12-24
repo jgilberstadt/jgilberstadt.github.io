@@ -73,11 +73,13 @@ function setupMenu() {
   function openMenu() {
   if (window.innerWidth >= 769) return;
   
-  // Save the current scroll position so we can return to it later
-  const scrollY = window.scrollY;
-  document.body.style.top = `-${scrollY}px`; 
-  
+  // 1. Prevent vertical jumping by locking the scroll without shifting position
   document.body.classList.add("menu-open");
+  
+  // 2. Prevent horizontal "twitching" by accounting for the disappearing scrollbar
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+  document.body.style.paddingRight = `${scrollbarWidth}px`;
+  
   toggleButton.setAttribute("aria-expanded", "true");
   removeFocusTrap = trapFocus();
 }
@@ -85,15 +87,10 @@ function setupMenu() {
 function closeMenu() {
   if (!document.body.classList.contains("menu-open")) return;
 
-  // Retrieve the scroll position we saved earlier
-  const scrollY = document.body.style.top;
-  
+  // 1. Restore scroll and remove padding
   document.body.classList.remove("menu-open");
-  document.body.style.top = "";
+  document.body.style.paddingRight = "";
   
-  // Snap the window back to where the user was
-  window.scrollTo(0, parseInt(scrollY || "0") * -1);
-
   toggleButton.setAttribute("aria-expanded", "false");
 
   setTimeout(() => {
