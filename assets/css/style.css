@@ -66,7 +66,7 @@ body.light-mode .menu-list a.current {
   color: var(--accent);
 }
 
-body.light-mode.menu-open .menu-list li a {
+body.light-mode .menu-list li a:not(.current) {
   color: #111827;
 }
 
