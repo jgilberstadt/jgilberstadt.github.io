@@ -55,7 +55,7 @@ body.light-mode .menu-list {
   color: #111827;
 }
 
-body.light-mode .menu-close {
+body.light-mode 
   color: #ffffff; 
 }
 
@@ -327,18 +327,21 @@ body.menu-open .menu-list {
 }
 
 /* Close button inside menu */
+/* Close button inside menu */
 .menu-close {
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
   font-size: 2rem;
-  background: transparent;
-  border: none;
+  background: transparent !important; /* Forces transparency */
+  border: none !important;             /* Kills the circle/box */
+  padding: 0 !important;              /* Removes extra spacing */
   color: #ffffff;
   cursor: pointer;
   z-index: 100001;
   display: none;
-  padding: 0;
+  line-height: 1;
+  box-shadow: none !important;        /* Ensures no glassmorphism glow */
 }
 
 body.menu-open .menu-close {
