@@ -229,3 +229,13 @@ function setupThemeToggle() {
     localStorage.setItem("theme", theme);
   });
 }
+
+document.addEventListener('click', (e) => {
+  const isInteractive = e.target.closest('a, button');
+  
+  if (isInteractive && document.activeElement instanceof HTMLElement) {
+    requestAnimationFrame(() => {
+      document.activeElement.blur();
+    });
+  }
+});
