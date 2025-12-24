@@ -23,6 +23,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 /* =========================
    Light Mode Overrides
 ========================= */
@@ -275,6 +279,13 @@ body.light-mode .site-footer {
   pointer-events: none;
   transition: opacity 0.4s ease, visibility 0.4s ease;
   list-style: none;
+}
+
+body.menu-open {
+  /* This prevents the background from shifting or moving at all */
+  position: fixed;
+  width: 100%;
+  overflow-y: scroll; /* Keeps the scrollbar track visible but locked */
 }
 
 body.menu-open .menu-list {
