@@ -40,10 +40,11 @@ function setupMenu() {
   let removeFocusTrap = null;
 
   function getFocusableElements() {
-    return menuList.querySelectorAll(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    );
-  }
+  // Use the entire header or a shared container to find both the list links AND the close button
+  return document.querySelectorAll(
+    '.menu-list a[href], .menu-close, .menu-list button:not([disabled])'
+  );
+}
 
   function trapFocus() {
     const focusable = getFocusableElements();
