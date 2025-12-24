@@ -284,8 +284,7 @@ body.light-mode .site-footer {
 body.menu-open {
   position: fixed;
   width: 100%;
-  top: 0; /* JS will override this with the actual scroll value */
-  overflow: hidden; /* This is fine once position: fixed is active */
+  overflow: hidden;
 }
 
 body.menu-open .menu-list {
