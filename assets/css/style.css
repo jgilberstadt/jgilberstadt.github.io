@@ -282,10 +282,10 @@ body.light-mode .site-footer {
 }
 
 body.menu-open {
-  /* This prevents the background from shifting or moving at all */
   position: fixed;
   width: 100%;
-  overflow-y: scroll; /* Keeps the scrollbar track visible but locked */
+  top: 0; /* JS will override this with the actual scroll value */
+  overflow: hidden; /* This is fine once position: fixed is active */
 }
 
 body.menu-open .menu-list {
