@@ -304,6 +304,7 @@ body.light-mode .site-footer {
   pointer-events: none;
   transition: opacity 0.4s ease, visibility 0.4s ease;
   list-style: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.1); /* A "sparkle" edge */
 }
 
 body.menu-open {
