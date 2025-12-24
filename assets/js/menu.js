@@ -73,26 +73,29 @@ function setupMenu() {
   function openMenu() {
   if (window.innerWidth >= 769) return;
   
+  // Save the current scroll position so we can return to it later
+  const scrollY = window.scrollY;
+  document.body.style.top = `-${scrollY}px`; 
+  
   document.body.classList.add("menu-open");
   toggleButton.setAttribute("aria-expanded", "true");
-  document.body.style.overflow = "hidden";
-  
-  // Optional: If you find the animation doesn't repeat, 
-  // you can force a reflow here, but usually, classList.add is enough.
-  
   removeFocusTrap = trapFocus();
 }
 
 function closeMenu() {
-  const menuList = document.querySelector(".menu-list");
   if (!document.body.classList.contains("menu-open")) return;
 
-  // 1. Start the fade out by removing the class
+  // Retrieve the scroll position we saved earlier
+  const scrollY = document.body.style.top;
+  
   document.body.classList.remove("menu-open");
-  toggleButton.setAttribute("aria-expanded", "false");
-  document.body.style.overflow = "";
+  document.body.style.top = "";
+  
+  // Snap the window back to where the user was
+  window.scrollTo(0, parseInt(scrollY || "0") * -1);
 
-  // 2. Wait for the CSS transition (400ms) before doing cleanup
+  toggleButton.setAttribute("aria-expanded", "false");
+
   setTimeout(() => {
     if (removeFocusTrap) removeFocusTrap();
     toggleButton.focus();
