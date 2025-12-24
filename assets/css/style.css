@@ -601,11 +601,9 @@ main.container {
 @media (hover: hover) {
   .project-item:hover {
     transform: translateY(-8px);
-    /* These are the lines that were "sticking" on mobile - move them here! */
     border-color: var(--accent);
     background: rgba(255, 255, 255, 0.08); 
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
-                0 0 15px rgba(96, 165, 250, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
 
   .project-item:hover h3 {
@@ -653,6 +651,18 @@ main.container {
   height: 200%;
   opacity: 1;
   transition: 0s; /* Resets instantly when finger lifts */
+}
+
+.project-item:focus {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
+}
+
+/* Only triggers for keyboard (Accessibility) */
+.project-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .project-item a {
