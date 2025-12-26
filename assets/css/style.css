@@ -303,24 +303,24 @@ body.light-mode .site-footer {
   width: 100vw;
   height: 100dvh;
   
-  /* Move centering logic here */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   
-  /* Hidden state */
+  padding: 0 !important; 
+  margin: 0 !important;
+
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 
-  /* Glassmorphism & Transitions */
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85); /* Slightly darker for better contrast */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: opacity 0.4s ease, visibility 0.4s ease;
   z-index: 99999;
-  list-style: none;
+  list-style: none; /* Removes bullet points */
 }
 
 body.menu-open {
@@ -414,7 +414,7 @@ body.menu-open .menu-close {
 @keyframes menuLinkFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -933,13 +933,13 @@ body.light-mode .social-button.btn-primary {
 
    /* Base state for links when menu is closed */
 .menu-list li {
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  line-height: 1;
-  margin: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  opacity: 0;
+  /* Reduced Y movement from 20px to 10px to stop the "pushing" sensation */
+  transform: translateY(10px); 
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 /* Animation trigger when body has .menu-open */
