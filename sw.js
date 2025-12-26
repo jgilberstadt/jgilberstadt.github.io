@@ -1,12 +1,22 @@
 const CACHE_NAME = "portfolio-cache-v1";
+
+// Add all your new icon files here so they work offline
 const ASSETS = [
   "/",
   "/index.html",
+  "/projects.html",
+  "/contact.html",
   "/assets/css/style.css",
   "/assets/js/menu.js",
   "/partials/header.html",
   "/partials/footer.html",
-  "/manifest.json"
+  "/manifest.json",
+  "/assets/images/favicon.svg",
+  "/assets/icons/favicon.ico",
+  "/assets/icons/favicon-32x32.png",
+  "/assets/icons/apple-touch-icon.png",
+  "/assets/icons/icon-192.png",
+  "/assets/icons/icon-512.png"
 ];
 
 // Install the Service Worker and cache files
@@ -22,6 +32,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
+      // Return cached version, or fetch from network
       return response || fetch(event.request);
     })
   );
