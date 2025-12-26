@@ -143,6 +143,23 @@ body.light-mode .menu button:hover {
   background: rgba(0, 0, 0, 0.05);
 }
 
+/* Force the inactive icon to have zero dimensions and no visibility */
+body:not(.light-mode) .moon-icon,
+body.light-mode .sun-icon {
+    display: none !important;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Ensure the active icon is clean */
+body.light-mode .moon-icon,
+body:not(.light-mode) .sun-icon {
+    display: inline-block !important;
+    visibility: visible;
+    opacity: 1;
+}
+
 /* =========================
    General Elements
 ========================= */
@@ -175,6 +192,8 @@ h1 {
   border-radius: 0.3rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .menu-toggle {
