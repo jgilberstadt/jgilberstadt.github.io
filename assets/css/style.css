@@ -684,12 +684,14 @@ main.container {
   background: rgba(255, 255, 255, 0.03) !important;
   border-color: rgba(255, 255, 255, 0.1) !important;
   box-shadow: none !important;
+  outline: none;
 }
 
 /* Only triggers for keyboard (Accessibility) */
 .project-item:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent) !important;
   outline-offset: 4px;
+  background: rgba(255, 255, 255, 0.08) !important;
 }
 
 .project-item a {
