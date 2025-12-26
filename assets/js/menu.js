@@ -1,7 +1,3 @@
-if (localStorage.getItem("theme") === "light") {
-  document.body.classList.add("light-mode");
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   // Inject Header
   fetch("partials/header.html")
@@ -216,23 +212,21 @@ function setupThemeToggle() {
   
   if (!toggle) return;
 
-  // Set initial state of meta theme color on load
+  // We check the state once when the button is injected
   const isLight = document.body.classList.contains("light-mode");
   if (metaThemeColor) {
     metaThemeColor.setAttribute("content", isLight ? "#ffffff" : "#000000");
   }
 
   toggle.addEventListener("click", () => {
-    const wasLight = document.body.classList.contains("light-mode");
     document.body.classList.toggle("light-mode");
+    const isNowLight = document.body.classList.contains("light-mode");
     
-    const isNowLight = !wasLight;
     localStorage.setItem("theme", isNowLight ? "light" : "dark");
 
     if (metaThemeColor) {
       metaThemeColor.setAttribute("content", isNowLight ? "#ffffff" : "#000000");
     }
-    
     toggle.blur();
   });
 }
