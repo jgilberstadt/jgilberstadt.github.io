@@ -225,6 +225,17 @@ function setupThemeToggle() {
     localStorage.setItem("theme", theme);
     toggle.blur();
   });
+
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+
+  function updateThemeColor() {
+  if (document.body.classList.contains("light-mode")) {
+    metaThemeColor.setAttribute("content", "#ffffff");
+  } else {
+    metaThemeColor.setAttribute("content", "#000000");
+  }
+}
+
 }
 
 document.addEventListener('click', (e) => {
