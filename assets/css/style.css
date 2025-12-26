@@ -189,13 +189,22 @@ body.light-mode .theme-toggle {
   border-color: rgba(0,0,0,0.1);
 }
 
-/* Hide sun in dark mode, show in light mode */
-.sun-icon { display: none; }
-body.light-mode .sun-icon { display: block; }
+/* Base state: Hide both by default */
+.sun-icon, .moon-icon {
+  display: none;
+  font-size: 1.2rem;
+  line-height: 1;
+}
 
-/* Show moon in dark mode, hide in light mode */
-.moon-icon { display: block; }
-body.light-mode .moon-icon { display: none; }
+/* Dark Mode: Show Sun (to switch to light) */
+body:not(.light-mode) .sun-icon {
+  display: inline-block;
+}
+
+/* Light Mode: Show Moon (to switch to dark) */
+body.light-mode .moon-icon {
+  display: inline-block;
+}
 
 .button-group {
   display: flex;
@@ -394,7 +403,9 @@ body.menu-open .menu-list {
 .menu-controls {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Adjust the space between the sun and the hamburger */
+  gap: 0.75rem;
+  position: relative;
+  z-index: 100002; /* Higher than menu-list so toggle works while menu is open */
 }
 
 /* Close button inside menu */
@@ -672,6 +683,13 @@ main.container {
 /* =========================
    Interactive States (Smart Hover)
 ========================= */
+/* Disable hover effects for touch devices to prevent 'stuck' highlights */
+@media (hover: none) {
+  .theme-toggle:hover,
+  .menu-toggle:hover {
+    background: transparent !important;
+  }
+}
 
 /* 1. DESKTOP & MOUSE: Apply high-quality hover effects only for precise pointers */
 @media (hover: hover) and (pointer: fine) {
