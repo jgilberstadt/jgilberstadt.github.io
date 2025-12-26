@@ -26,13 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("Failed to load footer:", err));
 
   // Fade-in animation trigger
-  const mainContent = document.getElementById("main-content");
-  if (mainContent) {
-    // A 100ms delay feels natural and smooth
-    setTimeout(() => {
-      mainContent.classList.add("active");
-    }, 100);
-  }
+  triggerPageFadeIn();
 });
 
 // =========================
@@ -239,3 +233,19 @@ document.addEventListener('click', (e) => {
     });
   }
 });
+
+function triggerPageFadeIn() {
+  const mainContent = document.getElementById("main-content");
+  if (mainContent) {
+    // Adding a small delay ensures the transition is visible
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        mainContent.classList.add("active");
+      }, 50); 
+    });
+  }
+}
+
+if (document.readyState === "interactive" || document.readyState === "complete") {
+  triggerPageFadeIn();
+}
