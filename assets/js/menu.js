@@ -221,6 +221,7 @@ function setupThemeToggle() {
       theme = "light";
     }
     localStorage.setItem("theme", theme);
+    toggle.blur();
   });
 }
 
