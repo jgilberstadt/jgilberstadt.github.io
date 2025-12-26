@@ -753,13 +753,6 @@ main.container {
     transition: filter 0.3s ease;
   }
 
-  /* Light Mode Specific Hovers */
-  body.light-mode .project-item:hover {
-    background: #ffffff !important;
-    border-color: var(--accent) !important;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
-  }
-
   .theme-toggle:hover,
   .menu-toggle:hover {
     background: rgba(255, 255, 255, 0.08);
@@ -796,14 +789,6 @@ main.container {
 .menu-toggle:focus-visible {
   outline: 2px solid var(--accent) !important;
   outline-offset: 4px !important;
-}
-
-/* Mobile-Friendly Active States (No Stickiness) */
-.project-item:active {
-  /* This happens ONLY while the finger is touching the screen */
-  transform: scale(0.97);
-  background: rgba(255, 255, 255, 0.15) !important;
-  transition: transform 0.1s ease;
 }
 
 .project-item:active h3 {
@@ -1136,6 +1121,11 @@ body:not(.menu-open) .menu-list li {
     border-color: rgba(255, 255, 255, 0.1) !important;
     transform: none !important;
     box-shadow: none !important;
+  }
+
+  body.light-mode .project-item {
+    background: rgba(0, 0, 0, 0.02) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
   }
    
 }
