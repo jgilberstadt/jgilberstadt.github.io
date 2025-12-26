@@ -11,12 +11,20 @@ const ASSETS = [
   "/partials/header.html",
   "/partials/footer.html",
   "/manifest.json",
+  
+  // Icons
   "/assets/images/favicon.svg",
   "/assets/icons/favicon.ico",
   "/assets/icons/favicon-32x32.png",
   "/assets/icons/apple-touch-icon.png",
   "/assets/icons/icon-192.png",
-  "/assets/icons/icon-512.png"
+  "/assets/icons/icon-512.png",
+
+  // Local Images
+  "/assets/images/Josh_Gilberstadt_Image.jpeg",
+  // Add your project thumbnails here, for example:
+  "/assets/images/project-1-thumb.jpg",
+  "/assets/images/project-2-thumb.jpg"
 ];
 
 // Install the Service Worker and cache files
