@@ -2,30 +2,30 @@ const CACHE_NAME = "portfolio-cache-v1";
 
 // Add all your new icon files here so they work offline
 const ASSETS = [
-  "/",
-  "/index.html",
-  "/projects.html",
-  "/contact.html",
-  "/assets/css/style.css",
-  "/assets/js/menu.js",
-  "/partials/header.html",
-  "/partials/footer.html",
-  "/manifest.json",
+  "./",
+  "./index.html",
+  "./projects.html",
+  "./contact.html",
+  "./assets/css/style.css",
+  "./assets/js/menu.js",
+  "./partials/header.html",
+  "./partials/footer.html",
+  "./manifest.json",
   
   // Icons
-  "/assets/images/favicon.svg",
-  "/assets/icons/favicon.ico",
-  "/assets/icons/favicon-32x32.png",
-  "/assets/icons/apple-touch-icon.png",
-  "/assets/icons/icon-192.png",
-  "/assets/icons/icon-512.png",
+  "./assets/images/favicon.svg",
+  "./assets/icons/favicon.ico",
+  "./assets/icons/favicon-32x32.png",
+  "./assets/icons/apple-touch-icon.png",
+  "./assets/icons/icon-192.png",
+  "./assets/icons/icon-512.png",
 
   // Local Images
-  "/assets/images/Josh_Gilberstadt_Image.jpeg",
-  "/assets/images/Blood_samples.jpeg",
-  "/assets/images/Brain.jpeg",
-  "/assets/images/Personal_website_template.jpg",
-  "/assets/images/Stocks.jpeg"
+  "./assets/images/Josh_Gilberstadt_Image.jpeg",
+  "./assets/images/Blood_samples.jpeg",
+  "./assets/images/Brain.jpeg",
+  "./assets/images/Personal_website_template.jpg",
+  "./assets/images/Stocks.jpeg"
 ];
 
 // Install the Service Worker and cache files
