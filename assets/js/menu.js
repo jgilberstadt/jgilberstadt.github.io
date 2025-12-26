@@ -76,10 +76,12 @@ function setupMenu() {
   function openMenu() {
   if (window.innerWidth >= 769) return;
   
-  // 1. Prevent vertical jumping by locking the scroll without shifting position
+  // Lock scroll immediately
   document.body.classList.add("menu-open");
-  
   toggleButton.setAttribute("aria-expanded", "true");
+  
+  // Delay the focus trap slightly longer than the CSS transition
+  // to ensure the menu is visually "there" before the browser jumps to the X
   removeFocusTrap = trapFocus();
 }
 
