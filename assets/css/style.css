@@ -302,26 +302,25 @@ body.light-mode .site-footer {
   left: 0;
   width: 100vw;
   height: 100dvh;
+  
+  /* Move centering logic here */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   
-  /* --- Glassmorphism Effect --- */
-  background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-  backdrop-filter: blur(12px);    /* The "frosted glass" blur */
-  -webkit-backdrop-filter: blur(12px); /* Required for Safari */
-  /* ---------------------------- */
-
-  margin: 0;
-  padding: 0;
-  z-index: 99999;
+  /* Hidden state */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+
+  /* Glassmorphism & Transitions */
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 99999;
   list-style: none;
-  border-left: 1px solid rgba(255, 255, 255, 0.1); /* A "sparkle" edge */
 }
 
 body.menu-open {
@@ -331,9 +330,8 @@ body.menu-open {
 
 body.menu-open .menu-list {
   opacity: 1;
-  visibility: visible; /* <--- ADD THIS */
-  pointer-events: auto; /* Clickable when visible */
-  display: flex;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .menu-controls {
