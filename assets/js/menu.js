@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
       setupMenu();
       setupHeaderScroll();
       setupThemeToggle();
+      // Re-trigger just in case header fetch was slow
+      triggerPageFadeIn();
     })
     .catch(err => console.error("Failed to load header:", err));
 
