@@ -241,7 +241,7 @@ function triggerPageFadeIn() {
     requestAnimationFrame(() => {
       setTimeout(() => {
         mainContent.classList.add("active");
-      }, 50); 
+      }, 200); 
     });
   }
 }
