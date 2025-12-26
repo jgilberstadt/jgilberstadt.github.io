@@ -24,6 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     .catch(err => console.error("Failed to load footer:", err));
+
+  // Fade-in animation trigger
+  const mainContent = document.getElementById("main-content");
+  if (mainContent) {
+    // A 100ms delay feels natural and smooth
+    setTimeout(() => {
+      mainContent.classList.add("active");
+    }, 100);
+  }
 });
 
 // =========================
