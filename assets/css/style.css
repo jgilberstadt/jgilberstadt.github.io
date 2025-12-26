@@ -47,9 +47,9 @@ body.light-mode .site-footer {
 }
 
 body.light-mode .project-item {
-  background: rgba(0, 0, 0, 0.03) !important; /* Very light grey background */
-  border-color: rgba(0, 0, 0, 0.1) !important;  /* Soft dark border */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.02) !important; 
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
 }
 
 /* Ensure the text inside is dark and readable */
@@ -1106,4 +1106,10 @@ body:not(.menu-open) .menu-list li {
   .intro-block { flex-direction: row !important; text-align: left; gap: 4rem; }
   .profile { width: 12rem; height: 12rem; margin-top: 1.5rem; }
   .footer-content { flex-direction: row; justify-content: space-between; }
+
+  body.light-mode .project-item:hover {
+        border-color: var(--accent) !important;
+        background: #ffffff !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    }
 }
