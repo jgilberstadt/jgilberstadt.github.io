@@ -46,6 +46,23 @@ body.light-mode .site-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+body.light-mode .project-item {
+  background: rgba(0, 0, 0, 0.03) !important; /* Very light grey background */
+  border-color: rgba(0, 0, 0, 0.1) !important;  /* Soft dark border */
+}
+
+/* Ensure the text inside is dark and readable */
+body.light-mode .project-description {
+  color: #374151; 
+  opacity: 0.9;
+}
+
+body.light-mode .project-tag {
+  background: rgba(37, 99, 235, 0.1); /* Light blue tint */
+  color: #2563eb;                    /* Deeper blue text */
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
 body.light-mode .menu-close {
   color: #111827 !important;
   opacity: 1;
