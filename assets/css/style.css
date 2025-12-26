@@ -44,6 +44,12 @@ html {
   .fade-up { transition: none; opacity: 1; transform: none; }
 }
 
+/* If JS is disabled, show the content immediately */
+.no-js .fade-up {
+  opacity: 1;
+  transform: none;
+}
+
 /* =========================
    Light Mode Overrides
 ========================= */
