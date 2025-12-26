@@ -973,7 +973,9 @@ main.container {
 }
 
 body.light-mode .social-button.btn-primary {
+  background-color: var(--accent);
   color: #ffffff;
+  border-color: var(--accent);
 }
 
 .social-button:focus-visible {
