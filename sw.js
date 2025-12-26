@@ -22,9 +22,10 @@ const ASSETS = [
 
   // Local Images
   "/assets/images/Josh_Gilberstadt_Image.jpeg",
-  // Add your project thumbnails here, for example:
-  "/assets/images/project-1-thumb.jpg",
-  "/assets/images/project-2-thumb.jpg"
+  "/assets/images/Blood_samples.jpeg",
+  "/assets/images/Brain.jpeg",
+  "/assets/images/Personal_website_template.jpg",
+  "/assets/images/Stocks.jpeg"
 ];
 
 // Install the Service Worker and cache files
