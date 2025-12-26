@@ -66,7 +66,9 @@ function setupMenu() {
     document.addEventListener("keydown", handleTab);
     
     // Start focus on the Close Button (best practice for mobile menus)
-    if (closeButton) closeButton.focus(); 
+    setTimeout(() => {
+    if (closeButton) closeButton.focus({ preventScroll: true });
+  }, 400);
 
     return () => document.removeEventListener("keydown", handleTab);
   }
