@@ -12,8 +12,6 @@
       const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
       if (savedTheme === "light" || (!savedTheme && systemPrefersLight)) {
         document.documentElement.classList.add("light-mode"); 
-        // Note: applying to documentElement or body is fine, 
-        // but documentElement is even faster.
       }
     })();
   </script>
