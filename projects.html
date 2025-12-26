@@ -8,14 +8,12 @@
 
     // 2. Detect and Apply Theme immediately to prevent flashing
     (function() {
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-    if (savedTheme === "light" || (!savedTheme && systemPrefersLight)) {
-      document.documentElement.classList.add("light-mode"); 
-      // Note: applying to documentElement or body is fine, 
-      // but documentElement is even faster.
-    }
-  })();
+      const savedTheme = localStorage.getItem("theme");
+      const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      if (savedTheme === "light" || (!savedTheme && systemPrefersLight)) {
+        document.documentElement.classList.add("light-mode"); 
+      }
+    })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Josh Gilberstadt | Projects</title>
