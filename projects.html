@@ -10,9 +10,11 @@
     (function() {
       const savedTheme = localStorage.getItem("theme");
       const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-      if (savedTheme === "light" || (!savedTheme && systemPrefersLight)) {
-        // Add it to the html tag for now (so it's instant)
-        document.documentElement.classList.add("light-mode"); 
+      const isLight = savedTheme === "light" || (!savedTheme && systemPrefersLight);  
+      if (isLight) {
+        document.documentElement.classList.add("light-mode");
+        // Add this line to update the status bar IMMEDIATELY
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
       }
     })();
   </script>
