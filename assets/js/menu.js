@@ -265,11 +265,3 @@ if ("serviceWorker" in navigator) {
       .catch((err) => console.log("Service Worker failed:", err));
   });
 }
-
-const savedTheme = localStorage.getItem("theme");
-// Check if the user's OS/Phone is set to Light Mode
-const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-
-if (savedTheme === "light" || (!savedTheme && systemPrefersLight)) {
-  document.body.classList.add("light-mode");
-}
