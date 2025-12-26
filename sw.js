@@ -26,6 +26,7 @@ const ASSETS = [
   "./assets/images/Brain.jpeg",
   "./assets/images/Personal_website_template.jpg",
   "./assets/images/Stocks.jpeg"
+  "./assets/files/Resume_Josh_Gilberstadt_Website.pdf"
 ];
 
 // Install the Service Worker and cache files
