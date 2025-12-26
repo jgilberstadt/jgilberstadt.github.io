@@ -212,7 +212,7 @@ function setupThemeToggle() {
   
   if (!toggle) return;
 
-  // We check the state once when the button is injected
+  // Sync the mobile address bar color to the actual state of the body
   const isLight = document.body.classList.contains("light-mode");
   if (metaThemeColor) {
     metaThemeColor.setAttribute("content", isLight ? "#ffffff" : "#000000");
