@@ -217,24 +217,17 @@ function setupThemeToggle() {
   toggle.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
     
-    // Save preference
-    let theme = "dark";
-    if (document.body.classList.contains("light-mode")) {
-      theme = "light";
-    }
+    let theme = document.body.classList.contains("light-mode") ? "light" : "dark";
     localStorage.setItem("theme", theme);
+
+    // Update the browser's status bar color
+    if (theme === "light") {
+        metaThemeColor.setAttribute("content", "#ffffff");
+    } else {
+        metaThemeColor.setAttribute("content", "#000000");
+    }
     toggle.blur();
   });
-
-  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-
-  function updateThemeColor() {
-  if (document.body.classList.contains("light-mode")) {
-    metaThemeColor.setAttribute("content", "#ffffff");
-  } else {
-    metaThemeColor.setAttribute("content", "#000000");
-  }
-}
 
 }
 
