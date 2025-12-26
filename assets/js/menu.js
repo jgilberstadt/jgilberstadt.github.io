@@ -212,23 +212,29 @@ function setupHeaderScroll() {
 
 function setupThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  
   if (!toggle) return;
 
+  // Set initial state of meta theme color on load
+  const isLight = document.body.classList.contains("light-mode");
+  if (metaThemeColor) {
+    metaThemeColor.setAttribute("content", isLight ? "#ffffff" : "#000000");
+  }
+
   toggle.addEventListener("click", () => {
+    const wasLight = document.body.classList.contains("light-mode");
     document.body.classList.toggle("light-mode");
     
-    let theme = document.body.classList.contains("light-mode") ? "light" : "dark";
-    localStorage.setItem("theme", theme);
+    const isNowLight = !wasLight;
+    localStorage.setItem("theme", isNowLight ? "light" : "dark");
 
-    // Update the browser's status bar color
-    if (theme === "light") {
-        metaThemeColor.setAttribute("content", "#ffffff");
-    } else {
-        metaThemeColor.setAttribute("content", "#000000");
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute("content", isNowLight ? "#ffffff" : "#000000");
     }
+    
     toggle.blur();
   });
-
 }
 
 document.addEventListener('click', (e) => {
