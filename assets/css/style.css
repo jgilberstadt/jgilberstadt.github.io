@@ -189,8 +189,13 @@ body.light-mode .theme-toggle {
   border-color: rgba(0,0,0,0.1);
 }
 
-body.light-mode .sun-icon { display: none; }
-body:not(.light-mode) .moon-icon { display: none; }
+/* Hide sun in dark mode, show in light mode */
+.sun-icon { display: none; }
+body.light-mode .sun-icon { display: block; }
+
+/* Show moon in dark mode, hide in light mode */
+.moon-icon { display: block; }
+body.light-mode .moon-icon { display: none; }
 
 .button-group {
   display: flex;
