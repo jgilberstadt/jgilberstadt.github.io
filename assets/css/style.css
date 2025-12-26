@@ -209,23 +209,6 @@ body.light-mode .theme-toggle {
   border-color: rgba(0,0,0,0.1);
 }
 
-/* Base state: Hide both by default */
-.sun-icon, .moon-icon {
-  display: none;
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-/* Dark Mode: Show Sun (to switch to light) */
-body:not(.light-mode) .sun-icon {
-  display: inline-block;
-}
-
-/* Light Mode: Show Moon (to switch to dark) */
-body.light-mode .moon-icon {
-  display: inline-block;
-}
-
 .button-group {
   display: flex;
   gap: 1rem;
