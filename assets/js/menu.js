@@ -220,7 +220,7 @@ function setupThemeToggle() {
 }
 
 document.addEventListener('click', (e) => {
-  const isInteractive = e.target.closest('a, button');
+  const isInteractive = e.target.closest('a, button, .project-item');
   
   if (isInteractive && document.activeElement instanceof HTMLElement) {
     requestAnimationFrame(() => {
