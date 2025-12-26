@@ -207,6 +207,9 @@ function setupHeaderScroll() {
 }
 
 function setupThemeToggle() {
+  if (document.documentElement.classList.contains("light-mode")) {
+    document.body.classList.add("light-mode");
+  }
   const toggle = document.getElementById("theme-toggle");
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
   
