@@ -1,7 +1,7 @@
 {
   "name": "Josh Gilberstadt | Data Manager",
   "short_name": "JoshG",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#60a5fa",
