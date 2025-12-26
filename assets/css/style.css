@@ -49,6 +49,7 @@ body.light-mode .site-footer {
 body.light-mode .project-item {
   background: rgba(0, 0, 0, 0.03) !important; /* Very light grey background */
   border-color: rgba(0, 0, 0, 0.1) !important;  /* Soft dark border */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 /* Ensure the text inside is dark and readable */
@@ -59,8 +60,19 @@ body.light-mode .project-description {
 
 body.light-mode .project-tag {
   background: rgba(37, 99, 235, 0.1); /* Light blue tint */
-  color: #2563eb;                    /* Deeper blue text */
+  color: #1d4ed8;                    /* Deeper blue text */
   border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* --- Contact Page Button Fix --- */
+body.light-mode .social-button:not(.btn-primary) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+
+body.light-mode .social-button:hover {
+  background: rgba(37, 99, 235, 0.05);
 }
 
 body.light-mode .menu-close {
@@ -660,6 +672,12 @@ main.container {
   .project-item:hover .project-thumb {
     filter: brightness(1.1); /* Makes the image pop */
     transition: filter 0.3s ease;
+  }
+
+   body.light-mode .project-item:hover {
+    background: #ffffff !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
   }
 }
 
