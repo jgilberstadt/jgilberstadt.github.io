@@ -11,6 +11,7 @@
       const savedTheme = localStorage.getItem("theme");
       const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
       if (savedTheme === "light" || (!savedTheme && systemPrefersLight)) {
+        // Add it to the html tag for now (so it's instant)
         document.documentElement.classList.add("light-mode"); 
       }
     })();
