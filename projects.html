@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <script>
-        // Immediately replace 'no-js' with 'js' if JavaScript is enabled
-        document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    // 1. Detect JavaScript
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    // 2. Detect and Apply Theme immediately to prevent flashing
+    (function() {
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    if (savedTheme === "light" || (!savedTheme && systemPrefersLight)) {
+      document.documentElement.classList.add("light-mode"); 
+      // Note: applying to documentElement or body is fine, 
+      // but documentElement is even faster.
+    }
+  })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Josh Gilberstadt | Projects</title>
