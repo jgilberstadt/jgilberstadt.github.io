@@ -40,6 +40,10 @@ html {
   transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { transition: none; opacity: 1; transform: none; }
+}
+
 /* =========================
    Light Mode Overrides
 ========================= */
