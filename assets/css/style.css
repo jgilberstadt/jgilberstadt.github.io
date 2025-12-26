@@ -953,6 +953,18 @@ body:not(.menu-open) .menu-list li {
   opacity: 0;
 }
 
+   /* Cleaned up version: Targets both button types at once */
+.social-button, 
+.social-links li,
+.social-links li a {
+    display: flex;
+    width: 100%; 
+    max-width: 320px; /* One single place to control width */
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+
    /* Ensure all social/action buttons stack and match width on mobile/tablet */
 .button-group, .social-links {
     display: flex;
@@ -962,32 +974,6 @@ body:not(.menu-open) .menu-list li {
     gap: 1rem;
     padding: 0; /* Remove any default list padding */
     list-style: none;
-  }
-
-.social-button {
-    display: flex;
-    /* This is the key: force them to fill the container */
-    width: 100%; 
-    /* But don't let them get TOO wide on tablets */
-    max-width: 320px; 
-    justify-content: center;
-    box-sizing: border-box;
-  }
-
-   .social-button, 
-  .social-links li {
-    display: flex;
-    width: 100%; /* Fill the container */
-    max-width: 300px; /* Limits how wide they get on tablets */
-    justify-content: center;
-    box-sizing: border-box;
-  }
-
-  /* If your contact page uses <li> tags for buttons, ensure they don't add extra width */
-  .social-links li a {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
   }
 
   .project-item {
