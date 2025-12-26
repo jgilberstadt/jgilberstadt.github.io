@@ -682,6 +682,18 @@ main.container {
   letter-spacing: 0.5px;
 }
 
+.project-item, 
+.project-item h3, 
+.project-description, 
+.project-tag {
+  /* Apply the same duration and timing function to everything */
+  transition: 
+    background-color 0.3s ease, 
+    color 0.3s ease, 
+    border-color 0.3s ease, 
+    transform 0.3s ease;
+}
+
 .cta-section {
   margin-top: 5rem;
   padding-bottom: 3rem;
