@@ -75,8 +75,9 @@ body.light-mode .site-footer {
 }
 
 body.light-mode .project-item {
-  background: rgba(0, 0, 0, 0.02) !important; 
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important; /* Optional: subtle separator */
   box-shadow: none !important;
 }
 
