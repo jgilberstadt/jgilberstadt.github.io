@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".site-header").offsetHeight + "px";
   
   // Inject Header
-  fetch("partials/header.html")
+  fetch("./partials/header.html")
     .then(response => response.text())
     .then(html => {
       document.getElementById("site-header").innerHTML = html;
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("Failed to load header:", err));
 
   // Inject Footer
-  fetch("partials/footer.html")
+  fetch("./partials/footer.html")
     .then(response => response.text())
     .then(html => {
       const footerContainer = document.getElementById("site-footer");
