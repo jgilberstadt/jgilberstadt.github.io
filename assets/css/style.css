@@ -690,9 +690,13 @@ main.container {
 }
 
 .project-item {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  box-shadow: var(--card-shadow);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 .project-item a, 
@@ -882,6 +886,8 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   color: inherit;
   height: 100%;
   width: 100%;
+  border-radius: inherit;
+  overflow: hidden;
 }
 
 .project-thumb {
@@ -891,6 +897,8 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   display: block;
   object-fit: cover;
   min-height: 200px;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
   
   /* The "Magic" to remove gaps */
   margin: 0;
@@ -1168,11 +1176,9 @@ body:not(.menu-open) .menu-list li {
   }
 
   .project-item {
-    /* Force background/border back to default even if browser thinks it's 'hovered' */
+    border-radius: 0.8rem !important; 
     background: rgba(255, 255, 255, 0.03) !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
     transform: none !important;
-    box-shadow: none !important;
   }
 
   body.light-mode .project-item {
