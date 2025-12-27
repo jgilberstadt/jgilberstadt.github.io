@@ -207,29 +207,29 @@ function setupHeaderScroll() {
 }
 
 function setupThemeToggle() {
-  if (document.documentElement.classList.contains("light-mode")) {
-    document.body.classList.add("light-mode");
-  }
   const toggle = document.getElementById("theme-toggle");
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
   
   if (!toggle) return;
 
-  // Sync the mobile address bar color to the actual state of the body
-  const isLight = document.body.classList.contains("light-mode");
-  if (metaThemeColor) {
-    metaThemeColor.setAttribute("content", isLight ? "#ffffff" : "#000000");
-  }
+  // Function to sync the status bar based on the CURRENT state
+  const syncMetaTag = () => {
+    const isLight = document.body.classList.contains("light-mode") || 
+                    document.documentElement.classList.contains("light-mode");
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute("content", isLight ? "#ffffff" : "#000000");
+    }
+  };
+
+  // Run once on load to ensure sync
+  syncMetaTag();
 
   toggle.addEventListener("click", () => {
     document.body.classList.toggle("light-mode");
     const isNowLight = document.body.classList.contains("light-mode");
     
     localStorage.setItem("theme", isNowLight ? "light" : "dark");
-
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", isNowLight ? "#ffffff" : "#000000");
-    }
+    syncMetaTag();
     toggle.blur();
   });
 }
