@@ -181,6 +181,13 @@ function setupHeaderScroll() {
   function updateHeader() {
     const currentScrollY = window.scrollY;
 
+    // Safety: Always show header at the very top of the page
+  if (currentScrollY < 10) {
+    header.classList.remove("header-hidden");
+    header.classList.add("header-visible");
+    return;
+  }
+
     if (window.innerWidth < 769) {
       header.classList.remove("header-hidden");
       header.classList.add("header-visible");
