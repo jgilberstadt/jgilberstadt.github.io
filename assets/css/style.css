@@ -685,7 +685,11 @@ main.container {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: 
+    background-color 0.3s ease, 
+    border-color 0.3s ease, 
+    box-shadow 0.3s ease, 
+    transform 0.3s ease;
 }
 
 .project-item a, 
@@ -762,9 +766,9 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   .project-item:hover {
     transform: translateY(-8px);
     border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.08); 
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    background: var(--card-bg); 
+    filter: brightness(1.05); /* A subtle way to 'glow' both modes */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   }
 
   .project-item:hover h3 {
