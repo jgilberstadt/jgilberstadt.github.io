@@ -103,7 +103,7 @@ body.light-mode .menu-close {
 }
 
 body.light-mode .menu-list {
-  background: rgba(255, 255, 255, 0.85); /* Light frosted glass */
+  background: rgba(255, 255, 255, 0.75); /* Light frosted glass */
   border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
 
