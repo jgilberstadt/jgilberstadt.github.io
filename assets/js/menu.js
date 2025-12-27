@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.documentElement.classList.add("no-transition");
   // Inject Header
   fetch("./partials/header.html")
     .then(response => response.text())
@@ -34,6 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fade-in animation trigger
   triggerPageFadeIn();
+
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      document.documentElement.classList.remove("no-transition");
+    }, 100);
+  });
 });
 
 // =========================
