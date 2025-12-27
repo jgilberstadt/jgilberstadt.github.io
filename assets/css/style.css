@@ -8,6 +8,9 @@
   --transition-fast: 0.2s cubic-bezier(.2,.8,.2,1);
   --transition-medium: 0.3s cubic-bezier(.2,.8,.2,1);
   --transition-slow: 0.35s cubic-bezier(.2,.8,.2,1);
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: transparent;
+  --card-shadow: none;
 }
 
 body {
@@ -76,6 +79,9 @@ body.light-mode {
   --bg: #ffffff;
   --text: #111827;
   --accent: #2563eb;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 body.light-mode .site-header {
@@ -684,13 +690,9 @@ main.container {
 }
 
 .project-item {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid transparent; 
-  border-radius: 0.8rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
 }
 
 .project-item a, 
