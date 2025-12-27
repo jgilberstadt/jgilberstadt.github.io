@@ -22,10 +22,12 @@ body {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg);
 }
 
 html {
   scrollbar-gutter: stable;
+  background-color: var(--bg);
 }
 
 html, body {
@@ -51,6 +53,10 @@ html, body {
   -ms-transition: none !important;
   -o-transition: none !important;
   transition: none !important;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -170,11 +176,12 @@ body.light-mode main.container {
 
 body.light-mode .project-item {
   background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important; 
+  border: 1px solid #e5e7eb !important; 
   border-radius: 0.8rem !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
   margin-bottom: 0 !important;
   overflow: hidden;
+  transition: transform 0.3s ease; 
 }
 
 /* Ensure the image at the top respects the rounded corners */
