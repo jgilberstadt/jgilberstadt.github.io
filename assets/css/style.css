@@ -235,7 +235,6 @@ header.site-header {
   background: var(--bg);
   padding: 1rem 0;
   box-sizing: border-box;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 header.site-header, .project-item, .tag, .social-button {
