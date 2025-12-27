@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.documentElement.style.scrollPaddingTop = 
+  document.querySelector(".site-header").offsetHeight + "px";
+  
   // Inject Header
   fetch("partials/header.html")
     .then(response => response.text())
@@ -212,16 +215,14 @@ function setupThemeToggle() {
   
   if (!toggle) return;
 
-  // 1. Force state to match the class already on <html> from your head script
-  const isLightPreload = document.documentElement.classList.contains("light-mode");
-  if (isLightPreload) {
-    document.body.classList.add("light-mode");
-  }
-
+  // Sync state immediately - no delay
+  const isLight = document.documentElement.classList.contains("light-mode");
+  document.body.classList.toggle("light-mode", isLight);
+  
   const syncMetaTag = () => {
-    const isLight = document.body.classList.contains("light-mode");
+    const activeLight = document.body.classList.contains("light-mode");
     if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", isLight ? "#ffffff" : "#000000");
+      metaThemeColor.setAttribute("content", activeLight ? "#ffffff" : "#000000");
     }
   };
 
