@@ -1033,7 +1033,7 @@ body.light-mode .social-button.btn-primary {
     color: var(--text);
     text-decoration: none;
     opacity: 0.8;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, color 0.2s ease;
   }
 
   .menu-list a:hover { opacity: 0.7; }
@@ -1056,17 +1056,17 @@ body.light-mode .social-button.btn-primary {
 }
 
   .menu-list a.current {
-  background: transparent;
-  color: var(--accent);
-  font-weight: 700;
-  pointer-events: none;
-  text-decoration: none; /* Ensures no default browser underline */
-  opacity: 1;
-  border-bottom: 4px solid var(--accent); /* Thicker for mobile visibility */
-}
+    background: transparent !important;
+    color: var(--accent) !important; /* Forces the blue color */
+    font-weight: 700 !important;
+    opacity: 1 !important;           /* Removes the 0.8 transparency */
+    pointer-events: none;
+    text-decoration: none;
+    border-bottom: 4px solid var(--accent) !important; /* Thick mobile underline */
+  }
 
    .menu-list a.current::after {
-  display: none;
+   display: none !important;
 }
 
    /* Base state for links when menu is closed */
