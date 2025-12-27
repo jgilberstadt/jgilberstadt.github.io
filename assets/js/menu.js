@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.documentElement.style.scrollPaddingTop = 
-  document.querySelector(".site-header").offsetHeight + "px";
-  
-  // Inject Header
+  // 1. Inject Header
   fetch("./partials/header.html")
     .then(response => response.text())
     .then(html => {
       document.getElementById("site-header").innerHTML = html;
+      
+      const headerEl = document.querySelector(".site-header");
+      if (headerEl) {
+        document.documentElement.style.scrollPaddingTop = headerEl.offsetHeight + "px";
+      }
+
       setupMenu();
       setupHeaderScroll();
       setupThemeToggle();
-      // Re-trigger just in case header fetch was slow
       triggerPageFadeIn();
     })
     .catch(err => console.error("Failed to load header:", err));
