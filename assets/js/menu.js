@@ -230,23 +230,27 @@ function setupThemeToggle() {
   if (!toggle) return;
 
   toggle.addEventListener("click", () => {
-    // 1. Disable all transitions immediately
+    // 1. Disable all transitions immediately to prevent color flashing
     document.documentElement.classList.add("no-animate");
 
+    // 2. Perform the swap
     document.body.classList.toggle("light-mode");
     document.documentElement.classList.toggle("light-mode");
     
     const isNowLight = document.body.classList.contains("light-mode");
     localStorage.setItem("theme", isNowLight ? "light" : "dark");
 
-    // 2. Turn transitions back on after the colors have swapped
+    // 3. Turn transitions back on
     requestAnimationFrame(() => {
       setTimeout(() => {
         document.documentElement.classList.remove("no-animate");
-      }, 10);
+      }, 50);
     });
 
-    toggle.blur();
+    // 4. Force the button to lose focus (removes the "sticky" highlight)
+    setTimeout(() => {
+      toggle.blur();
+    }, 100);
   });
 }
 
