@@ -684,13 +684,13 @@ main.container {
 }
 
 .project-item {
-  background: rgba(255, 255, 255, 0.03); /* Keep it faint by default */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent; 
   border-radius: 0.8rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-item a, 
@@ -1173,10 +1173,11 @@ body:not(.menu-open) .menu-list li {
   }
 
   body.light-mode .project-item {
-    background: #ffffff !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    margin-bottom: 0 !important; /* Forces consistency with Dark Mode */
-  }
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  margin-bottom: 0 !important;
+}
    
 }
 
