@@ -31,6 +31,10 @@ html {
   scrollbar-gutter: stable;
 }
 
+html, body {
+  background-color: var(--bg);
+}
+
 /* Initial state for elements we want to animate */
 .js .fade-up {
   opacity: 0;
