@@ -161,11 +161,17 @@ body.light-mode main.container {
   box-shadow: none !important;
 }
 
-/* Subtle separator instead of a box */
 body.light-mode .project-item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
-  border-radius: 0;
+  background: rgba(0, 0, 0, 0.01) !important; /* Extremely faint tint to define the area */
+  border: 1px solid rgba(0, 0, 0, 0.05) !important; /* Subtly defines all four sides */
+  border-radius: 0.8rem !important; /* Restores the rounded corners for a modern look */
   margin-bottom: 2rem;
+  box-shadow: none !important;
+}
+
+/* Ensure the image at the top respects the rounded corners */
+body.light-mode .project-item .project-thumb {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* =========================
@@ -1134,8 +1140,9 @@ body:not(.menu-open) .menu-list li {
   }
 
   body.light-mode .project-item {
-    background: rgba(0, 0, 0, 0.02) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+    background: rgba(0, 0, 0, 0.01) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important; /* Very soft lift */
   }
    
 }
