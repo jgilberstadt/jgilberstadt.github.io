@@ -1,14 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Inject Header
+  // Inject Header
   fetch("./partials/header.html")
     .then(response => response.text())
     .then(html => {
+      // First, inject the HTML
       document.getElementById("site-header").innerHTML = html;
       
-      const headerEl = document.querySelector(".site-header");
-      if (headerEl) {
-        document.documentElement.style.scrollPaddingTop = headerEl.offsetHeight + "px";
-      }
+      // Wrap the height measurement in requestAnimationFrame
+      requestAnimationFrame(() => {
+        const headerEl = document.querySelector(".site-header");
+        if (headerEl) {
+          document.documentElement.style.scrollPaddingTop = headerEl.offsetHeight + "px";
+        }
+      });
 
       setupMenu();
       setupHeaderScroll();
