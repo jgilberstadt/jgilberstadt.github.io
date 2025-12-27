@@ -104,7 +104,8 @@ body.light-mode .menu-close {
 
 body.light-mode .menu-list {
   background: rgba(255, 255, 255, 0.7) !important;
-  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.2);
 }
 
 /* Light mode overrides for the fullscreen mobile menu */
@@ -410,6 +411,8 @@ body.light-mode .site-footer {
   transition: opacity 0.4s ease, visibility 0.4s ease;
   z-index: 99999;
   list-style: none; /* Removes bullet points */
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.1); /* Subtle inner depth */
 }
 
 body.menu-open {
@@ -1177,7 +1180,6 @@ body:not(.menu-open) .menu-list li {
     height: auto;
     width: auto;
     flex-direction: row;
-    background: transparent;
     gap: 2rem;
     margin-left: auto;
     margin-right: 2rem;
@@ -1185,6 +1187,11 @@ body:not(.menu-open) .menu-list li {
     opacity: 1 !important;        /* Makes it visible again */
     visibility: visible !important; /* Makes it interactive */
     pointer-events: auto;        /* Allows clicking */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important; /* Removes the glass edge on desktop */
+    box-shadow: none !important;
   }
 
    .menu-list li {
