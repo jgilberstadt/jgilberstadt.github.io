@@ -412,14 +412,14 @@ body.light-mode .site-footer {
   visibility: hidden;
   pointer-events: none;
 
-  background: rgba(0, 0, 0, 0.7); /* Slightly darker for better contrast */
+  background: transparent;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   transition: opacity 0.4s ease, visibility 0.4s ease;
   z-index: 99999;
   list-style: none; /* Removes bullet points */
-  border: 1px solid rgba(255, 255, 255, 0.1); 
-  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.1); /* Subtle inner depth */
+  border: none; 
+  box-shadow: none; /* Subtle inner depth */
 }
 
 body.menu-open {
@@ -472,6 +472,13 @@ body.menu-open .menu-controls {
     visibility: hidden;
     pointer-events: none;
     transition: opacity 0.3s ease;
+}
+
+/* Only apply the glass border when NOT in light mode and NOT on desktop */
+body:not(.light-mode) .menu-list {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.1);
 }
 
 /* Menu links */
