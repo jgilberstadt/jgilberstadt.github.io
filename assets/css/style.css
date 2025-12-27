@@ -161,6 +161,7 @@ body.light-mode .sun-icon {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
+    background: none !important; /* Prevents focus-highlighting a hidden element */
 }
 
 /* Ensure the active icon is clean */
@@ -817,7 +818,7 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   .social-button:active,
   .theme-toggle:active,
   .menu-toggle:active {
-    transform: scale(0.97);
+    transform: scale(0.97) !important;
     background: rgba(255, 255, 255, 0.1) !important;
     transition: transform 0.1s ease;
   }
@@ -828,11 +829,11 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     background: rgba(0, 0, 0, 0.05) !important;
   }
 
-  /* Force hover-fix for touch: prevent elements from staying 'stuck' in hover state */
   .project-item:hover, 
-  .social-button:hover {
-    transform: none;
-    background: var(--card-bg);
+  .social-button:hover,
+  .theme-toggle:hover {
+    background: transparent !important;
+    transform: none !important;
   }
 }
 
