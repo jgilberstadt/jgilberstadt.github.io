@@ -1176,17 +1176,23 @@ body:not(.menu-open) .menu-list li {
   }
 
   .project-item {
-    border-radius: 0.8rem !important; 
-    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 0.8rem !important; /* Force rounding on mobile */
+    background: var(--card-bg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Visible border for dark mode */
     transform: none !important;
+    margin-bottom: 2rem; /* Consistent vertical gap */
   }
 
   body.light-mode .project-item {
-  background: #ffffff !important;
-  border-color: rgba(0, 0, 0, 0.08) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
-  margin-bottom: 0 !important;
-}
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+    margin-bottom: 2rem !important; 
+  }
+
+   .project-thumb {
+    border-bottom: none;
+  }
    
 }
 
