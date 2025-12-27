@@ -74,13 +74,6 @@ body.light-mode .site-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-body.light-mode .project-item {
-  background: transparent !important;
-  border: none !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important; /* Optional: subtle separator */
-  box-shadow: none !important;
-}
-
 /* Ensure the text inside is dark and readable */
 body.light-mode .project-description {
   color: #374151; 
@@ -142,13 +135,6 @@ body.light-mode .menu button {
   color: #111827; /* Dark icon/text color */
 }
 
-/* Hover state for buttons in Light Mode */
-body.light-mode .theme-toggle:hover,
-body.light-mode .menu-toggle:hover,
-body.light-mode .menu button:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
 /* Force the inactive icon to have zero dimensions and no visibility */
 body:not(.light-mode) .moon-icon,
 body.light-mode .sun-icon {
@@ -164,6 +150,21 @@ body:not(.light-mode) .sun-icon {
     display: inline-block !important;
     visibility: visible;
     opacity: 1;
+}
+
+body.light-mode .project-item,
+body.light-mode .intro-block,
+body.light-mode main.container {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Subtle separator instead of a box */
+body.light-mode .project-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  border-radius: 0;
+  margin-bottom: 2rem;
 }
 
 /* =========================
