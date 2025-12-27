@@ -223,6 +223,7 @@ body.light-mode .theme-toggle {
 /* =========================
    Header & Navigation
 ========================= */
+/* Update this block in your CSS */
 header.site-header {
   position: fixed;
   top: 0;
@@ -235,6 +236,8 @@ header.site-header {
   background: var(--bg);
   padding: 1rem 0;
   box-sizing: border-box;
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 header.site-header, .project-item, .tag, .social-button {
