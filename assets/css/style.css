@@ -103,7 +103,7 @@ body.light-mode .menu-close {
 }
 
 body.light-mode .menu-list {
-  background: rgba(255, 255, 255, 0.75); /* Light frosted glass */
+  background: rgba(255, 255, 255, 0.65) !important;
   border-left: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -404,9 +404,9 @@ body.light-mode .site-footer {
   visibility: hidden;
   pointer-events: none;
 
-  background: rgba(0, 0, 0, 0.85); /* Slightly darker for better contrast */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.7); /* Slightly darker for better contrast */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: opacity 0.4s ease, visibility 0.4s ease;
   z-index: 99999;
   list-style: none; /* Removes bullet points */
