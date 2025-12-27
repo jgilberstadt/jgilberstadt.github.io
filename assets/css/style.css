@@ -1081,6 +1081,14 @@ body.light-mode .social-button.btn-primary {
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
+   .menu-list li a.current {
+    color: var(--accent) !important;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+    border-bottom: 4px solid var(--accent) !important;
+    pointer-events: none;
+  }
+
 /* Animation trigger when body has .menu-open */
 body.menu-open .menu-list li {
   animation: menuLinkFadeIn 0.5s ease forwards;
