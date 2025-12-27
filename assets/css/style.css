@@ -162,11 +162,12 @@ body.light-mode main.container {
 }
 
 body.light-mode .project-item {
-  background: rgba(0, 0, 0, 0.01) !important; /* Extremely faint tint to define the area */
-  border: 1px solid rgba(0, 0, 0, 0.05) !important; /* Subtly defines all four sides */
-  border-radius: 0.8rem !important; /* Restores the rounded corners for a modern look */
+  background: #ffffff !important; /* Pure white matches the page */
+  border: 1px solid rgba(0, 0, 0, 0.08) !important; /* Defines the left/right sides */
+  border-radius: 0.8rem !important; /* Keeps the modern rounded look */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important; /* Very faint lift */
   margin-bottom: 2rem;
-  box-shadow: none !important;
+  overflow: hidden; /* Ensures the image doesn't break the rounded corners */
 }
 
 /* Ensure the image at the top respects the rounded corners */
@@ -1140,9 +1141,10 @@ body:not(.menu-open) .menu-list li {
   }
 
   body.light-mode .project-item {
-    background: rgba(0, 0, 0, 0.01) !important;
-    border: 1px solid rgba(0, 0, 0, 0.05) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02) !important; /* Very soft lift */
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+    transform: none !important; /* Prevents accidental hover tilts on touch */
   }
    
 }
