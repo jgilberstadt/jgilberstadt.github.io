@@ -157,16 +157,15 @@ body.light-mode .project-item,
 body.light-mode .intro-block,
 body.light-mode main.container {
   background: transparent !important;
-  border: none !important;
   box-shadow: none !important;
 }
 
 body.light-mode .project-item {
   background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important; 
   border-radius: 0.8rem !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
-  margin-bottom: 0 !important; /* Removes the double-spacing issue */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+  margin-bottom: 0 !important;
   overflow: hidden;
 }
 
