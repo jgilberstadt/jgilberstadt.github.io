@@ -227,31 +227,25 @@ function setupHeaderScroll() {
 
 function setupThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
-  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-  
   if (!toggle) return;
 
-  // Sync state immediately - no delay
-  const isLight = document.documentElement.classList.contains("light-mode");
-  document.body.classList.toggle("light-mode", isLight);
-  
-  const syncMetaTag = () => {
-    const activeLight = document.body.classList.contains("light-mode");
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", activeLight ? "#ffffff" : "#000000");
-    }
-  };
-
-  syncMetaTag();
-
   toggle.addEventListener("click", () => {
-    // Apply to both to ensure CSS selectors always find it
+    // 1. Disable all transitions immediately
+    document.documentElement.classList.add("no-animate");
+
     document.body.classList.toggle("light-mode");
     document.documentElement.classList.toggle("light-mode");
     
     const isNowLight = document.body.classList.contains("light-mode");
     localStorage.setItem("theme", isNowLight ? "light" : "dark");
-    syncMetaTag();
+
+    // 2. Turn transitions back on after the colors have swapped
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        document.documentElement.classList.remove("no-animate");
+      }, 10);
+    });
+
     toggle.blur();
   });
 }
