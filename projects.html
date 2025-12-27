@@ -10,11 +10,13 @@
     (function() {
       const savedTheme = localStorage.getItem("theme");
       const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-      const isLight = savedTheme === "light" || (!savedTheme && systemPrefersLight);  
+      const isLight = savedTheme === "light" || (!savedTheme && systemPrefersLight);
+
       if (isLight) {
         document.documentElement.classList.add("light-mode");
-        // Add this line to update the status bar IMMEDIATELY
-        document.querySelector('meta[name="theme-color"]').setAttribute("content", "#ffffff");
+        // This ensures the mobile address bar is white before the blue has a chance to show
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", "#ffffff");
       }
     })();
   </script>
