@@ -751,30 +751,43 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 /* =========================
-   Interactive States (Smart Hover)
+   Interactive States (Smart Focus & Hover)
 ========================= */
-/* Disable hover effects for touch devices to prevent 'stuck' highlights */
-@media (hover: none) {
-  .theme-toggle:hover,
-  .menu-toggle:hover {
-    background: transparent !important;
-  }
+
+/* 1. UNIVERSAL RESET: Remove the 'stuck' focus state for mouse/touch users */
+.project-item:focus,
+.social-button:focus,
+.theme-toggle:focus,
+.menu-toggle:focus,
+.tag:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-/* 1. DESKTOP & MOUSE: Apply high-quality hover effects only for precise pointers */
+/* 2. ACCESSIBILITY: Only show highlights for Keyboard Users */
+.project-item:focus-visible,
+.social-button:focus-visible,
+.theme-toggle:focus-visible,
+.menu-toggle:focus-visible,
+.tag:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 4px !important;
+  background: rgba(96, 165, 250, 0.1) !important;
+}
+
+/* 3. DESKTOP & MOUSE: High-quality hover effects */
 @media (hover: hover) and (pointer: fine) {
   .project-item:hover {
     transform: translateY(-8px);
     border-color: var(--accent);
     background: var(--card-bg); 
-    filter: brightness(1.05); /* A subtle way to 'glow' both modes */
+    filter: brightness(1.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   }
 
   .project-item:hover h3 {
     text-decoration: underline;
     color: var(--accent);
-    transition: color 0.2s ease;
   }
 
   .social-button:hover {
@@ -784,14 +797,9 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
 
   .social-button.btn-primary:hover {
-    background-color: rgba(96, 165, 250, 0.1);
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
-  .project-item:hover .project-thumb {
+    background-color: var(--accent);
     filter: brightness(1.1);
-    transition: filter 0.3s ease;
+    color: #ffffff;
   }
 
   .theme-toggle:hover,
@@ -805,71 +813,50 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
 }
 
-/* 2. MOBILE & TOUCH: Provide instant feedback during the touch, then clear it */
+/* 4. MOBILE & TOUCH: Instant feedback that clears on release */
 @media (pointer: coarse) {
   .project-item:active,
   .social-button:active,
   .theme-toggle:active,
   .menu-toggle:active {
     transform: scale(0.97);
-    background: rgba(255, 255, 255, 0.15) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
     transition: transform 0.1s ease;
   }
 
   body.light-mode .project-item:active,
   body.light-mode .social-button:active,
   body.light-mode .theme-toggle:active {
-    background: rgba(0, 0, 0, 0.08) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* Force hover-fix for touch: prevent elements from staying 'stuck' in hover state */
+  .project-item:hover, 
+  .social-button:hover {
+    transform: none;
+    background: var(--card-bg);
   }
 }
 
-/* 3. ACCESSIBILITY: Visible focus for keyboard users regardless of device */
-.project-item:focus-visible,
-.social-button:focus-visible,
-.theme-toggle:focus-visible,
-.menu-toggle:focus-visible {
-  outline: 2px solid var(--accent) !important;
-  outline-offset: 4px !important;
-}
-
-.project-item:active h3 {
-  color: var(--accent);
-  text-decoration: none !important;
-}
-
-.social-button:active {
-  transform: translateY(1px);
+/* 5. BUTTON RIPPLE CLEANUP */
+.social-button::after {
+  content: "";
+  position: absolute;
+  inset: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
 }
 
 .social-button:active::after {
   width: 200%;
   height: 200%;
   opacity: 1;
-  transition: 0s; /* Resets instantly when finger lifts */
-}
-
-.social-button:focus {
-  /* Keep the primary button's background if it's the filled version */
-  background-color: transparent; 
-  transform: none;
-}
-
-.social-button.btn-primary:focus {
-  background-color: var(--accent); /* Keeps the blue fill for primary buttons */
-}
-
-.project-item:focus {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
-  box-shadow: none !important;
-  outline: none;
-}
-
-/* Only triggers for keyboard (Accessibility) */
-.project-item:focus-visible {
-  outline: 2px solid var(--accent) !important;
-  outline-offset: 4px;
-  background: rgba(255, 255, 255, 0.08) !important;
+  transition: 0s; /* Flash on instantly, fade out on release */
 }
 
 .project-item a {
