@@ -653,10 +653,11 @@ main.container {
 
 .project-grid ul {
   display: grid;
-  /* 'auto-fill' keeps the cards at a set size; 'auto-fit' stretches them */
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-  gap: 2rem;
+  gap: 2rem; /* This controls spacing between cards for both modes */
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .project-item {
@@ -1142,8 +1143,7 @@ body:not(.menu-open) .menu-list li {
   body.light-mode .project-item {
     background: #ffffff !important;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important;
-    transform: none !important; /* Prevents accidental hover tilts on touch */
+    margin-bottom: 0 !important; /* Forces consistency with Dark Mode */
   }
    
 }
