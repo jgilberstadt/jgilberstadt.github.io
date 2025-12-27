@@ -212,22 +212,27 @@ function setupThemeToggle() {
   
   if (!toggle) return;
 
-  // Function to sync the status bar based on the CURRENT state
+  // 1. Force state to match the class already on <html> from your head script
+  const isLightPreload = document.documentElement.classList.contains("light-mode");
+  if (isLightPreload) {
+    document.body.classList.add("light-mode");
+  }
+
   const syncMetaTag = () => {
-    const isLight = document.body.classList.contains("light-mode") || 
-                    document.documentElement.classList.contains("light-mode");
+    const isLight = document.body.classList.contains("light-mode");
     if (metaThemeColor) {
       metaThemeColor.setAttribute("content", isLight ? "#ffffff" : "#000000");
     }
   };
 
-  // Run once on load to ensure sync
   syncMetaTag();
 
   toggle.addEventListener("click", () => {
+    // Apply to both to ensure CSS selectors always find it
     document.body.classList.toggle("light-mode");
-    const isNowLight = document.body.classList.contains("light-mode");
+    document.documentElement.classList.toggle("light-mode");
     
+    const isNowLight = document.body.classList.contains("light-mode");
     localStorage.setItem("theme", isNowLight ? "light" : "dark");
     syncMetaTag();
     toggle.blur();
