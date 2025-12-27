@@ -1222,6 +1222,7 @@ body:not(.menu-open) .menu-list li {
     -webkit-backdrop-filter: none !important;
     border: none !important; /* Removes the glass edge on desktop */
     box-shadow: none !important;
+    transform: none !important; 
   }
 
    .menu-list li {
@@ -1234,6 +1235,10 @@ body:not(.menu-open) .menu-list li {
     opacity: 0.6;
     font-size: 1.2rem;
     transition: opacity 0.2s ease, color 0.2s ease;
+  }
+
+   .menu-list a.current {
+    border-bottom: none !important;
   }
 
    .menu-list a.current::after,
