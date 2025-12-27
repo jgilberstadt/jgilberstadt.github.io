@@ -181,24 +181,18 @@ function setupHeaderScroll() {
   function updateHeader() {
     const currentScrollY = window.scrollY;
 
-    // Safety: Always show header at the very top of the page
-  if (currentScrollY < 10) {
-    header.classList.remove("header-hidden");
-    header.classList.add("header-visible");
-    return;
-  }
-
-    if (window.innerWidth < 769) {
+    // 1. Always show header if we are near the top (within 50px)
+    if (currentScrollY < 50) {
       header.classList.remove("header-hidden");
       header.classList.add("header-visible");
+    } 
+    // 2. Hide on scroll down, show on scroll up
+    else if (currentScrollY > lastScrollY) {
+      header.classList.add("header-hidden");
+      header.classList.remove("header-visible");
     } else {
-      if (currentScrollY < 50 || currentScrollY < lastScrollY) {
-        header.classList.remove("header-hidden");
-        header.classList.add("header-visible");
-      } else {
-        header.classList.add("header-hidden");
-        header.classList.remove("header-visible");
-      }
+      header.classList.remove("header-hidden");
+      header.classList.add("header-visible");
     }
 
     lastScrollY = currentScrollY;
@@ -207,13 +201,10 @@ function setupHeaderScroll() {
 
   window.addEventListener("scroll", () => {
     if (!ticking) {
-      requestAnimationFrame(updateHeader);
+      window.requestAnimationFrame(updateHeader);
       ticking = true;
     }
   });
-
-  window.addEventListener("resize", updateHeader);
-  updateHeader();
 }
 
 function setupThemeToggle() {
