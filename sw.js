@@ -55,3 +55,18 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cache) => {
+          if (cache !== CACHE_NAME) {
+            console.log("Service Worker: Clearing Old Cache");
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+});
