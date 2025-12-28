@@ -107,14 +107,14 @@
   <div id="site-footer"></div>
   <script src="./assets/js/menu.js" defer></script>
   <script>
-  // This function triggers the transitions once the browser has had 
-  // one "frame" to paint the static light/dark mode colors.
-  window.addEventListener('load', () => {
-    requestAnimationFrame(() => {
-      document.documentElement.classList.add('transitions-enabled');
-      document.body.classList.add('transitions-enabled');
+    // This function triggers the transitions once the browser has had 
+    // one "frame" to paint the static light/dark mode colors.
+    window.addEventListener('load', () => {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add('transitions-enabled');
+        document.body.classList.add('transitions-enabled');
+      });
     });
-  });
   </script>
 </body>
 </html>
