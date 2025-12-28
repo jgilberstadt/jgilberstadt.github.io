@@ -89,7 +89,11 @@ body.light-mode {
 }
 
 #main-content {
-  flex: 1 0 auto; /* This tells the main content to grow and fill empty space */
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 60vh;
   padding-bottom: 4rem;
 }
 
@@ -123,13 +127,6 @@ body.light-mode {
   --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
-:root.light-mode,
-:root.light-mode body,
-html.light-mode,
-body.light-mode {
-  background-color: #ffffff !important;
-}
-
 body.light-mode {
   color: var(--text);
   background-color: var(--bg);
@@ -143,6 +140,7 @@ body.light-mode .site-header {
 
 body.light-mode .site-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff !important;
 }
 
 /* Ensure the text inside is dark and readable */
@@ -1344,4 +1342,16 @@ body:not(.menu-open) .menu-list li {
     background: #ffffff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   }
+}
+
+/* =========================
+   Light Mode Color
+========================= */
+:root.light-mode,
+html.light-mode,
+html.light-mode body,
+body.light-mode {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #111827;
 }
