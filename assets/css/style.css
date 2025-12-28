@@ -74,28 +74,30 @@ body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
 
 nav.menu { display: flex; align-items: center; gap: 2rem; }
 
-/* Combined Button Logic for Symmetery */
+.menu-controls { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
+
+/* 1. Combined Button Logic (Symmetry & Mobile Reset) */
 .theme-toggle, .menu-toggle {
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--card-border); border-radius: 0.4rem;
   padding: 0.4rem; min-width: 40px; height: 40px;
   color: var(--text); transition: all 0.2s ease;
-  
-  /* CRITICAL FOR MOBILE: */
   outline: none; 
-  -webkit-tap-highlight-color: transparent; 
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
   user-select: none;
 }
 
+/* 2. Kill sticky focus for mobile (Stops buttons staying blue after tap) */
 .theme-toggle:focus, .menu-toggle:focus,
 .theme-toggle:focus-visible, .menu-toggle:focus-visible {
   outline: none;
-  border-color: var(--card-border); /* Resets to default border */
-  color: var(--text); /* Resets to default color */
+  border-color: var(--card-border);
+  color: var(--text);
 }
 
+/* 3. Hover effects ONLY for mouse users */
 @media (hover: hover) {
-  /* Only highlight if the menu IS NOT open and user has a mouse */
   body:not(.menu-open) .theme-toggle:hover, 
   body:not(.menu-open) .menu-toggle:hover {
     border-color: var(--accent);
@@ -103,16 +105,20 @@ nav.menu { display: flex; align-items: center; gap: 2rem; }
   }
 }
 
-/* 4. Active state: Brief visual feedback ONLY while finger is pressed down */
+/* 4. Visual feedback ONLY while finger is actively pressing */
 .theme-toggle:active, .menu-toggle:active {
   background: rgba(128, 128, 128, 0.1);
   transform: scale(0.95);
-  border-color: var(--accent); /* Optional: flash blue only while touching */
+  border-color: var(--accent);
 }
 
-.theme-toggle:hover, .menu-toggle:hover { border-color: var(--accent); }
-
-.menu-controls { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
+/* 5. Immediate reset when mobile menu is open */
+body.menu-open .menu-toggle {
+  border-color: var(--card-border) !important;
+  color: var(--text) !important;
+  background: transparent !important;
+  transform: none !important;
+}
 
 body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !important; }
 
@@ -138,27 +144,6 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
   color: var(--accent) !important;
   opacity: 1 !important;
   font-weight: 700;
-}
-
-/* 3. Active state (brief flash when clicked) */
-.theme-toggle:active, .menu-toggle:active {
-  background: rgba(128, 128, 128, 0.1);
-  transform: scale(0.95);
-}
-
-/* Force the button to reset as soon as the menu opens */
-body.menu-open .menu-toggle {
-  border-color: var(--card-border) !important;
-  color: var(--text) !important;
-  background: transparent !important;
-  transform: none !important;
-}
-
-/* Ensure the tap highlight is killed globally for these buttons */
-.theme-toggle, .menu-toggle {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  user-select: none;
 }
 
 /* =========================
