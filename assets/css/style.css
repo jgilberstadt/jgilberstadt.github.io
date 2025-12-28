@@ -24,8 +24,15 @@
 ========================= */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { height: 100%; scrollbar-gutter: stable; background-color: var(--bg); }
-
+html {
+  /* This tells the browser to always reserve space for the scrollbar, 
+     even if the page isn't long enough to need one. */
+  scrollbar-gutter: stable;
+  
+  /* Standard background and height rules */
+  height: 100%;
+  background-color: var(--bg);
+}
 body {
   font-family: system-ui, -apple-system, sans-serif;
   color: var(--text);
