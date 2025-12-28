@@ -29,6 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  height: 100%;
 }
 
 body.transitions-enabled {
@@ -41,12 +42,6 @@ html {
   background-color: var(--bg);
   /* This prevents the "white flash" or "black flash" when switching modes */
   transition: background-color 0.3s ease; 
-}
-
-html.light-mode, 
-html.light-mode body,
-body.light-mode {
-  background-color: var(--bg) !important;
 }
 
 /* Initial state for elements we want to animate */
