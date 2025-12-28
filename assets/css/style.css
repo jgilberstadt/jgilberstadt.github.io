@@ -197,7 +197,7 @@ main.container { padding: 3rem 0; }
   border-bottom: 1px solid var(--card-border);
 }
 
-/* Consolidate horizontal padding for everything inside the card */
+/* 1. Universal Horizontal Gutter (Fixes "Hugging") */
 .project-item h3, 
 .project-item .project-description, 
 .project-item .project-tags {
@@ -205,6 +205,7 @@ main.container { padding: 3rem 0; }
   padding-right: 1.5rem;
 }
 
+/* 2. Title Spacing */
 .project-item h3 { 
   margin: 1.5rem 0 0.5rem 0; 
   font-size: 1.4rem; 
@@ -212,6 +213,7 @@ main.container { padding: 3rem 0; }
   font-weight: 700; 
 }
 
+/* 3. Description Spacing & Alignment */
 .project-item .project-description { 
   margin: 0 0 1.5rem 0; 
   opacity: 0.8; 
@@ -220,6 +222,7 @@ main.container { padding: 3rem 0; }
   line-height: 1.5;
 }
 
+/* 4. Tags Spacing */
 .project-item .project-tags { 
   padding-bottom: 1.5rem;
   display: flex; 
