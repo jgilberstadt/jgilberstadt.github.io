@@ -59,6 +59,13 @@ body.transitions-enabled {
   margin: 0 auto;
 }
 
+/* Prevent animations during theme swaps or page loads */
+.no-transition, .no-transition *,
+.no-animate, .no-animate * {
+  transition: none !important;
+  animation: none !important;
+}
+
 /* =========================
    3. Unified Transitions
 ========================= */
@@ -88,6 +95,8 @@ header.site-header {
   border-bottom: 1px solid var(--card-border);
   display: flex;
   align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  will-change: transform;
 }
 
 body.light-mode .site-header {
