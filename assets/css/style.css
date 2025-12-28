@@ -199,6 +199,25 @@ main.container { padding: 3rem 0; }
   border-bottom: 1px solid var(--card-border);
 }
 
+/* About Page Spacing Fix */
+.about .social-links, 
+.contact .social-links {
+  margin-top: 3rem; /* Adds a clear gap above the buttons */
+  margin-bottom: 2rem;
+}
+
+/* Ensure the Tools/Skills grid has breathing room */
+.skills-grid {
+  margin-bottom: 3rem; 
+}
+
+/* If the buttons are inside a CTA section */
+.cta-section {
+  padding-top: 4rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--card-border);
+}
+
 /* =========================
    5. Mobile Adjustments
 ========================= */
