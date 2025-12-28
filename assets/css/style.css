@@ -188,13 +188,38 @@ body.light-mode .site-header { background: rgba(255, 255, 255, 0.8); }
   object-fit: cover;
 }
 
-.tag, .project-tag {
-  padding: 0.4rem 0.8rem;
-  border-radius: 2rem;
-  font-size: 0.9rem;
-  background: rgba(128, 128, 128, 0.05);
-  border: 1px solid var(--card-border);
+/* Project Card Typography Refinement */
+.project-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--text);
+  line-height: 1.2;
+}
+
+.project-content p {
+  margin: 0 0 1.5rem 0;
+  font-size: 1rem;
+  opacity: 0.8; /* Makes description slightly softer than the title */
+  color: var(--text);
+}
+
+/* Combined Tag Styling */
+.tag, 
+.project-tag {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2rem;
+  border: 1px solid var(--card-border);
+  background: rgba(128, 128, 128, 0.05);
+  
+  /* Typography */
+  font-size: 0.75rem;          /* Smaller size looks more professional for tags */
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);        /* Use the accent color to make them pop */
+  line-height: 1;
 }
 
 .social-button {
