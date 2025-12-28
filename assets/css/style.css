@@ -125,18 +125,42 @@ main.container { padding: 3rem 0; }
 
 .project-item:hover { transform: translateY(-5px); border-color: var(--accent); }
 
-.project-item a { display: flex; flex-direction: column; width: 100%; height: 100%; color: inherit; }
+.project-item a {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
 
 .project-thumb {
   width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
   display: block; border-bottom: 1px solid var(--card-border);
 }
 
-.project-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-.project-item h3 { margin: 0 0 0.5rem; font-size: 1.4rem; color: var(--text); font-weight: 700; }
+.project-content { 
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem; /* Top, Right, Bottom, Left */
+  flex-grow: 1; 
+  display: flex; 
+  flex-direction: column; 
+}
+.project-item h3 { 
+  margin: 0 0 0.5rem 0; 
+  font-size: 1.4rem; 
+  color: var(--text); 
+  font-weight: 700; 
+}
+
 .project-description { margin: 0 0 1.5rem; opacity: 0.8; font-size: 0.95rem; flex-grow: 1; }
 
-.project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; }
+.project-tags { 
+  padding: 0 1.5rem 1.5rem 1.5rem; 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 0.5rem; 
+  margin-top: auto; 
+}
 
 .tag, .project-tag {
   display: inline-block; padding: 0.25rem 0.75rem; border-radius: 2rem;
