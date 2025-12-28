@@ -21,7 +21,7 @@ body {
   margin: 0;
   padding: 1.25rem;
   font-size: 1rem;
-  padding-top: 6rem;
+  padding-top: 5rem;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -585,7 +585,6 @@ body.menu-open .menu-list li:nth-child(4) { animation-delay: 0.4s; }
 }
 
 main.container {
-  padding-top: 5rem; 
   margin-top: 0;
 }
 
