@@ -60,151 +60,43 @@ body.transitions-enabled { transition: background-color 0.3s ease, color 0.3s ea
    3. Header & Navigation
 ========================= */
 header.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--header-height);
-  z-index: 100;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
-  
-  /* ADD THESE TWO LINES */
-  transition: transform 0.3s ease-in-out; 
+  position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
+  z-index: 100; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--card-border);
+  display: flex; align-items: center;
+  transition: transform 0.4s cubic-bezier(.2,.8,.2,1); /* Smoother slide */
   transform: translateY(0); 
 }
 
-/* When the JS detects scrolling down */
-.header-hidden {
-  transform: translateY(-100%);
-}
-
-/* When the JS detects scrolling up or top of page */
-.header-visible {
-  transform: translateY(0);
-}
+/* Scroll Classes */
+.header-hidden { transform: translateY(-100%); }
+.header-visible { transform: translateY(0); }
 
 body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
 
-.site-header .container { 
-  display: flex; justify-content: space-between; align-items: center; 
-}
-
-/* Brand/Logo Blue Fix */
-.site-title a {
-  color: var(--accent) !important;
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-nav.menu { display: flex; align-items: center; gap: 2rem; }
-
-.menu-controls { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
-
-/* 1. Combined Button Logic (Symmetry & Mobile Reset) */
-.theme-toggle, .menu-toggle {
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--card-border); border-radius: 0.4rem;
-  padding: 0.4rem; min-width: 40px; height: 40px;
-  color: var(--text); transition: all 0.2s ease;
-  outline: none; 
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  user-select: none;
-}
-
-/* 2. Kill sticky focus for mobile (Stops buttons staying blue after tap) */
-.theme-toggle:focus, .menu-toggle:focus,
-.theme-toggle:focus-visible, .menu-toggle:focus-visible {
-  outline: none;
-  border-color: var(--card-border);
-  color: var(--text);
-}
-
-/* 3. Hover effects ONLY for mouse users */
-@media (hover: hover) {
-  body:not(.menu-open) .theme-toggle:hover, 
-  body:not(.menu-open) .menu-toggle:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-}
-
-/* 4. Visual feedback ONLY while finger is actively pressing */
-.theme-toggle:active, .menu-toggle:active {
-  background: rgba(128, 128, 128, 0.1);
-  transform: scale(0.95);
-  border-color: var(--accent);
-}
-
-/* 5. Immediate reset when mobile menu is open */
-body.menu-open .menu-toggle {
-  border-color: var(--card-border) !important;
-  color: var(--text) !important;
-  background: transparent !important;
-  transform: none !important;
-}
-
-body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !important; }
-
-/* Desktop Link Logic */
+/* Desktop Navigation Fixes */
 @media (min-width: 769px) {
-  /* 1. Ensure the list itself is vertically centered */
-  .menu-list { 
-    display: flex; 
-    align-items: center; /* Vertically centers the list items */
-    gap: 2rem; 
-    margin-right: 2rem; 
-    height: 100%; /* Allows it to sit perfectly in the header flexbox */
-  }
-   
+  .menu-list { display: flex; align-items: center; gap: 2rem; margin-right: 2rem; height: 100%; }
+  
   .menu-list a { 
-    position: relative; 
-    opacity: 0.8; 
-    transition: opacity 0.3s;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centers the text inside the link's hit area */
-    line-height: 1; /* Prevents line-height from adding extra bottom space */
+    position: relative; opacity: 0.8; transition: opacity 0.3s;
+    display: inline-flex; flex-direction: column; align-items: center;
+    justify-content: center; line-height: 1; 
   }
    
   .menu-list a::before {
-    content: attr(data-text);
-    height: 0;
-    visibility: hidden;
-    overflow: hidden;
-    user-select: none;
-    pointer-events: none;
-    font-weight: 700;
+    content: attr(data-text); height: 0; visibility: hidden;
+    overflow: hidden; user-select: none; pointer-events: none; font-weight: 700;
   }
 
   .menu-list a:hover, .menu-list a.current { 
-    opacity: 1; 
-    color: var(--accent) !important; 
-    font-weight: 700; 
+    opacity: 1; color: var(--accent) !important; font-weight: 700; 
   }
 
   .menu-list a.current::after { 
-    content: ''; 
-    position: absolute; 
-    bottom: -8px; /* Adjusted slightly lower so it doesn't touch the text */
-    left: 0; 
-    width: 100%; 
-    height: 2px; 
-    background: var(--accent);
+    content: ''; position: absolute; bottom: -8px; 
+    left: 0; width: 100%; height: 2px; background: var(--accent);
   }
-}
-
-/* Highlight Logic for all devices */
-.menu-list a.current {
-  color: var(--accent) !important;
-  opacity: 1 !important;
-  font-weight: 700;
 }
 
 /* =========================
@@ -213,29 +105,13 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
 main.container { padding: 3rem 0; }
 
 /* Social & Contact Buttons */
-.social-links { 
-  display: flex; 
-  flex-wrap: wrap; 
-  margin-top: 2rem; 
-  gap: 12px; /* This is the modern, reliable way to space items in flexbox */
-}
+.social-links { display: flex; flex-wrap: wrap; margin-top: 2rem; gap: 12px; }
 
 .social-button {
-  display: inline-flex; 
-  align-items: center; 
-  justify-content: center;
-  gap: 8px;
-  padding: 0.7rem 1.2rem; 
-  border-radius: 0.4rem;
-  border: 1.5px solid var(--accent); 
-  color: var(--accent);
-  font-weight: 500; 
-  transition: all 0.3s;
-  white-space: nowrap; 
-  width: auto; 
-  /* Removed margin-right/bottom here as 'gap' handles it more cleanly */
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 0.7rem 1.2rem; border-radius: 0.4rem;
+  border: 1.5px solid var(--accent); color: var(--accent);
+  font-weight: 500; transition: all 0.3s; white-space: nowrap;
 }
 
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
@@ -282,13 +158,9 @@ main.container { padding: 3rem 0; }
 }
 
 .project-thumb {
-  width: 100%; 
-  /* 4:3 ratio for mobile (taller) */
-  aspect-ratio: 4 / 3; 
-  object-fit: cover;
-  object-position: top; /* Ensures the top of the website/app is shown */
-  display: block; 
-  border-bottom: 1px solid var(--card-border);
+  width: 100%; aspect-ratio: 4 / 3; /* Mobile default */
+  object-fit: cover; object-position: top;
+  display: block; border-bottom: 1px solid var(--card-border);
 }
 
 /* Universal Card Gutter */
@@ -359,6 +231,8 @@ main.container { padding: 3rem 0; }
   background: rgba(128, 128, 128, 0.1);
   border-radius: 0.5rem;
 }
+
+   .menu-list a.current { color: var(--accent) !important; font-weight: 700; }
    
   .menu-close {
     display: none; position: fixed; top: 1.5rem; right: 1.5rem;
