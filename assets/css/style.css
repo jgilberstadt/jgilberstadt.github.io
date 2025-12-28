@@ -188,6 +188,7 @@ main.container { padding: 3rem 0; }
   display: flex; 
   flex-wrap: wrap; 
   margin-top: 2rem; 
+  gap: 12px; /* This is the modern, reliable way to space items in flexbox */
 }
 
 .social-button {
@@ -203,13 +204,11 @@ main.container { padding: 3rem 0; }
   transition: all 0.3s;
   white-space: nowrap; 
   width: auto; 
-  margin-right: 12px; 
-  margin-bottom: 12px;
+  /* Removed margin-right/bottom here as 'gap' handles it more cleanly */
   -webkit-tap-highlight-color: transparent;
   outline: none;
 }
 
-.social-button:last-child { margin-right: 0; }
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
 
 /* Mobile Tap Visual Reset */
