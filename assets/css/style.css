@@ -241,6 +241,7 @@ body.light-mode .project-item .project-thumb {
 body:not(.light-mode) .project-item:hover {
   box-shadow: none !important;
   filter: none !important;
+  transform: none !important;
 }
 
 /* =========================
