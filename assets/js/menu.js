@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Lock transitions immediately
+  const isLight = document.documentElement.classList.contains("light-mode");
+  if (isLight) {
+    document.body.classList.add("light-mode");
+  }
+  // Lock transitions immediately
   document.documentElement.classList.add("no-transition");
 
   // Inject Header
@@ -225,24 +229,34 @@ function setupHeaderScroll() {
   });
 }
 
+// =========================
+// Theme Logic & Toggle
+// =========================
+function applyTheme(isLight) {
+  // 1. Update Classes
+  document.documentElement.classList.toggle("light-mode", isLight);
+  document.body.classList.toggle("light-mode", isLight);
+
+  // 2. Update Mobile UI (Notch/Address Bar)
+  const metaTheme = document.getElementById("meta-theme-color");
+  if (metaTheme) {
+    metaTheme.setAttribute("content", isLight ? "#ffffff" : "#000000");
+  }
+
+  // 3. Save Preference
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+}
+
 function setupThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
   if (!toggle) return;
 
   toggle.addEventListener("click", () => {
+    // Prevent "sliding" animations during the swap
     document.documentElement.classList.add("no-animate");
 
-    // Toggle the HTML tag (This is what the Guard Script looks for)
-    const isNowLight = document.documentElement.classList.toggle("light-mode");
-    
-    // Sync the Body tag (This is what your CSS uses for overrides)
-    if (isNowLight) {
-      document.body.classList.add("light-mode");
-    } else {
-      document.body.classList.remove("light-mode");
-    }
-    
-    localStorage.setItem("theme", isNowLight ? "light" : "dark");
+    const isCurrentlyLight = document.documentElement.classList.contains("light-mode");
+    applyTheme(!isCurrentlyLight); // Flip it
 
     requestAnimationFrame(() => {
       setTimeout(() => {
