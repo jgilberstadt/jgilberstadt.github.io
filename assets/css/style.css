@@ -229,8 +229,12 @@ main.container { padding: 3rem 0; }
 }
 
 .project-thumb {
-  width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
-  display: block; border-bottom: 1px solid var(--card-border);
+  width: 100%; 
+  /* 4:3 ratio for mobile (taller) */
+  aspect-ratio: 4 / 3; 
+  object-fit: cover;
+  display: block; 
+  border-bottom: 1px solid var(--card-border);
 }
 
 /* Universal Card Gutter */
@@ -327,6 +331,10 @@ main.container { padding: 3rem 0; }
     font-size: 0.9rem;
     border-top: 1px solid var(--card-border);
     padding-top: 2rem;
+  }
+
+   .project-thumb {
+    aspect-ratio: 16 / 9;
   }
 }
 
