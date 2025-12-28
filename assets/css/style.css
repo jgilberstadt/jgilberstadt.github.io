@@ -312,7 +312,8 @@ header.site-header {
   align-items: center;
   width: 100%;
   z-index: 9999 !important;
-  background: rgba(0, 0, 0, 0.8) !important;
+  background-color: #000000 !important; 
+  background: rgba(0, 0, 0, 0.95) !important;
   padding: 1rem 0;
   box-sizing: border-box;
   visibility: visible;
@@ -327,7 +328,8 @@ header.site-header {
   /* Stability properties */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  will-change: transform, background-color; 
+  will-change: transform;
+  contain: paint; /* Tells the browser the header's box is totally separate */
 
   /* Transitions */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
@@ -893,6 +895,13 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   body.light-mode .menu-toggle:hover {
     background: rgba(0, 0, 0, 0.05);
   }
+
+  body:not(.light-mode) .project-item:hover {
+  box-shadow: none !important;
+  filter: none !important; /* This is the most important line to fix the box */
+  /* Keep the translateY if you want the movement, or remove it for maximum stability */
+  transform: translateY(-8px) !important; 
+}
 }
 
 /* 4. MOBILE & TOUCH: Instant feedback that clears on release */
@@ -1335,6 +1344,8 @@ body:not(.menu-open) .menu-list li {
     text-decoration: none;
     background: transparent !important;
     transition: opacity 0.2s ease, color 0.2s ease;
+    transform: translate3d(0,0,0);
+    -webkit-font-smoothing: antialiased;
   }
 
   /* Force the blue ONLY when current or hovered */
