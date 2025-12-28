@@ -60,10 +60,32 @@ body.transitions-enabled { transition: background-color 0.3s ease, color 0.3s ea
    3. Header & Navigation
 ========================= */
 header.site-header {
-  position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
-  z-index: 100; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--card-border);
-  display: flex; align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  
+  /* ADD THESE TWO LINES */
+  transition: transform 0.3s ease-in-out; 
+  transform: translateY(0); 
+}
+
+/* When the JS detects scrolling down */
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+/* When the JS detects scrolling up or top of page */
+.header-visible {
+  transform: translateY(0);
 }
 
 body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
