@@ -268,8 +268,18 @@ header.site-header {
   background: var(--bg);
   padding: 1rem 0;
   box-sizing: border-box;
-  transform: translateY(0); 
   visibility: visible;
+  
+  /* COMBINED TRANSFORMS: This allows scroll-hiding AND stops flickering */
+  transform: translateY(0) translateZ(0); 
+  -webkit-transform: translateY(0) translateZ(0);
+  
+  /* Stability properties */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, background-color; 
+
+  /* Transitions */
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
