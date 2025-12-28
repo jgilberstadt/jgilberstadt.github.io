@@ -113,6 +113,26 @@ body.light-mode .sun-icon { display: none !important; }
   .menu-list { display: flex; gap: 2rem; margin-right: 2rem; }
 }
 
+/* Fix: Restore Blue for Logo and Active Page */
+
+/* 1. Ensure the Logo/Name is always blue */
+.site-title a, 
+.header-left a {
+  color: var(--accent) !important;
+  font-weight: 700;
+}
+
+/* 2. Ensure the "Current" menu link is always blue */
+.menu-list a.current {
+  color: var(--accent) !important;
+  opacity: 1;
+}
+
+/* 3. Ensure the underline for the current page is visible */
+.menu-list a.current::after {
+  transform: scaleX(1);
+}
+
 /* =========================
    4. Page Layouts & Components
 ========================= */
