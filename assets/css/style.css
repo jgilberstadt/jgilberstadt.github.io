@@ -42,7 +42,8 @@ html {
 }
 
 html.light-mode, 
-html.light-mode body {
+html.light-mode body,
+body.light-mode {
   background-color: var(--bg) !important;
 }
 
