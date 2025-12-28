@@ -185,15 +185,16 @@ body.light-mode .site-header {
   body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !important; }
   
   .menu-close {
+    display: none; /* Hidden by default */
     position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    z-index: 300;
-    display: none;
+    top: 1.25rem;
+    right: 1.25rem;
+    z-index: 300; /* Above the menu-list */
     background: transparent;
     border: none;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--text);
+    cursor: pointer;
   }
 
   body.menu-open .menu-close { display: block; }
