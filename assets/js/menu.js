@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("light-mode");
   }
   // Lock transitions immediately
+  requestAnimationFrame(() => {
+    document.body.classList.add("transitions-enabled");
+  });
   document.documentElement.classList.add("no-transition");
 
   // Inject Header
