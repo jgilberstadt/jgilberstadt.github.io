@@ -1,46 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // 1. Lock transitions immediately
   document.documentElement.classList.add("no-transition");
+
   // Inject Header
   fetch("./partials/header.html")
     .then(response => response.text())
     .then(html => {
-      // First, inject the HTML
       document.getElementById("site-header").innerHTML = html;
       
-      // Wrap the height measurement in requestAnimationFrame
-      requestAnimationFrame(() => {
-        const headerEl = document.querySelector(".site-header");
-        if (headerEl) {
-          document.documentElement.style.scrollPaddingTop = headerEl.offsetHeight + "px";
-        }
-      });
-
+      // Initialize everything AFTER injection
       setupMenu();
       setupHeaderScroll();
       setupThemeToggle();
-      triggerPageFadeIn();
+      highlightCurrentPage(); // Run this while transitions are still locked!
+      
+      // 2. IMPORTANT: Only remove the lock AFTER the header is painted
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          document.documentElement.classList.remove("no-transition");
+        }, 100); 
+      });
     })
-    .catch(err => console.error("Failed to load header:", err));
+    .catch(err => {
+      console.error("Failed to load header:", err);
+      document.documentElement.classList.remove("no-transition");
+    });
 
-  // Inject Footer
+  // Inject Footer (Can remain separate)
   fetch("./partials/footer.html")
     .then(response => response.text())
     .then(html => {
       const footerContainer = document.getElementById("site-footer");
-      if (footerContainer) {
-        footerContainer.innerHTML = html;
-      }
-    })
-    .catch(err => console.error("Failed to load footer:", err));
+      if (footerContainer) footerContainer.innerHTML = html;
+    });
 
-  // Fade-in animation trigger
   triggerPageFadeIn();
-
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      document.documentElement.classList.remove("no-transition");
-    }, 100);
-  });
 });
 
 // =========================
