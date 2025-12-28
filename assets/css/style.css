@@ -185,7 +185,13 @@ body.light-mode .sun-icon {
 main.container { padding: 3rem 0; }
 
 /* Social & Contact Buttons */
-.social-links { display: flex; flex-wrap: wrap; margin-top: 2rem; gap: 12px; }
+.social-links { 
+  display: flex; 
+  flex-wrap: wrap; 
+  margin-top: 2rem; 
+  gap: 12px;           /* Horizontal and vertical gap for modern browsers */
+  row-gap: 16px;       /* Extra insurance for vertical spacing when buttons wrap */
+}
 
 .social-button {
   display: inline-flex; align-items: center; justify-content: center;
@@ -274,12 +280,14 @@ main.container { padding: 3rem 0; }
 @media (max-width: 480px) {
   .social-links { 
     justify-content: center; 
-    gap: 10px; /* Slightly tighter gap for tiny screens if needed */
+    gap: 12px; 
+    row-gap: 16px; /* This ensures that when buttons stack, they don't touch */
   }
   
   .social-button { 
-    width: auto; 
-    margin: 0; /* Clear any lingering margins */
+    width: 100%;    /* Optional: Makes buttons full-width on tiny phones for easier tapping */
+    max-width: 300px; 
+    margin: 0; 
   }
 }
 
