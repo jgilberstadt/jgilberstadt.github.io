@@ -66,7 +66,7 @@ body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
 }
 
 /* Brand/Logo Blue Fix */
-.site-title a, .header-left a, .logo a {
+.site-title a {
   color: var(--accent) !important;
   font-weight: 700;
   font-size: 1.25rem;
@@ -74,13 +74,17 @@ body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
 
 nav.menu { display: flex; align-items: center; gap: 2rem; }
 
-.menu-controls { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
-
-.theme-toggle {
+/* Combined Button Logic for Symmetery */
+.theme-toggle, .menu-toggle {
+  display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--card-border); border-radius: 0.4rem;
-  padding: 0.4rem; display: flex; align-items: center; justify-content: center;
-  min-width: 40px; height: 40px;
+  padding: 0.4rem; min-width: 40px; height: 40px;
+  color: var(--text); transition: all 0.3s;
 }
+
+.theme-toggle:hover, .menu-toggle:hover { border-color: var(--accent); }
+
+.menu-controls { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
 
 body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !important; }
 
@@ -91,7 +95,7 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
   .menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent) !important; }
   .menu-list a.current::after { 
     content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; 
-    height: 2px; background: var(--accent); transform: scaleX(1); 
+    height: 2px; background: var(--accent); 
   }
 }
 
@@ -177,66 +181,40 @@ main.container { padding: 3rem 0; }
    5. Mobile Adjustments
 ========================= */
 
-/* Base Profile Style (Applies to both Mobile & Desktop) */
+/* Base Profile Style */
 .profile { 
-  border-radius: 50%; /* This makes it a circle */
-  border: 3px solid var(--accent); 
-  padding: 5px; 
-  object-fit: cover; /* Prevents the face from stretching */
+  border-radius: 50%; border: 3px solid var(--accent); 
+  padding: 5px; object-fit: cover;
 }
 
 @media (max-width: 768px) {
   .menu-list {
-    position: fixed; inset: 0; background: var(--bg);
-    flex-direction: column; justify-content: center; align-items: center;
-    z-index: 200; opacity: 0; visibility: hidden; transition: all 0.3s;
+    position: fixed; inset: 0; 
+    width: 100vw; height: 100vh; 
+    background: var(--bg);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; 
+    gap: 2rem; z-index: 1000; 
+    opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out;
   }
+   
   body.menu-open .menu-list { opacity: 1; visibility: visible; }
-  .menu-list a { font-size: 2rem; margin: 1rem 0; }
-  
+   
+  .menu-list a { font-size: 2rem; font-weight: 600; color: var(--text); }
+   
   .menu-close {
     display: none; position: fixed; top: 1.5rem; right: 1.5rem;
-    z-index: 300; font-size: 2rem;
+    z-index: 1100; font-size: 2rem; color: var(--text);
   }
   body.menu-open .menu-close { display: block; }
   
-  /* Mobile Size and Alignment */
   .intro-block { text-align: center; }
-  .profile { 
-    width: 8rem; 
-    height: 8rem; 
-    margin: 0 auto; /* Centers the circle on mobile */
-  }
-
-   /* Add this inside the (max-width: 768px) block */
-.menu-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--card-border);
-  border-radius: 0.4rem;
-  padding: 0.4rem;
-  min-width: 40px;
-  height: 40px;
-  color: var(--text);
-  transition: border-color 0.3s;
-}
-
-.menu-toggle:hover {
-  border-color: var(--accent);
-}
+  .profile { width: 8rem; height: 8rem; margin: 0 auto; }
 }
 
 @media (min-width: 769px) {
   .menu-toggle, .menu-close { display: none; }
   .intro-block { display: flex; align-items: center; gap: 3rem; text-align: left; }
-  
-  /* Desktop Size and Alignment */
-  .profile { 
-    width: 12rem; 
-    height: 12rem; 
-    margin: 0; /* Aligns left for desktop layout */
-  }
+  .profile { width: 12rem; height: 12rem; margin: 0; }
 }
 
 /* =========================
