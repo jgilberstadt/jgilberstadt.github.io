@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // 1. Sync theme classes immediately (No transition yet because CSS has transition: none)
   const isLight = document.documentElement.classList.contains("light-mode");
   if (isLight) {
     document.body.classList.add("light-mode");
   }
-  // Lock transitions immediately
-  requestAnimationFrame(() => {
-    document.body.classList.add("transitions-enabled");
-  });
+
+  // 2. Lock EVERYTHING during injection
   document.documentElement.classList.add("no-transition");
 
   // Inject Header
@@ -14,8 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(response => response.text())
     .then(html => {
       const headerContainer = document.getElementById("site-header");
-  
-      // Add the lock specifically to the container before injection
       headerContainer.classList.add("no-transition");
       headerContainer.innerHTML = html;
 
@@ -24,14 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
       setupThemeToggle();
       highlightCurrentPage();
 
-      // Force a "reflow" so the browser recognizes the new styles without animating them
-      void headerContainer.offsetWidth; 
+      void headerContainer.offsetWidth; // Force reflow
 
+      // 3. NOW it is safe to unlock and enable future transitions
       requestAnimationFrame(() => {
         setTimeout(() => {
           headerContainer.classList.remove("no-transition");
           document.documentElement.classList.remove("no-transition");
-        }, 150); // Increased slightly to ensure full paint
+          
+          document.body.classList.add("transitions-enabled"); 
+        }, 150);
       });
     })
     .catch(err => {
