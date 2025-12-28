@@ -79,7 +79,9 @@ nav.menu { display: flex; align-items: center; gap: 2rem; }
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--card-border); border-radius: 0.4rem;
   padding: 0.4rem; min-width: 40px; height: 40px;
-  color: var(--text); transition: all 0.3s;
+  color: var(--text); transition: all 0.2s ease;
+  outline: none; /* Removes default browser ring */
+  -webkit-tap-highlight-color: transparent; /* Removes blue box on tap for iOS */
 }
 
 .theme-toggle:hover, .menu-toggle:hover { border-color: var(--accent); }
@@ -118,6 +120,19 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
     background: var(--accent);
     transform: scaleX(1);
   }
+}
+
+@media (hover: hover) {
+  .theme-toggle:hover, .menu-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+/* 3. Active state (brief flash when clicked) */
+.theme-toggle:active, .menu-toggle:active {
+  background: rgba(128, 128, 128, 0.1);
+  transform: scale(0.95);
 }
 
 /* =========================
