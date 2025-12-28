@@ -100,6 +100,16 @@ body.light-mode .site-header {
   align-items: center;
 }
 
+/* Add these to Section 4 of your CSS */
+.site-header.header-hidden {
+  transform: translateY(-100%);
+}
+
+.site-header.header-visible {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .site-title a {
   font-size: 1.2rem;
   font-weight: 600;
