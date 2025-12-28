@@ -190,7 +190,11 @@ main.container { padding: 3rem 0; }
 }
 
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
-.social-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(96,165,250,0.15); }
+
+.social-button.btn-primary:focus {
+  background: var(--accent);
+  color: #ffffff;
+}
 
 /* Project Grid & Cards */
 .project-grid ul { 
@@ -232,6 +236,26 @@ main.container { padding: 3rem 0; }
 .project-item .project-tags {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.project-item a,
+.social-button,
+.tag,
+.project-tag {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* 2. Force reset of the highlight after the tap is finished */
+.project-item a:focus,
+.project-item a:focus-visible,
+.social-button:focus,
+.social-button:focus-visible {
+  outline: none;
+  /* Resetting to the base state colors */
+  border-color: var(--card-border); 
+  background: var(--card-bg);
+  transform: none;
 }
 
 /* 2. Title Spacing */
@@ -282,6 +306,18 @@ main.container { padding: 3rem 0; }
   
   .social-button {
     width: auto;   /* Overrides the previous 100% width rule */
+  }
+}
+
+@media (hover: hover) {
+  .project-item:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--accent); 
+  }
+  .social-button:hover { 
+    transform: translateY(-2px); 
+    border-color: var(--accent);
+    color: var(--accent);
   }
 }
 
