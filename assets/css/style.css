@@ -100,9 +100,24 @@ body.light-mode .sun-icon { display: none !important; }
   .menu-list li { display: flex; align-items: center; height: 100%; }
   
   .menu-list a { 
-    position: relative; opacity: 0.8; transition: opacity 0.3s;
-    display: inline-flex; align-items: center; justify-content: center; 
+    position: relative; 
+    opacity: 0.7; /* Dimmer when not active/hovered */
+    transition: all 0.3s ease;
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
     height: var(--header-height);
+  }
+
+   .menu-list a:hover {
+    opacity: 1;
+    color: var(--accent) !important;
+  }
+
+   .menu-list a.current {
+    opacity: 1;
+    color: var(--accent) !important;
+    font-weight: 700;
   }
 
   /* Hover Expanding Underline */
@@ -114,6 +129,16 @@ body.light-mode .sun-icon { display: none !important; }
 
   .menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent) !important; }
   .menu-list a:hover::after, .menu-list a.current::after { width: 100%; }
+
+   .menu-list a.current::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%; /* Full width for the active page */
+    height: 2px;
+    background: var(--accent);
+  }
 }
 
 /* =========================
