@@ -225,21 +225,21 @@ function setupHeaderScroll() {
 
   function updateHeader() {
   const currentScrollY = window.scrollY;
+  const headerHeight = header.offsetHeight;
 
-  // 1. Always show header if near the top OR if we've scrolled past the bottom (iOS bounce)
-  if (currentScrollY <= 50) {
+  // 1. Always show at the very top
+  if (currentScrollY <= 0) {
     header.classList.remove("header-hidden");
-    header.classList.add("header-visible");
-  } 
-  // 2. Hide on scroll down
-  else if (currentScrollY > lastScrollY && currentScrollY > 0) {
+    return;
+  }
+
+  // 2. Hide on scroll down (if we've scrolled past the header height)
+  if (currentScrollY > lastScrollY && currentScrollY > headerHeight) {
     header.classList.add("header-hidden");
-    header.classList.remove("header-visible");
   } 
   // 3. Show on scroll up
   else {
     header.classList.remove("header-hidden");
-    header.classList.add("header-visible");
   }
 
   lastScrollY = currentScrollY;
