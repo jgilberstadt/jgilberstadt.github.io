@@ -95,13 +95,18 @@ html.light-mode body {
 /* =========================
    Light Mode Overrides
 ========================= */
-body.light-mode {
+:root.light-mode {
   --bg: #ffffff;
   --text: #111827;
   --accent: #2563eb;
   --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.08);
   --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+body.light-mode {
+  color: var(--text);
+  background-color: var(--bg);
 }
 
 body.light-mode .site-header {
