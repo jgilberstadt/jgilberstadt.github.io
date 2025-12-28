@@ -210,6 +210,25 @@ main.container { padding: 3rem 0; }
   body.menu-open .menu-list li:nth-child(3) { transition-delay: 0.2s; }
 
   .menu-list a { font-size: 2rem; font-weight: 600; }
+
+   /* Ensure the current page link is highlighted on mobile */
+.menu-list a.current {
+  color: var(--accent) !important;
+  font-weight: 700;
+  position: relative;
+}
+
+/* Optional: Add a small dot or indicator for mobile specifically */
+.menu-list a.current::after {
+  content: '•';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+   
   .menu-close {
     display: none; position: fixed; top: 1.5rem; right: 1.5rem;
     z-index: 1100; font-size: 2rem; 
