@@ -83,66 +83,31 @@ body.transitions-enabled {
    4. Header & Navigation
 ========================= */
 header.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--header-height);
-  z-index: 100;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
+  position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
+  z-index: 100; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--card-border);
+  display: flex; align-items: center;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-body.light-mode .site-header {
-  background: rgba(255, 255, 255, 0.8);
-}
+body.light-mode .site-header { background: rgba(255, 255, 255, 0.8); }
 
 .site-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%; /* Ensures it spans the header */
+  display: flex; justify-content: space-between; align-items: center;
+  width: 92%; max-width: 1200px;
 }
 
-/* Aligning the Toggle and Hamburger */
+/* Fixes the icon placement */
 .menu-controls {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Space between Sun/Moon and Hamburger */
+  gap: 1rem;
 }
 
 .theme-toggle {
-  background: transparent;
-  border: 1px solid var(--card-border);
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text);
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.menu-toggle {
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--text);
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-/* Ensure icons behave inside the toggle */
-.sun-icon, .moon-icon {
-  display: inline-block;
-  line-height: 1;
+  background: transparent; border: 1px solid var(--card-border);
+  border-radius: 0.4rem; padding: 0.4rem; cursor: pointer;
+  color: var(--text); display: flex; align-items: center;
 }
 
 /* =========================
