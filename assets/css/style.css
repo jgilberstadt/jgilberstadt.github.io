@@ -162,15 +162,15 @@ main.container { padding: 3rem 0; }
 .social-links { 
   display: flex; 
   flex-wrap: wrap; 
-  gap: 12px;       /* This creates the physical gap between buttons */
   margin-top: 2rem; 
+  /* justify-content: flex-start; */ /* Use 'center' if you want them centered on About page */
 }
 
 .social-button {
   display: inline-flex; 
   align-items: center; 
   justify-content: center;
-  gap: 8px;
+  gap: 8px; /* This is the gap between icon and text inside the button */
   padding: 0.7rem 1.2rem; 
   border-radius: 0.4rem;
   border: 1.5px solid var(--accent); 
@@ -178,7 +178,15 @@ main.container { padding: 3rem 0; }
   font-weight: 500; 
   transition: all 0.3s;
   white-space: nowrap; 
-  width: auto;     /* Ensures they only take up as much space as the text needs */
+  width: auto; 
+  
+  /* ADD THIS: Space between the buttons */
+  margin-right: 12px; 
+  margin-bottom: 12px; /* Space if they wrap to a second line */
+}
+
+.social-button:last-child {
+  margin-right: 0;
 }
 
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
@@ -259,13 +267,17 @@ main.container { padding: 3rem 0; }
 }
 
 /* Page Specific Spacing */
-.about .social-links, .contact .social-links, .cta-section .social-button { margin-top: 3.5rem; }
+.about .social-links, 
+.contact .social-links, 
+.cta-section .social-button { 
+  margin-top: 2.5rem; 
+}
 .skills-grid { margin-bottom: 4rem; }
 .cta-section { padding-top: 4rem; margin-top: 4rem; border-top: 1px solid var(--card-border); text-align: center; }
 
 @media (max-width: 480px) {
   .social-links {
-    justify-content: flex-start; /* Keeps them on the left, or use 'center' if you prefer */
+    justify-content: center; /* This looks better on mobile */
   }
   
   .social-button {
