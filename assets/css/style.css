@@ -233,6 +233,7 @@ main.container { padding: 3rem 0; }
   /* 4:3 ratio for mobile (taller) */
   aspect-ratio: 4 / 3; 
   object-fit: cover;
+  object-position: top; /* Ensures the top of the website/app is shown */
   display: block; 
   border-bottom: 1px solid var(--card-border);
 }
