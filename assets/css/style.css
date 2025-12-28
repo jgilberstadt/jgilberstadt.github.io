@@ -9,7 +9,7 @@
   --card-border: rgba(255, 255, 255, 0.1);
   --transition-smooth: 0.3s cubic-bezier(.2,.8,.2,1);
   --header-height: 4.5rem;
-  --color-scheme: dark;
+  color-scheme: dark; 
 }
 
 :root.light-mode {
@@ -18,7 +18,7 @@
   --accent: #2563eb;
   --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.08);
-  --color-scheme: light;
+  color-scheme: light;
 }
 
 /* =========================
