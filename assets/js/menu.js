@@ -230,20 +230,20 @@ function setupThemeToggle() {
   if (!toggle) return;
 
   toggle.addEventListener("click", () => {
-    // 1. Lock everything
     document.documentElement.classList.add("no-animate");
-    
-    // 2. Perform the swap on both elements
+
+    // Toggle the HTML tag (This is what the Guard Script looks for)
     const isNowLight = document.documentElement.classList.toggle("light-mode");
-    document.body.classList.toggle("light-mode", isNowLight);
+    
+    // Sync the Body tag (This is what your CSS uses for overrides)
+    if (isNowLight) {
+      document.body.classList.add("light-mode");
+    } else {
+      document.body.classList.remove("light-mode");
+    }
     
     localStorage.setItem("theme", isNowLight ? "light" : "dark");
 
-    // 3. Force a "Style Recalculation"
-    // This makes the browser apply the colors while no-animate is active
-    window.getComputedStyle(document.documentElement).backgroundColor;
-
-    // 4. Clean up
     requestAnimationFrame(() => {
       setTimeout(() => {
         document.documentElement.classList.remove("no-animate");
