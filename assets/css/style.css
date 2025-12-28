@@ -24,7 +24,7 @@ body {
   padding-top: 5rem;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  transition: none !important;
+  transition: background-color 0s, color 0s;
   background-color: var(--bg);
   display: flex;
   flex-direction: column;
@@ -1312,6 +1312,11 @@ body:not(.menu-open) .menu-list li {
     opacity: 0.6;
     font-size: 1.2rem;
     transition: opacity 0.2s ease; 
+  }
+
+   .menu-list a:hover {
+    opacity: 1;
+    color: var(--accent);
   }
 
    .menu-list a.current {
