@@ -40,8 +40,11 @@ html {
   height: 100%;
   scrollbar-gutter: stable;
   background-color: var(--bg);
-  /* This prevents the "white flash" or "black flash" when switching modes */
-  transition: background-color 0.3s ease; 
+  transition: none; 
+}
+
+html.transitions-enabled {
+  transition: background-color 0.3s ease;
 }
 
 /* Initial state for elements we want to animate */
@@ -1353,11 +1356,16 @@ body:not(.menu-open) .menu-list li {
   --accent: #2563eb;
 }
 
-/* Force the background to be white immediately with no transitions on load */
-html.light-mode, 
-body.light-mode, 
-body.light-mode #main-content {
-  background-color: var(--bg) !important;
-  color: var(--text) !important;
-  transition: none !important; 
+/* 1. Force instant colors if transitions aren't enabled yet */
+body.light-mode:not(.transitions-enabled),
+html.light-mode:not(.transitions-enabled) {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  transition: none !important;
+}
+
+/* 2. Fix for Chrome's 'Main Content' rendering layer */
+body.light-mode:not(.transitions-enabled) #main-content {
+  background-color: #ffffff !important;
+  transition: none !important;
 }
