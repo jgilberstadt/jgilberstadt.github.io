@@ -131,19 +131,26 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
 
 /* Desktop Link Logic */
 @media (min-width: 769px) {
-   .menu-list { display: flex; gap: 2rem; margin-right: 2rem; }
+  /* 1. Ensure the list itself is vertically centered */
+  .menu-list { 
+    display: flex; 
+    align-items: center; /* Vertically centers the list items */
+    gap: 2rem; 
+    margin-right: 2rem; 
+    height: 100%; /* Allows it to sit perfectly in the header flexbox */
+  }
    
-.menu-list a { 
+  .menu-list a { 
     position: relative; 
     opacity: 0.8; 
     transition: opacity 0.3s;
-    /* Stack the real text on top of the invisible spacer */
     display: inline-flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Centers the text inside the link's hit area */
+    line-height: 1; /* Prevents line-height from adding extra bottom space */
   }
    
-   /* The "Ghost" spacer: always bold, but invisible and 0px tall */
   .menu-list a::before {
     content: attr(data-text);
     height: 0;
@@ -151,7 +158,7 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
     overflow: hidden;
     user-select: none;
     pointer-events: none;
-    font-weight: 700; /* Reserves the width of the bold version */
+    font-weight: 700;
   }
 
   .menu-list a:hover, .menu-list a.current { 
@@ -163,7 +170,7 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
   .menu-list a.current::after { 
     content: ''; 
     position: absolute; 
-    bottom: -4px; 
+    bottom: -8px; /* Adjusted slightly lower so it doesn't touch the text */
     left: 0; 
     width: 100%; 
     height: 2px; 
