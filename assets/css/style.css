@@ -68,6 +68,13 @@ header.site-header {
   transform: translateY(0); 
 }
 
+.site-header .container { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  height: 100%; /* Ensure the container fills the header's 4.5rem height */
+}
+
 /* Scroll Classes */
 .header-hidden { transform: translateY(-100%); }
 .header-visible { transform: translateY(0); }
@@ -76,12 +83,32 @@ body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
 
 /* Desktop Navigation Fixes */
 @media (min-width: 769px) {
-  .menu-list { display: flex; align-items: center; gap: 2rem; margin-right: 2rem; height: 100%; }
+  .menu-list { 
+    display: flex; 
+    align-items: center; 
+    gap: 2rem; 
+    margin-right: 2rem; 
+    height: 100%; 
+    margin-top: 0; /* Clear any accidental top margins */
+    margin-bottom: 0; /* Clear any accidental bottom margins */
+  }
+
+   .menu-list li {
+    display: flex;
+    align-items: center;
+    height: 100%; /* Ensure the list items also fill the height */
+  }
   
   .menu-list a { 
-    position: relative; opacity: 0.8; transition: opacity 0.3s;
-    display: inline-flex; flex-direction: column; align-items: center;
-    justify-content: center; line-height: 1; 
+    position: relative; 
+    opacity: 0.8; 
+    transition: opacity 0.3s;
+    display: inline-flex; 
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
+    height: var(--header-height); /* Force link to be exactly the header height */
+    line-height: 1; 
   }
    
   .menu-list a::before {
