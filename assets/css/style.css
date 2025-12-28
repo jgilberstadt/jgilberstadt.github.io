@@ -39,7 +39,6 @@ body.transitions-enabled {
 html {
   height: 100%;
   scrollbar-gutter: stable;
-  background-color: var(--bg);
   /* This prevents the "white flash" or "black flash" when switching modes */
   transition: background-color 0.3s ease; 
 }
@@ -88,7 +87,7 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 60vh;
+  min-height: calc(100vh - 10rem); /* This accounts for header/footer height */
   padding-bottom: 4rem;
 }
 
@@ -1340,13 +1339,19 @@ body:not(.menu-open) .menu-list li {
 }
 
 /* =========================
-   Light Mode Color
+   Light Mode Final Fix
 ========================= */
-:root.light-mode,
-html.light-mode,
-html.light-mode body,
+html.light-mode {
+  background-color: #ffffff !important;
+}
+
 body.light-mode {
   background-color: #ffffff !important;
-  background: #ffffff !important;
-  color: #111827;
+  color: #111827 !important;
+}
+
+/* This stretches your content so the footer hits the bottom */
+html.light-mode #main-content {
+  background-color: #ffffff !important;
+  flex: 1 0 auto;
 }
