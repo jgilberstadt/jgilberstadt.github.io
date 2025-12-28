@@ -95,7 +95,9 @@ nav.menu { display: flex; align-items: center; gap: 2rem; }
 }
 
 @media (hover: hover) {
-  .theme-toggle:hover, .menu-toggle:hover {
+  /* Only highlight if the menu IS NOT open and user has a mouse */
+  body:not(.menu-open) .theme-toggle:hover, 
+  body:not(.menu-open) .menu-toggle:hover {
     border-color: var(--accent);
     color: var(--accent);
   }
@@ -136,13 +138,6 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
   color: var(--accent) !important;
   opacity: 1 !important;
   font-weight: 700;
-}
-
-@media (hover: hover) {
-  .theme-toggle:hover, .menu-toggle:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
 }
 
 /* 3. Active state (brief flash when clicked) */
