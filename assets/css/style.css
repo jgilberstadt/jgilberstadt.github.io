@@ -1210,9 +1210,25 @@ body.light-mode .social-button.btn-primary {
     pointer-events: none;
   }
 
+body.menu-open .menu-list {
+    display: flex !important; /* Forces it to show even if desktop logic tried to hide it */
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    z-index: 100000;
+    background: #000000; /* Start with a solid color to test, then add alpha */
+  }
+   
 /* Animation trigger when body has .menu-open */
 body.menu-open .menu-list li {
   animation: menuLinkFadeIn 0.5s ease forwards;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* When menu closes, they slide down slightly while fading */
