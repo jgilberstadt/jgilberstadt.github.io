@@ -384,9 +384,10 @@ main.container { padding: 3rem 0; }
 }
 
 /* Optional: Add a small separator between footer links if they are in a list */
-.site-footer li {
+.site-footer a {
+  margin: 0 1rem;
+  color: var(--accent);
   display: inline-block;
-  margin: 0 0.75rem;
 }
 
 .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.4s ease-out; }
