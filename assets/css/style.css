@@ -560,14 +560,13 @@ body:not(.light-mode) .menu-list {
 .menu-list a::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -2px; /* Moves the line slightly below the text */
   left: 0;
   width: 100%;
-  height: 2px; /* Desktop lines are usually thinner than mobile for elegance */
+  height: 2px;
   background-color: var(--accent);
   transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform var(--transition-medium);
+  transition: transform 0.3s ease;
 }
 
 .menu-list a:hover {
@@ -589,7 +588,9 @@ body:not(.light-mode) .menu-list {
 
 .menu-list a:hover,
 .menu-list a:focus-visible {
-  background: rgba(255,255,255,0.08);
+  background: transparent !important;
+  color: var(--accent);
+  opacity: 1;
 }
 
 /* Define the keyframes for the slide-up effect */
