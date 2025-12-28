@@ -131,9 +131,32 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
 
 /* Desktop Link Logic */
 @media (min-width: 769px) {
-  .menu-list { display: flex; gap: 2rem; margin-right: 2rem; }
-  .menu-list a { position: relative; opacity: 0.8; transition: opacity 0.3s; }
-  .menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent) !important; }
+   .menu-list { display: flex; gap: 2rem; margin-right: 2rem; }
+.menu-list a { 
+    position: relative; 
+    opacity: 0.8; 
+    transition: opacity 0.3s;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+   
+   .menu-list a::before {
+    display: block;
+    content: attr(data-text); /* This pulls text from your HTML */
+    font-weight: 700;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  .menu-list a:hover, .menu-list a.current { 
+    opacity: 1; 
+    color: var(--accent) !important; 
+    font-weight: 700; /* Now it won't shift because the space is already reserved! */
+  }
+
   .menu-list a.current::after { 
     content: ''; 
     position: absolute; 
