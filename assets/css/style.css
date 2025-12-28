@@ -249,6 +249,23 @@ body.light-mode .site-header {
   color: #ffffff;
 }
 
+/* Contact Page Button Alignment */
+.social-links, 
+.contact-links {
+  list-style: none;     /* Removes the bullet points */
+  padding: 0;           /* Removes default list indentation */
+  margin: 2rem 0;
+  display: flex;        /* Puts buttons side-by-side */
+  flex-wrap: wrap;      /* Allows them to stack on mobile if needed */
+  gap: 1rem;            /* Spacing between buttons */
+  justify-content: center; /* Centers buttons on the page */
+}
+
+.social-links li, 
+.contact-links li {
+  margin: 0;            /* Ensures no extra spacing from list items */
+}
+
 /* Specific Layouts to keep the About/Projects pages looking right */
 .intro-block { display: flex; flex-direction: column; align-items: center; gap: 2rem; margin-bottom: 2rem; text-align: center; }
 .profile { width: 9rem; height: 9rem; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; padding: 4px; }
