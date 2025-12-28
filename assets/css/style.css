@@ -552,11 +552,11 @@ body.menu-open .menu-controls {
 
 /* Only apply the glass border when NOT in light mode and NOT on desktop */
 body:not(.light-mode) .menu-list {
-  background: rgba(0, 0, 0, 0.85) !important;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: none;
-  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.95) !important;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: none !important;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
 }
 
 /* Menu links */
@@ -1253,9 +1253,9 @@ body:not(.menu-open) .menu-list li {
   }
 
    body.light-mode .menu-list {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
   box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.5);
   border: none !important;
 }
