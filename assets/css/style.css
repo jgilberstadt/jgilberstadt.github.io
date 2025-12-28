@@ -1236,7 +1236,6 @@ body:not(.menu-open) .menu-list li {
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    border: none !important; /* Removes the glass edge on desktop */
     box-shadow: none !important;
     transform: none !important; 
   }
@@ -1245,6 +1244,11 @@ body:not(.menu-open) .menu-list li {
     opacity: 1 !important;
     animation: none !important;
   }
+
+   .menu-list, .menu-list li {
+  border: none !important;
+  outline: none !important;
+}
 
   .menu-list a {
     color: var(--text);
