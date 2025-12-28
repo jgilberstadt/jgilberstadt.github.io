@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Sync theme classes immediately (No transition yet because CSS has transition: none)
+  // 1. Sync theme classes immediately and FORCE background
   const isLight = document.documentElement.classList.contains("light-mode");
   if (isLight) {
     document.body.classList.add("light-mode");
+    // Explicitly set background to prevent the 'computed' default flash
+    document.body.style.backgroundColor = "#ffffff"; 
+  } else {
+    document.body.style.backgroundColor = "#000000";
   }
 
   // 2. Lock EVERYTHING during injection
@@ -29,6 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
           headerContainer.classList.remove("no-transition");
           document.documentElement.classList.remove("no-transition");
           
+          // Clear the inline style so CSS variables take over permanently
+          document.body.style.backgroundColor = ""; 
           document.body.classList.add("transitions-enabled"); 
         }, 150);
       });
