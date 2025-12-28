@@ -306,13 +306,13 @@ header.site-header {
   align-items: center;
   width: 100%;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.8) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
   padding: 1rem 0;
   box-sizing: border-box;
   visibility: visible;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   
   /* COMBINED TRANSFORMS: This allows scroll-hiding AND stops flickering */
   transform: translateY(0) translateZ(0); 
@@ -756,6 +756,8 @@ main.container {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
   transition: 
     background-color 0.3s ease, 
     border-color 0.3s ease, 
