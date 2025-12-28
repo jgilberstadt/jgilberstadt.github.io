@@ -159,14 +159,27 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
 main.container { padding: 3rem 0; }
 
 /* Social & Contact Buttons */
-.social-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+.social-links { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 1rem;       /* This adds space both horizontally AND vertically */
+  margin-top: 2rem; 
+}
 
 .social-button {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.6rem 1.2rem; border-radius: 0.4rem;
-  border: 1.5px solid var(--accent); color: var(--accent);
-  font-weight: 500; transition: all 0.3s;
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.4rem; /* Slightly larger padding for better mobile touch */
+  border-radius: 0.4rem;
+  border: 1.5px solid var(--accent); 
+  color: var(--accent);
+  font-weight: 500; 
+  transition: all 0.3s;
+  white-space: nowrap;    /* Prevents the text inside the button from breaking */
 }
+
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
 .social-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(96,165,250,0.15); }
 
@@ -248,6 +261,16 @@ main.container { padding: 3rem 0; }
 .about .social-links, .contact .social-links, .cta-section .social-button { margin-top: 3.5rem; }
 .skills-grid { margin-bottom: 4rem; }
 .cta-section { padding-top: 4rem; margin-top: 4rem; border-top: 1px solid var(--card-border); text-align: center; }
+
+@media (max-width: 480px) {
+  .social-links {
+    justify-content: center; /* Centers buttons on very small phones */
+  }
+  
+  .social-button {
+    width: 100%; /* Optional: Makes buttons full-width on tiny phones for easier clicking */
+  }
+}
 
 /* =========================
    5. Mobile Adjustments
