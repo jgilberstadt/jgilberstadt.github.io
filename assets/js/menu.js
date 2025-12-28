@@ -6,19 +6,25 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("./partials/header.html")
     .then(response => response.text())
     .then(html => {
-      document.getElementById("site-header").innerHTML = html;
-      
-      // Initialize everything AFTER injection
+      const headerContainer = document.getElementById("site-header");
+  
+      // Add the lock specifically to the container before injection
+      headerContainer.classList.add("no-transition");
+      headerContainer.innerHTML = html;
+
       setupMenu();
       setupHeaderScroll();
       setupThemeToggle();
-      highlightCurrentPage(); // Run this while transitions are still locked!
-      
-      // 2. IMPORTANT: Only remove the lock AFTER the header is painted
+      highlightCurrentPage();
+
+      // Force a "reflow" so the browser recognizes the new styles without animating them
+      void headerContainer.offsetWidth; 
+
       requestAnimationFrame(() => {
         setTimeout(() => {
+          headerContainer.classList.remove("no-transition");
           document.documentElement.classList.remove("no-transition");
-        }, 100); 
+        }, 150); // Increased slightly to ensure full paint
       });
     })
     .catch(err => {
