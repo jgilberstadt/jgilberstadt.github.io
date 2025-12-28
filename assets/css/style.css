@@ -96,21 +96,6 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
   .menu-list a { position: relative; opacity: 0.8; transition: opacity 0.3s; }
   .menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent) !important; }
   .menu-list a.current::after { 
-    content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; 
-    height: 2px; background: var(--accent); 
-  }
-}
-
-/* Highlight Logic for all devices */
-.menu-list a.current {
-  color: var(--accent) !important;
-  opacity: 1 !important;
-  font-weight: 700;
-}
-
-/* Desktop-only underline for the current page */
-@media (min-width: 769px) {
-  .menu-list a.current::after { 
     content: ''; 
     position: absolute; 
     bottom: -4px; 
@@ -120,6 +105,13 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
     background: var(--accent);
     transform: scaleX(1);
   }
+}
+
+/* Highlight Logic for all devices */
+.menu-list a.current {
+  color: var(--accent) !important;
+  opacity: 1 !important;
+  font-weight: 700;
 }
 
 @media (hover: hover) {
@@ -260,6 +252,25 @@ main.container { padding: 3rem 0; }
   .menu-toggle, .menu-close { display: none; }
   .intro-block { display: flex; align-items: center; gap: 3rem; text-align: left; }
   .profile { width: 12rem; height: 12rem; margin: 0; }
+   .about-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Sidebar is 300px, Bio takes the rest */
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Space between profile pic and the stack */
+  }
+
+  .skills-list {
+    text-align: left;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--card-border);
+    padding-top: 2rem;
+  }
 }
 
 /* =========================
