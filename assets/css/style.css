@@ -183,6 +183,24 @@ main.container { padding: 3rem 0; }
     height: 8rem; 
     margin: 0 auto; /* Centers the circle on mobile */
   }
+
+   /* Add this inside the (max-width: 768px) block */
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  border-radius: 0.4rem;
+  padding: 0.4rem;
+  min-width: 40px;
+  height: 40px;
+  color: var(--text);
+  transition: border-color 0.3s;
+}
+
+.menu-toggle:hover {
+  border-color: var(--accent);
+}
 }
 
 @media (min-width: 769px) {
