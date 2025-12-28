@@ -213,7 +213,7 @@ body.light-mode .project-item .project-thumb {
 
 @supports (padding: env(safe-area-inset-bottom)) {
     body.light-mode {
-        background-color: #ffffff;
+        background-color: var(--bg);
     }
 }
 
@@ -1287,8 +1287,9 @@ body:not(.menu-open) .menu-list li {
   }
 
    .menu-list a.current {
-    border-bottom: 0 !important;
+    border-bottom: 0 !important; /* Removes the thick mobile border */
     opacity: 1;
+    color: var(--accent);
     font-weight: 700;
   }
 
