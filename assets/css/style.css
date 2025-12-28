@@ -88,6 +88,7 @@ body.light-mode {
 
 #main-content {
   flex: 1 0 auto; /* This tells the main content to grow and fill empty space */
+  padding-bottom: 4rem;
 }
 
 *, *::before, *::after {
@@ -367,11 +368,12 @@ header.site-header, .project-item, .tag, .social-button {
    Footer
 ========================= */
 .site-footer {
+  flex-shrink: 0; /* Prevents the footer from shrinking or overlapping */
   margin-top: auto;
   padding: 3rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text);
-  opacity: 0.8;
+  background-color: var(--bg); /* Ensures the footer has a solid background */
+  width: 100%;
 }
 
 body.light-mode .site-footer {
@@ -1202,8 +1204,9 @@ body:not(.menu-open) .menu-list li {
     align-items: center; 
     width: 100%;
     gap: 1rem;
-    padding: 0; /* Remove any default list padding */
+    padding: 1.5rem 0;
     list-style: none;
+    margin-bottom: 1rem;
   }
 
   .project-item {
@@ -1229,6 +1232,12 @@ body:not(.menu-open) .menu-list li {
 
    .project-thumb {
     border-bottom: none;
+  }
+
+  .cta-section, 
+  .contact, 
+  .skills-section {
+    margin-bottom: 3rem;
   }
    
 }
