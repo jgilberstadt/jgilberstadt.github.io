@@ -59,13 +59,16 @@ html.light-mode body {
   transition: none !important;
 }
 
-/* Specifically target the links during the theme-snap or page-load */
 .no-transition .menu-list a,
+.no-animate .menu-list a {
+  transition: none !important;
+  color: var(--text) !important; 
+}
+
 .no-transition .site-title a,
-.no-animate .menu-list a,
 .no-animate .site-title a {
   transition: none !important;
-  color: var(--text) !important; /* Forces instant color placement */
+  color: var(--accent) !important; /* Forces it to stay blue immediately */
 }
 
 /* Reserve space for the header to prevent the content from jumping up and down */
