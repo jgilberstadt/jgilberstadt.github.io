@@ -107,6 +107,7 @@ html.light-mode body {
 body.light-mode {
   color: var(--text);
   background-color: var(--bg);
+  background-attachment: fixed;
 }
 
 body.light-mode .site-header {
@@ -201,6 +202,12 @@ body.light-mode .project-item {
 /* Ensure the image at the top respects the rounded corners */
 body.light-mode .project-item .project-thumb {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@supports (padding: env(safe-area-inset-bottom)) {
+    body.light-mode {
+        background-color: #ffffff;
+    }
 }
 
 /* =========================
