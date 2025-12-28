@@ -39,6 +39,8 @@ html {
   height: 100%;
   scrollbar-gutter: stable;
   background-color: var(--bg);
+  /* This prevents the "white flash" or "black flash" when switching modes */
+  transition: background-color 0.3s ease; 
 }
 
 html.light-mode, 
@@ -228,8 +230,9 @@ body.light-mode .project-item .project-thumb {
 }
 
 @supports (padding: env(safe-area-inset-bottom)) {
+    html.light-mode,
     body.light-mode {
-        background-color: var(--bg);
+        background-color: #ffffff !important;
     }
 }
 
