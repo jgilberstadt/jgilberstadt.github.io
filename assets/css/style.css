@@ -1249,10 +1249,11 @@ body:not(.menu-open) .menu-list li {
   }
 
    body.light-mode .menu-list {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.5);
+  border: none !important;
 }
 
    .project-thumb {
