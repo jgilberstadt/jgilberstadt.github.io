@@ -24,8 +24,12 @@ body {
   padding-top: 5rem;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: none;
   background-color: var(--bg);
+}
+
+body.transitions-enabled {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {
@@ -1283,7 +1287,9 @@ body:not(.menu-open) .menu-list li {
   }
 
    .menu-list a.current {
-    border-bottom: none !important;
+    border-bottom: 0 !important;
+    opacity: 1;
+    font-weight: 700;
   }
 
    .menu-list a.current::after,
