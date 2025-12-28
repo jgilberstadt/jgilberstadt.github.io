@@ -39,7 +39,7 @@ html {
 
 html.light-mode, 
 html.light-mode body {
-  background-color: #ffffff !important;
+  background-color: var(--bg);
 }
 
 /* Initial state for elements we want to animate */
