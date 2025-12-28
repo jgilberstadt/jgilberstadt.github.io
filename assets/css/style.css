@@ -308,6 +308,7 @@ header.site-header {
   padding: 1rem 0;
   box-sizing: border-box;
   visibility: visible;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   
   /* COMBINED TRANSFORMS: This allows scroll-hiding AND stops flickering */
   transform: translateY(0) translateZ(0); 
