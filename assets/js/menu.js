@@ -68,15 +68,15 @@ document.addEventListener("DOMContentLoaded", () => {
 function setupMenu() {
   const toggleButton = document.querySelector(".menu-toggle");
   const menuList = document.querySelector(".menu-list");
-  const closeButton = document.querySelector(".menu-close");
 
   if (!toggleButton || !menuList) return;
 
   let removeFocusTrap = null;
 
   function getFocusableElements() {
-  return Array.from(document.querySelectorAll('.menu-toggle, .menu-list a[href]'));
-}
+    // We only need the toggle and the links now
+    return Array.from(document.querySelectorAll('.menu-toggle, .menu-list a[href]'));
+  }
 
   function trapFocus() {
     const focusable = getFocusableElements();
@@ -87,7 +87,6 @@ function setupMenu() {
 
     function handleTab(e) {
       if (e.key !== "Tab") return;
-
       if (e.shiftKey && document.activeElement === firstEl) {
         e.preventDefault();
         lastEl.focus();
@@ -97,84 +96,45 @@ function setupMenu() {
       }
     }
 
-    // Listen on the document so it catches the "X" button too
     document.addEventListener("keydown", handleTab);
-    
-    // Start focus on the Close Button (best practice for mobile menus)
-    setTimeout(() => {
-    if (closeButton) closeButton.focus({ preventScroll: true });
-  }, 400);
-
     return () => document.removeEventListener("keydown", handleTab);
   }
 
   function openMenu() {
-  if (window.innerWidth >= 769) return;
-  
-  // Lock scroll immediately
-  document.body.classList.add("menu-open");
-  toggleButton.setAttribute("aria-expanded", "true");
-  
-  // Delay the focus trap slightly longer than the CSS transition
-  // to ensure the menu is visually "there" before the browser jumps to the X
-  removeFocusTrap = trapFocus();
-}
+    if (window.innerWidth >= 769) return;
+    document.body.classList.add("menu-open");
+    toggleButton.setAttribute("aria-expanded", "true");
+    removeFocusTrap = trapFocus();
+  }
 
-function closeMenu() {
-  if (!document.body.classList.contains("menu-open")) return;
-
-  // 1. Restore scroll and remove padding
-  document.body.classList.remove("menu-open");
-  
-  toggleButton.setAttribute("aria-expanded", "false");
-
-  setTimeout(() => {
+  function closeMenu() {
+    if (!document.body.classList.contains("menu-open")) return;
+    document.body.classList.remove("menu-open");
+    toggleButton.setAttribute("aria-expanded", "false");
     if (removeFocusTrap) removeFocusTrap();
     toggleButton.focus();
-  }, 400); 
-}
+  }
 
   toggleButton.addEventListener("click", e => {
     e.stopPropagation();
-    document.body.classList.contains("menu-open")
-      ? closeMenu()
-      : openMenu();
+    document.body.classList.contains("menu-open") ? closeMenu() : openMenu();
   });
 
+  // Close when clicking outside or on links
   document.addEventListener("click", e => {
-    if (
-      document.body.classList.contains("menu-open") &&
-      !menuList.contains(e.target) &&
-      !toggleButton.contains(e.target)
-    ) {
+    if (document.body.classList.contains("menu-open") && 
+        !menuList.contains(e.target) && !toggleButton.contains(e.target)) {
       closeMenu();
     }
   });
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && document.body.classList.contains("menu-open")) {
-      closeMenu();
-    }
+    if (e.key === "Escape" && document.body.classList.contains("menu-open")) closeMenu();
   });
 
   menuList.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      const href = link.getAttribute("href");
-      const isInternal =
-        href && !href.startsWith("http") && !href.startsWith("#");
-
-      if (isInternal) closeMenu();
-    });
+    link.addEventListener("click", () => closeMenu());
   });
-
-  highlightCurrentPage();
-
-  document.addEventListener("click", e => {
-    if (e.target.closest(".menu-close")) {
-      closeMenu();
-    }
-  });
-  
 }
 
 // =========================
