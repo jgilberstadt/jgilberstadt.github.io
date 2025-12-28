@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
           document.documentElement.classList.remove("no-transition");
           
           // Clear the inline style so CSS variables take over permanently
-          document.body.style.backgroundColor = ""; 
+          document.body.style.backgroundColor = "";
+          document.documentElement.classList.add("transitions-enabled");
           document.body.classList.add("transitions-enabled"); 
         }, 150);
       });
@@ -181,23 +182,31 @@ function closeMenu() {
 // Highlight Current Page
 // =========================
 function highlightCurrentPage() {
-  // Get the current filename (e.g., 'index.html')
-  let currentPath = window.location.pathname.split("/").pop();
-  if (currentPath === "" || currentPath === "/") currentPath = "index.html";
+  // 1. Get the current filename (e.g., 'projects.html')
+  const path = window.location.pathname;
+  let currentPage = path.split("/").pop();
 
-  // Select all links in both desktop and mobile views
+  // 2. Handle the "Home" edge case (empty path or just a slash)
+  if (currentPage === "" || currentPage === "/") {
+    currentPage = "index.html";
+  }
+
+  // 3. Select all links in your navigation
   const navLinks = document.querySelectorAll(".menu-list a");
 
   navLinks.forEach(link => {
+    // 4. Reset states first to prevent "Double Highlights"
     link.classList.remove("current");
     link.removeAttribute("aria-current");
     
     const href = link.getAttribute("href");
+    if (!href) return;
+
+    // 5. Normalize the link's href (removes './')
+    const linkPage = href.replace("./", "").split("/").pop();
     
-    // Normalize href: removes './' and matches against currentPath
-    const normalizedHref = href.replace("./", "");
-    
-    if (normalizedHref === currentPath) {
+    // 6. Compare and Apply
+    if (linkPage === currentPage) {
       link.classList.add("current");
       link.setAttribute("aria-current", "page");
     }
