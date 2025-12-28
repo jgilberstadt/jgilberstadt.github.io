@@ -1,260 +1,56 @@
 /* =========================
-   Root & Base
+   1. Root & Variables
 ========================= */
 :root {
   --bg: #000000;
   --text: #ffffff;
   --accent: #60a5fa;
-  --transition-fast: 0.2s cubic-bezier(.2,.8,.2,1);
-  --transition-medium: 0.3s cubic-bezier(.2,.8,.2,1);
-  --transition-slow: 0.35s cubic-bezier(.2,.8,.2,1);
   --card-bg: rgba(255, 255, 255, 0.03);
   --card-border: rgba(255, 255, 255, 0.1);
-  --card-shadow: none;
+  --transition-smooth: 0.3s cubic-bezier(.2,.8,.2,1);
+  --header-height: 4.5rem;
 }
 
-body {
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-  color: var(--text);
-  background: var(--bg);
-  line-height: 1.6;
-  margin: 0;
-  padding: 1.25rem;
-  font-size: 1rem;
-  padding-top: 5rem;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  transition: background-color 0s, color 0s;
-  background-color: var(--bg);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  height: 100%;
-}
-
-body.transitions-enabled {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-html {
-  height: 100%;
-  scrollbar-gutter: stable;
-  background-color: var(--bg);
-  transition: none; 
-}
-
-html.transitions-enabled {
-  transition: background-color 0.3s ease;
-}
-
-/* Initial state for elements we want to animate */
-.js .fade-up {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-/* The state triggered by JavaScript */
-.fade-up.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.no-transition * {
-  -webkit-transition: none !important;
-  -moz-transition: none !important;
-  -ms-transition: none !important;
-  -o-transition: none !important;
-  transition: none !important;
-}
-
-.no-transition .menu-list a,
-.no-animate .menu-list a {
-  transition: none !important;
-  color: var(--text) !important; 
-}
-
-.no-transition .site-title a,
-.no-animate .site-title a {
-  transition: none !important;
-  color: var(--accent) !important; /* Forces it to stay blue immediately */
-}
-
-/* Reserve space for the header to prevent the content from jumping up and down */
-#site-header {
-  min-height: 4.5rem;
-  display: block;
-}
-
-#main-content {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: calc(100vh - 10rem); /* This accounts for header/footer height */
-  padding-bottom: 4rem;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-.no-animate, .no-animate * {
-  transition: none !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fade-up { transition: none; opacity: 1; transform: none; }
-}
-
-/* If JS is disabled, show the content immediately */
-.no-js .fade-up {
-  opacity: 1;
-  transform: none;
-}
-
-/* =========================
-   Light Mode Overrides
-========================= */
 :root.light-mode {
   --bg: #ffffff;
   --text: #111827;
   --accent: #2563eb;
   --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.08);
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-}
-
-body.light-mode {
-  color: var(--text);
-  background-color: var(--bg);
-}
-
-/* Prevent header link flickering on page load */
-body.light-mode .site-title a,
-body.light-mode .menu-list a {
-  transition: none !important;
-  color: var(--text);
-}
-
-body.light-mode .site-title a {
-  color: var(--accent) !important;
-}
-
-body.light-mode .site-header {
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03); 
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-body.light-mode .site-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: #ffffff !important;
-}
-
-/* Ensure the text inside is dark and readable */
-body.light-mode .project-description {
-  color: #374151; 
-  opacity: 0.9;
-}
-
-body.light-mode .project-tag {
-  background: rgba(37, 99, 235, 0.1); /* Light blue tint */
-  color: #1d4ed8;                    /* Deeper blue text */
-  border-color: rgba(37, 99, 235, 0.2);
-}
-
-/* --- Contact Page Button Fix --- */
-body.light-mode .social-button:not(.btn-primary) {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: transparent;
-}
-
-body.light-mode .social-button:hover {
-  background: rgba(37, 99, 235, 0.05);
-}
-
-body.light-mode .menu-close {
-  color: #111827 !important;
-  opacity: 1;
-}
-
-/* Light mode overrides for the fullscreen mobile menu */
-body.light-mode .menu-list a {
-  color: #111827; 
-  opacity: 1;
-}
-
-body.light-mode .menu-list a.current {
-  color: var(--accent);
-}
-
-body.light-mode .menu-list li a:not(.current) {
-  color: #111827;
-}
-
-body.light-mode .menu-list a:hover,
-body.light-mode .menu-list a.current {
-  color: var(--accent);
-  opacity: 1;
-}
-
-/* Ensure buttons are visible in Light Mode */
-body.light-mode .theme-toggle,
-body.light-mode .menu-toggle,
-body.light-mode .menu button {
-  border-color: rgba(0, 0, 0, 0.1); /* Darker border for light background */
-  color: #111827; /* Dark icon/text color */
-}
-
-/* Force the inactive icon to have zero dimensions and no visibility */
-body:not(.light-mode) .moon-icon,
-body.light-mode .sun-icon {
-    display: none !important;
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-    background: none !important; /* Prevents focus-highlighting a hidden element */
-}
-
-/* Ensure the active icon is clean */
-body.light-mode .moon-icon,
-body:not(.light-mode) .sun-icon {
-    display: inline-block !important;
-    visibility: visible;
-    opacity: 1;
-}
-
-body.light-mode .project-item {
-  margin-bottom: 2rem; 
-  overflow: hidden;
-}
-
-/* Ensure the image at the top respects the rounded corners */
-body.light-mode .project-item .project-thumb {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-body:not(.light-mode) .project-item:hover {
-  box-shadow: none !important;
-  filter: none !important;
-  transform: none !important;
 }
 
 /* =========================
-   General Elements
+   2. Base Styles
 ========================= */
-a {
-  color: var(--accent);
-  transition: background var(--transition-fast), color var(--transition-fast);
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  height: 100%;
+  scrollbar-gutter: stable;
+  background-color: var(--bg);
 }
 
-h1 {
-  color: var(--accent);
-  margin-top: 0;
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background-color: var(--bg);
+  line-height: 1.6;
+  margin: 0;
+  padding: 5rem 1.25rem 1.25rem; /* Top padding accounts for header */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Theme Lock (Prevents flickering) */
+body:not(.transitions-enabled), 
+body:not(.transitions-enabled) * {
+  transition: none !important;
+}
+
+body.transitions-enabled {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -263,319 +59,66 @@ h1 {
   margin: 0 auto;
 }
 
-.theme-toggle, 
-.menu-toggle {
-  width: 2.2rem;
-  height: 2.2rem;
-  padding: 0;            /* Remove padding so height/width stay exact */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 0.3rem;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-}
-
-.menu-toggle {
-  font-size: 1.4rem; /* Slightly larger because ☰ is naturally short */
-}
-
-.theme-toggle {
-  font-size: 1.1rem;
-}
-
-body.light-mode .theme-toggle {
-  border-color: rgba(0,0,0,0.1);
-}
-
-.button-group {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
+/* =========================
+   3. Unified Transitions
+========================= */
+.site-header, .project-item, .tag, .social-button, .menu-list a, .theme-toggle, .menu-toggle {
+  transition: 
+    background-color var(--transition-smooth), 
+    border-color var(--transition-smooth), 
+    color var(--transition-smooth), 
+    transform var(--transition-smooth), 
+    box-shadow var(--transition-smooth),
+    opacity var(--transition-smooth);
 }
 
 /* =========================
-   Header & Navigation
+   4. Header & Navigation
 ========================= */
-/* Update this block in your CSS */
 header.site-header {
   position: fixed;
   top: 0;
   left: 0;
-  height: 4.5rem;
-  display: flex;
-  align-items: center;
   width: 100%;
-  z-index: 9999 !important;
-  background-color: #000000 !important; 
-  background: rgba(0, 0, 0, 0.95) !important;
-  padding: 1rem 0;
-  box-sizing: border-box;
-  visibility: visible;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  height: var(--header-height);
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  
-  /* COMBINED TRANSFORMS: This allows scroll-hiding AND stops flickering */
-  transform: translateY(0) translateZ(0); 
-  -webkit-transform: translateY(0) translateZ(0);
-  
-  /* Stability properties */
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
-  contain: paint; /* Tells the browser the header's box is totally separate */
-
-  /* Transitions */
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
 }
 
-header.site-header, .project-item, .tag, .social-button {
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+body.light-mode .site-header {
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .site-header .container {
   display: flex;
-  align-items: baseline; /* This aligns the bottom of the letters across the header */
   justify-content: space-between;
-}
-
-.header-left {
-  text-align: left;
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-}
-
-/* Site title */
-.site-title {
-  font-size: 1.2rem; 
-  font-weight: 600;
-  margin: 0;
-  display: flex;
+  align-items: center;
 }
 
 .site-title a {
+  font-size: 1.2rem;
+  font-weight: 600;
   text-decoration: none;
   color: var(--accent);
 }
 
-/* Optional hover/focus */
-.site-title a:hover,
-.site-title a:focus-visible {
-  text-decoration: underline;
-}
-
-/* =========================
-   Sticky Header Scroll
-========================= */
-.site-header {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.site-header.header-hidden {
-  transform: translateY(-100%);
-}
-
-.site-header.header-visible {
-  transform: translateY(0);
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.4);
-}
-
-/* =========================
-   Footer
-========================= */
-.site-footer {
-  flex-shrink: 0; /* Prevents the footer from shrinking or overlapping */
-  margin-top: auto;
-  padding: 3rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: var(--bg); /* Ensures the footer has a solid background */
-  width: 100%;
-}
-
-body.light-mode .site-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 2rem;
-}
-
-.footer-socials a {
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--accent);
-  transition: opacity 0.2s ease;
-}
-
-.footer-socials a:hover {
-  opacity: 0.7;
-  text-decoration: underline;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
-}
-
-/* =========================
-   Menu Button
-========================= */
-.menu {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 1.5rem;
-}
-
-.menu button {
-  font-size: 1.4rem;
-  padding: 0;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 0.3em;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
-  outline: none;
-  line-height: 1;
-}
-
-.menu button:hover {
-  background: rgba(255,255,255,0.08);
-}
-
-.menu button:focus-visible {
-  background: rgba(255,255,255,0.08);
-  outline: 2px solid rgba(255,255,255,0.12);
-  outline-offset: 2px;
-}
-
-/* =========================
-   Menu List (Fullscreen for mobile)
-========================= */
-.menu-list {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100dvh;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  padding: 0 !important; 
-  margin: 0 !important;
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  background: transparent;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-  z-index: 99999;
-  list-style: none; /* Removes bullet points */
-  border: none; 
-  box-shadow: none; /* Subtle inner depth */
-}
-
-body.menu-open {
-  overflow: hidden;
-  height: 100vh;
-}
-
-body.menu-open .menu-list {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.menu-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  position: relative;
-  z-index: 100002; /* Higher than menu-list so toggle works while menu is open */
-}
-
-/* Close button inside menu */
-/* Close button inside menu */
-.menu-close {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 2rem;
-  background: transparent !important; /* Forces transparency */
-  border: none !important;             /* Kills the circle/box */
-  padding: 0 !important;              /* Removes extra spacing */
-  color: #ffffff;
-  cursor: pointer;
-  z-index: 100001;
-  display: none;
-  line-height: 1;
-  box-shadow: none !important;        /* Ensures no glassmorphism glow */
-}
-
-body.menu-open .menu-close {
-  display: flex !important; /* Shown when menu is open */
-  align-items: center;
-  justify-content: center;
-  opacity: 1;
-  z-index: 100003;
-}
-
-body.menu-open .menu-controls {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-/* Only apply the glass border when NOT in light mode and NOT on desktop */
-body:not(.light-mode) .menu-list {
-  background: rgba(0, 0, 0, 0.85) !important;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: none !important;
-  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
-}
-
-/* Menu links */
+/* Nav Underline Logic (Shared) */
 .menu-list a {
   position: relative;
-  font-size: 1.1rem; 
+  text-decoration: none;
   color: var(--text);
-  text-decoration: none !important; /* <--- ADD THIS HERE */
-  padding: 4px 0;
-  transition: color var(--transition-medium);
+  opacity: 0.7;
 }
 
-/* The "Hidden" underline that slides in */
 .menu-list a::after {
   content: '';
   position: absolute;
-  bottom: -2px; /* Moves the line slightly below the text */
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 2px;
@@ -584,910 +127,150 @@ body:not(.light-mode) .menu-list {
   transition: transform 0.3s ease;
 }
 
-.menu-list a:hover {
-  color: var(--accent);
-  text-decoration: none !important; /* <--- ADD THIS HERE TOO */
-}
-
-/* Hover & Active States */
-.menu-list a:hover,
-.menu-list a.current {
-  color: var(--accent); /* Transitions to Blue */
-}
-
-.menu-list a:hover::after,
-.menu-list a.current::after {
-  transform: scaleX(1); /* Slides underline in */
-  transform-origin: bottom left;
-}
-
-.menu-list a:hover,
-.menu-list a:focus-visible {
-  background: transparent !important;
-  color: var(--accent);
+.menu-list a:hover, .menu-list a.current {
   opacity: 1;
+  color: var(--accent);
 }
 
-/* Define the keyframes for the slide-up effect */
-@keyframes menuLinkFadeIn {
-  from {
+.menu-list a:hover::after, .menu-list a.current::after {
+  transform: scaleX(1);
+}
+
+/* =========================
+   5. Mobile Menu (Max 768px)
+========================= */
+@media (max-width: 768px) {
+  .menu-list {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg);
+    z-index: 200;
     opacity: 0;
-    transform: translateY(10px);
+    visibility: hidden;
+    list-style: none;
+    padding: 0;
+    gap: 2rem;
   }
-  to {
+
+  body.menu-open .menu-list {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
   }
-}
 
-/* Staggered Delays: each child waits a bit longer */
-body.menu-open .menu-list li:nth-child(1) { animation-delay: 0.1s; }
-body.menu-open .menu-list li:nth-child(2) { animation-delay: 0.2s; }
-body.menu-open .menu-list li:nth-child(3) { animation-delay: 0.3s; }
-body.menu-open .menu-list li:nth-child(4) { animation-delay: 0.4s; }
+  .menu-list a { font-size: 2.5rem; }
 
-/* =========================
-   About Page
-========================= */
-.profile {
-  width: 9rem;
-  height: 9rem;
-  border-radius: 50%;
-  display: block;
-  object-fit: cover;
-  border: 3px solid var(--accent);
-  padding: 4px;
-}
+  /* Icon visibility logic */
+  body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !important; }
+  
+  .menu-close {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 300;
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: var(--text);
+  }
 
-main.container {
-  margin-top: 0;
-}
-
-.container p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-.container a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-.container a:hover {
-  text-decoration: underline;
-}
-
-.container a[target="_blank"]:hover {
-  background: rgba(96,165,250,0.1);
-}
-
-.skills-section {
-  margin-top: 3rem;
-  text-align: left;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.skill-category h3 {
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  opacity: 0.8;
-}
-
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.tag {
-  background: rgba(128, 128, 128, 0.05); 
-  border: 1px solid rgba(128, 128, 128, 0.2);
-  padding: 0.4rem 0.8rem;
-  border-radius: 2rem;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  color: var(--text); /* Ensures text is readable in both modes */
-}
-
-/* Hover effect to make it interactive */
-.tag:hover {
-  border-color: var(--accent);
-  background: rgba(96, 165, 250, 0.1);
-  color: var(--accent); /* Text turns blue on hover */
-  transform: translateY(-2px);
-}
-
-/* Container for the image and text */
-.intro-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.intro-text {
-  flex: 1;
-}
-
-.subtitle {
-  font-size: 1.25rem;
-  color: var(--text);
-  opacity: 0.8;
-  font-weight: 500;
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
+  body.menu-open .menu-close { display: block; }
 }
 
 /* =========================
-   Projects Page
+   6. Desktop Menu & Layouts (Min 769px)
 ========================= */
-.projects {
-  margin-top: 2rem;
-  font-size: 1rem;
+@media (min-width: 769px) {
+  .menu-toggle, .menu-close { display: none; }
+  .menu-list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  /* This ensures the profile grows on desktop */
+  .intro-block { flex-direction: row; text-align: left; }
+  .profile { width: 12rem; height: 12rem; }
 }
 
-.projects p {
-  margin-bottom: 1rem;
-}
-
-.projects h2 {
-  color: var(--accent);
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  letter-spacing: -0.02em;
-}
-
-.project-grid ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-  gap: 2rem; /* This controls spacing between cards for both modes */
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
+/* =========================
+   7. Components (Cards, Buttons, Tags)
+========================= */
 .project-item {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  box-shadow: var(--card-shadow);
   border-radius: 0.8rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 1;
-  isolation: isolate; 
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  transition: 
-    background-color 0.3s ease, 
-    border-color 0.3s ease, 
-    box-shadow 0.3s ease, 
-    transform 0.3s ease;
-}
-
-.project-item a, 
-.project-item h3 a {
-  text-decoration: none !important;
-}
-
-.project-item, .site-header, .social-button, .tag {
-  transition: 
-    background-color 0.3s ease, 
-    border-color 0.3s ease, 
-    box-shadow 0.3s ease, 
-    transform 0.3s ease;
-}
-
-/* Container for the small skills on cards */
-.project-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 1.25rem 1.5rem 1.25rem;
-}
-
-.project-tag {
-  font-size: 0.75rem;
-  background: rgba(96, 165, 250, 0.1);
-  color: var(--accent);
-  border: 1px solid rgba(96, 165, 250, 0.2);
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px; /* Slightly more "square" than the About page for variety */
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.project-item, 
-.project-item h3, 
-.project-description, 
-.project-tag {
-  /* Apply the same duration and timing function to everything */
-transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-.cta-section {
-  margin-top: 5rem;
-  padding-bottom: 3rem;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;    /* This centers the button horizontally */
-  justify-content: center;
-}
-
-.cta-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;    /* This centers the content inside */
-}
-
-/* =========================
-   Interactive States (Smart Focus & Hover)
-========================= */
-
-/* 1. UNIVERSAL RESET: Remove the 'stuck' focus state for mouse/touch users */
-.project-item:focus,
-.social-button:focus,
-.theme-toggle:focus,
-.menu-toggle:focus,
-.tag:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-/* 2. ACCESSIBILITY: Only show highlights for Keyboard Users */
-.project-item:focus-visible,
-.social-button:focus-visible,
-.theme-toggle:focus-visible,
-.menu-toggle:focus-visible,
-.tag:focus-visible {
-  outline: 2px solid var(--accent) !important;
-  outline-offset: 4px !important;
-  background: rgba(96, 165, 250, 0.1) !important;
-}
-
-/* 3. DESKTOP & MOUSE: High-quality hover effects */
-@media (hover: hover) and (pointer: fine) {
-  .project-item:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent);
-    background: var(--card-bg); 
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
-
-  .project-item:hover h3 {
-    text-decoration: underline;
-    color: var(--accent);
-  }
-
-  .social-button:hover {
-    background: rgba(96, 165, 250, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
-  }
-
-  .social-button.btn-primary:hover {
-    background-color: var(--accent);
-    filter: brightness(1.1);
-    color: #ffffff;
-  }
-
-  .theme-toggle:hover,
-  .menu-toggle:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  body.light-mode .theme-toggle:hover,
-  body.light-mode .menu-toggle:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  body:not(.light-mode) .project-item:hover {
-  box-shadow: none !important;
-  filter: none !important; /* This is the most important line to fix the box */
-  /* Keep the translateY if you want the movement, or remove it for maximum stability */
-  transform: translateY(-8px) !important; 
-}
-}
-
-/* 4. MOBILE & TOUCH: Instant feedback that clears on release */
-@media (pointer: coarse) {
-  .project-item:active,
-  .social-button:active,
-  .theme-toggle:active,
-  .menu-toggle:active {
-    transform: scale(0.97) !important;
-    background: rgba(255, 255, 255, 0.1) !important;
-    transition: transform 0.1s ease;
-  }
-
-  body.light-mode .project-item:active,
-  body.light-mode .social-button:active,
-  body.light-mode .theme-toggle:active {
-    background: rgba(0, 0, 0, 0.05) !important;
-  }
-
-  .project-item:hover, 
-  .social-button:hover,
-  .theme-toggle:hover {
-    background: transparent !important;
-    transform: none !important;
-  }
-}
-
-/* 5. BUTTON RIPPLE CLEANUP */
-.social-button::after {
-  content: "";
-  position: absolute;
-  inset: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.4s ease-out;
-}
-
-.social-button:active::after {
-  width: 200%;
-  height: 200%;
-  opacity: 1;
-  transition: 0s; /* Flash on instantly, fade out on release */
-}
-
-.project-item a {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-  width: 100%;
-  border-radius: inherit;
-  overflow: hidden;
 }
 
 .project-thumb {
   width: 100%;
-  /* Using 16/9 for desktop and 3/2 for mobile as we discussed */
-  aspect-ratio: 16 / 9; 
-  display: block;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  min-height: 200px;
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-  
-  /* The "Magic" to remove gaps */
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: top;
-  
-  /* Ensure it is the first thing in the card */
-  order: -1; 
 }
 
-.project-item strong {
-  margin: 0.75rem 1rem 0.25rem 1rem;
-  font-size: 1.1rem;
-  display: block;
-}
-
-.project-item h3 {
-  margin: 1.5rem 1.25rem 0.5rem 1.25rem;
-  font-size: 1.3rem;
-}
-
-.project-item h3, 
-.project-item .project-description,
-.project-item .project-tags {
-  line-height: 1.6;
-}
-
-.project-description {
-  display: block; /* Allows margin and padding to work properly */
-  margin: 0 1.25rem 1.25rem 1.25rem;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  opacity: 0.8;
-  color: var(--text); /* Ensures it uses your root text color */
-}
-
-.project-description strong {
-  color: var(--accent); /* Makes the 90% stat pop in blue */
-}
-
-.project-item:focus-visible,
-.social-button:focus-visible,
-.theme-toggle:focus-visible,
-.menu-toggle:focus-visible {
-  outline: 2px solid var(--accent) !important;
-  outline-offset: 4px !important;
-}
-
-.section-divider {
-  border: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--accent), transparent);
-  margin-bottom: 3rem;
-  opacity: 0.3;
-}
-
-.cta-content h3 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
+.tag, .project-tag {
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  background: rgba(128, 128, 128, 0.05);
+  border: 1px solid var(--card-border);
   color: var(--text);
-}
-
-.cta-content p {
-  max-width: 600px;
-  margin: 0 auto 2rem auto;
-  opacity: 0.8;
-}
-
-/* =========================
-   Contact Page
-========================= */
-.contact {
-  color: var(--text);
-  text-align: left;
-  max-width: 40rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-top: 2rem;
-  padding-bottom: 5rem; /* Adds a nice buffer before the footer on desktop */
-}
-
-.social-links {
-  list-style: none;
-  padding: 0;
-  margin: 0.5rem 0 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-start; /* Changed from center to flex-start */
-}
-
-.social-links a {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 1rem;
-  transition: text-decoration var(--transition-fast);
 }
 
 .social-button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.6em 1.2em;
-  font-size: 1rem;
-  font-weight: 500;
-  background: transparent;
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
   border-radius: 0.3em;
   text-decoration: none;
-  transition: all var(--transition-fast);
-  cursor: pointer;
-  position: relative; /* Added for the ripple effect position */
-  overflow: hidden;    /* Added to keep ripple inside button */
+  font-weight: 500;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
 }
 
-/* Primary Button Style (Filled) */
 .social-button.btn-primary {
-  background-color: var(--accent);
+  background: var(--accent);
   color: #ffffff;
 }
 
-body.light-mode .social-button.btn-primary {
-  background-color: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
-}
+/* Specific Layouts to keep the About/Projects pages looking right */
+.intro-block { display: flex; flex-direction: column; align-items: center; gap: 2rem; margin-bottom: 2rem; text-align: center; }
+.profile { width: 9rem; height: 9rem; border-radius: 50%; border: 3px solid var(--accent); object-fit: cover; padding: 4px; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+.project-grid ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; list-style: none; padding: 0; }
 
-.social-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-.social-button::after {
-  content: "";
-  position: absolute;
-  inset: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(96, 165, 250, 0.35);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: width var(--transition-slow), height var(--transition-slow), opacity 0.6s ease-out;
-}
-
-/* Screen Size Specific Overrides */
-@media (max-width: 768px) {
-  .menu-list .menu-close {
-    /* Pin to top right regardless of parent flexbox */
-    position: fixed !important;
-    top: 1.5rem !important;
-    right: 1.5rem !important;
-    
-    /* Reset dimensions and alignment */
-    width: 3rem;
-    height: 3rem;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    
-    /* Visuals */
-    font-size: 2rem;
-    background: transparent;
-    border: none;
-    color: var(--text);
-    cursor: pointer;
-    z-index: 100001; /* Stay above the links */
-    line-height: 1;
-    padding: 0;
-    margin: 0;
-  }
-
-  .menu-list li:first-of-type {
-    margin-top: 0 !important; /* Ensures the first link doesn't have extra offset */
-  }
-  
-  .menu-list {
-    position: fixed !important;
-    inset: 0; /* Shorthand for top, bottom, left, right: 0 */
-    width: 100vw !important;
-    height: 100dvh !important;
-    display: flex !important; /* Always flex, but controlled by visibility */
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    z-index: 100000;
-    
-    /* Animation States */
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-    
-    /* Blur Effect */
-    background: rgba(0, 0, 0, 0.8) !important; 
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-  }
-
-  .menu-list a {
-    font-size: 2.5rem;
-    margin: 1.5rem 0;
-    color: var(--text);
-    text-decoration: none;
-    opacity: 1 !important;
-    transition: opacity 0.2s ease, color 0.2s ease;
-  }
-
-  .menu-list a:hover { opacity: 0.7; }
-
-  .menu-list a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background-color: var(--accent);
-    transform: scaleX(0);
-    transition: transform var(--transition-medium);
-  }
-
-  .menu-list a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
-
-  .menu-list a.current {
-    font-size: 2.5rem !important; /* Match your base mobile font size */
-    color: var(--accent) !important;
-    opacity: 1 !important;
-    border-bottom: 4px solid var(--accent) !important;
-    text-shadow: 1px 0 0 currentColor; /* Subtle bold without shifting */
-  }
-
-   .menu-list a.current::after {
-   display: none !important;
-}
-
-   /* Base state for links when menu is closed */
-.menu-list li {
-    display: block !important;
-    width: auto;
-    text-align: center;
-    margin: 1rem 0; /* Add spacing between links */
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-   .menu-list li a.current {
-    color: var(--accent) !important;
-    opacity: 1 !important;
-    font-weight: 700 !important;
-    border-bottom: 4px solid var(--accent) !important;
-    pointer-events: none;
-  }
-
-body.menu-open .menu-list {
-    display: flex !important; /* Forces it to show even if desktop logic tried to hide it */
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
-    z-index: 100000;
-    background: #000000; /* Start with a solid color to test, then add alpha */
-  }
-   
-/* Animation trigger when body has .menu-open */
-body.menu-open .menu-list li {
-  animation: menuLinkFadeIn 0.5s ease forwards;
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-   body.menu-open .menu-list li:nth-child(1) { transition-delay: 0.1s; }
-  body.menu-open .menu-list li:nth-child(2) { transition-delay: 0.2s; }
-  body.menu-open .menu-list li:nth-child(3) { transition-delay: 0.3s; }
-  body.menu-open .menu-list li:nth-child(4) { transition-delay: 0.4s; }
-
-/* When menu closes, they slide down slightly while fading */
-body:not(.menu-open) .menu-list li {
-  transform: translateY(10px);
-  opacity: 0;
-}
-
-   /* Cleaned up version: Targets both button types at once */
-.social-button, 
-.social-links li,
-.social-links li a {
-    display: flex;
-    width: 100%; 
-    max-width: 320px; /* One single place to control width */
-    justify-content: center;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-   /* Ensure all social/action buttons stack and match width on mobile/tablet */
-.button-group, .social-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    width: 100%;
-    gap: 1rem;
-    padding: 1.5rem 0;
-    list-style: none;
-    margin-bottom: 1rem;
-  }
-
-  .project-item {
-    border-radius: 0.8rem !important; /* Force rounding on mobile */
-    background: var(--card-bg) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Visible border for dark mode */
-    transform: none !important;
-    margin-bottom: 2rem; /* Consistent vertical gap */
-  }
-
-  body.light-mode .project-item {
-    background: #ffffff !important;
-    border-color: rgba(0, 0, 0, 0.08) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
-    margin-bottom: 2rem !important; 
-  }
-
-   body.light-mode .menu-list {
-  background: rgba(255, 255, 255, 0.95) !important;
-  backdrop-filter: blur(30px) !important;
-  -webkit-backdrop-filter: blur(30px) !important;
-  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.5);
-  border: none !important;
-}
-
-   .project-thumb {
-    border-bottom: none;
-  }
-
-  .cta-section, 
-  .contact, 
-  .skills-section {
-    margin-bottom: 3rem;
-  }
-   
-}
-
-@media (max-width: 480px) {
-  header.site-header .container {
-    flex-direction: row !important;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 0.5rem;
-  }
-
-  .site-title { font-size: clamp(1.1rem, 5vw, 1.4rem); white-space: nowrap; }
-  body { padding: 5rem 0.9rem 0.9rem 0.9rem; }
-
-  .profile { width: 7rem; height: 7rem; }
-  .project-grid ul { grid-template-columns: 1fr; }
-
-  .project-thumb {
-    aspect-ratio: 3 / 2 !important;
-  }
-   
-}
-
-@media (min-width: 769px) {
-  .menu { transform: translateY(-3px); }
-  .menu-toggle, .menu-close { display: none; }
-
-  .menu-list {
-    display: flex !important;
-    position: static;
-    height: auto;
-    width: auto;
-    flex-direction: row;
-    gap: 2rem;
-    margin-left: auto;
-    margin-right: 2rem;
-    padding: 0;
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    box-shadow: none !important;
-    transform: none !important; 
-    border: none !important;
-    outline: none !important;
-  }
-
-  .menu-list li {
-    opacity: 1 !important;
-    animation: none !important;
-    border: none !important;
-    outline: none !important;
-  }
-
-  .menu-list a {
-    position: relative;
-    padding: 0.5rem 0.25rem;
-    margin: 0 0.5rem;
-    color: var(--text); 
-    opacity: 0.7;
-    font-size: 1.1rem;
-    text-decoration: none;
-    background: transparent !important;
-    transition: opacity 0.2s ease, color 0.2s ease;
-    transform: translate3d(0,0,0);
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* Force the blue ONLY when current or hovered */
-  .menu-list a.current,
-  .menu-list a:hover {
-    color: var(--accent) !important;
-    opacity: 1 !important;
-  }
-
-  .menu-list a.current {
-    text-shadow: 0.5px 0 0 currentColor; 
-  }
-
-  /* Single Underline Logic */
-  .menu-list a::after {
-    content: '';
-    position: absolute;
-    bottom: 0; 
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--accent);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Show underline on hover OR if it's the current page */
-  .menu-list a:hover::after,
-  .menu-list a.current::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-
-  .site-header .container { align-items: center; }
-  .site-title { font-size: 1.2rem; display: inline-flex; align-items: center; }
-
-  .intro-block { flex-direction: row !important; text-align: left; gap: 4rem; }
-  .profile { width: 12rem; height: 12rem; margin-top: 1.5rem; }
-  .footer-content { flex-direction: row; justify-content: space-between; }
-
-  body.light-mode .project-item:hover {
-    filter: brightness(0.98);
-    border-color: var(--accent);
-    background: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  }
-
-   body:not(.light-mode) .menu-list a:not(.current):not(:hover) {
-    color: #ffffff !important;
-    opacity: 0.6;
-  }
+/* =========================
+   8. Footer
+========================= */
+.site-footer {
+  margin-top: auto;
+  padding: 3rem 0;
+  border-top: 1px solid var(--card-border);
+  background: var(--bg);
+  text-align: center;
 }
 
 /* =========================
-   Light Mode Final Fix
+   9. Animations (Fade Up)
 ========================= */
-:root.light-mode {
-  --bg: #ffffff;
-  --text: #111827;
-  --accent: #2563eb;
+.js .fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* 1. Light Mode Lock */
-body.light-mode:not(.transitions-enabled),
-html.light-mode:not(.transitions-enabled),
-body.light-mode:not(.transitions-enabled) #main-content,
-body.light-mode:not(.transitions-enabled) .site-footer {
-  background-color: #ffffff !important;
-  color: #111827 !important;
-  transition: none !important;
+.fade-up.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-body.light-mode:not(.transitions-enabled) .site-header {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* 2. Dark Mode Lock (Solves the Blue/Gray tinting issue) */
-/* 2. Dark Mode Lock (Updated) */
-body:not(.light-mode):not(.transitions-enabled),
-html:not(.light-mode):not(.transitions-enabled) {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  transition: none !important;
-}
-
-body:not(.light-mode):not(.transitions-enabled) .site-header {
-  background-color: rgba(0, 0, 0, 0.75) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Specific lock for links to allow the current page to be blue */
-body:not(.light-mode):not(.transitions-enabled) .menu-list a:not(.current):not(:hover) {
-  color: #ffffff !important;
-}
-
-body:not(.light-mode):not(.transitions-enabled) .menu-list a.current,
-body:not(.light-mode):not(.transitions-enabled) .menu-list a:hover {
-  color: var(--accent) !important;
+@keyframes menuLinkFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
