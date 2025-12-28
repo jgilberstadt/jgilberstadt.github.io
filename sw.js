@@ -42,21 +42,22 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
+      // Start the network request to update the cache
       const fetchPromise = fetch(event.request).then((networkResponse) => {
-        // Only cache successful, same-origin responses
-        if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+        // Cache the new version if it's valid
+        if (networkResponse && networkResponse.status === 200) {
           const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseToCache);
           });
         }
-      return networkResponse;
+        return networkResponse;
       }).catch(() => {
-        // Optional: Return a custom offline page if both cache and network fail
-        return caches.match("./index.html"); 
+        // Fallback if network fails and item isn't in cache
+        return caches.match("./index.html");
       });
 
-      // Return the cached version immediately, or wait for the network if not cached
+      // Return cached version immediately if we have it, else return the network request
       return cachedResponse || fetchPromise;
     })
   );
