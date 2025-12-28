@@ -194,10 +194,10 @@ main.container { padding: 3rem 0; }
   flex-wrap: wrap; 
   margin-top: 2rem; 
   gap: 12px;
+  /* Keep row-gap for modern browsers */
   row-gap: 16px; 
-  justify-content: flex-start; /* Default for desktop */
+  justify-content: flex-start;
 }
-
 .social-button {
   display: inline-flex; align-items: center; justify-content: center;
   gap: 8px; padding: 0.7rem 1.2rem; border-radius: 0.4rem;
@@ -285,10 +285,15 @@ main.container { padding: 3rem 0; }
 @media (max-width: 480px) {
   .social-links { 
     justify-content: center; 
+    /* Increase margin-top to give the whole block more breathing room */
+    margin-top: 2.5rem; 
   }
+  
   .social-button { 
     width: auto; 
-    padding: 0.8rem 1.4rem; 
+    padding: 0.8rem 1.4rem;
+    /* ADD THIS: Forced margin as a fallback for row-gap */
+    margin-bottom: 4px; 
   }
 }
 
