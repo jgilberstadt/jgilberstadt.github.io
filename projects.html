@@ -9,7 +9,7 @@
     // 1. Detect JavaScript
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
 
-    // 2. Detect and Apply Theme immediately to prevent flashing
+    // 2. Detect and Apply Theme
     (function() {
       const savedTheme = localStorage.getItem("theme");
       const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
@@ -17,7 +17,7 @@
 
       if (isLight) {
         document.documentElement.classList.add("light-mode");
-        // This ensures the mobile address bar is white before the blue has a chance to show
+        // This ensures the mobile address bar is white
         const meta = document.querySelector('meta[name="theme-color"]');
         if (meta) meta.setAttribute("content", "#ffffff");
       }
@@ -125,5 +125,15 @@
   </main>
   <div id="site-footer"></div>
   <script src="./assets/js/menu.js" defer></script>
+  <script>
+    // This function triggers the transitions once the browser has had 
+    // one "frame" to paint the static light/dark mode colors.
+    window.addEventListener('load', () => {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add('transitions-enabled');
+        document.body.classList.add('transitions-enabled');
+      });
+    });
+  </script>
 </body>
 </html>
