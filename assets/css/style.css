@@ -61,13 +61,39 @@ body.transitions-enabled { transition: background-color 0.3s ease, color 0.3s ea
 /* =========================
    3. Header & Navigation
 ========================= */
-header.site-header {
-  position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
-  z-index: 100; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--card-border);
-  display: flex; align-items: center;
-  transition: transform 0.4s cubic-bezier(.2,.8,.2,1); /* Smoother slide */
-  transform: translateY(0); 
+/* =========================
+   3. Header & Navigation 
+========================= */
+#site-header {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: var(--header-height);
+  z-index: 100; 
+  background: rgba(0, 0, 0, 0.95); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); 
+  border-bottom: 1px solid var(--card-border);
+  display: flex; 
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(.2,.8,.2,1); 
+  transform: translateY(0);
+  will-change: transform; 
+}
+
+/* Scroll Classes - Targeting the ID */
+#site-header.header-hidden { 
+  transform: translateY(-100%) !important; 
+}
+
+#site-header.header-visible { 
+  transform: translateY(0) !important; 
+}
+
+/* Ensure the light mode background still works */
+body.light-mode #site-header { 
+  background: rgba(255, 255, 255, 0.85); 
 }
 
 .site-header .container { 
@@ -76,10 +102,6 @@ header.site-header {
   align-items: center; 
   height: 100%; /* Ensure the container fills the header's 4.5rem height */
 }
-
-/* Scroll Classes */
-.header-hidden { transform: translateY(-100%); }
-.header-visible { transform: translateY(0); }
 
 /* Brand/Logo Blue Fix */
 .site-title a {
@@ -373,21 +395,16 @@ main.container { padding: 3rem 0; }
 .site-footer { padding: 3rem 0; border-top: 1px solid var(--card-border); text-align: center; margin-top: auto; }
 
 .site-footer a {
+  margin: 0 1rem;
   color: var(--accent);
   font-weight: 500;
+  display: inline-block;
   transition: opacity 0.3s ease;
 }
 
 .site-footer a:hover {
   text-decoration: underline;
   opacity: 0.8;
-}
-
-/* Optional: Add a small separator between footer links if they are in a list */
-.site-footer a {
-  margin: 0 1rem;
-  color: var(--accent);
-  display: inline-block;
 }
 
 .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.4s ease-out; }
