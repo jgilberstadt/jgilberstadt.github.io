@@ -178,13 +178,7 @@ main.container { padding: 3rem 0; }
   border-bottom: 1px solid var(--card-border);
 }
 
-.project-content {  
-  padding: 1.5rem 1.5rem 0 1.5rem; /* Top, Right, 0 Bottom, Left */
-  flex-grow: 1;  
-  display: flex;  
-  flex-direction: column;  
-}
-
+/* Consolidate horizontal padding for everything inside the card */
 .project-item h3, 
 .project-item .project-description, 
 .project-item .project-tags {
@@ -213,24 +207,6 @@ main.container { padding: 3rem 0; }
   flex-wrap: wrap; 
   gap: 0.5rem; 
   margin-top: auto; 
-}
-
-.project-description { 
-  margin: 0 0 1.5rem 0; 
-  opacity: 0.8; 
-  font-size: 0.95rem; 
-  flex-grow: 1;
-  /* If this text is hugging, it's likely because it's outside .project-content. 
-     If so, we add padding here: */
-  padding: 0; 
-}
-
-.project-tags {  
-  padding: 0 1.5rem 1.5rem 1.5rem; /* 0 Top, Right, Bottom, Left */
-  display: flex;  
-  flex-wrap: wrap;  
-  gap: 0.5rem;  
-  margin-top: auto;  
 }
 
 .tag, .project-tag {
