@@ -221,13 +221,6 @@ body.light-mode .project-item .project-thumb {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-@supports (padding: env(safe-area-inset-bottom)) {
-    html.light-mode,
-    body.light-mode {
-        background-color: #ffffff !important;
-    }
-}
-
 /* =========================
    General Elements
 ========================= */
@@ -1341,17 +1334,22 @@ body:not(.menu-open) .menu-list li {
 /* =========================
    Light Mode Final Fix
 ========================= */
+/* Target the root canvas */
 html.light-mode {
   background-color: #ffffff !important;
+  background: #ffffff !important;
 }
 
+/* Target the body container */
 body.light-mode {
   background-color: #ffffff !important;
+  background: #ffffff !important;
   color: #111827 !important;
 }
 
-/* This stretches your content so the footer hits the bottom */
-html.light-mode #main-content {
+/* Target the main content area */
+body.light-mode #main-content {
   background-color: #ffffff !important;
+  background: #ffffff !important;
   flex: 1 0 auto;
 }
