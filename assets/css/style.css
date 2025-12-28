@@ -162,7 +162,7 @@ main.container { padding: 3rem 0; }
 .social-links { 
   display: flex; 
   flex-wrap: wrap; 
-  gap: 1rem;       /* This adds space both horizontally AND vertically */
+  gap: 12px;       /* This creates the physical gap between buttons */
   margin-top: 2rem; 
 }
 
@@ -170,14 +170,15 @@ main.container { padding: 3rem 0; }
   display: inline-flex; 
   align-items: center; 
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.4rem; /* Slightly larger padding for better mobile touch */
+  gap: 8px;
+  padding: 0.7rem 1.2rem; 
   border-radius: 0.4rem;
   border: 1.5px solid var(--accent); 
   color: var(--accent);
   font-weight: 500; 
   transition: all 0.3s;
-  white-space: nowrap;    /* Prevents the text inside the button from breaking */
+  white-space: nowrap; 
+  width: auto;     /* Ensures they only take up as much space as the text needs */
 }
 
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
@@ -264,11 +265,11 @@ main.container { padding: 3rem 0; }
 
 @media (max-width: 480px) {
   .social-links {
-    justify-content: center; /* Centers buttons on very small phones */
+    justify-content: flex-start; /* Keeps them on the left, or use 'center' if you prefer */
   }
   
   .social-button {
-    width: 100%; /* Optional: Makes buttons full-width on tiny phones for easier clicking */
+    width: auto;   /* Overrides the previous 100% width rule */
   }
 }
 
