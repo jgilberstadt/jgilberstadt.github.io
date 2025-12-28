@@ -163,14 +163,13 @@ main.container { padding: 3rem 0; }
   display: flex; 
   flex-wrap: wrap; 
   margin-top: 2rem; 
-  /* justify-content: flex-start; */ /* Use 'center' if you want them centered on About page */
 }
 
 .social-button {
   display: inline-flex; 
   align-items: center; 
   justify-content: center;
-  gap: 8px; /* This is the gap between icon and text inside the button */
+  gap: 8px;
   padding: 0.7rem 1.2rem; 
   border-radius: 0.4rem;
   border: 1.5px solid var(--accent); 
@@ -179,21 +178,29 @@ main.container { padding: 3rem 0; }
   transition: all 0.3s;
   white-space: nowrap; 
   width: auto; 
-  
-  /* ADD THIS: Space between the buttons */
   margin-right: 12px; 
-  margin-bottom: 12px; /* Space if they wrap to a second line */
+  margin-bottom: 12px;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
-.social-button:last-child {
-  margin-right: 0;
-}
-
+.social-button:last-child { margin-right: 0; }
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
 
+/* Mobile Tap Visual Reset */
+.project-item a:focus, .project-item a:focus-visible,
+.social-button:focus, .social-button:focus-visible {
+  outline: none;
+  border-color: var(--card-border); 
+  background: var(--card-bg);
+  transform: none;
+}
+
+/* Primary Button Focus Exception */
 .social-button.btn-primary:focus {
   background: var(--accent);
   color: #ffffff;
+  border-color: var(--accent);
 }
 
 /* Project Grid & Cards */
@@ -212,77 +219,28 @@ main.container { padding: 3rem 0; }
   transition: transform 0.3s, border-color 0.3s;
 }
 
-.project-item:hover { transform: translateY(-5px); border-color: var(--accent); }
-
 .project-item a { 
   display: flex; 
   flex-direction: column; 
   width: 100%; 
   height: 100%; 
-  color: inherit; 
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .project-thumb {
-  width: 100%; 
-  aspect-ratio: 16 / 9; 
-  object-fit: cover;
-  display: block; 
-  border-bottom: 1px solid var(--card-border);
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+  display: block; border-bottom: 1px solid var(--card-border);
 }
 
-/* 1. Universal Horizontal Gutter (Fixes "Hugging") */
-.project-item h3, 
-.project-item .project-description, 
-.project-item .project-tags {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+/* Universal Card Gutter */
+.project-item h3, .project-item .project-description, .project-item .project-tags {
+  padding-left: 1.5rem; padding-right: 1.5rem;
 }
 
-.project-item a,
-.social-button,
-.tag,
-.project-tag {
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-}
-
-/* 2. Force reset of the highlight after the tap is finished */
-.project-item a:focus,
-.project-item a:focus-visible,
-.social-button:focus,
-.social-button:focus-visible {
-  outline: none;
-  /* Resetting to the base state colors */
-  border-color: var(--card-border); 
-  background: var(--card-bg);
-  transform: none;
-}
-
-/* 2. Title Spacing */
-.project-item h3 { 
-  margin: 1.5rem 0 0.5rem 0; 
-  font-size: 1.4rem; 
-  color: var(--text); 
-  font-weight: 700; 
-}
-
-/* 3. Description Spacing & Alignment */
-.project-item .project-description { 
-  margin: 0 0 1.5rem 0; 
-  opacity: 0.8; 
-  font-size: 0.95rem; 
-  flex-grow: 1; 
-  line-height: 1.5;
-}
-
-/* 4. Tags Spacing */
-.project-item .project-tags { 
-  padding-bottom: 1.5rem;
-  display: flex; 
-  flex-wrap: wrap; 
-  gap: 0.5rem; 
-  margin-top: auto; 
-}
+.project-item h3 { margin: 1.5rem 0 0.5rem 0; font-size: 1.4rem; font-weight: 700; }
+.project-item .project-description { margin: 0 0 1.5rem 0; opacity: 0.8; font-size: 0.95rem; flex-grow: 1; }
+.project-item .project-tags { padding-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; }
 
 .tag, .project-tag {
   display: inline-block; padding: 0.25rem 0.75rem; border-radius: 2rem;
@@ -290,35 +248,22 @@ main.container { padding: 3rem 0; }
   background: rgba(128, 128, 128, 0.1); color: var(--accent); border: 1px solid var(--card-border);
 }
 
-/* Page Specific Spacing */
-.about .social-links, 
-.contact .social-links, 
-.cta-section .social-button { 
-  margin-top: 2.5rem; 
-}
+/* Layout Spacing */
+.about .social-links, .contact .social-links, .cta-section .social-button { margin-top: 2.5rem; }
 .skills-grid { margin-bottom: 4rem; }
 .cta-section { padding-top: 4rem; margin-top: 4rem; border-top: 1px solid var(--card-border); text-align: center; }
 
-@media (max-width: 480px) {
-  .social-links {
-    justify-content: center; /* This looks better on mobile */
-  }
-  
-  .social-button {
-    width: auto;   /* Overrides the previous 100% width rule */
-  }
+/* TRUE HOVER STATES (Mouse users only) */
+@media (hover: hover) {
+  .project-item:hover { transform: translateY(-5px); border-color: var(--accent); }
+  .social-button:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+  .social-button.btn-primary:hover { background: var(--accent); color: #ffffff; opacity: 0.9; }
 }
 
-@media (hover: hover) {
-  .project-item:hover { 
-    transform: translateY(-5px); 
-    border-color: var(--accent); 
-  }
-  .social-button:hover { 
-    transform: translateY(-2px); 
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+/* Center buttons on small screens */
+@media (max-width: 480px) {
+  .social-links { justify-content: center; }
+  .social-button { margin-right: 6px; margin-left: 6px; }
 }
 
 /* =========================
