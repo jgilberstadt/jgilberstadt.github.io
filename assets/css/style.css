@@ -58,34 +58,53 @@ header.site-header {
   z-index: 100; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--card-border);
   display: flex; align-items: center;
-  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
 
-.site-header .container { display: flex; justify-content: space-between; align-items: center; }
+/* This is the key: justify-content: space-between pushes left and right apart */
+.site-header .container { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  width: 92%; 
+  max-width: 1200px;
+}
 
-.menu-controls { display: flex; align-items: center; gap: 1rem; }
+/* Forces the navigation area to take up the available space if needed */
+nav.menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* This container holds the Sun/Moon and the Hamburger */
+.menu-controls { 
+  display: flex; 
+  align-items: center; 
+  gap: 1rem; 
+  margin-left: auto; /* Push to the far right if other elements are present */
+}
 
 .theme-toggle {
-  border: 1px solid var(--card-border); border-radius: 0.4rem;
-  padding: 0.4rem; display: flex; align-items: center;
+  border: 1px solid var(--card-border); 
+  border-radius: 0.4rem;
+  padding: 0.4rem; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
 }
 
-body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !important; }
+/* Hide icons properly */
+body:not(.light-mode) .moon-icon, 
+body.light-mode .sun-icon { display: none !important; }
 
-.site-header.header-hidden { transform: translateY(-100%); }
-.site-header.header-visible { transform: translateY(0); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-
-/* Nav Links */
-.menu-list { display: flex; gap: 2rem; }
-.menu-list a { opacity: 0.7; transition: opacity 0.3s; position: relative; }
-.menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent); }
-.menu-list a::after {
-  content: ''; position: absolute; bottom: -4px; left: 0; width: 100%;
-  height: 2px; background: var(--accent); transform: scaleX(0); transition: transform 0.3s;
+/* Desktop Menu List */
+@media (min-width: 769px) {
+  .menu-list { display: flex; gap: 2rem; margin-right: 2rem; }
 }
-.menu-list a:hover::after, .menu-list a.current::after { transform: scaleX(1); }
 
 /* =========================
    4. Page Layouts & Components
