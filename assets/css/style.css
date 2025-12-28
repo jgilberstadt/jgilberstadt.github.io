@@ -26,6 +26,9 @@ body {
   -webkit-tap-highlight-color: transparent;
   transition: none;
   background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 body.transitions-enabled {
@@ -79,6 +82,10 @@ html.light-mode body {
 #site-header {
   min-height: 4.5rem;
   display: block;
+}
+
+#main-content {
+  flex: 1; /* This tells the main content to grow and fill empty space */
 }
 
 *, *::before, *::after {
@@ -359,7 +366,7 @@ header.site-header, .project-item, .tag, .social-button {
    Footer
 ========================= */
 .site-footer {
-  margin-top: 5rem;
+  margin-top: auto;
   padding: 3rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text);
