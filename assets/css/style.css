@@ -142,7 +142,9 @@ body.light-mode .site-title a {
 }
 
 body.light-mode .site-header {
-  background: var(--bg);
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03); 
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -304,11 +306,13 @@ header.site-header {
   align-items: center;
   width: 100%;
   z-index: 1000;
-  background: var(--bg);
+  background: rgba(0, 0, 0, 0.8) !important;
   padding: 1rem 0;
   box-sizing: border-box;
   visibility: visible;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   
   /* COMBINED TRANSFORMS: This allows scroll-hiding AND stops flickering */
   transform: translateY(0) translateZ(0); 
@@ -1382,21 +1386,31 @@ body:not(.menu-open) .menu-list li {
 body.light-mode:not(.transitions-enabled),
 html.light-mode:not(.transitions-enabled),
 body.light-mode:not(.transitions-enabled) #main-content,
-body.light-mode:not(.transitions-enabled) .site-header,
 body.light-mode:not(.transitions-enabled) .site-footer {
   background-color: #ffffff !important;
   color: #111827 !important;
   transition: none !important;
 }
 
+body.light-mode:not(.transitions-enabled) .site-header {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 /* 2. Dark Mode Lock (Solves the Blue/Gray tinting issue) */
 /* 2. Dark Mode Lock (Updated) */
 body:not(.light-mode):not(.transitions-enabled),
-html:not(.light-mode):not(.transitions-enabled),
-body:not(.light-mode):not(.transitions-enabled) .site-header {
+html:not(.light-mode):not(.transitions-enabled) {
   background-color: #000000 !important;
   color: #ffffff !important;
   transition: none !important;
+}
+
+body:not(.light-mode):not(.transitions-enabled) .site-header {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Specific lock for links to allow the current page to be blue */
