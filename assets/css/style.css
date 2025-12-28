@@ -122,7 +122,6 @@ html.light-mode body {
 body.light-mode {
   color: var(--text);
   background-color: var(--bg);
-  background-attachment: fixed;
 }
 
 body.light-mode .site-header {
