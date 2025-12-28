@@ -58,6 +58,21 @@ html, body {
   transition: none !important;
 }
 
+/* Specifically target the links during the theme-snap or page-load */
+.no-transition .menu-list a,
+.no-transition .site-title a,
+.no-animate .menu-list a,
+.no-animate .site-title a {
+  transition: none !important;
+  color: var(--text) !important; /* Forces instant color placement */
+}
+
+/* Reserve space for the header to prevent the content from jumping up and down */
+#site-header {
+  min-height: 4.5rem;
+  display: block;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
