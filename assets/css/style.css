@@ -1309,19 +1309,22 @@ body:not(.menu-open) .menu-list li {
     position: relative;
     padding: 0.5rem 0.25rem;
     margin: 0 0.5rem;
-    color: var(--text);
-    opacity: 0.7;
+    /* Hardcode the color to white/gray initially to stop the blue tint */
+    color: #ffffff !important; 
+    opacity: 0.6;
     font-size: 1.1rem;
     text-decoration: none;
-    transition: opacity 0.2s ease, color 0.2s ease;
+    /* Ensure no background color is inherited */
     background: transparent !important;
+    /* Remove transition during initial load */
+    transition: opacity 0.2s ease, color 0.2s ease;
   }
 
-  /* Combined Hover and Current states */
-  .menu-list a:hover,
-  .menu-list a.current {
-    opacity: 1 !important;
+  /* Force the blue ONLY when current or hovered */
+  .menu-list a.current,
+  .menu-list a:hover {
     color: var(--accent) !important;
+    opacity: 1 !important;
   }
 
   .menu-list a.current {
