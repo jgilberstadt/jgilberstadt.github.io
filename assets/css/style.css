@@ -33,8 +33,9 @@ html {
   background-color: var(--bg);
 }
 
-html, body {
-  background-color: var(--bg);
+html.light-mode, 
+html.light-mode body {
+  background-color: #ffffff !important;
 }
 
 /* Initial state for elements we want to animate */
