@@ -1362,8 +1362,9 @@ body:not(.menu-open) .menu-list li {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   }
 
-   body:not(.light-mode) .menu-list a:not(.current) {
+   body:not(.light-mode) .menu-list a:not(.current):not(:hover) {
     color: #ffffff !important;
+    opacity: 0.6;
   }
 }
 
@@ -1398,10 +1399,11 @@ body:not(.light-mode):not(.transitions-enabled) .site-header {
 }
 
 /* Specific lock for links to allow the current page to be blue */
-body:not(.light-mode):not(.transitions-enabled) .menu-list a:not(.current) {
+body:not(.light-mode):not(.transitions-enabled) .menu-list a:not(.current):not(:hover) {
   color: #ffffff !important;
 }
 
-body:not(.light-mode):not(.transitions-enabled) .menu-list a.current {
+body:not(.light-mode):not(.transitions-enabled) .menu-list a.current,
+body:not(.light-mode):not(.transitions-enabled) .menu-list a:hover {
   color: var(--accent) !important;
 }
