@@ -865,7 +865,6 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     transform: translateY(-8px);
     border-color: var(--accent);
     background: var(--card-bg); 
-    filter: brightness(1.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   }
 
@@ -1388,6 +1387,7 @@ body:not(.menu-open) .menu-list li {
   .footer-content { flex-direction: row; justify-content: space-between; }
 
   body.light-mode .project-item:hover {
+    filter: brightness(0.98);
     border-color: var(--accent);
     background: #ffffff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
