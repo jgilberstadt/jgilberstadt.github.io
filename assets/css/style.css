@@ -99,6 +99,27 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
   }
 }
 
+/* Highlight Logic for all devices */
+.menu-list a.current {
+  color: var(--accent) !important;
+  opacity: 1 !important;
+  font-weight: 700;
+}
+
+/* Desktop-only underline for the current page */
+@media (min-width: 769px) {
+  .menu-list a.current::after { 
+    content: ''; 
+    position: absolute; 
+    bottom: -4px; 
+    left: 0; 
+    width: 100%; 
+    height: 2px; 
+    background: var(--accent);
+    transform: scaleX(1);
+  }
+}
+
 /* =========================
    4. Components & Layouts
 ========================= */
