@@ -1347,22 +1347,17 @@ body:not(.menu-open) .menu-list li {
 /* =========================
    Light Mode Final Fix
 ========================= */
-/* Target the root canvas */
-html.light-mode {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
+:root.light-mode {
+  --bg: #ffffff;
+  --text: #111827;
+  --accent: #2563eb;
 }
 
-/* Target the body container */
-body.light-mode {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  color: #111827 !important;
-}
-
-/* Target the main content area */
+/* Force the background to be white immediately with no transitions on load */
+html.light-mode, 
+body.light-mode, 
 body.light-mode #main-content {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  flex: 1 0 auto;
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+  transition: none !important; 
 }
