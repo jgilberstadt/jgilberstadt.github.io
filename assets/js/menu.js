@@ -75,9 +75,8 @@ function setupMenu() {
   let removeFocusTrap = null;
 
   function getFocusableElements() {
-    // This finds the X button AND all the links
-    return Array.from(document.querySelectorAll('.menu-close, .menu-list a[href]'));
-  }
+  return Array.from(document.querySelectorAll('.menu-toggle, .menu-list a[href]'));
+}
 
   function trapFocus() {
     const focusable = getFocusableElements();
