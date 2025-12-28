@@ -1148,7 +1148,29 @@ body.light-mode .social-button.btn-primary {
   }
   
   .menu-list {
-    padding-bottom: env(safe-area-inset-bottom);
+    position: fixed !important;
+    inset: 0; /* Shorthand for top, bottom, left, right: 0 */
+    width: 100vw !important;
+    height: 100dvh !important;
+    display: flex !important; /* Always flex, but controlled by visibility */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    z-index: 100000;
+    
+    /* Animation States */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    
+    /* Blur Effect */
+    background: rgba(0, 0, 0, 0.8) !important; 
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
   }
 
   .menu-list a {
@@ -1193,14 +1215,13 @@ body.light-mode .social-button.btn-primary {
 
    /* Base state for links when menu is closed */
 .menu-list li {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-  /* Reduced Y movement from 20px to 10px to stop the "pushing" sensation */
-  transform: translateY(10px); 
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
+    display: block !important;
+    width: auto;
+    text-align: center;
+    margin: 1rem 0; /* Add spacing between links */
+    opacity: 0;
+    transform: translateY(20px);
+  }
 
    .menu-list li a.current {
     color: var(--accent) !important;
@@ -1229,7 +1250,13 @@ body.menu-open .menu-list li {
   animation: menuLinkFadeIn 0.5s ease forwards;
   opacity: 1 !important;
   transform: translateY(0) !important;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
+
+   body.menu-open .menu-list li:nth-child(1) { transition-delay: 0.1s; }
+  body.menu-open .menu-list li:nth-child(2) { transition-delay: 0.2s; }
+  body.menu-open .menu-list li:nth-child(3) { transition-delay: 0.3s; }
+  body.menu-open .menu-list li:nth-child(4) { transition-delay: 0.4s; }
 
 /* When menu closes, they slide down slightly while fading */
 body:not(.menu-open) .menu-list li {
