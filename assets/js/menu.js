@@ -274,30 +274,36 @@ function setupThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
   if (!toggle) return;
 
-toggle.addEventListener("click", () => {
-    // Change "no-animate" to "no-transition"
-    document.documentElement.classList.add("no-transition"); 
+  toggle.addEventListener("click", () => {
+    // Briefly remove transitions so the colors swap instantly
+    document.body.classList.remove("transitions-enabled");
+    document.documentElement.classList.remove("transitions-enabled");
     
     const isCurrentlyLight = document.documentElement.classList.contains("light-mode");
     applyTheme(!isCurrentlyLight);
 
+    // Re-enable transitions after the swap
     requestAnimationFrame(() => {
-        setTimeout(() => {
-            document.documentElement.classList.remove("no-transition");
-            toggle.blur();
-        }, 50);
+      setTimeout(() => {
+        document.body.classList.add("transitions-enabled");
+        document.documentElement.classList.add("transitions-enabled");
+        toggle.blur(); // Ensures the moon/sun icon doesn't stay blue
+      }, 50);
     });
-});
+  });
 }
 
 document.addEventListener('click', (e) => {
   const isInteractive = e.target.closest('a, button, .project-item');
   const isMenuOpen = document.body.classList.contains("menu-open");
   
-  // Don't force blur if the mobile menu is open, otherwise keyboard navigation breaks
-  if (isInteractive && !isMenuOpen && document.activeElement instanceof HTMLElement) {
+  // Only blur if it's NOT a link (navigation should be handled by the browser)
+  // and NOT while the menu is open (to preserve focus trap)
+  if (isInteractive && !isMenuOpen && !e.target.closest('a')) {
     requestAnimationFrame(() => {
-      document.activeElement.blur();
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
     });
   }
 });
