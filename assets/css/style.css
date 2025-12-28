@@ -291,8 +291,15 @@ main.container { padding: 3rem 0; }
 
 /* Center buttons on small screens */
 @media (max-width: 480px) {
-  .social-links { justify-content: center; }
-  .social-button { margin-right: 6px; margin-left: 6px; }
+  .social-links { 
+    justify-content: center; 
+    gap: 10px; /* Slightly tighter gap for tiny screens if needed */
+  }
+  
+  .social-button { 
+    width: auto; 
+    margin: 0; /* Clear any lingering margins */
+  }
 }
 
 /* =========================
