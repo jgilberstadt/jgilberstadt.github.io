@@ -238,6 +238,11 @@ body.light-mode .project-item .project-thumb {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+body:not(.light-mode) .project-item:hover {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
 /* =========================
    General Elements
 ========================= */
