@@ -1361,16 +1361,13 @@ body:not(.menu-open) .menu-list li {
   --accent: #2563eb;
 }
 
-/* 1. Force instant colors if transitions aren't enabled yet */
+/* Consolidation of the Light Mode "Safety Lock" */
 body.light-mode:not(.transitions-enabled),
-html.light-mode:not(.transitions-enabled) {
+html.light-mode:not(.transitions-enabled),
+body.light-mode:not(.transitions-enabled) #main-content,
+body.light-mode:not(.transitions-enabled) .site-header,
+body.light-mode:not(.transitions-enabled) .site-footer {
   background-color: #ffffff !important;
   color: #111827 !important;
-  transition: none !important;
-}
-
-/* 2. Fix for Chrome's 'Main Content' rendering layer */
-body.light-mode:not(.transitions-enabled) #main-content {
-  background-color: #ffffff !important;
   transition: none !important;
 }
