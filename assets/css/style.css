@@ -20,7 +20,7 @@
 }
 
 /* =========================
-   2. Global Reset (The "Safety Net")
+   2. Global Reset
 ========================= */
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -32,26 +32,25 @@ body {
   background-color: var(--bg);
   line-height: 1.6;
   margin: 0;
-  padding: var(--header-height) 0 0 0; /* Clear header space */
+  padding: var(--header-height) 0 0 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Kills Purple Links and Default Bullets */
+/* Kills Purple Visited Links & Default List Bullets */
 a, a:visited { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; padding: 0; margin: 0; }
 button { background: none; border: none; padding: 0; cursor: pointer; color: inherit; font: inherit; }
 
 .container { width: 92%; max-width: 1200px; margin: 0 auto; }
 
-/* Theme Lock */
+/* Theme Transition Lock */
 body:not(.transitions-enabled), body:not(.transitions-enabled) * { transition: none !important; }
 body.transitions-enabled { transition: background-color 0.3s ease, color 0.3s ease; }
-.no-transition, .no-transition * { transition: none !important; }
 
 /* =========================
-   3. Header & Navigation (Fixed Alignment)
+   3. Header & Navigation
 ========================= */
 header.site-header {
   position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
@@ -62,84 +61,47 @@ header.site-header {
 
 body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
 
-/* This is the key: justify-content: space-between pushes left and right apart */
 .site-header .container { 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  width: 92%; 
-  max-width: 1200px;
+  display: flex; justify-content: space-between; align-items: center; 
 }
 
-/* Forces the Name/Logo to stay blue */
-.site-title a {
+/* Brand/Logo Blue Fix */
+.site-title a, .header-left a, .logo a {
   color: var(--accent) !important;
   font-weight: 700;
   font-size: 1.25rem;
 }
 
-/* Forces the navigation area to take up the available space if needed */
-nav.menu {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
+nav.menu { display: flex; align-items: center; gap: 2rem; }
 
-/* This container holds the Sun/Moon and the Hamburger */
-.menu-controls { 
-  display: flex; 
-  align-items: center; 
-  gap: 1rem; 
-  margin-left: auto; /* Push to the far right if other elements are present */
-}
+.menu-controls { display: flex; align-items: center; gap: 1rem; margin-left: auto; }
 
 .theme-toggle {
-  border: 1px solid var(--card-border); 
-  border-radius: 0.4rem;
-  padding: 0.4rem; 
-  display: flex; 
-  align-items: center;
-  justify-content: center;
-  min-width: 40px;
-  height: 40px;
+  border: 1px solid var(--card-border); border-radius: 0.4rem;
+  padding: 0.4rem; display: flex; align-items: center; justify-content: center;
+  min-width: 40px; height: 40px;
 }
 
-/* Hide icons properly */
-body:not(.light-mode) .moon-icon, 
-body.light-mode .sun-icon { display: none !important; }
+body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !important; }
 
-/* Desktop Menu List */
+/* Desktop Link Logic */
 @media (min-width: 769px) {
   .menu-list { display: flex; gap: 2rem; margin-right: 2rem; }
-}
-
-/* Fix: Restore Blue for Logo and Active Page */
-
-/* 1. Ensure the Logo/Name is always blue */
-.site-title a, 
-.header-left a {
-  color: var(--accent) !important;
-  font-weight: 700;
-}
-
-/* 2. Ensure the "Current" menu link is always blue */
-.menu-list a.current {
-  color: var(--accent) !important;
-  opacity: 1;
-}
-
-/* 3. Ensure the underline for the current page is visible */
-.menu-list a.current::after {
-  transform: scaleX(1);
+  .menu-list a { position: relative; opacity: 0.8; transition: opacity 0.3s; }
+  .menu-list a:hover, .menu-list a.current { opacity: 1; color: var(--accent) !important; }
+  .menu-list a.current::after { 
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; 
+    height: 2px; background: var(--accent); transform: scaleX(1); 
+  }
 }
 
 /* =========================
-   4. Page Layouts & Components
+   4. Components & Layouts
 ========================= */
 main.container { padding: 3rem 0; }
 
-/* Contact Page Fixed */
-.social-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+/* Social & Contact Buttons */
+.social-links { display: flex; flex-wrap: wrap; gap: 1rem; }
 
 .social-button {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -147,36 +109,28 @@ main.container { padding: 3rem 0; }
   border: 1.5px solid var(--accent); color: var(--accent);
   font-weight: 500; transition: all 0.3s;
 }
-
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
-.social-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(96,165,250,0.2); }
+.social-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(96,165,250,0.15); }
 
-/* Project Cards Typography */
+/* Project Grid & Cards */
 .project-grid ul { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-  gap: 2rem; 
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; 
 }
 
 .project-item { 
-  background: var(--card-bg); 
-  border: 1px solid var(--card-border); 
-  border-radius: 0.8rem; 
-  overflow: hidden; 
-  display: flex;
+  background: var(--card-bg); border: 1px solid var(--card-border); 
+  border-radius: 0.8rem; overflow: hidden; display: flex;
   transition: transform 0.3s, border-color 0.3s;
 }
 
-.project-item a {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  color: inherit; /* Kills the purple visited link color */
-  text-decoration: none;
-}
-
 .project-item:hover { transform: translateY(-5px); border-color: var(--accent); }
+
+.project-item a { display: flex; flex-direction: column; width: 100%; height: 100%; color: inherit; }
+
+.project-thumb {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+  display: block; border-bottom: 1px solid var(--card-border);
+}
 
 .project-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
 .project-item h3 { margin: 0 0 0.5rem; font-size: 1.4rem; color: var(--text); font-weight: 700; }
@@ -190,33 +144,10 @@ main.container { padding: 3rem 0; }
   background: rgba(128, 128, 128, 0.1); color: var(--accent); border: 1px solid var(--card-border);
 }
 
-.project-thumb {
-  width: 100%;
-  aspect-ratio: 16 / 9; 
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  border-bottom: 1px solid var(--card-border);
-}
-
-/* About Page Spacing Fix */
-.about .social-links, 
-.contact .social-links {
-  margin-top: 3rem; /* Adds a clear gap above the buttons */
-  margin-bottom: 2rem;
-}
-
-/* Ensure the Tools/Skills grid has breathing room */
-.skills-grid {
-  margin-bottom: 3rem; 
-}
-
-/* If the buttons are inside a CTA section */
-.cta-section {
-  padding-top: 4rem;
-  margin-top: 2rem;
-  border-top: 1px solid var(--card-border);
-}
+/* Page Specific Spacing */
+.about .social-links, .contact .social-links, .cta-section .social-button { margin-top: 3.5rem; }
+.skills-grid { margin-bottom: 4rem; }
+.cta-section { padding-top: 4rem; margin-top: 4rem; border-top: 1px solid var(--card-border); text-align: center; }
 
 /* =========================
    5. Mobile Adjustments
@@ -228,21 +159,21 @@ main.container { padding: 3rem 0; }
     z-index: 200; opacity: 0; visibility: hidden; transition: all 0.3s;
   }
   body.menu-open .menu-list { opacity: 1; visibility: visible; }
-  .menu-list a { font-size: 2rem; }
+  .menu-list a { font-size: 2rem; margin: 1rem 0; }
   
   .menu-close {
     display: none; position: fixed; top: 1.5rem; right: 1.5rem;
     z-index: 300; font-size: 2rem;
   }
   body.menu-open .menu-close { display: block; }
-
+  
   .intro-block { text-align: center; }
   .profile { width: 8rem; height: 8rem; margin: 0 auto; }
 }
 
 @media (min-width: 769px) {
   .menu-toggle, .menu-close { display: none; }
-  .intro-block { display: flex; align-items: center; gap: 3rem; text-align: left; }
+  .intro-block { display: flex; align-items: center; gap: 3rem; }
   .profile { width: 12rem; height: 12rem; border-radius: 50%; border: 3px solid var(--accent); padding: 5px; }
 }
 
