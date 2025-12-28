@@ -272,6 +272,11 @@ main.container { padding: 3rem 0; }
   body.menu-open .menu-list { opacity: 1; visibility: visible; }
    
   .menu-list a { font-size: 2rem; font-weight: 600; color: var(--text); }
+
+   .menu-list a:active {
+  background: rgba(128, 128, 128, 0.1);
+  border-radius: 0.5rem;
+}
    
   .menu-close {
     display: none; position: fixed; top: 1.5rem; right: 1.5rem;
