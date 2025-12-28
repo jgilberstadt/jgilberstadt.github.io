@@ -274,26 +274,28 @@ function setupThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
   if (!toggle) return;
 
-  toggle.addEventListener("click", () => {
-    // Prevent "sliding" animations during the swap
-    document.documentElement.classList.add("no-animate");
-
+toggle.addEventListener("click", () => {
+    // Change "no-animate" to "no-transition"
+    document.documentElement.classList.add("no-transition"); 
+    
     const isCurrentlyLight = document.documentElement.classList.contains("light-mode");
-    applyTheme(!isCurrentlyLight); // Flip it
+    applyTheme(!isCurrentlyLight);
 
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        document.documentElement.classList.remove("no-animate");
-        toggle.blur();
-      }, 50);
+        setTimeout(() => {
+            document.documentElement.classList.remove("no-transition");
+            toggle.blur();
+        }, 50);
     });
-  });
+});
 }
 
 document.addEventListener('click', (e) => {
   const isInteractive = e.target.closest('a, button, .project-item');
+  const isMenuOpen = document.body.classList.contains("menu-open");
   
-  if (isInteractive && document.activeElement instanceof HTMLElement) {
+  // Don't force blur if the mobile menu is open, otherwise keyboard navigation breaks
+  if (isInteractive && !isMenuOpen && document.activeElement instanceof HTMLElement) {
     requestAnimationFrame(() => {
       document.activeElement.blur();
     });
