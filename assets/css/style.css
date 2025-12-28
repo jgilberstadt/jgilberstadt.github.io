@@ -125,23 +125,37 @@ main.container { padding: 3rem 0; }
 .social-button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(96,165,250,0.2); }
 
 /* Project Cards Typography */
-.project-grid ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.project-grid ul { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 2rem; 
+}
 
 .project-item { 
   background: var(--card-bg); 
   border: 1px solid var(--card-border); 
   border-radius: 0.8rem; 
   overflow: hidden; 
-  display: flex; 
+  display: flex;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.project-item a {
+  display: flex;
   flex-direction: column;
-  height: 100%; /* Ensures all cards in a row are the same height */
+  width: 100%;
+  height: 100%;
+  color: inherit; /* Kills the purple visited link color */
+  text-decoration: none;
 }
 
 .project-item:hover { transform: translateY(-5px); border-color: var(--accent); }
 
-.project-content { padding: 1.5rem; }
-.project-content h3 { margin: 0 0 0.5rem; font-size: 1.4rem; color: var(--text); }
-.project-content p { margin: 0 0 1.5rem; opacity: 0.8; font-size: 0.95rem; }
+.project-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+.project-item h3 { margin: 0 0 0.5rem; font-size: 1.4rem; color: var(--text); font-weight: 700; }
+.project-description { margin: 0 0 1.5rem; opacity: 0.8; font-size: 0.95rem; flex-grow: 1; }
+
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; }
 
 .tag, .project-tag {
   display: inline-block; padding: 0.25rem 0.75rem; border-radius: 2rem;
@@ -151,8 +165,8 @@ main.container { padding: 3rem 0; }
 
 .project-thumb {
   width: 100%;
-  aspect-ratio: 16 / 9; /* Forces a consistent widescreen shape */
-  object-fit: cover;    /* Crops the image to fill the space without stretching */
+  aspect-ratio: 16 / 9; 
+  object-fit: cover;
   object-position: center;
   display: block;
   border-bottom: 1px solid var(--card-border);
