@@ -151,6 +151,21 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
   transform: scale(0.95);
 }
 
+/* Force the button to reset as soon as the menu opens */
+body.menu-open .menu-toggle {
+  border-color: var(--card-border) !important;
+  color: var(--text) !important;
+  background: transparent !important;
+  transform: none !important;
+}
+
+/* Ensure the tap highlight is killed globally for these buttons */
+.theme-toggle, .menu-toggle {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
 /* =========================
    4. Components & Layouts
 ========================= */
