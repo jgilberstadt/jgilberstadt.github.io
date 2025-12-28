@@ -24,7 +24,7 @@ body {
   padding-top: 5rem;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  transition: none;
+  transition: none !important;
   background-color: var(--bg);
   display: flex;
   flex-direction: column;
@@ -39,6 +39,7 @@ body.transitions-enabled {
 html {
   height: 100%;
   scrollbar-gutter: stable;
+  background-color: var(--bg);
   /* This prevents the "white flash" or "black flash" when switching modes */
   transition: background-color 0.3s ease; 
 }
