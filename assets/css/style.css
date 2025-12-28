@@ -1153,13 +1153,11 @@ body.light-mode .social-button.btn-primary {
 }
 
   .menu-list a.current {
-    background: transparent !important;
-    color: var(--accent) !important; /* Forces the blue color */
-    font-weight: 700 !important;
-    opacity: 1 !important;           /* Removes the 0.8 transparency */
-    pointer-events: none;
-    text-decoration: none;
-    border-bottom: 4px solid var(--accent) !important; /* Thick mobile underline */
+    font-size: 2.5rem !important; /* Match your base mobile font size */
+    color: var(--accent) !important;
+    opacity: 1 !important;
+    border-bottom: 4px solid var(--accent) !important;
+    text-shadow: 1px 0 0 currentColor; /* Subtle bold without shifting */
   }
 
    .menu-list a.current::after {
@@ -1308,10 +1306,9 @@ body:not(.menu-open) .menu-list li {
 }
 
   .menu-list a {
-    color: var(--text);
+    font-size: 1.1rem; /* Set a consistent size for all links */
     opacity: 0.6;
-    font-size: 1.2rem;
-    transition: opacity 0.2s ease; 
+    transition: opacity 0.2s ease, color 0.2s ease;
   }
 
    .menu-list a:hover {
@@ -1320,11 +1317,11 @@ body:not(.menu-open) .menu-list li {
   }
 
    .menu-list a.current {
-    border-bottom: 0 !important;
     opacity: 1 !important;
-    color: var(--accent) !important; 
-    font-weight: 700;
-    transition: none !important;
+    color: var(--accent) !important;
+    /* Use text-shadow instead of font-weight to prevent width shift */
+    text-shadow: 0.5px 0 0 currentColor; 
+    font-size: 1.1rem !important; /* Matches the base size exactly */
   }
 
    .menu-list a.current::after,
