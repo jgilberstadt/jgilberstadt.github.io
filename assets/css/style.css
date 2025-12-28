@@ -1286,56 +1286,69 @@ body:not(.menu-open) .menu-list li {
     margin-left: auto;
     margin-right: 2rem;
     padding: 0;
-    opacity: 1 !important;        /* Makes it visible again */
-    visibility: visible !important; /* Makes it interactive */
-    pointer-events: auto;        /* Allows clicking */
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto;
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-shadow: none !important;
     transform: none !important; 
+    border: none !important;
+    outline: none !important;
   }
 
-   .menu-list li {
+  .menu-list li {
     opacity: 1 !important;
     animation: none !important;
+    border: none !important;
+    outline: none !important;
   }
-
-   .menu-list, .menu-list li {
-  border: none !important;
-  outline: none !important;
-}
 
   .menu-list a {
-    font-size: 1.1rem; /* Set a consistent size for all links */
-    opacity: 0.6;
+    position: relative;
+    padding: 0.5rem 0.25rem;
+    margin: 0 0.5rem;
+    color: var(--text);
+    opacity: 0.7;
+    font-size: 1.1rem;
+    text-decoration: none;
     transition: opacity 0.2s ease, color 0.2s ease;
+    background: transparent !important;
   }
 
-   .menu-list a:hover {
-    opacity: 1;
-    color: var(--accent);
-  }
-
-   .menu-list a.current {
+  /* Combined Hover and Current states */
+  .menu-list a:hover,
+  .menu-list a.current {
     opacity: 1 !important;
     color: var(--accent) !important;
-    /* Use text-shadow instead of font-weight to prevent width shift */
+  }
+
+  .menu-list a.current {
     text-shadow: 0.5px 0 0 currentColor; 
-    font-size: 1.1rem !important; /* Matches the base size exactly */
   }
 
-   .menu-list a.current::after,
-  .menu-list a.current:hover::after {
-    display: none !important;
-    content: none !important;
+  /* Single Underline Logic */
+  .menu-list a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-   /* Hide the close button entirely on desktop */
-  .menu-close {
-    display: none !important;
+  /* Show underline on hover OR if it's the current page */
+  .menu-list a:hover::after,
+  .menu-list a.current::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
-   
+
   .site-header .container { align-items: center; }
   .site-title { font-size: 1.2rem; display: inline-flex; align-items: center; }
 
