@@ -132,29 +132,32 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
 /* Desktop Link Logic */
 @media (min-width: 769px) {
    .menu-list { display: flex; gap: 2rem; margin-right: 2rem; }
+   
 .menu-list a { 
     position: relative; 
     opacity: 0.8; 
     transition: opacity 0.3s;
+    /* Stack the real text on top of the invisible spacer */
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
   }
    
-   .menu-list a::before {
-    display: block;
-    content: attr(data-text); /* This pulls text from your HTML */
-    font-weight: 700;
+   /* The "Ghost" spacer: always bold, but invisible and 0px tall */
+  .menu-list a::before {
+    content: attr(data-text);
     height: 0;
-    overflow: hidden;
     visibility: hidden;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: none;
+    font-weight: 700; /* Reserves the width of the bold version */
   }
 
   .menu-list a:hover, .menu-list a.current { 
     opacity: 1; 
     color: var(--accent) !important; 
-    font-weight: 700; /* Now it won't shift because the space is already reserved! */
+    font-weight: 700; 
   }
 
   .menu-list a.current::after { 
@@ -165,7 +168,6 @@ body:not(.light-mode) .moon-icon, body.light-mode .sun-icon { display: none !imp
     width: 100%; 
     height: 2px; 
     background: var(--accent);
-    transform: scaleX(1);
   }
 }
 
