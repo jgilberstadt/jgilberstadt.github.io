@@ -96,7 +96,6 @@ header.site-header {
   display: flex;
   align-items: center;
   transition: transform 0.3s ease, background-color 0.3s ease;
-  will-change: transform;
 }
 
 body.light-mode .site-header {
@@ -107,52 +106,43 @@ body.light-mode .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%; /* Ensures it spans the header */
 }
 
-/* Add these to Section 4 of your CSS */
-.site-header.header-hidden {
-  transform: translateY(-100%);
+/* Aligning the Toggle and Hamburger */
+.menu-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between Sun/Moon and Hamburger */
 }
 
-.site-header.header-visible {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.site-title a {
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--accent);
-}
-
-/* Nav Underline Logic (Shared) */
-.menu-list a {
-  position: relative;
-  text-decoration: none;
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text);
-  opacity: 0.7;
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
-.menu-list a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--accent);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
+.menu-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem;
 }
 
-.menu-list a:hover, .menu-list a.current {
-  opacity: 1;
-  color: var(--accent);
-}
-
-.menu-list a:hover::after, .menu-list a.current::after {
-  transform: scaleX(1);
+/* Ensure icons behave inside the toggle */
+.sun-icon, .moon-icon {
+  display: inline-block;
+  line-height: 1;
 }
 
 /* =========================
