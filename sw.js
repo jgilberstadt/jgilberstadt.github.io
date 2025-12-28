@@ -1,4 +1,4 @@
-const CACHE_NAME = "portfolio-cache-v3";
+const CACHE_NAME = "portfolio-cache-v4";
 
 // Add all your new icon files here so they work offline
 const ASSETS = [
