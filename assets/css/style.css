@@ -79,6 +79,28 @@ header.site-header {
 .header-hidden { transform: translateY(-100%); }
 .header-visible { transform: translateY(0); }
 
+/* Brand/Logo Blue Fix */
+.site-title a {
+  color: var(--accent) !important;
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: block;
+}
+
+/* Grouping the theme toggle and mobile menu toggle */
+.menu-controls { 
+  display: flex; 
+  align-items: center; 
+  gap: 1rem; 
+  margin-left: auto; /* This pushes the icons to the far right */
+}
+
+/* Ensure Nav container doesn't collapse */
+nav.menu { 
+  display: flex; 
+  align-items: center; 
+}
+
 body.light-mode .site-header { background: rgba(255, 255, 255, 0.85); }
 
 /* Desktop Navigation Fixes */
