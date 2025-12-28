@@ -224,25 +224,27 @@ function setupHeaderScroll() {
   let ticking = false;
 
   function updateHeader() {
-    const currentScrollY = window.scrollY;
+  const currentScrollY = window.scrollY;
 
-    // 1. Always show header if we are near the top (within 50px)
-    if (currentScrollY < 50) {
-      header.classList.remove("header-hidden");
-      header.classList.add("header-visible");
-    } 
-    // 2. Hide on scroll down, show on scroll up
-    else if (currentScrollY > lastScrollY) {
-      header.classList.add("header-hidden");
-      header.classList.remove("header-visible");
-    } else {
-      header.classList.remove("header-hidden");
-      header.classList.add("header-visible");
-    }
-
-    lastScrollY = currentScrollY;
-    ticking = false;
+  // 1. Always show header if near the top OR if we've scrolled past the bottom (iOS bounce)
+  if (currentScrollY <= 50) {
+    header.classList.remove("header-hidden");
+    header.classList.add("header-visible");
+  } 
+  // 2. Hide on scroll down
+  else if (currentScrollY > lastScrollY && currentScrollY > 0) {
+    header.classList.add("header-hidden");
+    header.classList.remove("header-visible");
+  } 
+  // 3. Show on scroll up
+  else {
+    header.classList.remove("header-hidden");
+    header.classList.add("header-visible");
   }
+
+  lastScrollY = currentScrollY;
+  ticking = false;
+}
 
   window.addEventListener("scroll", () => {
     if (!ticking) {
