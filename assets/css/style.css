@@ -128,9 +128,13 @@ main.container { padding: 3rem 0; }
 .project-grid ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
 
 .project-item { 
-  background: var(--card-bg); border: 1px solid var(--card-border); 
-  border-radius: 0.8rem; overflow: hidden; display: flex; flex-direction: column;
-  transition: transform 0.3s, border-color 0.3s;
+  background: var(--card-bg); 
+  border: 1px solid var(--card-border); 
+  border-radius: 0.8rem; 
+  overflow: hidden; 
+  display: flex; 
+  flex-direction: column;
+  height: 100%; /* Ensures all cards in a row are the same height */
 }
 
 .project-item:hover { transform: translateY(-5px); border-color: var(--accent); }
@@ -143,6 +147,15 @@ main.container { padding: 3rem 0; }
   display: inline-block; padding: 0.25rem 0.75rem; border-radius: 2rem;
   font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
   background: rgba(128, 128, 128, 0.1); color: var(--accent); border: 1px solid var(--card-border);
+}
+
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Forces a consistent widescreen shape */
+  object-fit: cover;    /* Crops the image to fill the space without stretching */
+  object-position: center;
+  display: block;
+  border-bottom: 1px solid var(--card-border);
 }
 
 /* =========================
