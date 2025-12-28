@@ -226,20 +226,33 @@ function setupHeaderScroll() {
   function updateHeader() {
   const currentScrollY = window.scrollY;
   const headerHeight = header.offsetHeight;
+  const scrollDelta = currentScrollY - lastScrollY;
+  const tolerance = 5; // Pixels to ignore to prevent jitter
 
-  // 1. Always show at the very top
-  if (currentScrollY <= 0) {
+  // 1. Force show at the very top (and handle iOS bounce)
+  if (currentScrollY <= 50) {
     header.classList.remove("header-hidden");
+    header.classList.add("header-visible");
+    lastScrollY = currentScrollY;
+    ticking = false;
     return;
   }
 
-  // 2. Hide on scroll down (if we've scrolled past the header height)
-  if (currentScrollY > lastScrollY && currentScrollY > headerHeight) {
+  // 2. Ignore tiny scrolls (tolerance)
+  if (Math.abs(scrollDelta) <= tolerance) {
+    ticking = false;
+    return;
+  }
+
+  // 3. The Core Logic
+  if (scrollDelta > 0 && currentScrollY > headerHeight) {
+    // Scrolling Down - Hide it
     header.classList.add("header-hidden");
-  } 
-  // 3. Show on scroll up
-  else {
+    header.classList.remove("header-visible");
+  } else if (scrollDelta < 0) {
+    // Scrolling Up - Show it
     header.classList.remove("header-hidden");
+    header.classList.add("header-visible");
   }
 
   lastScrollY = currentScrollY;
