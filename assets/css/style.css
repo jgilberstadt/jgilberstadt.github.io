@@ -1309,7 +1309,6 @@ body:not(.menu-open) .menu-list li {
     position: relative;
     padding: 0.5rem 0.25rem;
     margin: 0 0.5rem;
-    /* Only force white if we aren't in light-mode */
     color: var(--text); 
     opacity: 0.6;
     font-size: 1.1rem;
@@ -1363,7 +1362,7 @@ body:not(.menu-open) .menu-list li {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   }
 
-   body:not(.light-mode) .menu-list a {
+   body:not(.light-mode) .menu-list a:not(.current) {
     color: #ffffff !important;
   }
 }
@@ -1389,11 +1388,20 @@ body.light-mode:not(.transitions-enabled) .site-footer {
 }
 
 /* 2. Dark Mode Lock (Solves the Blue/Gray tinting issue) */
+/* 2. Dark Mode Lock (Updated) */
 body:not(.light-mode):not(.transitions-enabled),
 html:not(.light-mode):not(.transitions-enabled),
-body:not(.light-mode):not(.transitions-enabled) .site-header,
-body:not(.light-mode):not(.transitions-enabled) .menu-list a {
+body:not(.light-mode):not(.transitions-enabled) .site-header {
   background-color: #000000 !important;
   color: #ffffff !important;
   transition: none !important;
+}
+
+/* Specific lock for links to allow the current page to be blue */
+body:not(.light-mode):not(.transitions-enabled) .menu-list a:not(.current) {
+  color: #ffffff !important;
+}
+
+body:not(.light-mode):not(.transitions-enabled) .menu-list a.current {
+  color: var(--accent) !important;
 }
