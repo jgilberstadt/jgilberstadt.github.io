@@ -9,6 +9,7 @@
   --card-border: rgba(255, 255, 255, 0.1);
   --transition-smooth: 0.3s cubic-bezier(.2,.8,.2,1);
   --header-height: 4.5rem;
+  --color-scheme: dark;
 }
 
 :root.light-mode {
@@ -17,6 +18,7 @@
   --accent: #2563eb;
   --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.08);
+  --color-scheme: light;
 }
 
 /* =========================
@@ -84,7 +86,9 @@ header.site-header {
   color: var(--accent) !important;
   font-weight: 700;
   font-size: 1.25rem;
-  display: block;
+  display: flex;         /* Changed from block to flex */
+  align-items: center;   /* Ensures vertical alignment with nav */
+  height: 100%;
 }
 
 /* Grouping the theme toggle and mobile menu toggle */
@@ -189,8 +193,9 @@ main.container { padding: 3rem 0; }
   display: flex; 
   flex-wrap: wrap; 
   margin-top: 2rem; 
-  gap: 12px;     /* This handles horizontal spacing */
-  row-gap: 16px; /* This explicitly handles vertical spacing if they stack */
+  gap: 12px;
+  row-gap: 16px; 
+  justify-content: flex-start; /* Default for desktop */
 }
 
 .social-button {
@@ -280,14 +285,9 @@ main.container { padding: 3rem 0; }
 @media (max-width: 480px) {
   .social-links { 
     justify-content: center; 
-    /* row-gap is the key here to stop the touching */
-    row-gap: 16px; 
   }
-  
   .social-button { 
-    /* Remove width: 100% to go back to original width */
     width: auto; 
-    /* This ensures they have plenty of room to be tapped */
     padding: 0.8rem 1.4rem; 
   }
 }
