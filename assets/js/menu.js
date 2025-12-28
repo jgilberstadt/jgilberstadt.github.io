@@ -43,7 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(response => response.text())
     .then(html => {
       const footerContainer = document.getElementById("site-footer");
-      if (footerContainer) footerContainer.innerHTML = html;
+      if (footerContainer) {
+        footerContainer.innerHTML = html;
+        
+        // RE-SYNC THEME FOR INJECTED FOOTER
+        const isLight = document.documentElement.classList.contains("light-mode");
+        footerContainer.classList.toggle("light-mode", isLight);
+      }
     });
 
   triggerPageFadeIn();
