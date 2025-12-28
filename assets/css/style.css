@@ -28,7 +28,7 @@ body {
   background-color: var(--bg);
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 body.transitions-enabled {
@@ -119,6 +119,13 @@ body.light-mode {
   --card-bg: #ffffff;
   --card-border: rgba(0, 0, 0, 0.08);
   --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+:root.light-mode,
+:root.light-mode body,
+html.light-mode,
+body.light-mode {
+  background-color: #ffffff !important;
 }
 
 body.light-mode {
@@ -1011,6 +1018,7 @@ transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   font-size: 1rem;
   line-height: 1.6;
   margin-top: 2rem;
+  padding-bottom: 5rem; /* Adds a nice buffer before the footer on desktop */
 }
 
 .social-links {
