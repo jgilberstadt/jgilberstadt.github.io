@@ -5,7 +5,7 @@ This repository hosts a progressive web app (PWA) showcasing my coding projects.
 
 I created header and footer partial files to minimize redundant code and improve overall readability. My name is in the left side of the header, and it sends the user to the about page when it's clicked. The right side of the header on the desktop mode lists all three pages while the mobile version contains a menu button that displays all three pages when clicked, allowing the user to switch pages by clicking on the page they want to see. The desktop layout is more horizontal while the mobile layout is more vertical, so I created these two different layouts to display the menu in the way that best fits the device the user is using. There is also a sun/moon button in the right edge of the header that allows the user to toggle the light/dark mode. The footer lists my name and location and also contains links to my email, LinkedIn, and GitHub.
 
-I also created several supplementary files that contain various formatting and structural properties. The menu.js file contains the JavaScript functions used in the PWA. There are 
+I also created several supplementary files that contain various formatting and structural properties. The menu.js file contains numerous JavaScript functions such as injecting the header and footer, displaying the mobile menu, and toggling the light/dark mode. These functions enhance user engagement and allow for a more customized experience. The style.css file contains the stylistic properties of the PWA.
 
 Pages:
 - `index.html` — About (site root)
