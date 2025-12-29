@@ -331,12 +331,6 @@ main.container { padding: 3rem 0; }
   }
 }
 
-/* Light mode adjustments for the shadow */
-body.light-mode .project-item:hover {
-  background: #ffffff;
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.1);
-}
-
 /* Add this to Section 4 of your CSS */
 .contact {
   max-width: 700px;
