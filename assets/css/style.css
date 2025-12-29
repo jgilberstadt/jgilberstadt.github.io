@@ -118,6 +118,12 @@ body.light-mode .sun-icon { display: none !important; }
     border-color: var(--accent);
     box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.3);
   }
+
+   body.light-mode .theme-toggle:hover, 
+  body.light-mode .menu-toggle:hover {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: var(--accent);
+  }
 }
 
 /* Prevent sticky focus highlights on mobile */
@@ -137,25 +143,21 @@ body.light-mode .sun-icon { display: none !important; }
   transition: transform 0.1s ease; /* Faster feedback for touch */
 }
 
+/* Prevent the menu button from flashing when the menu is closing/navigating */
+.menu-toggle:focus-visible {
+  outline: none;
+}
+
+/* Specifically target the moment after a click */
+.menu-toggle:not(:active):focus {
+  background: transparent;
+  border-color: var(--card-border);
+}
+
 /* Light mode adjustments */
 body.light-mode .theme-toggle, 
 body.light-mode .menu-toggle {
   border-color: rgba(0, 0, 0, 0.08);
-}
-
-/* Only show the blue ring/glow on devices with a mouse */
-@media (hover: hover) {
-  .theme-toggle:hover, .menu-toggle:hover {
-    background: var(--card-bg);
-    border-color: var(--accent);
-    box-shadow: 0 0 12px rgba(96, 165, 250, 0.2);
-  }
-
-  body.light-mode .theme-toggle:hover, 
-  body.light-mode .menu-toggle:hover {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: var(--accent);
-  }
 }
 
 /* Desktop Navigation */
