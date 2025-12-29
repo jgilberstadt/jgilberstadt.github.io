@@ -31,6 +31,7 @@ const ASSETS = [
 
 // Install the Service Worker and cache files
 self.addEventListener("install", (event) => {
+  self.skipWaiting(); // Forces the waiting service worker to become the active one
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(ASSETS);
