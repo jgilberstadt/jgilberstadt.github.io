@@ -291,8 +291,6 @@ main.container { padding: 3rem 0; }
   background: rgba(128, 128, 128, 0.1);
   color: var(--accent);
   border: 1px solid var(--card-border);
-  margin-bottom: 0.5rem; /* Prevents tags from touching if they wrap */
-  margin-right: 0.25rem;
 }
 
 /* Restore Spacing for About Page */
