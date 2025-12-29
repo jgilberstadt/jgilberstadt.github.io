@@ -332,13 +332,20 @@ main.container { padding: 3rem 0; }
   /* 5. Social & Action Buttons */
   .social-button:hover { 
     transform: translateY(-2px); 
-    opacity: 0.9;
+    filter: brightness(1.1); /* Matches the project title "glow" logic */
+    box-shadow: 0 5px 15px rgba(96, 165, 250, 0.2); /* Adds a subtle blue shadow */
   }
 
    .project-item:hover h3 {
     text-decoration: underline; /* Classic link indicator */
     filter: brightness(1.2); /* Makes the blue glow slightly on hover */
   }
+
+   body.light-mode .project-item:hover h3,
+   body.light-mode .social-button:hover,
+   body.light-mode .site-footer a:hover {
+  filter: brightness(0.85); /* Makes the blue slightly darker/richer for better contrast on white */
+}
 }
 
 /* Add this to Section 4 of your CSS */
@@ -455,7 +462,11 @@ main.container { padding: 3rem 0; }
 ========================= */
 .site-footer { padding: 3rem 0; border-top: 1px solid var(--card-border); text-align: center; margin-top: auto; }
 .site-footer a { margin: 0 1rem; color: var(--accent); font-weight: 500; transition: opacity 0.3s; }
-.site-footer a:hover { text-decoration: underline; opacity: 0.8; }
+.site-footer a:hover { 
+  text-decoration: underline; 
+  filter: brightness(1.2); /* Consistent with project titles */
+  opacity: 1; /* Keep it fully opaque so it's easy to read */
+}
 
 .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.4s ease-out; }
 .fade-up.active { opacity: 1; transform: translateY(0); }
