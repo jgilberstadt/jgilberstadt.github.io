@@ -105,15 +105,20 @@ body.light-mode .sun-icon { display: none !important; }
 }
 
 /* Hover & Active States */
-.theme-toggle:hover, .menu-toggle:hover {
-  background: var(--card-bg);
-  border-color: var(--accent); /* Highlight the border with your theme color */
-  box-shadow: 0 0 12px rgba(96, 165, 250, 0.2);
+/* Only show the blue ring/glow on devices with a mouse */
+@media (hover: hover) {
+  .theme-toggle:hover, .menu-toggle:hover {
+    background: var(--card-bg);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.2);
+  }
 }
 
+/* Keep the scale/feedback for taps on mobile (without the sticky blue ring) */
 .theme-toggle:active, .menu-toggle:active {
-  background: rgba(128, 128, 128, 0.2); /* Subtle feedback during the actual click */
-  transform: scale(0.95); /* Slight physical feedback */
+  background: rgba(128, 128, 128, 0.2);
+  transform: scale(0.95);
+  transition: transform 0.1s ease; /* Faster feedback for touch */
 }
 
 /* Light mode adjustments */
