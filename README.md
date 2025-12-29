@@ -7,11 +7,13 @@ describes my work experience, education, and future software development goals. 
 displays four coding projects that I've selected and provides a description of the project and
 the languages/libraries that were used to create the project. The projects are also hyperlinked to the
 repositories storing the code for each project. The contact page contains several buttons that,
-when clicked, allow the user to either send an email or visit my LinkedIn or Github account.
+when clicked, allow the user to either send an email or visit my LinkedIn or GitHub account.
 
 I created header and footer partial files to minimize redundant code and improve overall readability.
 My name is in the left side of the header, and it sends the user to the about page when it's clicked.
-The right side of the header lists 
+The right side of the header lists all three pages, which allows the user to switch pages by clicking
+on the the page they want to see. There is also a sun/moon button in the right edge of the header that allows the user to toggle the light/dark mode. The footer lists my name and location and also contains
+links to my email, LinkedIn, and GitHub.
 
 I also created several supplementary files that contain various formatting and structural properties.
 
