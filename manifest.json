@@ -2,7 +2,7 @@
   "name": "Josh Gilberstadt | Data Manager",
   "short_name": "JoshG",
   "description": "Portfolio and professional work of Josh Gilberstadt.",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#000000",
