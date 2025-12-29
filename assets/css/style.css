@@ -120,6 +120,16 @@ body.light-mode .sun-icon { display: none !important; }
   }
 }
 
+/* Prevent sticky focus highlights on mobile */
+@media (hover: none) {
+  .theme-toggle:focus, 
+  .menu-toggle:focus {
+    background: transparent !important;
+    border-color: var(--card-border) !important;
+    box-shadow: none !important;
+  }
+}
+
 /* Keep the scale/feedback for taps on mobile (without the sticky blue ring) */
 .theme-toggle:active, .menu-toggle:active {
   background: rgba(128, 128, 128, 0.2);
@@ -133,10 +143,19 @@ body.light-mode .menu-toggle {
   border-color: rgba(0, 0, 0, 0.08);
 }
 
-body.light-mode .theme-toggle:hover, 
-body.light-mode .menu-toggle:hover {
-  background: rgba(0, 0, 0, 0.03);
-  border-color: var(--accent);
+/* Only show the blue ring/glow on devices with a mouse */
+@media (hover: hover) {
+  .theme-toggle:hover, .menu-toggle:hover {
+    background: var(--card-bg);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.2);
+  }
+
+  body.light-mode .theme-toggle:hover, 
+  body.light-mode .menu-toggle:hover {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: var(--accent);
+  }
 }
 
 /* Desktop Navigation */
