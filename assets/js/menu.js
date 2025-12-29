@@ -315,7 +315,7 @@ if (document.readyState === "interactive" || document.readyState === "complete")
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/sw.js")
+      .register("./sw.js")
       .then((reg) => console.log("Service Worker registered!"))
       .catch((err) => console.log("Service Worker failed:", err));
   });
