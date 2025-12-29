@@ -1,6 +1,7 @@
-# Josh Gilberstadt — About, Contact & Projects
-
-This repository hosts a simple static portfolio site for Josh Gilberstadt.
+# Josh Gilberstadt Portfolio PWA
+#### Video Demo:
+#### Description:
+This repository hosts a progressive web app (PWA) showcasing my coding projects.
 
 Pages:
 - `index.html` — About (site root)
