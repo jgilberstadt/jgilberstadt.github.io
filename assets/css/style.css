@@ -108,6 +108,7 @@ body.light-mode .sun-icon { display: none !important; }
 .theme-toggle:hover, .menu-toggle:hover {
   background: var(--card-bg);
   border-color: var(--accent); /* Highlight the border with your theme color */
+  box-shadow: 0 0 12px rgba(96, 165, 250, 0.2);
 }
 
 .theme-toggle:active, .menu-toggle:active {
