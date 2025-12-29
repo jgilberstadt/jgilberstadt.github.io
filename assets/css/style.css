@@ -94,6 +94,12 @@ body.light-mode .sun-icon { display: none !important; }
   color: var(--text); transition: all 0.2s ease;
 }
 
+body.light-mode .theme-toggle, 
+body.light-mode .menu-toggle {
+  border-color: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.03);
+}
+
 /* Desktop Navigation */
 @media (min-width: 769px) {
   .menu-list { display: flex; align-items: center; gap: 2rem; margin-right: 2rem; height: 100%; }
@@ -335,8 +341,24 @@ body.light-mode .project-item:hover {
   /* Hide the old close button if it's still in the HTML */
   .menu-close { display: none !important; }
 
-   body.light-mode .menu-list a.current {
-    background: rgba(37, 99, 235, 0.08);
+body.light-mode .menu-list {
+  background: rgba(255, 255, 255, 0.92); /* Increased from 0.85 for better contrast */
+}
+   
+   /* Force dark text in light mode mobile menu */
+  body.light-mode .menu-list a {
+    color: #111827; /* A deep, readable charcoal/black */
+  }
+
+  /* Adjust the active pill for light mode visibility */
+  body.light-mode .menu-list a.current {
+    color: var(--accent) !important;
+    background: rgba(37, 99, 235, 0.1); /* Slightly darker tint for contrast */
+  }
+
+  /* Ensure the hamburger icon turns dark in light mode */
+  body.light-mode .hamburger-icon span {
+    background-color: #111827;
   }
 }
 
