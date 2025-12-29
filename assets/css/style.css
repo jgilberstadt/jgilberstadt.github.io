@@ -178,7 +178,11 @@ main.container { padding: 3rem 0; }
   overflow: hidden; 
   display: flex;
   flex-direction: column; /* Ensure content stacks vertically */
-  transition: transform 0.3s, border-color 0.3s;
+  transition: 
+    transform 0.4s cubic-bezier(0.2, 1, 0.2, 1), 
+    box-shadow 0.4s cubic-bezier(0.2, 1, 0.2, 1), 
+    border-color 0.3s ease, 
+    background 0.3s ease;
   height: 100%; /* Makes all cards in a row the same height */
 }
 
@@ -236,8 +240,32 @@ main.container { padding: 3rem 0; }
 }
 
 @media (hover: hover) {
-  .project-item:hover { transform: translateY(-5px); border-color: var(--accent); }
+  .project-item:hover {
+    /* 1. Lift the card up */
+    transform: translateY(-8px);
+    
+    /* 2. Change border color to your blue accent */
+    border-color: var(--accent);
+    
+    /* 3. Add a soft glow/shadow */
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+    
+    /* 4. Subtly lighten the card background */
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* Adjust the thumbnail on hover - a slight zoom feels very premium */
+  .project-item:hover .project-thumb {
+    filter: brightness(1.1);
+    transition: filter 0.3s ease;
+  }
   .social-button:hover { transform: translateY(-2px); }
+}
+
+/* Light mode adjustments for the shadow */
+body.light-mode .project-item:hover {
+  background: #ffffff;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================
