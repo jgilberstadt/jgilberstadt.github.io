@@ -111,17 +111,20 @@ function setupMenu() {
     removeFocusTrap = trapFocus();
   }
 
-  function closeMenu() {
-    if (!document.body.classList.contains("menu-open")) return;
-    document.body.classList.remove("menu-open");
-    
-    // Restore scrolling when menu closes
-    document.body.style.overflow = ""; 
-    
-    toggleButton.setAttribute("aria-expanded", "false");
-    if (removeFocusTrap) removeFocusTrap();
+  function closeMenu(isKeyboard = false) {
+  if (!document.body.classList.contains("menu-open")) return;
+  document.body.classList.remove("menu-open");
+  
+  document.body.style.overflow = ""; 
+  toggleButton.setAttribute("aria-expanded", "false");
+  
+  if (removeFocusTrap) removeFocusTrap();
+
+  // Only return focus if the user is using a keyboard (Escape key / Tab)
+  if (isKeyboard) {
     toggleButton.focus();
   }
+}
 
   toggleButton.addEventListener("click", e => {
     e.stopPropagation();
@@ -137,7 +140,7 @@ function setupMenu() {
   });
 
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && document.body.classList.contains("menu-open")) closeMenu();
+    if (e.key === "Escape" && document.body.classList.contains("menu-open")) closeMenu(true);
   });
 
   menuList.querySelectorAll("a").forEach(link => {
