@@ -11,3 +11,5 @@ I also created several supplementary files that contain various formatting and s
 
 I decided to create a PWA rather than a simple static website to improve both speed and usability. The portfolio uses a service worker called sw.js to cache the assets so they don't need to be repeatedly fetched from a server, which significantly reduces loading time. The PWA also allows the user to access the portfolio without internet, futher enhancing the user experience. In addition to the service worker, I also created a manifest.json file that contains the portfolio metadata and allows the portfolio to be viewed as an application.
 
+Several AI-based software programs were used when creating this application including ChatGPT, GitHub Copilot, and Gemini.
+
