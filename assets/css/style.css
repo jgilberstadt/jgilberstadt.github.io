@@ -254,7 +254,12 @@ main.container { padding: 3rem 0; }
 }
 
 .project-item h3, .project-description, .project-tags { padding: 0 1.5rem; }
-.project-item h3 { margin: 1.5rem 0 0.5rem 0; font-size: 1.4rem; }
+.project-item h3 { 
+  margin: 1.5rem 0 0.5rem 0; 
+  font-size: 1.4rem; 
+  color: var(--accent); /* Changed from default text color to blue */
+  transition: color var(--transition-smooth);
+}
 .project-description { margin-bottom: 1.5rem; opacity: 0.8; flex-grow: 1; }
 .project-tags { padding-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
