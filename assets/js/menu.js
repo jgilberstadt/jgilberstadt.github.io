@@ -103,6 +103,10 @@ function setupMenu() {
   function openMenu() {
     if (window.innerWidth >= 769) return;
     document.body.classList.add("menu-open");
+    
+    // Add this to lock the background
+    document.body.style.overflow = "hidden"; 
+    
     toggleButton.setAttribute("aria-expanded", "true");
     removeFocusTrap = trapFocus();
   }
@@ -110,6 +114,10 @@ function setupMenu() {
   function closeMenu() {
     if (!document.body.classList.contains("menu-open")) return;
     document.body.classList.remove("menu-open");
+    
+    // Restore scrolling when menu closes
+    document.body.style.overflow = ""; 
+    
     toggleButton.setAttribute("aria-expanded", "false");
     if (removeFocusTrap) removeFocusTrap();
     toggleButton.focus();
@@ -230,17 +238,20 @@ function setupHeaderScroll() {
 // Theme Logic & Toggle
 // =========================
 function applyTheme(isLight) {
-  // 1. Update Classes
   document.documentElement.classList.toggle("light-mode", isLight);
   document.body.classList.toggle("light-mode", isLight);
 
-  // 2. Update Mobile UI (Notch/Address Bar)
+  // Sync the footer if it exists in the DOM
+  const footer = document.getElementById("site-footer");
+  if (footer) {
+    footer.classList.toggle("light-mode", isLight);
+  }
+
   const metaTheme = document.getElementById("meta-theme-color");
   if (metaTheme) {
     metaTheme.setAttribute("content", isLight ? "#ffffff" : "#000000");
   }
 
-  // 3. Save Preference
   localStorage.setItem("theme", isLight ? "light" : "dark");
 }
 
@@ -262,7 +273,7 @@ function setupThemeToggle() {
         document.body.classList.add("transitions-enabled");
         document.documentElement.classList.add("transitions-enabled");
         toggle.blur(); // Ensures the moon/sun icon doesn't stay blue
-      }, 50);
+      }, 100);
     });
   });
 }
