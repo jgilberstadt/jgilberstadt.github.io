@@ -164,16 +164,38 @@ main.container { padding: 3rem 0; }
 
 .social-button.btn-primary { background: var(--accent); color: #ffffff; }
 
-.project-grid ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+.project-grid ul { 
+  display: grid; 
+  /* minmax ensures they don't get too skinny before jumping to 1 column */
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
+  gap: 2.5rem; 
+}
+
 .project-item { 
-  background: var(--card-bg); border: 1px solid var(--card-border); 
-  border-radius: 0.8rem; overflow: hidden; display: flex;
+  background: var(--card-bg); 
+  border: 1px solid var(--card-border); 
+  border-radius: 0.8rem; 
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column; /* Ensure content stacks vertically */
   transition: transform 0.3s, border-color 0.3s;
+  height: 100%; /* Makes all cards in a row the same height */
 }
 
 .project-thumb {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; 
-  display: block; border-bottom: 1px solid var(--card-border);
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Standard widescreen ratio */
+  object-fit: cover; 
+  display: block; 
+  border-bottom: 1px solid var(--card-border);
+  /* Fix: Prevents the image from stretching if the card gets taller */
+  align-self: flex-start; 
+}
+
+.project-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .project-item h3, .project-description, .project-tags { padding: 0 1.5rem; }
