@@ -336,7 +336,6 @@ main.container { padding: 3rem 0; }
   }
 
    .project-item:hover h3 {
-    opacity: 0.8; /* Subtle change to show it's active */
     text-decoration: underline; /* Classic link indicator */
     filter: brightness(1.2); /* Makes the blue glow slightly on hover */
   }
