@@ -91,28 +91,40 @@ nav.menu { display: flex; align-items: center; }
 body:not(.light-mode) .moon-icon, 
 body.light-mode .sun-icon { display: none !important; }
 
-/* Neutral state for toggles */
+/* Refined state for toggles */
 .theme-toggle, .menu-toggle {
   display: flex; align-items: center; justify-content: center;
-  border: 1px solid transparent; /* Hide border by default */
+  /* Use a very faint border instead of transparent to prevent 'vanishing' */
+  border: 1px solid var(--card-border); 
   border-radius: 0.4rem;
   padding: 0.4rem; min-width: 40px; height: 40px;
   color: var(--text); 
-  transition: all 0.2s var(--transition-smooth);
+  transition: all 0.2s ease;
   background: transparent;
+  cursor: pointer;
 }
 
-/* Only highlight on hover */
+/* Hover & Active States */
 .theme-toggle:hover, .menu-toggle:hover {
-  border-color: var(--card-border);
   background: var(--card-bg);
+  border-color: var(--accent); /* Highlight the border with your theme color */
 }
 
-/* Light mode adjustments: keeps it clean but visible */
+.theme-toggle:active, .menu-toggle:active {
+  background: rgba(128, 128, 128, 0.2); /* Subtle feedback during the actual click */
+  transform: scale(0.95); /* Slight physical feedback */
+}
+
+/* Light mode adjustments */
+body.light-mode .theme-toggle, 
+body.light-mode .menu-toggle {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
 body.light-mode .theme-toggle:hover, 
 body.light-mode .menu-toggle:hover {
-  border-color: rgba(0, 0, 0, 0.1);
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.03);
+  border-color: var(--accent);
 }
 
 /* Desktop Navigation */
