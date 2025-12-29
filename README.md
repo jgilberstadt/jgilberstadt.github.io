@@ -3,7 +3,7 @@
 #### Description:
 This repository hosts a progressive web app (PWA) showcasing my coding projects.
 It contains three pages: an about page, a projects page, and a contact page. The about page
-describes my work experience, education, and future software development goals. The projects page
+describes my work experience, education, and future software development goals. It also contains two buttons that allow the user to download my resume and redirect the user to the projects page. I decided The projects page
 displays four coding projects that I've selected and provides a description of the project and
 the languages/libraries that were used to create the project. The projects are also hyperlinked to the
 repositories storing the code for each project. The contact page contains several buttons that,
