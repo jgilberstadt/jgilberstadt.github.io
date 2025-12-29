@@ -154,7 +154,7 @@ function setupMenu() {
 function highlightCurrentPage() {
   // 1. Get the current filename (e.g., 'projects.html')
   const path = window.location.pathname;
-  let currentPage = path.split("/").pop();
+  let currentPage = path.split("/").filter(Boolean).pop() || "index.html";
 
   // 2. Handle the "Home" edge case (empty path or just a slash)
   if (currentPage === "" || currentPage === "/") {
