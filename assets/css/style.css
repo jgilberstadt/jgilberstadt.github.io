@@ -106,19 +106,30 @@ body.light-mode .menu-toggle {
   .menu-list li { display: flex; align-items: center; height: 100%; }
   
   .menu-list a { 
-    position: relative; opacity: 0.7; transition: all 0.3s ease;
-    display: inline-flex; align-items: center; justify-content: center; 
+    position: relative; 
+    opacity: 0.7; 
+    transition: var(--transition-smooth);
+    display: inline-flex; 
+    align-items: center; 
     height: var(--header-height);
   }
 
-  /* Only the current page has a permanent underline */
-  .menu-list a.current::after {
-    content: ''; position: absolute; bottom: 20px; left: 0;
-    width: 100%; height: 2px; background: var(--accent);
+  .menu-list a:hover, 
+  .menu-list a.current { 
+    opacity: 1; 
+    color: var(--accent) !important; 
   }
 
-  .menu-list a:hover, .menu-list a.current { 
-    opacity: 1; color: var(--accent) !important; 
+  /* Fixed: Single, consistent underline logic for the active page */
+  .menu-list a.current::after {
+    content: ''; 
+    position: absolute; 
+    bottom: 20px; 
+    left: 0;
+    width: 100%; 
+    height: 2px; 
+    background: var(--accent);
+    transition: width 0.3s ease;
   }
 }
 
@@ -277,89 +288,58 @@ body.light-mode .project-item:hover {
 /* =========================
    5. Mobile Adjustments
 ========================= */
-.profile { border-radius: 50%; border: 3px solid var(--accent); padding: 5px; object-fit: cover; }
+.profile { 
+  border-radius: 50%; 
+  border: 3px solid var(--accent); 
+  padding: 5px; 
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Adds depth */
+}
 
 @media (max-width: 768px) {
-  /* 1. The Morphing Icon Styling */
-  .menu-toggle {
-    z-index: 1100; /* Ensure button stays ABOVE the full-screen menu */
-  }
+  /* Morphing Icon Positioning */
+  .menu-toggle { z-index: 1100; position: relative; }
 
-  .hamburger-icon {
-    width: 20px; height: 14px; position: relative;
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-
-  .hamburger-icon span {
-    display: block; width: 100%; height: 2px;
-    background-color: var(--text); transition: all 0.3s ease-in-out;
-    transform-origin: center;
-  }
-
-  /* Morphing Logic */
-  body.menu-open .hamburger-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-  body.menu-open .hamburger-icon span:nth-child(2) { opacity: 0; }
-  body.menu-open .hamburger-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-
-  /* 2. Glassmorphism Menu */
+  /* Glassmorphism Menu */
   .menu-list {
     position: fixed; inset: 0; width: 100vw; height: 100vh; 
-    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.85); 
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
-    gap: 2rem; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.4s ease;
-  }
-
-   .menu-list a {
-    font-size: 2.5rem;    /* Increased from 2rem */
-    font-weight: 700;    /* Bolder for better legibility */
-    letter-spacing: -0.02em;
-    padding: 0.8rem 2rem;
-    border-radius: 50px; /* For the pill effect */
-    transition: all 0.3s ease;
+    gap: 1.5rem; z-index: 1000; opacity: 0; visibility: hidden; 
+    transition: all 0.4s cubic-bezier(.2,.8,.2,1);
   }
 
   body.menu-open .menu-list { opacity: 1; visibility: visible; }
 
-  /* 3. Link Animation & Highlighting */
+  .menu-list a {
+    font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em;
+    padding: 0.8rem 2rem; border-radius: 50px; transition: all 0.3s ease;
+  }
+
+  /* Active Pill (Unified Rule) */
+  .menu-list a.current {
+    color: var(--accent) !important;
+    background: rgba(96, 165, 250, 0.1);
+  }
+
+  /* Link Animation Stagger */
   .menu-list li { opacity: 0; transform: translateY(20px); transition: all 0.4s ease; }
   body.menu-open .menu-list li { opacity: 1; transform: translateY(0); }
-  /* Stagger delays... */
   body.menu-open .menu-list li:nth-child(1) { transition-delay: 0.1s; }
   body.menu-open .menu-list li:nth-child(2) { transition-delay: 0.15s; }
   body.menu-open .menu-list li:nth-child(3) { transition-delay: 0.2s; }
 
-.menu-list a.current {
-    color: var(--accent) !important;
-    background: rgba(96, 165, 250, 0.1); /* Subtle blue tint */
-  }
-   
-   .menu-list a.current {
-    color: var(--accent) !important;
-    background: rgba(96, 165, 250, 0.1); /* Subtle blue tint */
-  }
+  /* --- LIGHT MODE MOBILE OVERRIDES --- */
+  body.light-mode .menu-list { background: rgba(255, 255, 255, 0.95); }
+  
+  body.light-mode .menu-list a { color: #111827; }
 
-  /* Hide the old close button if it's still in the HTML */
-  .menu-close { display: none !important; }
-
-body.light-mode .menu-list {
-  background: rgba(255, 255, 255, 0.92); /* Increased from 0.85 for better contrast */
-}
-   
-   /* Force dark text in light mode mobile menu */
-  body.light-mode .menu-list a {
-    color: #111827; /* A deep, readable charcoal/black */
-  }
-
-  /* Adjust the active pill for light mode visibility */
   body.light-mode .menu-list a.current {
-    color: var(--accent) !important;
-    background: rgba(37, 99, 235, 0.1); /* Slightly darker tint for contrast */
+    background: rgba(37, 99, 235, 0.1); /* Darker blue for light mode */
   }
 
-  /* Ensure the hamburger icon turns dark in light mode */
-  body.light-mode .hamburger-icon span {
-    background-color: #111827;
-  }
+  body.light-mode .hamburger-icon span { background-color: #111827; }
 }
 
 @media (min-width: 769px) {
