@@ -54,6 +54,10 @@ button { background: none; border: none; padding: 0; cursor: pointer; color: inh
 body:not(.transitions-enabled), body:not(.transitions-enabled) * { transition: none !important; }
 body.transitions-enabled { transition: background-color 0.3s ease, color 0.3s ease; }
 
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* =========================
    3. Header & Navigation 
 ========================= */
@@ -87,17 +91,28 @@ nav.menu { display: flex; align-items: center; }
 body:not(.light-mode) .moon-icon, 
 body.light-mode .sun-icon { display: none !important; }
 
+/* Neutral state for toggles */
 .theme-toggle, .menu-toggle {
   display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--card-border); border-radius: 0.4rem;
+  border: 1px solid transparent; /* Hide border by default */
+  border-radius: 0.4rem;
   padding: 0.4rem; min-width: 40px; height: 40px;
-  color: var(--text); transition: all 0.2s ease;
+  color: var(--text); 
+  transition: all 0.2s var(--transition-smooth);
+  background: transparent;
 }
 
-body.light-mode .theme-toggle, 
-body.light-mode .menu-toggle {
-  border-color: rgba(0, 0, 0, 0.15);
-  background: rgba(0, 0, 0, 0.03);
+/* Only highlight on hover */
+.theme-toggle:hover, .menu-toggle:hover {
+  border-color: var(--card-border);
+  background: var(--card-bg);
+}
+
+/* Light mode adjustments: keeps it clean but visible */
+body.light-mode .theme-toggle:hover, 
+body.light-mode .menu-toggle:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 /* Desktop Navigation */
