@@ -7,7 +7,7 @@ I created header and footer partial files to minimize redundant code and improve
 
 I also created several supplementary files that contain various formatting and structural properties. The menu.js file contains numerous JavaScript functions such as injecting the header and footer, displaying the mobile menu, and toggling the light/dark mode. These functions enhance user engagement and allow for a more customized experience. The style.css file contains the stylistic properties of the PWA such as spacing, text layouts, and color/highlighting properties.
 
-I decided to create a PWA rather than a simple static website to improve both speed and usability. The portfolio uses a service worker called sw.js to cache the assets so they don't need to be repeatedly fetched from a server, which significantly reduces loading time. The PWA also allows the user to access the portfolio without internet, futher enhancing the user experience.
+I decided to create a PWA rather than a simple static website to improve both speed and usability. The portfolio uses a service worker called sw.js to cache the assets so they don't need to be repeatedly fetched from a server, which significantly reduces loading time. The PWA also allows the user to access the portfolio without internet, futher enhancing the user experience. In addition to the service worker, I also created a manifest.json file that contains the portfolio metadata and allows the portfolio to be viewed as an application.
 
 Pages:
 - `index.html` — About (site root)
