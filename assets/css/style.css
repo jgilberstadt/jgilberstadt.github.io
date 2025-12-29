@@ -303,6 +303,15 @@ body.light-mode .project-item:hover {
     gap: 2rem; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.4s ease;
   }
 
+   .menu-list a {
+    font-size: 2.5rem;    /* Increased from 2rem */
+    font-weight: 700;    /* Bolder for better legibility */
+    letter-spacing: -0.02em;
+    padding: 0.8rem 2rem;
+    border-radius: 50px; /* For the pill effect */
+    transition: all 0.3s ease;
+  }
+
   body.menu-open .menu-list { opacity: 1; visibility: visible; }
 
   /* 3. Link Animation & Highlighting */
@@ -313,14 +322,22 @@ body.light-mode .project-item:hover {
   body.menu-open .menu-list li:nth-child(2) { transition-delay: 0.15s; }
   body.menu-open .menu-list li:nth-child(3) { transition-delay: 0.2s; }
 
-  .menu-list a.current { color: var(--accent) !important; font-weight: 700; position: relative; }
-  .menu-list a.current::after {
-    content: '•'; position: absolute; bottom: -20px; left: 50%;
-    transform: translateX(-50%); color: var(--accent); font-size: 1.5rem;
+.menu-list a.current {
+    color: var(--accent) !important;
+    background: rgba(96, 165, 250, 0.1); /* Subtle blue tint */
+  }
+   
+   .menu-list a.current {
+    color: var(--accent) !important;
+    background: rgba(96, 165, 250, 0.1); /* Subtle blue tint */
   }
 
   /* Hide the old close button if it's still in the HTML */
   .menu-close { display: none !important; }
+
+   body.light-mode .menu-list a.current {
+    background: rgba(37, 99, 235, 0.08);
+  }
 }
 
 @media (min-width: 769px) {
