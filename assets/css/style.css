@@ -341,6 +341,12 @@ main.container { padding: 3rem 0; }
     filter: brightness(1.2); /* Makes the blue glow slightly on hover */
   }
 
+   .site-footer a:hover { 
+  text-decoration: underline; 
+  filter: brightness(1.2); /* Consistent with project titles */
+  opacity: 1; /* Keep it fully opaque so it's easy to read */
+}
+
    body.light-mode .project-item:hover h3,
    body.light-mode .social-button:hover,
    body.light-mode .site-footer a:hover {
@@ -462,11 +468,6 @@ main.container { padding: 3rem 0; }
 ========================= */
 .site-footer { padding: 3rem 0; border-top: 1px solid var(--card-border); text-align: center; margin-top: auto; }
 .site-footer a { margin: 0 1rem; color: var(--accent); font-weight: 500; transition: opacity 0.3s; }
-.site-footer a:hover { 
-  text-decoration: underline; 
-  filter: brightness(1.2); /* Consistent with project titles */
-  opacity: 1; /* Keep it fully opaque so it's easy to read */
-}
 
 .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.4s ease-out; }
 .fade-up.active { opacity: 1; transform: translateY(0); }
